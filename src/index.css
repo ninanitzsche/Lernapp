@@ -396,3 +396,126 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 .start-logo { height: clamp(48px, 9dvh, 88px); width: auto; flex: none; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .45)); user-select: none; }
 .startgruss { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; border: 0; padding: 0; cursor: pointer; background: radial-gradient(ellipse 80% 55% at 50% 40%, var(--nacht-hell), var(--nacht)); }
 .startgruss img { height: min(70dvh, 80vw); width: auto; filter: drop-shadow(0 12px 28px rgba(0, 0, 0, .5)); user-select: none; }
+
+
+/* Willkommen: das Logo als leuchtendes Titelmotiv – ohne Rahmen oder Beschnitt */
+.willkommen-screen {
+  justify-content: center;
+  gap: clamp(4px, 1.1dvh, 12px);
+  padding-top: max(14px, env(safe-area-inset-top));
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(ellipse 88% 38% at 50% 16%, rgba(126, 255, 35, .13), transparent 72%),
+    radial-gradient(ellipse 75% 48% at 50% 52%, rgba(0, 194, 112, .10), transparent 75%);
+}
+.willkommen-marke {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  width: min(100%, 440px);
+  flex: 0 1 auto;
+}
+.willkommen-marke::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 12% 8%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(106, 255, 26, .22), rgba(0, 220, 120, .10) 42%, transparent 72%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+.willkommen-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 440px;
+  max-height: 43dvh;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .38)) drop-shadow(0 0 18px rgba(95, 255, 32, .15));
+  mix-blend-mode: screen;
+  user-select: none;
+}
+.willkommen-tier {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  padding: 0 24px;
+}
+.willkommen-tier::before {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 48px;
+  bottom: 3px;
+  border-radius: 50%;
+  background: rgba(119, 255, 42, .15);
+  filter: blur(20px);
+}
+.willkommen-bild {
+  position: relative;
+  height: clamp(76px, 17dvh, 142px);
+  width: auto;
+  max-width: 52vw;
+  object-fit: contain;
+  filter: drop-shadow(0 9px 13px rgba(0, 0, 0, .42));
+}
+.willkommen-einstieg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.3dvh, 14px);
+  width: 100%;
+  padding: 2px 0 8px;
+}
+.willkommen-einstieg > p {
+  margin: 0;
+  color: #f5f2d9;
+  font-size: clamp(1.05rem, 2.4dvh, 1.3rem);
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+}
+.willkommen-einstieg .eingabe {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+.willkommen-einstieg .textfeld {
+  width: min(100%, 320px);
+  min-height: 58px;
+  border: 3px solid #a8d76a;
+  box-shadow: 0 4px 0 rgba(5, 28, 19, .45), 0 0 18px rgba(134, 255, 52, .10);
+}
+.willkommen-einstieg .knopf.gross {
+  width: min(100%, 320px);
+  background: linear-gradient(180deg, #c5f65c, #91d62c);
+  box-shadow: 0 6px 0 #568d1d, 0 0 22px rgba(151, 255, 52, .18);
+}
+.start-logo {
+  height: clamp(66px, 10dvh, 96px);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .45)) drop-shadow(0 0 12px rgba(115, 255, 45, .13));
+}
+.startgruss {
+  background:
+    radial-gradient(ellipse 65% 48% at 50% 45%, rgba(92, 255, 25, .15), transparent 72%),
+    radial-gradient(ellipse 80% 55% at 50% 40%, var(--nacht-hell), var(--nacht));
+}
+.startgruss img {
+  max-width: min(88vw, 620px);
+  max-height: 76dvh;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+@media (max-height: 680px) {
+  .willkommen-screen { gap: 3px; }
+  .willkommen-logo { max-height: 36dvh; }
+  .willkommen-bild { height: 13dvh; }
+  .willkommen-einstieg { gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .willkommen-logo, .willkommen-bild { transition: none; }
+}

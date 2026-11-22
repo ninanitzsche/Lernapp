@@ -239,15 +239,21 @@ function ShopAnsicht({ state, onChange, onClose }: { state: GameState; onChange:
 function Willkommen({ onStart }: { onStart: (name: string) => void }) {
   const [name, setName] = useState('')
   return (
-    <main className="start">
+    <main className="start willkommen-screen">
       <h1 className="sr-only">Nico's Snake App</h1>
-      <img className="willkommen-logo" src={`${import.meta.env.BASE_URL}images/logo.webp`} alt="Nico's Snake App" />
-      <img className="willkommen-bild" src={`${import.meta.env.BASE_URL}images/snake/app/baby-standard.webp`} alt="Eine kleine grüne Schlange" />
-      <p>Wie soll die Schlange heißen?</p>
-      <form className="eingabe" onSubmit={(e) => { e.preventDefault(); if (name.trim()) onStart(name.trim()) }}>
-        <input className="textfeld" maxLength={20} autoFocus value={name} onChange={(e) => setName(e.target.value)} aria-label="Name der Schlange" />
-        <button className="knopf gross" type="submit" disabled={!name.trim()}>Los geht's</button>
-      </form>
+      <div className="willkommen-marke">
+        <img className="willkommen-logo" src={`${import.meta.env.BASE_URL}images/logo.webp`} alt="Nico's Snake App" />
+      </div>
+      <div className="willkommen-tier">
+        <img className="willkommen-bild" src={`${import.meta.env.BASE_URL}images/snake/app/baby-standard.webp`} alt="Eine kleine grüne Schlange – so beginnt dein Abenteuer" />
+      </div>
+      <section className="willkommen-einstieg" aria-label="Deine Schlange einrichten">
+        <p>Wie soll die Schlange heißen?</p>
+        <form className="eingabe" onSubmit={(e) => { e.preventDefault(); if (name.trim()) onStart(name.trim()) }}>
+          <input className="textfeld" maxLength={20} autoFocus value={name} onChange={(e) => setName(e.target.value)} aria-label="Name der Schlange" placeholder="Schlangennamen eingeben" />
+          <button className="knopf gross" type="submit" disabled={!name.trim()}>Los geht's</button>
+        </form>
+      </section>
     </main>
   )
 }
