@@ -173,6 +173,33 @@ const SPRUECHE = {
     'Die lag unter meinem Stein. Behalte sie, ich kann sie eh nicht ausgeben!',
     'Ein kleines Geschenk, weil du heute da warst. Mampf, äh, danke!',
   ],
+  halbzeit: [
+    'Fünf geschafft! Ich habe schon Hunger auf die nächsten.',
+    'Halbzeit! Ich lege mich kurz in die Sonne.',
+    'Mmh, das war lecker. Bereit für Teil zwei?',
+    'Die Hälfte ist im Bauch! Der Rest kann kommen.',
+    'Zeit für eine Schnaufpause. Ich schnaufe, du bist toll!',
+    'Halbzeit! Mein Bauch sagt: weiter so!',
+  ],
+  serie: [
+    'Drei hintereinander! Ich glaub, ich verschlucke mich!',
+    'Das Futter fliegt nur so herein! Dreimal Volltreffer!',
+    'Dreierpack! Du bist heiß gelaufen!',
+    'Hat da jemand einen Lauf? Ja, du! Bonusfutter!',
+    'Mampf, mampf, mampf! Drei Treffer, ein Schmaus!',
+    'Das war eine Futter-Serie vom Feinsten!',
+  ],
+  haeutung: [
+    'Zeit für eine neue Haut. Die alte war mir eh zu eng!',
+    'Raschel, raschel. Schon wieder eine Haut weniger, schon wieder ein Meilenstein mehr!',
+    'Meine alte Haut hebe ich für dich auf.',
+    'Aus der Haut gefahren, und zwar vor Freude!',
+    'Schlüpf, schlüpf! Jetzt bin ich wieder ein Stück weiter.',
+    'Ssssuper! Eine Haut für dein Album.',
+  ],
+  schuppen: [
+    'Je mehr Schuppen, desto kniffliger. Dafür gibt es mehr Futter!',
+  ],
   intro1: [
     'Hallo! Ich bin eine Schlange und ich liebe Mathe-Aufgaben. Die sind für mich wie Futter!',
   ],

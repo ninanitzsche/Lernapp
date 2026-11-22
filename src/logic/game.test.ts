@@ -70,23 +70,23 @@ test('Am nächsten Tag gibt es wieder Futter', () => {
   assert.equal(r.foodGained, 20)
 })
 
-test('Stufenwechsel genau an den Schwellen 60, 150, 300, 500', () => {
+test('Stufenwechsel genau an den Schwellen 30, 90, 200, 350', () => {
   assert.equal(stageFor(0).stage, 1)
-  assert.equal(stageFor(59).stage, 1)
-  assert.equal(stageFor(60).stage, 2)
-  assert.equal(stageFor(149).stage, 2)
-  assert.equal(stageFor(150).stage, 3)
-  assert.equal(stageFor(299).stage, 3)
-  assert.equal(stageFor(300).stage, 4)
-  assert.equal(stageFor(499).stage, 4)
-  assert.equal(stageFor(500).stage, 5)
+  assert.equal(stageFor(29).stage, 1)
+  assert.equal(stageFor(30).stage, 2)
+  assert.equal(stageFor(89).stage, 2)
+  assert.equal(stageFor(90).stage, 3)
+  assert.equal(stageFor(199).stage, 3)
+  assert.equal(stageFor(200).stage, 4)
+  assert.equal(stageFor(349).stage, 4)
+  assert.equal(stageFor(350).stage, 5)
   assert.equal(stageFor(9999).stage, 5)
-  assert.equal(nextStageFood(0), 60)
-  assert.equal(nextStageFood(500), null)
+  assert.equal(nextStageFood(0), 30)
+  assert.equal(nextStageFood(350), null)
 })
 
 test('Level-up wird gemeldet', () => {
-  const s = { ...initialState('S'), totalFood: 50 }
+  const s = { ...initialState('S'), totalFood: 20 }
   const r = finishRound(s, runde('first'), MO)
   assert.equal(r.stageBefore, 1)
   assert.equal(r.stageAfter, 2)
@@ -105,11 +105,11 @@ test('Stimmung wechselt genau bei 24 und 48 Stunden', () => {
 })
 
 test('Wachstum sinkt nie, auch nicht nach langer Pause', () => {
-  const s = { ...initialState('S'), totalFood: 200, lastFedAt: new Date(2026, 0, 1).toISOString() }
+  const s = { ...initialState('S'), totalFood: 100, lastFedAt: new Date(2026, 0, 1).toISOString() }
   assert.equal(moodAt(s.lastFedAt, MO), 'schlaeft')
   assert.equal(stageFor(s.totalFood).stage, 3)
   const r = finishRound(s, runde('failed'), MO)
-  assert.ok(r.state.totalFood >= 200)
+  assert.ok(r.state.totalFood >= 100)
 })
 
 test('Wochenschlüssel: Woche läuft Montag bis Sonntag', () => {

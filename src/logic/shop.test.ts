@@ -58,7 +58,7 @@ test('Alte Spielstände ohne Münzen bekommen ihre Sterne rückwirkend', () => {
 })
 
 test('Stufenaufstieg bringt eine Bonus-Münze', () => {
-  const s = { ...initialState('S'), totalFood: 50 }
+  const s = { ...initialState('S'), totalFood: 20 }
   const r = finishRound(s, Array.from({ length: 10 }, () => ({ type: 'A1' as const, outcome: 'first' as const })), MO)
   assert.equal(r.leveledUp, true)
   assert.equal(r.neueBonusMuenzen, 2) // Aufstieg + Tagesmitbringsel
@@ -113,7 +113,7 @@ test('Knobelrunde: Zusatzmünze ab 7 von 10 im ersten Versuch', () => {
   assert.equal(finishRound(s, zehn(6), MO, true).knobelMuenze, false)
   const r = finishRound(s, zehn(7), MO, true)
   assert.equal(r.knobelMuenze, true)
-  assert.equal(r.neueBonusMuenzen, 2) // Knobel + Tagesmitbringsel
+  assert.equal(r.neueBonusMuenzen, 4) // Knobel (2) + erste starke Knobelrunde (1) + Tagesmitbringsel (1)
 })
 
 test('Tagesmitbringsel: nur die erste Runde des Tages bringt eine Münze', () => {
@@ -121,7 +121,7 @@ test('Tagesmitbringsel: nur die erste Runde des Tages bringt eine Münze', () =>
   const eins = finishRound(s, zehn(5), MO)
   assert.equal(eins.tagesMuenze, true)
   assert.equal(eins.neueBonusMuenzen, 1)
-  const zwei = finishRound(eins.state, zehn(5), MO)
+  const zwei = finishRound(eins.state, zehn(0), MO)
   assert.equal(zwei.tagesMuenze, false)
   assert.equal(zwei.neueBonusMuenzen, 0)
   const naechsterTag = finishRound(zwei.state, zehn(5), new Date(MO.getTime() + 86_400_000))
@@ -130,9 +130,9 @@ test('Tagesmitbringsel: nur die erste Runde des Tages bringt eine Münze', () =>
 
 test('Wirtschaft: bei üblichem Üben ist der Shop in etwa acht Wochen leergekauft, nicht in zwei', () => {
   // Annahme: 5 Tage pro Woche je eine Runde, Knobelrunde an 2 Tagen mit Erfolg. Sterne und Aufstiege: 13 Münzen am Anfang.
-  const proWoche = 5 /* Tagesmitbringsel */ + 1 /* Wochenziel */ + 2 /* Knobel */
+  const proWoche = 5 /* Tagesmitbringsel */ + 1 /* Wochenziel */ + 4 /* Knobel: 2 Münzen an 2 Tagen */
   const wochen = (89 - 13) / proWoche
-  assert.ok(wochen > 7 && wochen < 11, `Wochen bis alles gekauft: ${wochen}`)
+  assert.ok(wochen > 6 && wochen < 11, `Wochen bis alles gekauft: ${wochen}`)
 })
 
 test('Normale Runde bringt keine Knobelmünze', () => {

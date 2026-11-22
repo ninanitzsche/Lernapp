@@ -1,6 +1,10 @@
 import { CONFIG, STAGES } from './config.ts'
 import { TASK_TYPES, TOPIC_OF, TOPICS } from './tasks.ts'
-import type { TaskType, Topic } from './tasks.ts'
+import type { Stufe, TaskType, Topic } from './tasks.ts'
+import { futterFuer } from './belohnung.ts'
+import { lernstandNach } from './stufen.ts'
+import { nachtragen, parseMeilensteine, pruefeMeilensteine, zusatzMuenzen } from './meilensteine.ts'
+import type { Meilenstein } from './meilensteine.ts'
 import { int, pick } from './rng.ts'
 import type { Rng } from './rng.ts'
 
@@ -14,6 +18,24 @@ export interface RoundAnswer {
   isRepeat?: boolean
   /** Text der Aufgabe, damit die Wiederholung eine andere Aufgabe wird. */
   prompt?: string
+  /** Schwierigkeit der Aufgabe. Fehlt bei Altdaten: gilt als 2. */
+  stufe?: Stufe
+  /** Diese Antwort hat den Serien-Jubel ausgelöst (drei hintereinander im ersten Versuch). Bringt einmal pro Runde Zusatzfutter. */
+  serieBonus?: boolean
+}
+
+/** Ein Versuch im Verlauf eines Aufgabentyps. */
+export interface Versuch { o: Outcome; s: Stufe }
+
+/** Summen über alle Runden, für den Rückblick der Meilensteine. */
+export interface Statistik {
+  /** Bearbeitete Aufgaben (ohne Wiederholungen) */
+  bearbeitet: number
+  /** Gelöste Aufgaben (erster oder zweiter Versuch) */
+  geloest: number
+  ersteTreffer: number
+  /** Kniffelige Aufgaben (Stufe 3) gleich im ersten Versuch richtig */
+  knobelTreffer: number
 }
 
 export interface GameState {
@@ -36,18 +58,31 @@ export interface GameState {
   gekauft: string[]
   /** Vom Kind verschobene Plätze der Dinge im Terrarium (Prozent der Terrariumgröße) */
   positionen: Record<string, { x: number; y: number }>
+  /** Die letzten zehn Versuche je Aufgabentyp, für die Einschätzung im Elternbereich. */
+  verlauf: Record<TaskType, Versuch[]>
+  statistik: Statistik
+  /** Erreichte Meilensteine mit Datum und Rückblick. Gehen nie verloren. */
+  meilensteine: Meilenstein[]
+}
+
+export const VERLAUF_LAENGE = 10
+
+export function leererVerlauf(): Record<TaskType, Versuch[]> {
+  const v = {} as Record<TaskType, Versuch[]>
+  for (const t of TASK_TYPES) v[t] = []
+  return v
 }
 
 export function initialState(name: string): GameState {
   const skill = {} as Record<TaskType, number>
   for (const t of TASK_TYPES) skill[t] = 0
-  return { version: 1, name, totalFood: 0, lastFedAt: null, rounds: {}, weeklyBonusWeeks: [], skill, testDate: null, sterneErreicht: { A: 0, B: 0, C: 0 }, bonusMuenzen: 0, knobelTage: [], gekauft: [], positionen: {} }
+  return { version: 1, name, totalFood: 0, lastFedAt: null, rounds: {}, weeklyBonusWeeks: [], skill, testDate: null, sterneErreicht: { A: 0, B: 0, C: 0 }, bonusMuenzen: 0, knobelTage: [], gekauft: [], positionen: {}, verlauf: leererVerlauf(), statistik: { bearbeitet: 0, geloest: 0, ersteTreffer: 0, knobelTreffer: 0 }, meilensteine: [] }
 }
 
 // ---------- Futter und Stufen ----------
 
-export function foodForOutcome(outcome: Outcome): number {
-  return outcome === 'first' ? CONFIG.foodFirstTry : outcome === 'second' ? CONFIG.foodSecondTry : 0
+export function foodForOutcome(outcome: Outcome, stufe: Stufe = 2): number {
+  return futterFuer(outcome, stufe)
 }
 
 export function stageFor(totalFood: number) {
@@ -100,9 +135,8 @@ function parseDay(key: string): Date {
 
 // ---------- Lernstand ----------
 
-export function updateSkill(level: number, outcome: Outcome): number {
-  const delta = outcome === 'first' ? 1 : outcome === 'failed' ? -1 : 0
-  return Math.min(CONFIG.skillMax, Math.max(0, level + delta))
+export function updateSkill(level: number, outcome: Outcome, stufe: Stufe = 2): number {
+  return lernstandNach(level, outcome, stufe)
 }
 
 const TYPES_OF_TOPIC: Record<Topic, TaskType[]> = {
@@ -187,6 +221,12 @@ export interface RoundSummary {
   tagesMuenze: boolean
   /** Futterstand vor der Runde, für die Fortschrittsanzeige */
   foodBefore: number
+  /** Futter aus kniffeligen Aufgaben (steckt in foodGained) */
+  knobelFutter: number
+  /** Zusatzfutter der Serie (steckt in foodGained) */
+  serienFutter: number
+  /** Neue Meilensteine dieser Runde, in Feier-Reihenfolge */
+  meilensteine: Meilenstein[]
 }
 
 export function finishRound(state: GameState, answers: RoundAnswer[], now: Date, knobel = false): RoundSummary {
@@ -195,12 +235,25 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
   const satt = roundsToday >= CONFIG.foodRoundsPerDay
 
   const skill = { ...state.skill }
-  let food = 0
+  const verlauf = { ...leererVerlauf(), ...state.verlauf }
   const basisAntworten = answers.filter((a) => !a.isRepeat)
-  for (const a of answers) skill[a.type] = updateSkill(skill[a.type], a.outcome)
-  for (const a of basisAntworten) food += foodForOutcome(a.outcome)
+  let food = 0
+  let knobelFutter = 0
+  let serienFutter = 0
+  for (const a of answers) {
+    const stufe = a.stufe ?? 2
+    skill[a.type] = updateSkill(skill[a.type], a.outcome, stufe)
+    verlauf[a.type] = [...(verlauf[a.type] ?? []), { o: a.outcome, s: stufe }].slice(-VERLAUF_LAENGE)
+  }
+  for (const a of basisAntworten) {
+    const f = foodForOutcome(a.outcome, a.stufe ?? 2)
+    food += f
+    if ((a.stufe ?? 2) === 3) knobelFutter += f
+    if (a.serieBonus) { food += CONFIG.serieFutter; serienFutter += CONFIG.serieFutter }
+  }
 
-  const bonus = basisAntworten.length >= CONFIG.roundLength ? CONFIG.roundBonus : 0
+  const vollstaendig = basisAntworten.length >= CONFIG.roundLength
+  const bonus = vollstaendig ? (knobel ? CONFIG.rundenBonusKnobel : CONFIG.roundBonus) : 0
   const gained = satt ? 0 : food
   const bonusGained = satt ? 0 : bonus
 
@@ -223,17 +276,31 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
   const totalFood = state.totalFood + gained + bonusGained + weeklyBonus
   const stageBefore = stageFor(state.totalFood).stage
   const stageAfter = stageFor(totalFood).stage
-  // Knobelrunde: eine Zusatzmünze, wenn mindestens 7 von 10 Aufgaben gleich beim ersten Versuch stimmen, höchstens einmal pro Tag.
+  // Knobelrunde: Zusatzmünzen, wenn mindestens 7 von 10 Aufgaben gleich beim ersten Versuch stimmen, höchstens einmal pro Tag.
   const knobelTage = [...(state.knobelTage ?? [])]
   const ersteVersuche = basisAntworten.filter((a) => a.outcome === 'first').length
-  const knobelMuenze = knobel && basisAntworten.length >= CONFIG.roundLength && ersteVersuche >= CONFIG.knobelMinRichtig && !knobelTage.includes(heute)
+  const knobelMuenze = knobel && vollstaendig && ersteVersuche >= CONFIG.knobelMinRichtig && !knobelTage.includes(heute)
   if (knobelMuenze) knobelTage.push(heute)
-  // Tagesmitbringsel: die erste Runde jedes Tages bringt eine Münze, auch wenn die Schlange schon satt wäre (gibt es nur beim ersten Üben des Tages).
+  // Tagesmitbringsel: die erste Runde jedes Tages bringt eine Münze, auch wenn die Schlange schon satt wäre.
   const tagesMuenze = roundsToday === 0
-  const neueBonusMuenzen = Math.max(0, stageAfter - stageBefore) + (weeklyBonus > 0 ? 1 : 0) + (knobelMuenze ? 1 : 0) + (tagesMuenze ? 1 : 0)
+
+  const statistik: Statistik = {
+    bearbeitet: state.statistik.bearbeitet + basisAntworten.length,
+    geloest: state.statistik.geloest + basisAntworten.filter((a) => a.outcome !== 'failed').length,
+    ersteTreffer: state.statistik.ersteTreffer + ersteVersuche,
+    knobelTreffer: state.statistik.knobelTreffer + basisAntworten.filter((a) => a.outcome === 'first' && (a.stufe ?? 2) === 3).length,
+  }
+
+  const nachher: GameState = {
+    ...state, totalFood, lastFedAt: now.toISOString(), rounds, weeklyBonusWeeks, skill, sterneErreicht, knobelTage: knobelTage.slice(-60),
+    gekauft: state.gekauft ?? [], positionen: state.positionen ?? {}, verlauf, statistik,
+  }
+  const meilensteine = pruefeMeilensteine(state, nachher, heute, knobelMuenze)
+  const neueBonusMuenzen =
+    Math.max(0, stageAfter - stageBefore) + (weeklyBonus > 0 ? 1 : 0) + (knobelMuenze ? CONFIG.knobelMuenzen : 0) + (tagesMuenze ? 1 : 0) + zusatzMuenzen(meilensteine)
 
   return {
-    state: { ...state, totalFood, lastFedAt: now.toISOString(), rounds, weeklyBonusWeeks, skill, sterneErreicht, bonusMuenzen: (state.bonusMuenzen ?? 0) + neueBonusMuenzen, knobelTage: knobelTage.slice(-60), gekauft: state.gekauft ?? [], positionen: state.positionen ?? {} },
+    state: { ...nachher, bonusMuenzen: (state.bonusMuenzen ?? 0) + neueBonusMuenzen, meilensteine: [...state.meilensteine, ...meilensteine] },
     foodGained: gained,
     bonusFood: bonusGained,
     weeklyBonus,
@@ -246,6 +313,9 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
     knobelMuenze,
     tagesMuenze,
     foodBefore: state.totalFood,
+    knobelFutter: satt ? 0 : knobelFutter,
+    serienFutter: satt ? 0 : serienFutter,
+    meilensteine,
   }
 }
 
@@ -309,6 +379,25 @@ export function parseState(text: string): GameState | null {
       }
     }
   }
+  // Verlauf: letzte Versuche je Typ
+  if (typeof r.verlauf === 'object' && r.verlauf !== null) {
+    const v = r.verlauf as Record<string, unknown>
+    for (const t of TASK_TYPES) {
+      const liste = v[t]
+      if (!Array.isArray(liste)) continue
+      state.verlauf[t] = liste
+        .filter((x): x is Versuch => !!x && ['first', 'second', 'failed'].includes((x as Versuch).o) && [1, 2, 3].includes((x as Versuch).s))
+        .map((x) => ({ o: x.o, s: x.s }))
+        .slice(-VERLAUF_LAENGE)
+    }
+  }
+  if (typeof r.statistik === 'object' && r.statistik !== null) {
+    const st = r.statistik as Record<string, unknown>
+    const zahl = (k: string) => (typeof st[k] === 'number' && Number.isFinite(st[k]) && (st[k] as number) >= 0 ? Math.floor(st[k] as number) : 0)
+    state.statistik = { bearbeitet: zahl('bearbeitet'), geloest: zahl('geloest'), ersteTreffer: zahl('ersteTreffer'), knobelTreffer: zahl('knobelTreffer') }
+  }
   state.testDate = typeof r.testDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(r.testDate) ? r.testDate : null
+  // Meilensteine: Altstände ohne dieses Feld bekommen das schon Erreichte ohne Feier und ohne Münzen eingetragen.
+  state.meilensteine = Array.isArray(r.meilensteine) ? parseMeilensteine(r.meilensteine) : nachtragen(state, dayKey(new Date()))
   return state
 }

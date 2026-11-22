@@ -221,7 +221,7 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 .buchknopf { width: 100%; max-width: 380px; }
 
 /* Terrarium: Glaskasten im Laternenlicht */
-.terrarium { position: relative; --th: clamp(140px, calc(100dvh - 460px), 560px); height: var(--th); width: calc(var(--th) * 0.806); max-width: 100%; flex: none; margin: 0 auto; border-radius: 26px; overflow: hidden; border: 5px solid rgba(255, 255, 255, .35); background: #1f3a2a; box-shadow: 0 0 0 3px rgba(10, 31, 25, .8), 0 0 60px rgba(255, 185, 46, .32), 0 18px 30px rgba(0, 0, 0, .45); }
+.terrarium { position: relative; --th: clamp(140px, calc(100dvh - 530px), 560px); height: var(--th); width: calc(var(--th) * 0.806); max-width: 100%; flex: none; margin: 0 auto; border-radius: 26px; overflow: hidden; border: 5px solid rgba(255, 255, 255, .35); background: #1f3a2a; box-shadow: 0 0 0 3px rgba(10, 31, 25, .8), 0 0 60px rgba(255, 185, 46, .32), 0 18px 30px rgba(0, 0, 0, .45); }
 .terra-hintergrund { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; }
 .deko { position: absolute; height: auto; translate: -50% -100%; transform-origin: 50% 100%; cursor: grab; touch-action: none; animation: plopp .7s ease-out both; user-select: none; }
 .deko.gezogen { z-index: 8; cursor: grabbing; filter: drop-shadow(0 8px 8px rgba(0, 0, 0, .45)); animation: none; }
@@ -321,3 +321,78 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 .live-balken .balken { flex: 1; margin: 0; height: 16px; max-width: none; }
 .balken-fuellung.live { transition: none; }
 .live-futter { display: inline-flex; align-items: center; gap: 4px; min-width: 4.5ch; padding: 2px 10px; border-radius: 999px; background: rgba(255, 185, 46, .18); border: 2px solid var(--amber); color: #ffe3a1; font-weight: 800; justify-content: center; }
+
+/* ---------- Feedback-Runde 1: Schuppen, Treppe, Halbzeit, Häutung, Album ---------- */
+
+/* Schuppen: Schwierigkeit. Anzahl gefüllter Sechsecke trägt die Aussage, Farbe ist Zugabe. */
+.schuppen { display: inline-flex; align-items: center; gap: 2px; margin-left: 8px; vertical-align: middle; }
+.schuppe { width: 20px; height: 22px; }
+.schuppen.klein .schuppe { width: 14px; height: 16px; }
+.schuppen-wort { margin-left: 6px; font-weight: 800; color: var(--gedaempft); font-size: .9rem; }
+.thema-name { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 2px; }
+.thema-karte .schuppen { margin-left: 10px; }
+
+/* Treppe: Fortschritt der Runde, Höhe = Schwierigkeit */
+.treppe { display: flex; align-items: flex-end; gap: 4px; flex: 1; justify-content: center; height: 28px; }
+.treppe-stufe { width: 14px; border-radius: 4px 4px 2px 2px; background: rgba(255, 255, 255, .22); }
+.treppe-stufe.h1 { height: 10px; }
+.treppe-stufe.h2 { height: 18px; }
+.treppe-stufe.h3 { height: 26px; }
+.treppe-stufe.fertig { background: var(--lime); }
+.treppe-stufe.aktuell { background: var(--amber); box-shadow: 0 0 10px rgba(255, 185, 46, .8); }
+
+/* Halbzeit */
+.halbzeit-spruch { margin: 0; text-align: center; font-weight: 700; font-size: 1.15rem; }
+.halbzeit-zahl { margin: 0; font-weight: 800; font-size: 1.3rem; }
+.dialog .chip, .rueckmeldung .chip { color: var(--tinte); background: #ffe9a8; }
+
+/* Häutung: neue Haut, alte Haut als Geist daneben, Karte fällt ein */
+.haeutung { justify-content: center; }
+.haut-buehne { position: relative; width: 100%; display: flex; justify-content: center; align-items: flex-end; height: clamp(110px, 26dvh, 240px); flex: none; }
+.haut-buehne img { height: 100%; width: auto; max-width: 70vw; position: absolute; bottom: 0; user-select: none; }
+.haut-alt { filter: grayscale(.6) brightness(1.2); transform-origin: 50% 90%; }
+.haut-neu { filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .4)); }
+.haut-karte { width: 100%; max-width: 420px; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: clamp(10px, 1.8dvh, 20px) 18px; background: var(--papier); color: var(--tinte); border-radius: 26px; box-shadow: 0 6px 0 var(--papier-kante), 0 0 0 5px var(--amber); text-align: center; }
+.haut-karte h2 { margin: 0; color: var(--tinte); font-size: clamp(1.4rem, 4.4dvh, 2rem); line-height: 1.15; }
+.haut-nummer { margin: 0; font-weight: 800; color: var(--gedaempft-papier); }
+.haut-zeilen, .haut-liste { margin: 0; padding: 0; list-style: none; font-size: 1.1rem; font-weight: 700; line-height: 1.35; }
+.haut-liste { font-size: 1rem; color: var(--gedaempft-papier); }
+.haut-muenzen { margin: 2px 0 0; font-weight: 800; font-size: 1.3rem; }
+.haut-spruch { margin: 0; text-align: center; font-weight: 700; color: var(--gedaempft); max-width: 28em; }
+.knopf.vorlesen-klein { min-height: 44px; padding: 4px 14px; }
+
+/* Album */
+.album { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; flex: 1 1 0; min-height: 0; overflow-y: auto; align-content: start; }
+.album-karte { display: flex; gap: 10px; align-items: flex-start; width: 100%; min-height: 64px; padding: 10px 14px; border: 0; border-radius: 18px; background: var(--papier); color: var(--tinte); font: inherit; text-align: left; cursor: pointer; box-shadow: 0 4px 0 var(--papier-kante); }
+.album-karte:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--papier-kante); }
+.album-karte.offen { box-shadow: 0 4px 0 var(--amber-kante), 0 0 0 3px var(--amber); }
+.album-symbol { font-size: 1.6rem; line-height: 1.2; }
+.album-text { display: flex; flex-direction: column; gap: 2px; }
+.album-titel { font-weight: 800; }
+.album-datum { font-size: .85rem; color: var(--gedaempft-papier); font-weight: 700; }
+.album-zeile { font-size: .95rem; font-weight: 700; }
+.album-zahl { display: inline-block; min-width: 1.6em; padding: 0 6px; border-radius: 999px; background: var(--amber); color: var(--tinte); font-size: .85rem; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .haut-alt, .haut-neu, .haut-karte { transition: none !important; }
+}
+
+/* Elternbereich: Einschätzungen. Symbol und Wort tragen die Aussage, die Farbe ist Zugabe. */
+.eltern-rat { font-size: 1.1rem; line-height: 1.5; max-width: 38em; margin: 0; }
+.bereitschaft, .meilensteine { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; max-width: 38em; }
+.bereitschaft li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border-radius: 12px; background: #f1e7c6; }
+.ampel.sicher, .ampel.bereit { color: #165c33; }
+.ampel.fast { color: #6b4a00; }
+.ampel.ueben { color: #8a2c1f; }
+.ampel.wenig, .ampel.offen { color: var(--gedaempft-papier); }
+.eltern .schuppe polygon[fill="none"] { stroke: #4b5d54; }
+.eltern .schuppen-wort { color: var(--gedaempft-papier); }
+.eltern .tabelle td, .eltern .tabelle th { vertical-align: middle; }
+
+/* Logo auf dem Willkommensbildschirm */
+.willkommen-logo { height: clamp(120px, 34dvh, 320px); width: auto; max-width: 80vw; filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .45)); }
+
+/* Logo auf der Startseite und Start-Gruß */
+.start-logo { height: clamp(48px, 9dvh, 88px); width: auto; flex: none; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .45)); user-select: none; }
+.startgruss { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; border: 0; padding: 0; cursor: pointer; background: radial-gradient(ellipse 80% 55% at 50% 40%, var(--nacht-hell), var(--nacht)); }
+.startgruss img { height: min(70dvh, 80vw); width: auto; filter: drop-shadow(0 12px 28px rgba(0, 0, 0, .5)); user-select: none; }

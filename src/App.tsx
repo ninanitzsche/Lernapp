@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 import { TOPICS, TOPIC_NAMES } from './logic/tasks.ts'
 import type { Topic } from './logic/tasks.ts'
 import { CONFIG } from './logic/config.ts'
@@ -14,12 +14,50 @@ import { Einfuehrung } from './ui/Einfuehrung.tsx'
 import { spruch } from './ui/reaktion.ts'
 import { Round } from './ui/Round.tsx'
 import { Parent } from './ui/Parent.tsx'
+import { Haeutung } from './ui/Haeutung.tsx'
+import { Album } from './ui/Album.tsx'
+import { Schuppen } from './ui/Schuppen.tsx'
+import { hoechsteStufe } from './logic/stufen.ts'
+import { TASK_TYPES, TOPIC_OF } from './logic/tasks.ts'
+import type { Stufe } from './logic/tasks.ts'
 import { Muenzen, Shop } from './ui/Shop.tsx'
 import { kontostand } from './logic/shop.ts'
 
-type View = 'home' | 'round' | 'result' | 'parent' | 'shop' | 'themen'
+type View = 'home' | 'round' | 'result' | 'haeutung' | 'parent' | 'shop' | 'themen' | 'album'
+
+/**
+ * Start-Gruß: Das Logo zeigt sich beim Öffnen kurz, ein Tipp überspringt es. Neue Spieler sehen es nicht,
+ * weil sie gleich danach das Willkommen mit dem Logo bekommen.
+ */
+function Startgruss({ onFertig }: { onFertig: () => void }) {
+  useEffect(() => {
+    const t = window.setTimeout(onFertig, 1900)
+    return () => window.clearTimeout(t)
+  }, [onFertig])
+  return (
+    <motion.button
+      type="button" className="startgruss" aria-label="Nico's Snake App. Tippen zum Starten." onClick={onFertig}
+      initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}
+    >
+      <motion.img
+        src={`${import.meta.env.BASE_URL}images/logo.webp`} alt="" draggable={false}
+        initial={{ scale: 0.6, opacity: 0, rotate: -4 }} animate={{ scale: 1, opacity: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 180, damping: 13 }}
+      />
+    </motion.button>
+  )
+}
 
 export default function App() {
+  const [gruss, setGruss] = useState(() => loadState() !== null)
+  return (
+    <>
+      <AppInhalt />
+      <AnimatePresence>{gruss && <Startgruss key="gruss" onFertig={() => setGruss(false)} />}</AnimatePresence>
+    </>
+  )
+}
+
+function AppInhalt() {
   const [state, setState] = useState<GameState | null>(() => loadState())
   const [view, setView] = useState<View>('home')
   const [topic, setTopic] = useState<Topic | undefined>(undefined)
@@ -81,7 +119,11 @@ export default function App() {
   if (view === 'parent') {
     return <Parent state={state} onChange={setState} onReset={() => { setState(null); setView('home') }} onClose={() => setView('home')} />
   }
-  if (view === 'result' && summary) return <Ergebnis state={state} summary={summary} onDone={() => setView('home')} />
+  if (view === 'result' && summary) {
+    return <Ergebnis state={state} summary={summary} onDone={() => setView(summary.meilensteine.length > 0 ? 'haeutung' : 'home')} />
+  }
+  if (view === 'haeutung' && summary) return <Haeutung state={state} neu={summary.meilensteine} onFertig={() => setView('home')} />
+  if (view === 'album') return <AlbumAnsicht state={state} onClose={() => setView('home')} />
   if (view === 'shop') return <ShopAnsicht state={state} onChange={setState} onClose={() => setView('home')} />
   if (view === 'themen') return <Themen state={state} pausiert={pause !== null} onStart={starten} onClose={() => setView('home')} />
 
@@ -91,6 +133,7 @@ export default function App() {
   const sichern = sicherungFaellig(gesamtRunden, letzteSicherung(), now)
   return (
     <main className="start">
+      <img className="start-logo" src={`${import.meta.env.BASE_URL}images/logo.webp`} alt="Nico's Snake App" draggable={false} />
       <Snake state={state} now={now} onChange={setState} />
       {heuteRunden >= CONFIG.foodRoundsPerDay && (
         <p className="satt">{state.name} ist satt. Üben geht trotzdem!</p>
@@ -102,6 +145,9 @@ export default function App() {
       )}
       <div className="zeile">
         <button className="knopf klein" type="button" onClick={() => setView('themen')}>Themen und Buch</button>
+        <button className="knopf klein" type="button" onClick={() => setView('album')}>
+          <span aria-hidden="true">🐍</span>&nbsp;Meine Häute{state.meilensteine.length > 0 && <>&nbsp;<span className="album-zahl">{state.meilensteine.length}</span></>}
+        </button>
         <button className="knopf klein" type="button" onClick={() => setView('shop')}>
           <span aria-hidden="true">🛍️</span>&nbsp;Shop&nbsp;<Muenzen n={kontostand(state)} />
         </button>
@@ -131,6 +177,21 @@ function Seitenkopf({ titel, onClose }: { titel: string; onClose: () => void }) 
   )
 }
 
+/** Auf welcher Stufe das Kind in einem Thema gerade übt: die höchste freigeschaltete Stufe über die Typen des Themas. */
+function themenStufe(state: GameState, t: Topic): Stufe {
+  const runden = Object.values(state.rounds).reduce((s, n) => s + n, 0)
+  return Math.max(...TASK_TYPES.filter((x) => TOPIC_OF[x] === t).map((x) => hoechsteStufe(state.skill[x], runden))) as Stufe
+}
+
+function AlbumAnsicht({ state, onClose }: { state: GameState; onClose: () => void }) {
+  return (
+    <main className="start">
+      <Seitenkopf titel="Meine Häute" onClose={onClose} />
+      <Album state={state} />
+    </main>
+  )
+}
+
 function Themen({ state, pausiert, onStart, onClose }: { state: GameState; pausiert: boolean; onStart: (t?: Topic, q?: 'buch' | 'mix', schwer?: boolean) => void; onClose: () => void }) {
   return (
     <main className="start">
@@ -148,7 +209,7 @@ function Themen({ state, pausiert, onStart, onClose }: { state: GameState; pausi
             initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.08 * i }}
           >
             <button className="thema-karte" type="button" onClick={() => onStart(t, 'mix')}>
-              <span>{TOPIC_NAMES[t]}</span>
+              <span className="thema-name">{TOPIC_NAMES[t]}<Schuppen stufe={themenStufe(state, t)} klein /></span>
               <span className="sterne" aria-label={`${topicStars(state.skill, t)} von 3 Sternen`}>
                 {[1, 2, 3].map((n) => <span key={n} className={n <= topicStars(state.skill, t) ? 'stern an' : 'stern'} />)}
               </span>
@@ -156,8 +217,9 @@ function Themen({ state, pausiert, onStart, onClose }: { state: GameState; pausi
           </motion.div>
         ))}
       </div>
-      <Info titel="Was bedeuten Knobelrunde und Sterne?">
-        Die Knobelrunde hat knifflige Aufgaben. Schaffst du 7 von 10 gleich richtig, gibt es eine Extra-Münze.
+      <Info titel="Was bedeuten Schuppen, Knobelrunde und Sterne?">
+        Schuppen zeigen, wie knifflig eine Aufgabe ist: eine ist leicht, zwei sind mittel, drei sind knifflig. Knifflige Aufgaben geben viel mehr Futter.
+        Schaffst du in der Knobelrunde 7 von 10 gleich richtig, gibt es zwei Extra-Münzen.
         Jeder Stern zeigt, wie fit du in einem Thema bist, und bringt eine Münze.
       </Info>
     </main>
@@ -178,7 +240,8 @@ function Willkommen({ onStart }: { onStart: (name: string) => void }) {
   const [name, setName] = useState('')
   return (
     <main className="start">
-      <h1>Mathe-Schlange</h1>
+      <h1 className="sr-only">Nico's Snake App</h1>
+      <img className="willkommen-logo" src={`${import.meta.env.BASE_URL}images/logo.webp`} alt="Nico's Snake App" />
       <img className="willkommen-bild" src={`${import.meta.env.BASE_URL}images/snake/app/baby-standard.webp`} alt="Eine kleine grüne Schlange" />
       <p>Wie soll die Schlange heißen?</p>
       <form className="eingabe" onSubmit={(e) => { e.preventDefault(); if (name.trim()) onStart(name.trim()) }}>
@@ -221,11 +284,13 @@ function Ergebnis({ state, summary, onDone }: { state: GameState; summary: Round
       ) : (
         <p className="ergebnis-text">
           {state.name} hat {gesamt} Futter bekommen.
+          {summary.knobelFutter > 0 && <span className="chip">davon knifflig: +{summary.knobelFutter}</span>}
+          {summary.serienFutter > 0 && <span className="chip">+{summary.serienFutter} Serie</span>}
           {summary.bonusFood > 0 && <span className="chip">+{summary.bonusFood} Rundenbonus</span>}
           {summary.weeklyBonus > 0 && <span className="chip">+{summary.weeklyBonus} Wochenziel</span>}
         </p>
       )}
-      <button className="knopf gross hauptknopf" type="button" onClick={onDone}>Fertig</button>
+      <button className="knopf gross hauptknopf" type="button" onClick={onDone}>{summary.meilensteine.length > 0 ? 'Weiter' : 'Fertig'}</button>
     </main>
   )
 }

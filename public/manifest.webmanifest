@@ -1,0 +1,15 @@
+{
+  "name": "Nico's Snake App",
+  "short_name": "Snake App",
+  "description": "Lern-Tamagotchi für den Zahlenraum bis 100",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f2f26",
+  "theme_color": "#0f2f26",
+  "icons": [
+    { "src": "images/logo/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "images/logo/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

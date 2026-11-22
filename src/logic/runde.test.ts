@@ -21,7 +21,7 @@ function stand(index: number, antworten: RoundAnswer[]): RundenStand {
 test('Speichern und Laden ergibt denselben Rundenstand', () => {
   const s = stand(2, [antwort('first'), antwort('second')])
   const neu = parseRunde(serializeRunde(s), 'Nele')
-  assert.deepEqual(neu, { ...s, topic: undefined })
+  assert.deepEqual(neu, { ...s, topic: undefined, halbzeitGezeigt: false })
 })
 
 test('Rundenstand eines anderen Spielers oder kaputte Daten werden abgelehnt', () => {

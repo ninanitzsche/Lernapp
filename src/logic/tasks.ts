@@ -6,6 +6,9 @@ import {
 } from './zahlwort.ts'
 
 export type Topic = 'A' | 'B' | 'C'
+/** Schwierigkeit: 1 leicht, 2 mittel (das bisherige Normal), 3 knifflig (die bisherige Knobelrunde). */
+export type Stufe = 1 | 2 | 3
+export const STUFEN_NAMEN: Record<Stufe, string> = { 1: 'leicht', 2: 'mittel', 3: 'knifflig' }
 export const TASK_TYPES = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'] as const
 export type TaskType = (typeof TASK_TYPES)[number]
 
@@ -53,14 +56,16 @@ export interface Task {
   input: Input
   hint: string
   solution: string
+  /** Schwierigkeit. Altdaten ohne Stufe gelten als 2. */
+  stufe: Stufe
   /** Buchstelle, wenn die Aufgabe aus dem Lehrwerk stammt, zum Beispiel "Buch S. 21, Aufg. 8". */
   source?: string
 }
 
 export type Response = number | number[] | string[]
 
-function make(type: TaskType, rest: Omit<Task, 'type' | 'topic'>): Task {
-  return { type, topic: TOPIC_OF[type], ...rest }
+function make(type: TaskType, rest: Omit<Task, 'type' | 'topic' | 'stufe'>): Task {
+  return { type, topic: TOPIC_OF[type], stufe: 2, ...rest }
 }
 
 function inRange(n: number): boolean {
@@ -94,9 +99,11 @@ function vergleichsIndex(a: number, b: number): number {
 
 // ---------- Thema A: Zehner und Einer ----------
 
-function genA1(rng: Rng, schwer = false): Task {
+function genA1(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
   // Knobelrunde: kein Ankreuzen, sondern selbst schreiben oder Wortkarten legen
-  const modus = schwer ? int(rng, 1, 2) : int(rng, 0, 2)
+  const modus = leicht ? 0 : schwer ? int(rng, 1, 2) : int(rng, 0, 2)
   if (modus === 2) {
     // Zahlwort aus Wortkarten legen (nur 21 bis 99, keine Zehnerzahlen)
     let n = int(rng, 21, 99)
@@ -111,7 +118,7 @@ function genA1(rng: Rng, schwer = false): Task {
       solution: `${n} heißt ${zahlZuWort(n)}.`,
     })
   }
-  const n = int(rng, 11, 100)
+  const n = int(rng, 11, leicht ? 30 : 100)
   const wort = zahlZuWort(n)
   const hint = 'Höre auf den Anfang und das Ende. Die Einer werden zuerst gesprochen: bei siebenunddreißig kommt die Sieben vor der Dreißig.'
   const solution = `${wort} ist die Zahl ${n}.`
@@ -132,7 +139,9 @@ function genA1(rng: Rng, schwer = false): Task {
   })
 }
 
-function genA2(rng: Rng, schwer = false): Task {
+function genA2(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
   if (schwer) {
     const z = int(rng, 1, 8)
     const e = int(rng, 1, 9)
@@ -151,9 +160,9 @@ function genA2(rng: Rng, schwer = false): Task {
       solution: `${e + 10} Einer sind 1 Zehner und ${e} Einer. Zusammen: ${z + 1} Zehner und ${e} Einer, also ${z * 10 + e + 10}.`,
     })
   }
-  const modus = int(rng, 0, 2)
+  const modus = leicht ? int(rng, 0, 1) : int(rng, 0, 2)
   if (modus === 0) {
-    const n = int(rng, 10, 99)
+    const n = int(rng, 10, leicht ? 50 : 99)
     const z = Math.floor(n / 10)
     const e = n % 10
     return make('A2', {
@@ -163,7 +172,7 @@ function genA2(rng: Rng, schwer = false): Task {
       solution: `${n} hat ${z} Zehner und ${e} Einer.`,
     })
   }
-  const z = int(rng, 1, 9)
+  const z = int(rng, 1, leicht ? 4 : 9)
   const e = int(rng, 1, 9)
   if (modus === 1) {
     return make('A2', {
@@ -182,10 +191,13 @@ function genA2(rng: Rng, schwer = false): Task {
   })
 }
 
-function genA3(rng: Rng, schwer = false): Task {
-  const d = pick(rng, schwer ? [2, -2, 5, -5, 20, -20] : [1, -1, 10, -10])
+function genA3(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
+  const d = pick(rng, schwer ? [2, -2, 5, -5, 20, -20] : leicht ? [1, -1] : [1, -1, 10, -10])
   const betrag = Math.abs(d)
-  const start = d > 0 ? int(rng, 0, 100 - 3 * betrag) : int(rng, 3 * betrag, 100)
+  const hoechst = leicht ? 30 : 100
+  const start = d > 0 ? int(rng, 0, hoechst - 3 * betrag) : int(rng, 3 * betrag, hoechst)
   const reihe = [start, start + d, start + 2 * d]
   const naechste = start + 3 * d
   const richtung = d > 0 ? 'größer' : 'kleiner'
@@ -199,8 +211,10 @@ function genA3(rng: Rng, schwer = false): Task {
 
 // ---------- Thema B: Zahlbilder ----------
 
-function genB1(rng: Rng, schwer = false): Task {
-  const z = int(rng, 1, 9)
+function genB1(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
+  const z = int(rng, 1, leicht ? 3 : 9)
   const e = int(rng, 0, 9)
   const n = z * 10 + e
   if (schwer && n < 99) {
@@ -221,8 +235,10 @@ function genB1(rng: Rng, schwer = false): Task {
   })
 }
 
-function genB2(rng: Rng, schwer = false): Task {
-  const basis = int(rng, 11, schwer ? 98 : 99)
+function genB2(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
+  const basis = int(rng, 11, leicht ? 40 : schwer ? 98 : 99)
   const n = schwer ? basis + 1 : basis
   const z = Math.floor(n / 10)
   const e = n % 10
@@ -234,12 +250,15 @@ function genB2(rng: Rng, schwer = false): Task {
   })
 }
 
-function genB3(rng: Rng, schwer = false): Task {
+function genB3(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
   const hint = 'Vergleiche zuerst die Zehner. Sind sie gleich, dann vergleiche die Einer.'
-  const modus = schwer ? pick(rng, [1, 3]) : int(rng, 0, 3)
+  const modus = leicht ? pick(rng, [0, 2]) : schwer ? pick(rng, [1, 3]) : int(rng, 0, 3)
+  const obergrenze = leicht ? 50 : 99
   if (modus === 0) {
-    const a = int(rng, 10, 99)
-    const b = rng() < 0.15 ? a : int(rng, 10, 99)
+    const a = int(rng, 10, obergrenze)
+    const b = rng() < 0.15 ? a : int(rng, 10, obergrenze)
     return make('B3', {
       prompt: `Welches Zeichen passt? ${a} ? ${b}`,
       input: { kind: 'choice', options: [...SYMBOLE], answer: vergleichsIndex(a, b) },
@@ -261,8 +280,8 @@ function genB3(rng: Rng, schwer = false): Task {
     })
   }
   if (modus === 2) {
-    const a = int(rng, 10, 99)
-    const b = rng() < 0.15 ? a : int(rng, 10, 99)
+    const a = int(rng, 10, obergrenze)
+    const b = rng() < 0.15 ? a : int(rng, 10, obergrenze)
     return make('B3', {
       prompt: 'Vergleiche die beiden Zahlbilder. Welches Zeichen passt?',
       visual: {
@@ -295,8 +314,10 @@ function genB3(rng: Rng, schwer = false): Task {
 
 // ---------- Thema C: Zahlenstrahl ----------
 
-function genC1(rng: Rng, schwer = false): Task {
-  const modus = schwer ? int(rng, 1, 2) : int(rng, 0, 2)
+function genC1(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
+  const modus = leicht ? 0 : schwer ? int(rng, 1, 2) : int(rng, 0, 2)
   const hint = 'Der Zahlenstrahl beginnt links bei der kleinen Zahl. Suche zuerst die nächste beschriftete Zahl.'
   if (modus === 0) {
     const n = int(rng, 1, 9) * 10
@@ -326,12 +347,20 @@ function genC1(rng: Rng, schwer = false): Task {
   })
 }
 
-function genC2(rng: Rng, schwer = false): Task {
+function genC2(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
   let from: number
   let to: number
   let tickStep: number
   let marker: number
-  if (schwer) {
+  if (leicht) {
+    // Ganzer Strahl 0 bis 100, der Pfeil zeigt auf einen Zehner
+    from = 0
+    to = 100
+    tickStep = 10
+    marker = int(rng, 1, 9) * 10
+  } else if (schwer) {
     // Teilstrahl mit Einerstrichen, nur die Enden sind beschriftet
     from = int(rng, 0, 8) * 10
     to = from + 20
@@ -350,16 +379,20 @@ function genC2(rng: Rng, schwer = false): Task {
   }
   return make('C2', {
     prompt: 'Welche Zahl zeigt der Pfeil?',
-    visual: { kind: 'strahl', from, to, tickStep, labelStep: to - from, marker },
+    visual: { kind: 'strahl', from, to, tickStep, labelStep: leicht ? 50 : to - from, marker },
     input: { kind: 'number', answer: marker },
-    hint: `Beginne bei ${from} und zähle in ${tickStep}er-Schritten bis zum Pfeil.`,
+    hint: leicht ? 'Jeder Strich ist ein Zehner. Zähle die Striche von der 0 bis zum Pfeil: 10, 20, 30 ...' : `Beginne bei ${from} und zähle in ${tickStep}er-Schritten bis zum Pfeil.`,
     solution: `Der Pfeil zeigt ${marker}.`,
   })
 }
 
-function genC3(rng: Rng, schwer = false): Task {
+function genC3(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
   // Knobelrunde: Zahlen an der Zehnergrenze (9, 10, 19, 20, ...)
-  const n = schwer ? pick(rng, [9, 10, 19, 20, 29, 30, 39, 40, 49, 50, 59, 60, 69, 70, 79, 80, 89, 90, 99]) : int(rng, 1, 99)
+  let n = schwer ? pick(rng, [9, 10, 19, 20, 29, 30, 39, 40, 49, 50, 59, 60, 69, 70, 79, 80, 89, 90, 99]) : int(rng, 1, 99)
+  // Leicht: kleine Zahlen und keine Zehnergrenze (nicht 0 oder 9 am Ende)
+  if (leicht) do { n = int(rng, 2, 29) } while (n % 10 === 0 || n % 10 === 9)
   const v = vorgaenger(n) as number
   const f = nachfolger(n) as number
   return make('C3', {
@@ -370,9 +403,13 @@ function genC3(rng: Rng, schwer = false): Task {
   })
 }
 
-function genC4(rng: Rng, schwer = false): Task {
+function genC4(rng: Rng, stufe: Stufe = 2): Task {
+  const schwer = stufe === 3
+  const leicht = stufe === 1
   // Knobelrunde: öfter Zehnerzahlen, bei denen der Nachbarzehner nicht gleich nebenan liegt
-  const n = schwer && rng() < 0.6 ? int(rng, 1, 9) * 10 : int(rng, 1, 99)
+  let n = schwer && rng() < 0.6 ? int(rng, 1, 9) * 10 : int(rng, 1, 99)
+  // Leicht: keine Zehnerzahl, Zahlen von 11 bis 49
+  if (leicht) do { n = int(rng, 11, 49) } while (n % 10 === 0)
   const r = nachbarzehner(n) as [number, number]
   return make('C4', {
     prompt: `Wie heißen die Nachbarzehner von ${n}?`,
@@ -382,18 +419,24 @@ function genC4(rng: Rng, schwer = false): Task {
   })
 }
 
-const GENERATORS: Record<TaskType, (rng: Rng, schwer?: boolean) => Task> = {
+const GENERATORS: Record<TaskType, (rng: Rng, stufe?: Stufe) => Task> = {
   A1: genA1, A2: genA2, A3: genA3, B1: genB1, B2: genB2, B3: genB3, C1: genC1, C2: genC2, C3: genC3, C4: genC4,
 }
 
-export function generateTask(type: TaskType, rng: Rng, schwer = false): Task {
-  return GENERATORS[type](rng, schwer)
+/** `true` und `false` bleiben für ältere Aufrufe gültig: true ist Stufe 3, false ist Stufe 2. */
+export function alsStufe(s: Stufe | boolean): Stufe {
+  return s === true ? 3 : s === false ? 2 : s
+}
+
+export function generateTask(type: TaskType, rng: Rng, stufe: Stufe | boolean = 2): Task {
+  const st = alsStufe(stufe)
+  return { ...GENERATORS[type](rng, st), stufe: st }
 }
 
 /** Neue Aufgabe desselben Typs, die sich im Text von `avoidPrompt` unterscheidet. */
-export function generateDifferent(type: TaskType, rng: Rng, avoidPrompt: string, schwer = false): Task {
-  let t = generateTask(type, rng, schwer)
-  for (let i = 0; i < 30 && t.prompt === avoidPrompt; i++) t = generateTask(type, rng, schwer)
+export function generateDifferent(type: TaskType, rng: Rng, avoidPrompt: string, stufe: Stufe | boolean = 2): Task {
+  let t = generateTask(type, rng, stufe)
+  for (let i = 0; i < 30 && t.prompt === avoidPrompt; i++) t = generateTask(type, rng, stufe)
   return t
 }
 

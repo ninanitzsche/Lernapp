@@ -1,11 +1,27 @@
 import { useMemo, useState } from 'react'
-import { TOPIC_NAMES, TOPICS, TASK_TYPES, TOPIC_OF, TYPE_NAMES } from '../logic/tasks.ts'
+import { TOPIC_NAMES, TOPICS, TASK_TYPES, TYPE_NAMES } from '../logic/tasks.ts'
 import { TRANSPARENZPAPIER } from '../logic/coverage.ts'
 import { parseState, serializeState, topicStars } from '../logic/game.ts'
 import type { GameState } from '../logic/game.ts'
 import { createRng, int } from '../logic/rng.ts'
 import { merkeSicherung } from '../storage.ts'
 import { Info } from './Info.tsx'
+import { Schuppen } from './Schuppen.tsx'
+import { titelVon } from '../logic/rueckblick.ts'
+import {
+  BEREITSCHAFT_TEXT, EINSCHAETZUNG_TEXT, TREND_TEXT, empfehlung, erreichteStufe, rundenProWoche, tageBisTest, themaBereitschaft, trend, typEinschaetzung,
+} from '../logic/lernstand.ts'
+import type { Bereitschaft, Einschaetzung } from '../logic/lernstand.ts'
+
+/** Symbol und Wort tragen die Aussage, Farbe ist nur Zugabe. */
+const EINSCHAETZUNG_SYMBOL: Record<Einschaetzung, string> = { sicher: '✔', fast: '◐', ueben: '▲', wenig: '–' }
+const BEREITSCHAFT_SYMBOL: Record<Bereitschaft, string> = { bereit: '✔', fast: '◐', ueben: '▲', offen: '–' }
+
+function datumLesbar(d: string): string {
+  const [y, m, t] = d.split('-')
+  return `${t}.${m}.${y}`
+}
+
 
 interface Props {
   state: GameState
@@ -55,18 +71,68 @@ export function Parent({ state, onChange, onReset, onClose }: Props) {
     if (neu) { onChange(neu); setMeldung('Stand geladen.') } else setMeldung('Diese Datei ist kein gültiger Stand.')
   }
 
-  const tageBisTest = state.testDate
-    ? Math.ceil((new Date(`${state.testDate}T00:00:00`).getTime() - Date.now()) / 86_400_000)
-    : null
+  const jetzt = new Date()
+  const tageBis = tageBisTest(state.testDate, jetzt)
+  const rat = empfehlung(state.verlauf, state.name)
+  const wochen = rundenProWoche(state.rounds, jetzt, 4)
 
   return (
     <main className="eltern">
       <h1>Bereich für Erwachsene</h1>
       <button className="knopf klein" type="button" onClick={onClose}>Zurück zur Schlange</button>
 
+      <h2>Das hilft jetzt</h2>
+      <p className="eltern-rat">{rat.text}</p>
+
+      <h2>Testbereitschaft</h2>
+      <p className="klein-text">Das ist eine Schätzung aus den Daten der App und kein Testergebnis. Buch und Arbeitsheft bleiben maßgeblich.</p>
+      {tageBis !== null && <p>{tageBis > 0 ? `Der Test ist in ${tageBis} ${tageBis === 1 ? 'Tag' : 'Tagen'}.` : tageBis === 0 ? 'Der Test ist heute.' : 'Das Testdatum liegt in der Vergangenheit.'}</p>}
+      <ul className="bereitschaft">
+        {TOPICS.map((t) => {
+          const b = themaBereitschaft(state.verlauf, t)
+          return (
+            <li key={t} className={`ampel ${b}`}>
+              <span>{TOPIC_NAMES[t]}</span>
+              <strong><span aria-hidden="true">{BEREITSCHAFT_SYMBOL[b]}</span> {BEREITSCHAFT_TEXT[b]}</strong>
+            </li>
+          )
+        })}
+      </ul>
+
+      <h2>Aufgabentypen</h2>
+      <table className="tabelle">
+        <thead><tr><th>Aufgabentyp</th><th>Zuletzt sicher auf</th><th>Einschätzung</th><th>Verlauf</th></tr></thead>
+        <tbody>
+          {TASK_TYPES.map((t) => {
+            const e = typEinschaetzung(state.verlauf[t])
+            const st = erreichteStufe(state.verlauf[t])
+            const tr = trend(state.verlauf[t])
+            return (
+              <tr key={t}>
+                <td>{TYPE_NAMES[t]}</td>
+                <td>{st === 0 ? 'noch keine' : <Schuppen stufe={st} mitWort />}</td>
+                <td className={`ampel ${e}`}><span aria-hidden="true">{EINSCHAETZUNG_SYMBOL[e]}</span> {EINSCHAETZUNG_TEXT[e]}</td>
+                <td>{tr ? TREND_TEXT[tr] : 'noch offen'}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+      <p className="klein-text">Grundlage sind die letzten zehn Versuche je Typ, mindestens fünf sind nötig. Für "sicher" müssen mindestens 8 von 10 gleich richtig sein und mindestens 3 davon auf mittlerer oder kniffliger Stufe.</p>
+
+      <h2>Runden in den letzten vier Wochen</h2>
+      <p>Diese Woche: {wochen[3]} | letzte Woche: {wochen[2]} | davor: {wochen[1]} und {wochen[0]}</p>
+
+      <h2>Meilensteine</h2>
+      {state.meilensteine.length === 0 ? <p>Noch keine.</p> : (
+        <ul className="meilensteine">
+          {[...state.meilensteine].reverse().map((m) => <li key={m.id}>{titelVon(m, state.name)} <span className="klein-text">({datumLesbar(m.datum)})</span></li>)}
+        </ul>
+      )}
+
       <h2>Lernstand zum Transparenzpapier</h2>
       <table className="tabelle">
-        <thead><tr><th>Lernziel</th><th>Aufgabentypen und Stufe (0 bis 3)</th></tr></thead>
+        <thead><tr><th>Lernziel</th><th>Aufgabentypen und Lernstand (0 bis 3)</th></tr></thead>
         <tbody>
           {TRANSPARENZPAPIER.map((p) => (
             <tr key={p.text}>
@@ -80,13 +146,11 @@ export function Parent({ state, onChange, onReset, onClose }: Props) {
         {TOPICS.map((t) => `${TOPIC_NAMES[t]}: ${topicStars(state.skill, t)} von 3 Sternen`).join(' | ')}
       </p>
       <p>Abgeschlossene Runden insgesamt: {Object.values(state.rounds).reduce((s, n) => s + n, 0)} | Futter gesamt: {state.totalFood}</p>
-      <p className="klein-text">Aufgabentypen: {TASK_TYPES.map((t) => `${t} (${TOPIC_OF[t]})`).join(', ')}</p>
 
       <h2>Testdatum</h2>
       <label className="feld">Datum des Tests
         <input type="date" value={state.testDate ?? ''} onChange={(e) => onChange({ ...state, testDate: e.target.value || null })} />
       </label>
-      {tageBisTest !== null && <p>{tageBisTest >= 0 ? `Noch ${tageBisTest} Tage bis zum Test.` : 'Das Testdatum liegt in der Vergangenheit.'}</p>}
 
       <h2>Name der Schlange</h2>
       <input className="textfeld" maxLength={20} value={state.name} onChange={(e) => onChange({ ...state, name: e.target.value })} aria-label="Name der Schlange" />

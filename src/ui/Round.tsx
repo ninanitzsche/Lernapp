@@ -1,11 +1,11 @@
 import { useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { checkAnswer, generateTask, TYPE_NAMES } from '../logic/tasks.ts'
+import { checkAnswer, TYPE_NAMES } from '../logic/tasks.ts'
 import type { Response, Task, Topic } from '../logic/tasks.ts'
 import { CONFIG } from '../logic/config.ts'
-import { createRng } from '../logic/rng.ts'
-import { bookTaskFor, taskKey } from '../logic/bookTasks.ts'
-import { dayKey, foodForOutcome, selectTypes, stageFor } from '../logic/game.ts'
+import { baueAufgaben } from '../logic/rundenbau.ts'
+import { serieErkannt, halbzeitErreicht } from '../logic/belohnung.ts'
+import { dayKey, foodForOutcome, stageFor } from '../logic/game.ts'
 import { futterBisJetzt, naechsterSchritt } from '../logic/runde.ts'
 import type { RundenStand } from '../logic/runde.ts'
 import { loescheRunde, speichereRunde } from '../storage.ts'
@@ -15,6 +15,10 @@ import { LoesungsBild } from './Visuals.tsx'
 import { RundenSchlange, anteilFuer } from './Snake.tsx'
 import { TonKnopf } from './TonKnopf.tsx'
 import { Muenzen } from './Shop.tsx'
+import { Schuppen } from './Schuppen.tsx'
+import { Treppe } from './Treppe.tsx'
+import { Halbzeit } from './Halbzeit.tsx'
+import { konfetti } from './feier.ts'
 import { kontostand } from '../logic/shop.ts'
 import { neueReaktion, spruch, startSpruch } from './reaktion.ts'
 import type { Reaktion } from './reaktion.ts'
@@ -35,27 +39,10 @@ interface Props {
   onPause: () => void
 }
 
-function baueAufgaben(state: GameState, topic: Topic | undefined, quelle: 'buch' | 'mix', seed: number, schwer: boolean): Task[] {
-  const rng = createRng(seed)
-  const typen = selectTypes(rng, state.skill, CONFIG.roundLength, topic)
-  const aufgaben: Task[] = []
-  const benutzt = new Set<string>()
-  for (const typ of typen) {
-    let t: Task | null = null
-    if (!schwer && (quelle === 'buch' || rng() < 0.5)) t = bookTaskFor(typ, rng, benutzt)
-    if (t === null) {
-      t = generateTask(typ, rng, schwer)
-      for (let i = 0; i < 20 && benutzt.has(taskKey(t)); i++) t = generateTask(typ, rng, schwer)
-    }
-    benutzt.add(taskKey(t))
-    aufgaben.push(t)
-  }
-  return aufgaben
-}
-
 export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFinish, onPause }: Props) {
+  const abgeschlosseneRunden = useMemo(() => Object.values(state.rounds).reduce((s, n) => s + n, 0), [state.rounds])
   const seed = useMemo(() => fortsetzen?.seed ?? Date.now() % 2_147_483_647, [fortsetzen])
-  const [aufgaben, setAufgaben] = useState<Task[]>(() => fortsetzen?.aufgaben ?? baueAufgaben(state, topic, quelle, seed, schwer))
+  const [aufgaben, setAufgaben] = useState<Task[]>(() => fortsetzen?.aufgaben ?? baueAufgaben({ skill: state.skill, abgeschlosseneRunden: abgeschlosseneRunden, topic, quelle, knobel: schwer, seed }))
   const [index, setIndex] = useState(fortsetzen?.index ?? 0)
   const [versuch, setVersuch] = useState<1 | 2>(1)
   const [antworten, setAntworten] = useState<RoundAnswer[]>(fortsetzen?.antworten ?? [])
@@ -65,6 +52,14 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
   const [reaktion, setReaktion] = useState<Reaktion | null>(null)
   const [frageVerlassen, setFrageVerlassen] = useState(false)
   const [abbruchText] = useState(() => spruch('abbruch'))
+  // Wurde die Runde genau an der Halbzeit pausiert, zeigt sie sich beim Weitermachen einmal
+  const faelligBeimStart = !!fortsetzen && halbzeitErreicht(fortsetzen.antworten.filter((a) => !a.isRepeat).length, fortsetzen.halbzeitGezeigt ?? false)
+  const [halbzeitGezeigt, setHalbzeitGezeigt] = useState((fortsetzen?.halbzeitGezeigt ?? false) || faelligBeimStart)
+  const [halbzeit, setHalbzeit] = useState(faelligBeimStart)
+  const [halbzeitText] = useState(() => spruch('halbzeit'))
+  // In den ersten Runden erklärt die Schlange einmal die Schuppen
+  const [erklaerSchuppen] = useState(() => abgeschlosseneRunden < 2 && !fortsetzen)
+  const [serieDa, setSerieDa] = useState(false)
   const task = aufgaben[index]
   const istWiederholung = index >= CONFIG.roundLength
   const richtigerTipp = versuch === 2
@@ -94,22 +89,28 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
   function abgeben(response: Response) {
     if (checkAnswer(task, response)) {
       const outcome: Outcome = versuch === 1 ? 'first' : 'second'
-      setAntworten([...antworten, { type: task.type, outcome, isRepeat: istWiederholung, prompt: task.prompt }])
+      const antwort: RoundAnswer = { type: task.type, outcome, isRepeat: istWiederholung, prompt: task.prompt, stufe: task.stufe }
+      // Drei im ersten Versuch hintereinander: Serien-Jubel mit Zusatzfutter, einmal pro Runde
+      const serie = serieErkannt([...antworten, antwort])
+      if (serie) { antwort.serieBonus = true; konfetti() }
+      setSerieDa(serie)
+      setAntworten([...antworten, antwort])
       setErgebnis(outcome)
-      reagiere('lecker', spruch(outcome === 'first' ? 'erster' : 'zweiter'))
+      reagiere('lecker', spruch(serie ? 'serie' : outcome === 'first' ? 'erster' : 'zweiter'))
     } else if (versuch === 1) {
       setVersuch(2)
       setZaehlerFalsch(zaehlerFalsch + 1)
       reagiere('bah', spruch('falsch'), task.hint)
     } else {
-      setAntworten([...antworten, { type: task.type, outcome: 'failed', isRepeat: istWiederholung, prompt: task.prompt }])
+      setAntworten([...antworten, { type: task.type, outcome: 'failed', isRepeat: istWiederholung, prompt: task.prompt, stufe: task.stufe }])
+      setSerieDa(false)
       setErgebnis('failed')
       reagiere('bah', spruch('daneben'))
     }
   }
 
-  function stand(f: { aufgaben: Task[]; index: number; wiederholungenGeplant: boolean }): RundenStand {
-    return { version: 1, name: state.name, topic, quelle, schwer, seed, aufgaben: f.aufgaben, index: f.index, antworten, wiederholungenGeplant: f.wiederholungenGeplant }
+  function stand(f: { aufgaben: Task[]; index: number; wiederholungenGeplant: boolean }, halbzeitSchonGezeigt = halbzeitGezeigt): RundenStand {
+    return { version: 1, name: state.name, topic, quelle, schwer, seed, aufgaben: f.aufgaben, index: f.index, antworten, wiederholungenGeplant: f.wiederholungenGeplant, halbzeitGezeigt: halbzeitSchonGezeigt }
   }
 
   function weiter() {
@@ -117,6 +118,9 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
     setErgebnis(null)
     setReaktion(null)
     setVersuch(1)
+    setSerieDa(false)
+    // Halbzeit: nach der fünften Aufgabe einmal pro Runde, auch nach einer Pause
+    const zeigeHalbzeit = schritt !== null && halbzeitErreicht(antworten.filter((a) => !a.isRepeat).length, halbzeitGezeigt)
     if (schritt === null) {
       loescheRunde()
       onFinish(antworten)
@@ -125,8 +129,9 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
     setAufgaben(schritt.aufgaben)
     setIndex(schritt.index)
     setWiederholungenGeplant(schritt.wiederholungenGeplant)
+    if (zeigeHalbzeit) { setHalbzeitGezeigt(true); setHalbzeit(true); klang('richtig', 1.3) }
     // Nach jeder Aufgabe merkt sich die App den Stand, damit eine Pause (oder ein geschlossener Browser) nichts kostet.
-    speichereRunde(stand(schritt))
+    speichereRunde(stand(schritt, halbzeitGezeigt || zeigeHalbzeit))
   }
 
   /** Pause: speichert, wo das Kind war. Wurde die Antwort schon gezeigt, geht es bei der nächsten Aufgabe weiter. */
@@ -166,13 +171,11 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
     <main className="runde">
       <header className="runde-kopf">
         <button className="knopf klein" type="button" onClick={() => { setFrageVerlassen(true); sprich(abbruchText) }}>← Pause</button>
-        <div className="punkte" aria-label={`Aufgabe ${index + 1} von ${gesamt}`}>
-          {aufgaben.map((_, i) => <span key={i} className={i < index ? 'punkt fertig' : i === index ? 'punkt aktuell' : 'punkt'} />)}
-        </div>
+        <Treppe stufen={aufgaben.map((t) => t.stufe)} index={index} />
         <Muenzen n={kontostand(state)} />
         <TonKnopf />
       </header>
-      <RundenSchlange state={state} reaktion={reaktion} ruheText={startSpruch(index)} />
+      <RundenSchlange state={state} reaktion={reaktion} ruheText={index === 0 && erklaerSchuppen ? spruch('schuppen') : startSpruch(index)} />
       {!satt && (
         <div className="live-balken" role="progressbar" aria-label="Futter in dieser Runde" aria-valuemin={0} aria-valuemax={100} aria-valuenow={anteil}>
           <div className="balken">
@@ -186,7 +189,10 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
           </motion.span>
         </div>
       )}
-      <p className="thema">{schwer ? '🧠 Knobelrunde: ' : ''}{TYPE_NAMES[task.type]}{istWiederholung ? ' (noch einmal)' : ''}</p>
+      <p className="thema">
+        {schwer ? '🧠 Knobelrunde: ' : ''}{TYPE_NAMES[task.type]}{istWiederholung ? ' (noch einmal)' : ''}
+        <Schuppen stufe={task.stufe} mitWort />
+      </p>
 
       {ergebnis === null ? (
         <motion.div
@@ -210,7 +216,12 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
           ) : (
             <>
               <p className="rueckmeldung-titel">{ergebnis === 'first' ? 'Richtig!' : 'Geschafft!'}</p>
-              {basisTask && <p>+{foodForOutcome(ergebnis)} Futter für deine Schlange</p>}
+              {basisTask && (
+                <p>
+                  +{foodForOutcome(ergebnis, task.stufe)} Futter für deine Schlange
+                  {serieDa && <span className="chip">+{CONFIG.serieFutter} Serie</span>}
+                </p>
+              )}
             </>
           )}
           <button className="knopf gross" type="button" onClick={weiter} autoFocus>Weiter</button>
@@ -219,6 +230,12 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
       {ergebnis === null && richtigerTipp && <p className="ermutigung">Fast! Versuche es noch einmal.</p>}
       <p className="sr-only" aria-live="polite">{reaktion?.text}</p>
       <AnimatePresence>
+        {halbzeit && (
+          <Halbzeit
+            name={state.name} text={halbzeitText} gewonnen={gewonnen} gesamt={gesamtNeu} satt={satt}
+            onWeiter={() => setHalbzeit(false)} onPause={() => { stoppe(); onPause() }}
+          />
+        )}
         {frageVerlassen && (
           <motion.div className="dialog-hintergrund" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div

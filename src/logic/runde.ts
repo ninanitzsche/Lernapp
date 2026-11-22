@@ -4,6 +4,7 @@ import type { Task, Topic } from './tasks.ts'
 import { createRng } from './rng.ts'
 import { CONFIG } from './config.ts'
 import { foodForOutcome, pickRepeatAnswers } from './game.ts'
+import type { Stufe } from './tasks.ts'
 import type { Outcome, RoundAnswer } from './game.ts'
 
 export interface RundenStand {
@@ -18,6 +19,8 @@ export interface RundenStand {
   index: number
   antworten: RoundAnswer[]
   wiederholungenGeplant: boolean
+  /** Der Halbzeit-Zwischenstopp wurde in dieser Runde schon gezeigt. Fehlt bei Altständen: false. */
+  halbzeitGezeigt?: boolean
 }
 
 export interface Fortschritt {
@@ -37,16 +40,17 @@ export function naechsterSchritt(a: { aufgaben: Task[]; index: number; antworten
     const wiederholen = pickRepeatAnswers(a.antworten)
     if (wiederholen.length > 0) {
       const rng = createRng(a.seed + 99)
-      const neu = wiederholen.map((w) => generateDifferent(w.type, rng, w.prompt ?? '', a.schwer))
+      // Wiederholungen sind höchstens mittel (Stufe 2), auch nach einer kniffligen Aufgabe
+      const neu = wiederholen.map((w) => generateDifferent(w.type, rng, w.prompt ?? '', Math.min(w.stufe ?? 2, 2) as Stufe))
       return { aufgaben: [...a.aufgaben, ...neu], index: naechster, wiederholungenGeplant: true }
     }
   }
   return null
 }
 
-/** Futter, das die Runde bis jetzt gebracht hat. Wiederholungen zählen nicht. */
+/** Futter, das die Runde bis jetzt gebracht hat (nach Stufe, mit Serienfutter). Wiederholungen zählen nicht. */
 export function futterBisJetzt(antworten: RoundAnswer[]): number {
-  return antworten.filter((x) => !x.isRepeat).reduce((s, x) => s + foodForOutcome(x.outcome), 0)
+  return antworten.filter((x) => !x.isRepeat).reduce((s, x) => s + foodForOutcome(x.outcome, x.stufe ?? 2) + (x.serieBonus ? CONFIG.serieFutter : 0), 0)
 }
 
 export function serializeRunde(r: RundenStand): string {
@@ -80,6 +84,8 @@ export function parseRunde(text: string, name: string): RundenStand | null {
   if (!Number.isInteger(r.index) || (r.index as number) < 0 || (r.index as number) >= r.aufgaben.length) return null
   // Jede Aufgabe vor `index` ist genau einmal beantwortet, sonst würde Futter doppelt oder gar nicht gezählt.
   if (r.antworten.length !== r.index) return null
+  // Aufgaben aus Altständen ohne Stufe gelten als mittel
+  const aufgaben = (r.aufgaben as Task[]).map((t) => ({ ...t, stufe: ([1, 2, 3] as number[]).includes(t.stufe) ? t.stufe : (2 as Stufe) }))
   return {
     version: 1,
     name,
@@ -87,9 +93,10 @@ export function parseRunde(text: string, name: string): RundenStand | null {
     quelle: r.quelle,
     schwer: r.schwer,
     seed: r.seed,
-    aufgaben: r.aufgaben as Task[],
+    aufgaben,
     index: r.index as number,
     antworten: r.antworten as RoundAnswer[],
     wiederholungenGeplant: r.wiederholungenGeplant,
+    halbzeitGezeigt: r.halbzeitGezeigt === true,
   }
 }

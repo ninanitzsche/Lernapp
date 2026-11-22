@@ -7,7 +7,7 @@ Keine KI zur Laufzeit, kein Login, keine Cloud: Der Stand liegt nur im Browser (
 
 ```
 npm install      # holt auch motion und canvas-confetti (Animationen)
-npm test        # 95 Tests: Zahlwörter, Aufgaben, Spielregeln, Abdeckung des Transparenzpapiers
+npm test        # 144 Tests: Zahlwörter, Aufgaben, Stufen, Spielregeln, Meilensteine, Lernstand, Abdeckung des Transparenzpapiers
 npm run dev     # lokal öffnen
 npm run build   # Produktionsversion in dist/
 ```
@@ -20,6 +20,7 @@ Voraussetzung: Node 22.6 oder neuer.
 - `src/ui/` Oberfläche (Schlange, Aufgaben, Runde, Elternbereich). Animationen: `motion` (Federn, Übergänge) und `canvas-confetti` (Konfetti, Münzregen)
 - Layout: jede Kinder-Ansicht passt in `100dvh`, Größen skalieren mit der Bildschirmhöhe (siehe Kommentar am Anfang von `main` in `src/index.css`)
 - `docs/spec.md` Spezifikation und Änderungen
+- `docs/specs/2026-11-22-feedback-runde-1/` Anforderungen, Design und Aufgaben zur Feedback-Runde 1 (Belohnung, Schwierigkeitsstufen, Meilensteine, Elternblick)
 - `public/images/snake/` Schlangen-Bilder (Kopien aus FamilyBoard)
 
 Spielwerte (Futter, Schwellen, Tageslimit) stehen alle in `src/logic/config.ts`.

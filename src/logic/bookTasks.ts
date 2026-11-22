@@ -17,8 +17,9 @@ export interface BookTask {
 const SYMBOLE = ['<', '>', '='] as const
 const idx = (a: number, b: number) => SYMBOLE.indexOf(a < b ? '<' : a > b ? '>' : '=')
 
-function mk(type: TaskType, source: string, rest: Omit<Task, 'type' | 'topic' | 'source'>): Task {
-  return { type, topic: TOPIC_OF[type], source, ...rest }
+function mk(type: TaskType, source: string, rest: Omit<Task, 'type' | 'topic' | 'source' | 'stufe'>): Task {
+  // Buchaufgaben gelten als Stufe 2 (mittel)
+  return { type, topic: TOPIC_OF[type], source, stufe: 2, ...rest }
 }
 
 const S14_4 = 'Buch S. 14, Aufg. 4'

@@ -341,3 +341,16 @@ Nina: Die Aufgaben dürfen den Buchaufgaben ähnlich sein, die Inhalte dürfen a
 - Rollen: Amber = Hauptknopf und Münzen, Lime = richtig/Weiter/Prüfen, Blau = Vorlesen, Lila = Knobelrunde. Alle Textpaare haben mindestens 4,5:1 (Ausnahme: deaktivierte Tasten).
 - Schrift: systemeigene runde Schrift in 800er Stärke (`ui-rounded`, Arial Rounded, Trebuchet als Rückfall), keine Webfonts, damit keine Daten an Dritte gehen.
 - Das Terrarium ist auf Handys höhenbegrenzt, damit "Runde starten" ohne Scrollen sichtbar ist.
+
+## 18. Feedback-Runde 1: Belohnung, Stufen, Meilensteine, Elternblick (2026-11-22)
+
+Maßgeblich sind `docs/specs/2026-11-22-feedback-runde-1/` (Anforderungen, Design, Aufgaben). Kurzfassung der Änderungen gegenüber den Abschnitten 4, 6 und 16:
+
+- **Stufen:** Jede Aufgabe hat Stufe 1 (leicht), 2 (mittel, bisher normal) oder 3 (knifflig, bisher Knobel), sichtbar als 1 bis 3 Schuppen. Alle zehn Typen haben eine leichte Variante.
+- **Rampe:** Die ersten drei Runden nur leicht. Danach Aufgabe 1 bis 4 leicht, 5 bis 10 mittel, Stufe 2 nur für Typen mit Lernstand mindestens 1. Knobelrunde: 2 mittlere, dann knifflig. Der Knopf "Aufgaben aus deinem Buch" ist eine bewusste Wahl und stellt Buchaufgaben (Stufe 2) an allen Positionen.
+- **Lernstand:** Leichte Aufgaben heben ihn höchstens auf 1. Falsch bei kniffligen Aufgaben senkt ihn nicht.
+- **Belohnung:** Futter 2/1 auf Stufe 1 und 2, 5/3 auf Stufe 3. Rundenbonus der Knobelrunde 10. Starke Knobelrunde gibt 2 Münzen (bisher 1). Wachstumsschwellen 0/30/90/200/350. Halbzeit nach Aufgabe 5, Serien-Jubel (+1 Futter, einmal pro Runde).
+- **Meilensteine** (Häutung, Album "Meine Häute"): Entwicklung, Sterne, Runden 10/25/50/100 (1/2/3/5 Münzen), Wochenziel, Knobelerfolge (erste starke Runde 1 Münze, 10/25/50 kniffelige Treffer 1/2/3). Altstände tragen Erreichtes ohne Feier und ohne Münzen nach.
+- **Elternbereich:** "Das hilft jetzt", Testbereitschaft (Schätzung), Einschätzung je Typ (sicher, fast sicher, noch üben, zu wenig Daten) mit Trend, Runden der letzten vier Wochen, Meilensteine.
+- **Daten:** `GameState` bekommt `verlauf` (letzte zehn Versuche je Typ), `statistik` (bearbeitet, geloest, ersteTreffer, knobelTreffer) und `meilensteine`. Altstände laden ohne Verlust.
+- **Offen:** Spielwerte sind Startwerte für den Praxistest. Vite-Build und Sichtprüfung der neuen Ansichten (Schuppen, Treppe, Halbzeit, Häutung, Album, Elternbereich) stehen aus und laufen auf dem Mac.
