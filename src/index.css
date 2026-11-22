@@ -321,3 +321,34 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 .live-balken .balken { flex: 1; margin: 0; height: 16px; max-width: none; }
 .balken-fuellung.live { transition: none; }
 .live-futter { display: inline-flex; align-items: center; gap: 4px; min-width: 4.5ch; padding: 2px 10px; border-radius: 999px; background: rgba(255, 185, 46, .18); border: 2px solid var(--amber); color: #ffe3a1; font-weight: 800; justify-content: center; }
+
+
+/* Markenlogo: vollständige quadratische Originalgrafik als ruhige Karte im bestehenden Moosgrün-Stil. */
+.marken-kachel {
+  width: clamp(112px, 18dvh, 168px);
+  flex: none;
+  margin: 0 auto;
+  padding: 5px;
+  overflow: hidden;
+  border: 1px solid rgba(155, 217, 60, .48);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(27, 82, 64, .96), rgba(7, 31, 24, .98));
+  box-shadow:
+    0 5px 0 rgba(5, 25, 19, .7),
+    0 0 22px rgba(155, 217, 60, .16),
+    inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+.marken-kachel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 18px;
+}
+@media (max-height: 700px) {
+  .marken-kachel { width: clamp(104px, 15dvh, 132px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marken-kachel { scroll-behavior: auto; }
+}

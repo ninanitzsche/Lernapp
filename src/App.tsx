@@ -91,6 +91,9 @@ export default function App() {
   const sichern = sicherungFaellig(gesamtRunden, letzteSicherung(), now)
   return (
     <main className="start">
+      <div className="marken-kachel">
+        <img src={`${import.meta.env.BASE_URL}images/logo/nicos-snake-app.jpg`} alt="Nico’s Snake App – die leuchtend grüne Schlange" />
+      </div>
       <Snake state={state} now={now} onChange={setState} />
       {heuteRunden >= CONFIG.foodRoundsPerDay && (
         <p className="satt">{state.name} ist satt. Üben geht trotzdem!</p>
