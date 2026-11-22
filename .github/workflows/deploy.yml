@@ -1,0 +1,41 @@
+name: Deploy zu STRATO
+
+# Bei jedem Push auf main: testen, bauen und den Ordner dist per SFTP in den STRATO-Webspace hochladen.
+# Die Zugangsdaten stehen NICHT hier, sondern in GitHub unter Settings, Secrets and variables, Actions:
+#   STRATO_SFTP_HOST      Servername aus dem STRATO-Kundenlogin (Datenbanken und Webspace, SFTP und SSH)
+#   STRATO_SFTP_USER      SFTP-Benutzername
+#   STRATO_SFTP_PASSWORD  SFTP-Passwort (nicht das Kundenlogin-Passwort)
+#   STRATO_REMOTE_DIR     Zielordner im Webspace, zum Beispiel /mathe
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+      - name: Per SFTP zu STRATO hochladen
+        env:
+          HOST: ${{ secrets.STRATO_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.STRATO_SFTP_USER }}
+          SFTP_PASS: ${{ secrets.STRATO_SFTP_PASSWORD }}
+          REMOTE_DIR: ${{ secrets.STRATO_REMOTE_DIR }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
+          # Es wird nur hochgeladen, nichts auf dem Server gelöscht. Alte Dateien in assets/ bleiben liegen, sie stören nicht.
+          lftp -u "$SFTP_USER,$SFTP_PASS" "sftp://$HOST" -e "set sftp:auto-confirm yes; mirror --reverse --only-newer --verbose dist/ \"$REMOTE_DIR\"; bye"

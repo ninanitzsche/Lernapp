@@ -23,3 +23,9 @@ Voraussetzung: Node 22.6 oder neuer.
 - `public/images/snake/` Schlangen-Bilder (Kopien aus FamilyBoard)
 
 Spielwerte (Futter, Schwellen, Tageslimit) stehen alle in `src/logic/config.ts`.
+
+## Veröffentlichen (STRATO)
+
+Bei jedem Push auf `main` baut GitHub Actions die App und lädt `dist/` per SFTP in den STRATO-Webspace (`.github/workflows/deploy.yml`).
+Die Zugangsdaten stehen als Secrets im GitHub-Repo (`STRATO_SFTP_HOST`, `STRATO_SFTP_USER`, `STRATO_SFTP_PASSWORD`, `STRATO_REMOTE_DIR`), nie im Code.
+Liegt die App in einem Unterordner der Domain, muss in `vite.config.ts` `base: '/ordnername/'` stehen.
