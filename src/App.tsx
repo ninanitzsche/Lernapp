@@ -92,7 +92,7 @@ export default function App() {
   return (
     <main className="start">
       <div className="marken-kachel">
-        <img src={`${import.meta.env.BASE_URL}images/logo/nicos-snake-app.jpg`} alt="Nico’s Snake App – Nicos leuchtend grüne Zukunftsschlange" decoding="async" loading="eager" fetchPriority="high" />
+        <img src={`${import.meta.env.BASE_URL}images/logo/nicos-snake-app.webp`} alt="Nico’s Snake App – Nicos leuchtend grüne Zukunftsschlange" decoding="async" loading="eager" fetchPriority="high" />
       </div>
       <Snake state={state} now={now} onChange={setState} />
       {heuteRunden >= CONFIG.foodRoundsPerDay && (
