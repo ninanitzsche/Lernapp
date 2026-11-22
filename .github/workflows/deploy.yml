@@ -1,19 +1,25 @@
-name: Deploy zu STRATO
+name: Deploy auf GitHub Pages
 
-# Bei jedem Push auf main: testen, bauen und den Ordner dist per SFTP in den STRATO-Webspace hochladen.
-# Die Zugangsdaten stehen NICHT hier, sondern in GitHub unter Settings, Secrets and variables, Actions:
-#   STRATO_SFTP_HOST      Servername aus dem STRATO-Kundenlogin (Datenbanken und Webspace, SFTP und SSH)
-#   STRATO_SFTP_USER      SFTP-Benutzername
-#   STRATO_SFTP_PASSWORD  SFTP-Passwort (nicht das Kundenlogin-Passwort)
-#   STRATO_REMOTE_DIR     Zielordner im Webspace, zum Beispiel /mathe
+# Bei jedem Push auf main: testen, bauen und die App auf GitHub Pages veröffentlichen.
+# Einmalig nötig: im Repo unter Settings, Pages, bei "Source" die Option "GitHub Actions" wählen
+# und dort die eigene (Sub-)Domain eintragen. Bei STRATO zeigt ein CNAME-Eintrag der Subdomain auf ninanitzsche.github.io.
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  deploy:
+  bauen:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,15 +33,17 @@ jobs:
       - run: npm test
       - run: npm run build
 
-      - name: Per SFTP zu STRATO hochladen
-        env:
-          HOST: ${{ secrets.STRATO_SFTP_HOST }}
-          SFTP_USER: ${{ secrets.STRATO_SFTP_USER }}
-          SFTP_PASS: ${{ secrets.STRATO_SFTP_PASSWORD }}
-          REMOTE_DIR: ${{ secrets.STRATO_REMOTE_DIR }}
-        run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-          mkdir -p ~/.ssh
-          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
-          # Es wird nur hochgeladen, nichts auf dem Server gelöscht. Alte Dateien in assets/ bleiben liegen, sie stören nicht.
-          lftp -u "$SFTP_USER,$SFTP_PASS" "sftp://$HOST" -e "set sftp:auto-confirm yes; mirror --reverse --only-newer --verbose dist/ \"$REMOTE_DIR\"; bye"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  veroeffentlichen:
+    needs: bauen
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
