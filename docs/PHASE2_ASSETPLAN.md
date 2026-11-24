@@ -5,7 +5,7 @@
 > **Verbindliche Art Direction:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)  
 > **Visuelle Weltenstrategie:** [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md)  
-> **Status:** Phase 2 aktiv; Bestandsanalyse, kanonische Nico-Arbeitsreferenzen und direkter Bildvergleich dokumentiert. Die visuelle Freigabe des Charakter-/Stilpakets ist noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md), [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) und [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md).
+> **Status:** Phase 2 aktiv; Bestandsanalyse, kanonische Nico-Arbeitsreferenzen und direkter Bildvergleich dokumentiert. Die visuelle Freigabe des Charakter-/Stilpakets ist noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md), [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md), [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md) und [PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md).
 
 ## 1. Ziel
 
@@ -95,6 +95,8 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 - [x] Vorhandene Charakterdateien visuell direkt vergleichen und Bestandsanalyse dokumentieren ([PHASE2_BESTANDSANALYSE.md](./PHASE2_BESTANDSANALYSE.md)).
 - [x] Kanonische Arbeitsreferenzen und Kontinuitätskriterien für alle fünf Nico-Stufen dokumentieren ([PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md)); die visuelle Endfreigabe bleibt offen.
 - [x] Alle fünf Standardstufen, das Logo und die Teenager-Ausdrucksvarianten direkt visuell vergleichen und Befunde dokumentieren ([PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md)).
+- [x] Gemeinsame Charakteridentität und siebenstufige Emotionsbibliothek für alle fünf Entwicklungsstufen definieren ([PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md)).
+- [ ] Visuelle Emotionskonzepte zunächst an Baby und Kind testen und anschließend auf alle fünf Stufen übertragen.
 - [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (Referenzentwurf A; noch nicht freigegeben).
 - [ ] Referenzentwurf A gemeinsam mit kanonischer Nico-Referenz prüfen und visuell freigeben.
 - [ ] Kanonische Bildfassungen nach visueller Freigabe final festlegen; offene Lücken je Stufe schließen.
