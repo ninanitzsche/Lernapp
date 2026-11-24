@@ -19,7 +19,7 @@
 
 | Assetgruppe | Bestand / Referenz | Zielumfang | Status | Nächster Schritt |
 |---|---|---:|---|---|
-| Baby neutral | `public/images/snake/app/baby-standard.webp` | 1 | Bestand | Als Basis behalten; mit neuer Art Direction abgleichen |
+| Baby neutral | `public/images/snake/app/baby-standard.webp`; neuer Kandidat `nico_baby_neutral.webp` (ZIP außerhalb des Repos) | 1 | Bestand + Kandidat technisch geprüft, visuell offen | Kandidat prüfen; erst nach Freigabe in den Repo-Assetpfad übernehmen |
 | Kleinkind neutral | `public/images/snake/app/smallChild-standard.webp` | 1 | Bestand | Als Basis behalten; Kontinuität prüfen |
 | Kind neutral | `public/images/snake/app/child-standard.webp` | 1 | Bestand | Augen-/Kopfkontinuität harmonisieren |
 | Teenager neutral | `public/images/snake/app/teen-standard.webp` | 1 | Bestand | Silhouette behalten; reifere, weniger niedliche Wirkung |
@@ -55,6 +55,16 @@
 | Wissensalbum-Themenillustrationen | modular je Lernfeld | Zu produzieren | Motivsystem definieren; keine Fachwelten anderer Fächer vorwegnehmen |
 
 ## 5. Technische Abnahme pro Produktionsasset
+
+### Erster Nico-Kandidat (noch nicht integriert)
+
+- Datei: `nico_baby_neutral.webp` (im Paket `nico_phase2_first_production_candidate.zip`, außerhalb des Repositories)
+- Maße: 1328 × 1317 px
+- Format: WebP, RGBA / echter Alpha-Kanal
+- Dateigröße: ca. 230 KB
+- Status: technisch geprüft, visuelle Freigabe offen
+
+
 
 - [ ] Einzelmotiv ohne Beschriftung, Rahmen oder UI
 - [ ] Transparenter Hintergrund, falls freigestellt benötigt
