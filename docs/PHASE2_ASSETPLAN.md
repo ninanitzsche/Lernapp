@@ -100,6 +100,7 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 - [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (Referenzentwurf A; noch nicht freigegeben).
 - [ ] Referenzentwurf A gemeinsam mit kanonischer Nico-Referenz prüfen und visuell freigeben.
 - [x] Zweite Nico-Konzeptiteration anhand des Feedbacks prüfen: erste Übersicht als bessere Basis bestätigt; späte Stufen müssen deutlich weniger niedlich und stärker majestätisch/gefährlich werden. Schlangen-Anatomie ohne Flossen, Beine oder Flügel verbindlich festgelegt.
+- [x] Zweite visuelle Konzeptübersicht der fünf neutralen Entwicklungsstufen erstellen und als bevorzugte aktuelle Richtung dokumentieren; Einzelassets und finale Freigabe bleiben offen.
 - [ ] Fünf neutrale Einzelreferenzen ausarbeiten: Baby süß, Kleinkind verspielt, Kind mutiger, Teenager wild/elegant, Erwachsen/legendär imposant und logo-nah. Konzentration freundlich-nachdenklich halten.
 - [ ] Kanonische Bildfassungen nach visueller Freigabe final festlegen; offene Lücken je Stufe schließen.
 - [ ] Einzelassets in freigegebener Art Direction erstellen.
