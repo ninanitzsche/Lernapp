@@ -917,7 +917,10 @@ button, input, textarea, select {
 .ampel.fast {
   color: var(--color-warning);
 }
-.ampel.sicher, .ampel.bereit {
+.ampel.sicher {
+  color: var(--color-success);
+}
+.ampel.bereit {
   color: var(--gruen-dunkel);
 }
 .ampel.bereit {
