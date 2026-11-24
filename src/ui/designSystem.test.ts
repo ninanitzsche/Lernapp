@@ -48,3 +48,14 @@ test('Bedienbarkeit, reduzierte Bewegung und Deployment-Pfade sind zentral abges
   assert.match(css, /touch-action:\s*manipulation/)
   assert.match(viteConfig, /base:\s*['"]\.\/['"]/)
 })
+
+
+test('Screen-Farben und Layoutabstände verwenden zentrale Tokens', () => {
+  const screenCss = css.replace(/:root\\s*\\{[^}]*\\}/g, '')
+  const hardcodedColors = [...screenCss.matchAll(/#[0-9a-fA-F]{3,8}\\b|rgba?\\([^)]*\\)/g)].map(([value]) => value)
+  assert.deepEqual(hardcodedColors, [], 'Farben und Effekte außerhalb der Token-Definitionen müssen Tokens verwenden')
+
+  const spacingDeclarations = [...screenCss.matchAll(/(?:^|[;{]\\s*)(?:padding(?:-(?:top|right|bottom|left|inline|block))?|margin(?:-(?:top|right|bottom|left|inline|block))?|gap|row-gap|column-gap|border-spacing)\\s*:\\s*([^;}]+)/gm)]
+  const hardcodedSpacing = spacingDeclarations.flatMap(([, value]) => [...value.matchAll(/-?\\d+(?:\\.\\d+)?px/g)].map(([literal]) => literal))
+  assert.deepEqual(hardcodedSpacing, [], 'Layoutabstände müssen über Abstandstokens oder relative Einheiten definiert sein')
+})
