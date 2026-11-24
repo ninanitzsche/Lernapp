@@ -5,7 +5,8 @@
 > **Verbindliche Art Direction:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)  
 > **Visuelle Weltenstrategie:** [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md)  
-> **Status:** Phase 2 aktiv; Bestandsanalyse, kanonische Nico-Arbeitsreferenzen und direkter Bildvergleich dokumentiert. Die visuelle Freigabe des Charakter-/Stilpakets ist noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md), [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md), [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md) und [PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md).
+> **Asset-Katalog:** [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md)  
+> **Status:** Phase 2 aktiv; Bestandsanalyse, kanonische Nico-Arbeitsreferenzen, direkter Bildvergleich und Produktions-Gates dokumentiert. Die visuelle Freigabe des Charakter-/Stilpakets ist noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md), [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md), [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md) und [PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md).
 
 ## 1. Ziel
 
