@@ -121,9 +121,9 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 | Aufgaben, Zahlen und Fließtext | **Atkinson Hyperlegible Next** | Regular 400, Bold 700 |
 | Überschriften und kurze Belohnungstitel | **Nunito** | ExtraBold 800 |
 
-Beide Schriften sind freigegeben und als variable TTF-Dateien lokal unter `public/fonts/` eingebunden. Die zugehörigen OFL-Lizenzdateien liegen ebenfalls dort. WOFF2-Optimierung und visuelle Glyphenprüfung bleiben offen.
+Beide Schriften sind freigegeben und lokal als WOFF2 unter `public/fonts/` eingebunden. Atkinson Hyperlegible Next wird in den Schnitten 400 und 700 jeweils für Latin und Latin Extended ausgeliefert; Nunito als variable WOFF2-Datei für Latin und Latin Extended. Die zugehörigen OFL-Lizenzdateien liegen ebenfalls dort. Die Browserprüfung der konkreten Glyphendarstellung und Ziffern bleibt offen.
 
-- Fonts lokal ausliefern; keine externen Font-Requests. Ziel bleibt WOFF2; derzeit werden variable TTF-Dateien genutzt.
+- Fonts lokal als WOFF2 ausliefern; keine externen Font-Requests.
 - SIL Open Font License (OFL) und zugehörige Lizenzdateien im Repository mitführen.
 - Vor Einbindung Umlaute (ÄÖÜäöü) und ß in den konkreten Fontdateien prüfen.
 - Ziffern in der tatsächlichen Aufgabenansicht kontrollieren, insbesondere 1, 4, 6, 7 und 9.
@@ -134,7 +134,7 @@ Beide Schriften sind freigegeben und als variable TTF-Dateien lokal unter `publi
 
 ### Implementierte CSS-Grundtokens
 
-`src/index.css` enthält das erste semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Ergänzend sind typografische Größenrollen für Display-Titel, Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte definiert und auf die zentralen UI-Elemente angewendet. Die lokalen variablen TTF-Dateien werden über `@font-face` geladen; WOFF2-Optimierung und visuelle Glyphenprüfung bleiben offen. Bestehende Legacy-Variablen bleiben als bewusste Kompatibilitätsschicht erhalten und verweisen zentral auf die freigegebenen semantischen Tokens. So können vorhandene Komponenten schrittweise konsolidiert werden, ohne ihre Klassennamen oder Verhaltenslogik unnötig umzubauen.
+`src/index.css` enthält das semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Ergänzend sind typografische Größenrollen für Display-Titel, Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte definiert und auf zentrale UI-Elemente angewendet. Die lokalen WOFF2-Dateien werden über `@font-face` geladen; Latin und Latin Extended sind getrennt eingebunden. Bestehende Legacy-Variablen bleiben als bewusste Kompatibilitätsschicht erhalten und verweisen zentral auf die freigegebenen semantischen Tokens. So können vorhandene Komponenten schrittweise konsolidiert werden, ohne ihre Klassennamen oder Verhaltenslogik unnötig umzubauen. Die visuelle Prüfung der Glyphen im echten Browser bleibt ein eigener offener Check.
 
 - Mobile-first, Smartphone im Hochformat als primäre Referenz.
 - Tablet und Desktop bleiben responsiv nutzbar.

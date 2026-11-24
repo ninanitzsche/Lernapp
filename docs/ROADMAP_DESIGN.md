@@ -46,7 +46,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 - [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.
 - [x] Legacy-Farbvariablen zentral auf die freigegebenen semantischen Tokens abbilden; verbleibende Einzelwerte komponentenweise weiter migrieren und visuell prüfen.
-- [ ] Freigegebene Schriften in der vereinbarten WOFF2-Auslieferung lokal einbinden und Umlaute/Ziffern in der App prüfen (TTF-Zwischenstand ist vorhanden).
+- [x] Freigegebene Schriften lokal als WOFF2 einbinden (Atkinson 400/700, Nunito variabel) und Latin-/Latin-Extended-Zeichensätze bereitstellen; visuelle Glyphen- und Ziffernprüfung in der App bleibt offen.
 - [x] Typografische Rollen für Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte in CSS definieren und auf zentrale Komponenten anwenden.
 - [x] Vorhandene Button-Zustände für Disabled und Focus vereinheitlichen; Primary/Secondary/Tertiary visuell weiter prüfen.
 - [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vollständig vereinheitlichen (Shop-/Album-Karten, Aufgaben-Eingaben, Dialoge und Fortschrittsbalken mit echten TSX-Klassen gezielt nachgezogen; visuelle Prüfung offen).
@@ -54,7 +54,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen vollständig festlegen (CSS-Regeln für schmale Viewports und Mindesthöhen ergänzt; Geräteprüfung offen).
 - [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
 
-**Zwischenstand (Code-Audit):** Semantische Tokens, typografische Rollen und lokale variable TTF-Dateien inklusive OFL-Lizenzen sind vorhanden. Die vereinbarte WOFF2-Auslieferung und die Glyphenprüfung sind offen. Die tatsächlichen Klassen in `Shop.tsx`, `Album.tsx`, `TaskView.tsx`, `Parent.tsx` und `Round.tsx` wurden gegen die CSS-Selektoren geprüft; die zentralen Shop-/Album-Karten, Antwortfelder, Zifferntasten, Dialoge und Fortschrittsanzeigen haben gezielte gemeinsame Regeln erhalten. Der GitHub-Diff des CSS-Schritts enthält ausschließlich `src/index.css`. Zusätzlich wurden die statisch verwendeten `className`-Selektoren aller 15 TSX-UI-Dateien gegen `src/index.css` abgeglichen; für keine der erfassten Klassen fehlt ein CSS-Treffer. Ein Token-Audit fand doppelte Definitionen in den neu ergänzten Foundation-Blöcken; diese wurden bereinigt und anschließend erneut geprüft. Die semantischen Custom Properties sind jetzt eindeutig deklariert (der einfache Regex-Audit meldet nur einen False-Positive-Treffer auf `--th`). Das ist ein Selektor-/Quellcode-Audit, keine Browser-Sichtprüfung. Screen-/Viewport-Prüfung, vollständige Migration verbleibender Einzelwerte und Regressionstests bleiben offen.
+**Zwischenstand (Code-Audit):** Semantische Tokens, typografische Rollen und lokale WOFF2-Dateien inklusive OFL-Lizenzen sind vorhanden. Atkinson Hyperlegible Next wird mit getrennten 400-/700-Dateien für Latin und Latin Extended ausgeliefert; Nunito als variable WOFF2-Datei für beide Zeichensatzbereiche. Alle sechs WOFF2-Dateien wurden aus dem Repository zurückgelesen, auf WOFF2-Signatur geprüft und ihre CSS-Referenzen abgeglichen. Die tatsächliche Darstellung von Umlauten und Ziffern im Browser bleibt offen. Die tatsächlichen Klassen in `Shop.tsx`, `Album.tsx`, `TaskView.tsx`, `Parent.tsx` und `Round.tsx` wurden gegen die CSS-Selektoren geprüft; die zentralen Shop-/Album-Karten, Antwortfelder, Zifferntasten, Dialoge und Fortschrittsanzeigen haben gezielte gemeinsame Regeln erhalten. Der GitHub-Diff des CSS-Schritts enthält ausschließlich `src/index.css`. Zusätzlich wurden die statisch verwendeten `className`-Selektoren aller 15 TSX-UI-Dateien gegen `src/index.css` abgeglichen; für keine der erfassten Klassen fehlt ein CSS-Treffer. Ein Token-Audit fand doppelte Definitionen in den neu ergänzten Foundation-Blöcken; diese wurden bereinigt und anschließend erneut geprüft. Die semantischen Custom Properties sind jetzt eindeutig deklariert (der einfache Regex-Audit meldet nur einen False-Positive-Treffer auf `--th`). Das ist ein Selektor-/Quellcode-Audit, keine Browser-Sichtprüfung. Screen-/Viewport-Prüfung, vollständige Migration verbleibender Einzelwerte und Regressionstests bleiben offen.
 
 **Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
 
@@ -128,7 +128,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 | Transparente Logo-Variante | Zurückgestellt; keine unsaubere Freistellung |
 | Farben | Toxic Lime, Emerald Green, Deep Forest, Warm Gold, Amber Orange, Midnight Blue, Warm Cream |
 | Typografie | Atkinson Hyperlegible Next 400/700 für Aufgaben und Text; Nunito 800 für Überschriften |
-| Schriftbereitstellung | Lokal gehostete variable TTF-Dateien mit OFL-Lizenzen (WOFF2-Optimierung offen) |
+| Schriftbereitstellung | Lokal gehostete WOFF2-Dateien für Atkinson 400/700 und Nunito variabel, Latin + Latin Extended, mit OFL-Lizenzen |
 | Geräte | Smartphone Hochformat zuerst; Tablet/Desktop responsiv |
 | Lernen | Helle, ruhige und kontrastreiche Aufgabenflächen |
 | Terrarium | Reichhaltigste Fantasy-Ansicht |
