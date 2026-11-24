@@ -25,6 +25,17 @@ Das bestehende Logo ist das Key Visual und die Vision der höchsten Entwicklungs
 
 Die App soll wie ein zusammenhängendes, sorgfältig gestaltetes Adventure-Game wirken – nicht wie ein Standard-Dashboard und nicht wie eine Sammlung unterschiedlicher UI-Stile.
 
+### Verbindliche Stilbausteine
+
+Die Art Direction besteht aus vier zusammengehörigen Elementen:
+
+1. **Stylized 3D Fantasy Game Art:** hochwertige stilisierte 3D-Spielgrafik, plastische Figuren, räumliche Tiefe und liebevoll gestaltete Umgebungen.
+2. **Bioluminescent Fantasy:** giftgrüne Leuchteffekte, magische Pflanzen und Kristalle sowie eine geheimnisvolle, aber einladende Atmosphäre.
+3. **Premium Mobile Game UI:** runde, haptisch wirkende Bedienelemente, hochwertige Materialanmutung, goldene Akzente und klare Hierarchien.
+4. **Stylized 3D Character Design:** ausdrucksstarke Figuren, große Augen, detaillierte Schuppen und eine konsistente Charakterentwicklung.
+
+Diese vier Elemente bilden eine gemeinsame Bild- und Formensprache. Sie sind keine voneinander unabhängigen Stiloptionen.
+
 ## 3. Farbpalette
 
 | Token | Wert | Verwendung |
@@ -137,7 +148,35 @@ Beide Schriften sind vom Projektinhaber freigegeben. Die Auswahl ist verbindlich
 - Animationen sind nicht blockierend und berücksichtigen Reduced Motion, wo technisch sinnvoll.
 - Keine dauerhafte Bewegung, die beim Rechnen ablenkt.
 
-## 9. Asset- und Implementierungsregeln
+## 9. Asset-Erstellung und Implementierung
+
+### Produktionsablauf
+
+- ChatGPT übernimmt Art Direction, Bildkonzepte und die Erstellung der vereinbarten Bildassets.
+- Assets werden einzeln und gezielt für konkrete UI-Einsatzzwecke erstellt – nicht als fertige Screenshots oder in Bilder eingebrannte UI.
+- Vor größeren Asset-Serien wird ein kleines Stil-Referenzpaket erstellt und visuell freigegeben.
+- Claude Code übernimmt die technische Ablage, Einbindung, responsive Darstellung und Optimierung im React-Projekt.
+- Die finale Wirkung wird in der echten App geprüft und bei Bedarf iteriert.
+
+### Asset-Gruppen
+
+- **Charaktere:** Nico in fünf Entwicklungsstufen, benötigte Posen und freigegebene Ausdrucksvarianten.
+- **Umgebungen:** Terrarium sowie passende Szenen und Hintergründe für Home und weitere Bereiche.
+- **Spielobjekte:** Pflanzen, Äste, Steine, Kristalle, Dekoration und Futter.
+- **Belohnungen und Effekte:** Münzen, Schuppen, besondere Freischaltungen, Partikel und Glow-Elemente.
+
+### Technische Regeln
+
+- Original-Logo unter `public/images/logo.webp` nicht überschreiben.
+- Transparente Logo-Ableitung ist zurückgestellt; keine unsaubere automatische Freistellung verwenden.
+- Illustrationen einzeln exportieren und versionieren.
+- Hintergründe, Charaktere, UI und Effekte getrennt halten.
+- Einheitliche Lichtquelle, Materialqualität, Perspektive und Charakterproportionen beachten.
+- Texte, Zahlen, Buttons und andere interaktive UI bleiben echte responsive React-/CSS-Komponenten.
+- Bestehende Komponenten zuerst prüfen und wiederverwenden.
+- Lernlogik, Datenmodelle, Speicherung, Navigation und Shop-Mechanik bei visueller Arbeit nicht verändern.
+
+## 10. Qualitätskriterien
 
 - Original-Logo unter `public/images/logo.webp` nicht überschreiben.
 - Transparente Logo-Ableitung ist zurückgestellt; keine unsaubere automatische Freistellung verwenden.
