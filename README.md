@@ -20,6 +20,7 @@ Voraussetzung: Node 22.6 oder neuer.
 - `src/ui/` Oberfläche (Schlange, Aufgaben, Runde, Elternbereich). Animationen: `motion` (Federn, Übergänge) und `canvas-confetti` (Konfetti, Münzregen)
 - Layout: jede Kinder-Ansicht passt in `100dvh`, Größen skalieren mit der Bildschirmhöhe (siehe Kommentar am Anfang von `main` in `src/index.css`)
 - `docs/spec.md` Spezifikation und Änderungen
+- `docs/product-vision.md` langfristige Vision der fachübergreifenden Lernapp und Leitplanken für heutige Architekturentscheidungen
 - `docs/specs/2026-11-22-feedback-runde-1/` Anforderungen, Design und Aufgaben zur Feedback-Runde 1 (Belohnung, Schwierigkeitsstufen, Meilensteine, Elternblick)
 - `public/images/snake/` Schlangen-Bilder (Kopien aus FamilyBoard)
 
