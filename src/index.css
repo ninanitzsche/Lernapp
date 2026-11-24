@@ -714,3 +714,69 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
  .shop-liste { gap: 8px; } .shop-karte { padding: 10px; } .knopf.gross { min-height: 56px; padding-inline: 18px; }
 }
 @media (min-width:640px) { main { max-width: var(--content-width); } }
+
+
+/* ---------- Phase 1: geprüfte Komponenten-Oberflächen ---------- */
+/* Diese Selektoren wurden gegen die tatsächlich gerenderten TSX-Klassennamen geprüft. */
+:root {
+  --surface-card: #FFFAEF;
+  --surface-card-raised: #FFFDF7;
+  --border-card: #D9C9A0;
+  --shadow-card-raised: 0 4px 0 rgba(6, 77, 48, .14), 0 10px 24px rgba(7, 29, 53, .12);
+  --shadow-card-inset: inset 0 2px 5px rgba(7, 29, 53, .10);
+  --space-card: clamp(12px, 2.8vw, 18px);
+  --control-height: 52px;
+  --touch-target: 48px;
+  --content-width: 640px;
+}
+.shop-karte,.album-karte {
+  border: 1px solid var(--border-card); border-radius: var(--radius-card);
+  background: var(--surface-card); box-shadow: var(--shadow-card-raised);
+}
+.shop-karte { padding: var(--space-card); gap: 8px; min-width: 0; }
+.shop-karte.gesperrt { filter: saturate(.72); }
+.shop-karte img { max-width: 100%; object-fit: contain; }
+.album-karte {
+  width: 100%; min-height: var(--touch-target); padding: 12px 14px;
+  color: var(--color-ink); text-align: left; display: flex; align-items: center; gap: 12px;
+  transition: var(--transition-press);
+}
+.album-karte:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(6,77,48,.14); }
+.album-karte.offen { background: var(--surface-card-raised); border-color: var(--color-warm-gold); }
+.anzeige {
+  min-width: min(34vw, 120px); min-height: 64px; padding: 8px 14px;
+  border: 2px solid var(--border-card); border-radius: var(--radius-control);
+  background: var(--surface-card); color: var(--color-ink); box-shadow: var(--shadow-card-inset);
+  font: inherit; cursor: pointer;
+}
+.anzeige.aktiv { border-color: var(--color-emerald); box-shadow: inset 0 0 0 2px rgba(0,200,83,.18),0 0 0 2px rgba(0,200,83,.12); }
+.knopf.ziffer { min-width: var(--touch-target); min-height: 56px; padding: 8px; font-size: 1.2rem; }
+.knopf.ziffer.pruefen { background: var(--color-warm-gold); color: var(--color-ink); box-shadow: 0 5px 0 #B77A00; }
+.knopf.ziffer.pruefen:active:not(:disabled) { box-shadow: 0 1px 0 #B77A00; }
+.karte {
+  min-width: var(--touch-target); min-height: var(--touch-target); padding: 10px 16px;
+  border: 2px solid var(--border-card); border-radius: 14px; background: var(--surface-card);
+  color: var(--color-ink); font: inherit; font-weight: 800; box-shadow: 0 3px 0 var(--border-card);
+}
+.karte:disabled { opacity: .48; cursor: not-allowed; }
+.dialog {
+  width: min(100%, 440px); padding: clamp(20px,5vw,28px);
+  border-radius: var(--radius-panel); color: var(--color-ink);
+}
+.rueckmeldung {
+  width: 100%; padding: clamp(16px,4vw,24px);
+  border-radius: var(--radius-panel); color: var(--color-ink);
+}
+.rueckmeldung p,.dialog p { overflow-wrap: anywhere; }
+.live-futter { flex: 0 0 auto; }
+.balken { border: 1px solid rgba(255,211,41,.35); }
+@media (max-width: 380px) {
+  .aufgabe-kopf { gap: 8px; }
+  .vorlesen { padding-inline: 10px; font-size: .9rem; }
+  .anzeigen { gap: 8px; }
+  .anzeige { min-width: 0; flex: 1 1 0; }
+  .ziffernblock { gap: 6px; }
+  .knopf.ziffer { min-height: 52px; }
+  .album { grid-template-columns: minmax(0,1fr); }
+  .dialog-hintergrund { padding: 12px; }
+}
