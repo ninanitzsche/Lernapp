@@ -60,10 +60,13 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 **Ziel:** Nico und die Spielwelt konsistent und wiederverwendbar gestalten.
 
 - [ ] Bestehendes Logo im Splash unverändert verwenden.
+- [ ] Stil-Referenzpaket erstellen und freigeben (Nico, Terrarium, Shop-Objekte, Belohnung).
 - [ ] Fünf Entwicklungsstufen als konsistente Charakterfamilie spezifizieren und gestalten.
 - [ ] Benötigte transparente Charakter-Assets und Posen festlegen.
+- [ ] Einzelne 3D-Spielgrafiken mit ChatGPT erstellen; Claude Code bindet die freigegebenen Assets technisch ein.
 - [ ] Hintergründe für Home, Lernansicht und Terrarium definieren.
 - [ ] Dekoration, Kristalle und Effekte als einzelne Assets organisieren.
+- [ ] Einheitliche Lichtführung, Perspektive, Materialien und Proportionen über alle Asset-Gruppen sichern.
 - [ ] Bildgrößen, Dateiformate und Ladeverhalten optimieren.
 
 **Zurückgestellt:** Eine transparente Logo-Ableitung ist nicht Voraussetzung für den Relaunch. Sie wird nur separat erstellt, wenn eine qualitativ saubere Quelle oder Freistellung verfügbar ist. Das Original bleibt unangetastet.
@@ -126,7 +129,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 | Geräte | Smartphone Hochformat zuerst; Tablet/Desktop responsiv |
 | Lernen | Helle, ruhige und kontrastreiche Aufgabenflächen |
 | Terrarium | Reichhaltigste Fantasy-Ansicht |
-| Funktionsumfang | Bestehende Funktionen und Mechaniken bleiben erhalten |
+| Bildproduktion | Einzelne, eigens erstellte 3D-Assets; keine generierten UI-Screenshots |\n| Zuständigkeit Assets | ChatGPT: Art Direction und Bildassets; Claude Code: technische Integration |\n| Funktionsumfang | Bestehende Funktionen und Mechaniken bleiben erhalten |
 
 ## Pflege
 
