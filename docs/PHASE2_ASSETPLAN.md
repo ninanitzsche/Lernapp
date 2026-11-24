@@ -99,7 +99,8 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 - [x] Erste visuelle Emotionskonzepte für alle fünf Stufen mit sieben Zuständen als Gesamtübersicht explorieren; die Grundrichtung wurde vom Projektinhaber positiv bestätigt. Die Übersicht bleibt Konzept, nicht Produktionsfreigabe.
 - [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (Referenzentwurf A; noch nicht freigegeben).
 - [ ] Referenzentwurf A gemeinsam mit kanonischer Nico-Referenz prüfen und visuell freigeben.
-- [ ] Emotionskonzepte verfeinern: Konzentration weniger grimmig, Altersstufen stärker über Silhouette und Proportionen differenzieren; danach neutrale Einzelreferenzen je Stufe festlegen.
+- [x] Zweite Nico-Konzeptiteration anhand des Feedbacks prüfen: erste Übersicht als bessere Basis bestätigt; späte Stufen müssen deutlich weniger niedlich und stärker majestätisch/gefährlich werden. Schlangen-Anatomie ohne Flossen, Beine oder Flügel verbindlich festgelegt.
+- [ ] Fünf neutrale Einzelreferenzen ausarbeiten: Baby süß, Kleinkind verspielt, Kind mutiger, Teenager wild/elegant, Erwachsen/legendär imposant und logo-nah. Konzentration freundlich-nachdenklich halten.
 - [ ] Kanonische Bildfassungen nach visueller Freigabe final festlegen; offene Lücken je Stufe schließen.
 - [ ] Einzelassets in freigegebener Art Direction erstellen.
 - [ ] Asset-Katalog und technische Übergabe für Claude Code pflegen.
