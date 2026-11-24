@@ -12,6 +12,7 @@ Phase 2 wird paketweise bis zu den definierten Abnahme-Gates bearbeitet. Visuell
 
 - Bestandsanalyse mit 175 Bilddateien, 169 Schlangenwelt-Dateien, Charaktervarianten und Shop-Bestand dokumentiert.
 - Fünf Entwicklungsstufen anhand vorhandener App-Bilder und des Logos verglichen.
+- Ersten einzelnen Baby-Nico-Kandidaten als WebP mit echtem Alpha-Kanal erstellt, auf Motiv zugeschnitten und technisch geprüft (1328 × 1317 px, ca. 230 KB). Der Kandidat ist noch nicht freigegeben oder in die App integriert.
 - Kanonische Nico-Referenz und siebenstufige Emotionsmatrix angelegt.
 - Entwicklungsbogen präzisiert: frühe Stufen niedlich, spätere Stufen zunehmend wild, kraftvoll und legendär.
 - Schlangen-Anatomie festgelegt: durchgehender Schlangenkörper, keine Beine, Flossen oder Flügel.
@@ -26,7 +27,7 @@ Daher wurden diese Bilder nicht in `public/images` abgelegt und keine Laufzeitre
 
 ## Nächste Schritte in Reihenfolge
 
-1. Fünf neutrale Nico-Einzelassets als freigestellte Dateien erstellen und technisch prüfen.
+1. Vier weitere neutrale Nico-Einzelassets für Kleinkind, Kind, Teenager und Erwachsen/Legendär erstellen; danach alle fünf visuell vergleichen und freigeben.
 2. Nach Freigabe die sieben Emotionen aus diesen Basen ableiten.
 3. Vorhandene Terrarium-Hintergründe und 45 Shop-Objekte vollständig visuell katalogisieren.
 4. Eine schlangenspezifische Terrarium-Szene mit separaten Layern und ruhigen UI-Flächen definieren.
@@ -39,7 +40,7 @@ Bis zur visuellen und technischen Freigabe gibt es keine Änderungen an Lernlogi
 
 ## Offene Qualitäts-Gates
 
-- [ ] Fünf neutrale Nico-Einzelassets freigegeben
+- [ ] Fünf neutrale Nico-Einzelassets freigegeben (Baby-Kandidat technisch vorbereitet; vier Stufen offen)
 - [ ] 35 Emotionsassets freigegeben
 - [ ] Terrarium-Hintergrund und modulare Layer freigegeben
 - [ ] Shop-/Terrarium-Objekte visuell geprüft und vereinheitlicht
