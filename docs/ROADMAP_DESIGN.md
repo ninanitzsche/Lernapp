@@ -2,7 +2,7 @@
 
 > **Projekt:** Nico's Snake App  
 > **Arbeitsbranch:** design/luminous-fantasy-adventure  
-> **Status:** Planung angelegt – Umsetzung noch nicht begonnen  
+> **Status:** Phase 0 dokumentiert (Build-Verifikation eingeschränkt). Designsystem dokumentiert, erste Umsetzung am Splash vorhanden, vollständige Umsetzung offen  
 > **Designreferenz:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Feature-Inventar:** [../FEATURES.md](../FEATURES.md)
 
@@ -35,10 +35,10 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 - [x] Hochformat als primäre Ausrichtung festgelegt
 - [x] Aktuelle Screens und Komponenten im Branch erneut inventarisieren (siehe [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md))
 - [x] Vorhandene Logo-Datei im Repository lokalisiert: public/images/logo.webp
-- [x] Transparenzfähigkeit und Bildränder des vorhandenen Logos visuell prüfen (Ergebnis: kein Alpha-Kanal, Hintergrund uneinheitlich durch Glow bis zum Rand)
-- [ ] **Zurückgestellt (Entscheidung 2026-11-24):** Transparente PNG- und/oder WebP-Variante des Logos. Einfaches Freistellen über den Farbabstand liefert kein sauberes Ergebnis (Glow wird zum Schleier, Konturen leiden). Wird separat und später entschieden. Für den Splash gilt Weg 3 (Original auf dunklem Hintergrund), siehe Entscheidungstabelle.
+- [x] Transparenzfähigkeit und Bildränder des vorhandenen Logos prüfen: technisch gemessen (kein Alpha-Kanal, Hintergrund uneinheitlich) und visuell an einer Vorschau betrachtet. Details in PHASE0_INVENTAR.md, Abschnitt 5.
+- [ ] **Zurückgestellt (Entscheidung 2026-11-24):** Transparente PNG- und/oder WebP-Variante des Logos. Es existiert **keine saubere Variante**. Das einfache Testverfahren wirkte in einer betrachteten Vorschau unsauber. Wird separat und später entschieden. Für den Splash gilt Weg 3 (Original auf dunklem Hintergrund), siehe Entscheidungstabelle.
 - [x] Bestehende Design-Tokens, CSS und UI-Komponenten erfassen
-- [x] Ausgangszustand von Tests und Build dokumentieren. Tests 144 von 144 und Typprüfung grün (Sandbox). Produktionsbuild vom Projektinhaber auf dem Mac ausgeführt: `dist/` mit `index.html`, JS-Bundle (453 KB, 144 KB gzip) und CSS (31 KB, 7,5 KB gzip) liegt vor (Zeitstempel 2026-11-24 10:34). Die Konsolenausgabe des Builds wurde nicht gesehen, Warnungen sind daher unbekannt. Beobachtung: `dist/` ist 78 MB groß, weil `public/images/` ungefiltert kopiert wird (siehe PHASE0_INVENTAR.md, Abschnitt 6).
+- [x] Ausgangszustand von Tests und Build dokumentieren, mit Einschränkung beim Build. Tests 144 von 144 und Typprüfung grün (Sandbox). Build: **Artefakte vorhanden, Konsolenausgabe nicht verifiziert.** Die `dist/`-Artefakte (Zeitstempel 2026-11-24 10:34) sind ein Indiz, aber kein vollständiger Nachweis eines erfolgreichen Builds. Zur vollständigen Verifikation fehlt die Konsolenausgabe von `npm run build` (Exit-Code, Warnungen). Beobachtung: `dist/` ist 78 MB groß, weil `public/images/` ungefiltert kopiert wird (PHASE0_INVENTAR.md, Abschnitt 6).
 
 **Abnahmekriterium:** Es gibt eine nachvollziehbare Übersicht über die vorhandenen UI-Bausteine und Assets, bevor diese verändert werden. Die Logo-Variante ist visuell geprüft und für den vorgesehenen Einsatz geeignet.
 
@@ -122,15 +122,15 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 | Designstil | Luminous Fantasy Adventure | Festgelegt |
 | Logo | Original unverändert, prominent im Splash | Festgelegt |
 | Logo-Quelle | public/images/logo.webp im Branch vorhanden | Gefunden |
-| Transparente Logo-Variante | Einfache Freistellung ungeeignet (2026-11-24 geprüft). Wird separat und später entschieden. Optionen: Matting-Verfahren, oder Quelldatei mit Transparenz neu exportieren | Zurückgestellt, wichtig laut Projektinhaber |
-| Logo im Splash | Weg 3: Original unverändert mit eingebranntem dunklem Hintergrund auf dunklem Splash, keine Transparenz nötig | Festgelegt (2026-11-24) |
+| Transparente Logo-Variante | Es existiert keine saubere Variante. Wird separat und später entschieden. Optionen: Matting-Verfahren, oder Quelldatei mit Transparenz neu exportieren | Zurückgestellt, wichtig laut Projektinhaber |
+| Logo im Splash | Weg 3: Original unverändert mit eingebranntem dunklem Hintergrund auf dunklem Splash, keine Transparenz nötig | Freigegeben (2026-11-24) |
 | Primärgerät | Smartphone | Festgelegt |
 | Primäre Ausrichtung | Hochformat (Portrait) | Festgelegt |
 | Weitere Geräte | Tablet/Desktop responsiv unterstützen | Festgelegt |
 | Schlange | Baby bis legendäre erwachsene Form | Festgelegt |
 | Aufgabenansicht | Hell und besonders gut lesbar | Festgelegt |
 | Terrarium | Reichhaltigste Fantasy-Ansicht | Festgelegt |
-| Schrift | Passende gut lesbare Schrift auswählen. Anfrage an ChatGPT in PHASE0_INVENTAR.md, Abschnitt 8 | Offen, Anfrage vorbereitet |
+| Schrift | Atkinson Hyperlegible Regular 400 und Bold 700 für Aufgaben, Zahlen und Fließtext. Nunito ExtraBold 800 für Überschriften und Belohnungstitel. Lokal ausliefern, keine externen Requests, OFL-Lizenzdateien mitführen. Siehe PHASE0_INVENTAR.md, Abschnitt 9 | Empfehlung ChatGPT, zur Freigabe. Nicht implementiert |
 | Splash-Verhalten | Kurzer Auftritt, überspringbar bzw. nicht blockierend | Vorschlag |
 
 ## Änderungsprotokoll
@@ -139,7 +139,9 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 | 2026-11-24 | Roadmap und Designsystem initial angelegt; Arbeitsbranch erstellt |
 | 2026-11-24 | Smartphone als Primärgerät und Hochformat festgelegt |
 | 2026-11-24 | Vorhandenes Logo unter public/images/logo.webp gefunden; transparente Ableitung als Prüfaufgabe dokumentiert |
-| 2026-11-24 | Phase 0: Inventar von Ansichten, Komponenten, CSS und Assets erstellt. Logo hat keinen Alpha-Kanal, einfache Freistellung nicht sauber. Tests 144/144 und Typprüfung grün, Produktionsbuild auf dem Mac erfolgreich (Artefakte in `dist/` vorhanden), Sichtprüfung offen |
+| 2026-11-24 | Phase 0: Inventar von Ansichten, Komponenten, CSS und Assets erstellt. Logo hat keinen Alpha-Kanal, keine saubere transparente Variante vorhanden. Tests 144/144 und Typprüfung grün. Build: Artefakte vorhanden, Konsolenausgabe nicht verifiziert. Sichtprüfung offen |
+| 2026-11-24 | Korrekturen nach Review: Status in DESIGN_SYSTEM.md differenziert (Designsystem dokumentiert, erste Umsetzung am Splash seit `c8d10e2`, vollständige Umsetzung offen). Logo-Prüfung in technische Analyse und visuelle Betrachtung getrennt. Konflikt Futter-Schwellen (FEATURES.md 0/60/150/300/500 gegen config.ts 0/30/90/200/350, Änderung durch `10686bd`) dokumentiert, keine Logikänderung |
+| 2026-11-24 | Entscheidungen: Logo im Splash Weg 3 freigegeben. Schriftempfehlung (Atkinson Hyperlegible 400/700, Nunito 800, lokal, OFL) als Designentscheidung zur Freigabe dokumentiert, nicht implementiert |
 
 ## Pflege-Regeln
 1. Vor jeder größeren Arbeit den aktuellen Status dieser Roadmap prüfen.

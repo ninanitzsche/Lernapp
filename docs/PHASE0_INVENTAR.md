@@ -55,15 +55,25 @@ Logik liegt getrennt in `src/logic/` und `src/storage.ts` und ist für den visue
 
 ## 5. Logo-Transparenz (Prüfung)
 
-**Methode:** Hintergrundfarbe aus dem Bildrand bestimmt, Farbabstand zu jedem Pixel als Alpha-Wert, Farben entmischt, Vorschau auf Creme-Hintergrund. Das Original wurde nicht verändert.
+Das Original `public/images/logo.webp` wurde nicht verändert. Die Testdateien liegen außerhalb des Repositories und sind nicht Teil des Commits.
 
-**Ergebnis:**
-- Das Original hat keinen Alpha-Kanal, der Hintergrund ist eingebrannt.
-- Der Hintergrund ist **nicht einfarbig**. Die Randpixel schwanken (z. B. RGB 2/15/29 in den Ecken, 1/82/45 am rechten Rand), weil das grüne Leuchten bis zum Bildrand reicht.
-- Das einfache Freistellen über den Farbabstand liefert **kein sauberes Ergebnis**: Der Glow wird zu einem hellen, ausgefransten Schleier, und dunkle Konturen (Absolventenhut, Textumrandung) verlieren Substanz.
-- **Nicht geprüft** sind aufwendigere Verfahren (KI-Matting, manuelle Maske) und ein Neuexport des Logos aus der Entstehungsquelle mit Transparenz.
+### 5.1 Technische Analyse (gemessen)
 
-**Bewertung:** Eine saubere transparente Variante ist mit dem einfachen Verfahren nicht erreicht. **Entscheidung des Projektinhabers (2026-11-24):** Für den Splash gilt Weg 3, also das Original unverändert mit seinem dunklen Hintergrund auf dunklem Splash. Eine transparente Variante wird separat und später entschieden.
+- Das Original ist 1254 × 1254 px im Modus RGB. Es hat **keinen Alpha-Kanal**, der Hintergrund ist eingebrannt. Dasselbe gilt für `logo/nicos-snake-app.webp` und `snake/snake-logo.png`.
+- Die Randpixel sind **nicht einfarbig**. Gemessen wurden z. B. RGB 2/15/29 in den Ecken, 0/43/40 oben Mitte und 1/82/45 am rechten Rand. Das grüne Leuchten reicht also bis an den Bildrand.
+- Ein Testverfahren (Hintergrundfarbe als Median des Randes, Farbabstand je Pixel als Alpha-Wert, Farben entmischt) ergab rund 26 % fast vollständig transparente und rund 21 % halbtransparente Pixel. Das Ergebnis hängt stark von den gewählten Schwellwerten ab. Ein Maß für die Qualität der Kanten ist das nicht.
+
+### 5.2 Visuelle Prüfung (betrachtet)
+
+- Betrachtet wurden das Original in voller Auflösung und **eine** Vorschau des Testverfahrens auf Creme-Hintergrund. Weitere Vorschauen (dunkelgrün, grau) wurden erzeugt, aber nicht angesehen.
+- Auf Creme erschien der Glow als heller, ausgefranster Schleier um das Logo. Der Absolventenhut und die Schriftumrandung wirkten deutlich heller als im Original, die Konturen also geschwächt.
+- Das ist ein Eindruck aus einer einzelnen Vorschau und keine systematische Qualitätsprüfung.
+
+### 5.3 Schlussfolgerung
+
+- Es **existiert keine saubere transparente Logo-Variante**. Eine solche wurde weder erstellt noch behauptet.
+- Nicht untersucht sind aufwendigere Verfahren (Matting, manuelle Maske) und ein Neuexport aus der Entstehungsquelle mit Transparenz.
+- **Entscheidung des Projektinhabers (2026-11-24): Weg 3 ist freigegeben.** Für den Splash gilt das unveränderte Original mit seinem dunklen Hintergrund auf dunklem Splash. Eine transparente Variante wird separat und später entschieden.
 
 ## 6. Ausgangszustand Tests und Build
 
@@ -71,7 +81,7 @@ Logik liegt getrennt in `src/logic/` und `src/storage.ts` und ist für den visue
 |---|---|---|
 | `npm test` | **144 von 144 bestanden**, 0 Fehler | Lief in der Linux-Sandbox |
 | `tsc -b` (Typprüfung) | **ohne Fehler** | Lief in der Linux-Sandbox |
-| `vite build` | **auf dem Mac ausgeführt, Artefakte vorhanden** | Von mir nicht selbst beobachtet. Beleg: `dist/` mit Zeitstempel 2026-11-24 10:34, `index.html`, `assets/index-D35vNUHg.js` (453 KB, 144 KB gzip) und `assets/index-BVaYzzVu.css` (31 KB, 7,5 KB gzip). Konsolenausgabe und Warnungen unbekannt. In der Sandbox selbst scheitert der Build wegen der macOS-Binärdateien von rolldown. |
+| `vite build` | **Artefakte vorhanden, Konsolenausgabe nicht verifiziert** | Der Projektinhaber meldet, den Build auf dem Mac ausgeführt zu haben. Ich habe den Lauf nicht beobachtet und keine Konsolenausgabe gesehen. Die Artefakte sind ein Indiz, aber kein vollständiger Nachweis eines erfolgreichen Builds (Exit-Code und Warnungen unbekannt). Gefunden: `dist/` mit Zeitstempel 2026-11-24 10:34, `index.html`, `assets/index-D35vNUHg.js` (453 KB, 144 KB gzip) und `assets/index-BVaYzzVu.css` (31 KB, 7,5 KB gzip). In der Sandbox scheitert der Build wegen der macOS-Binärdateien von rolldown. |
 | Sichtprüfung im Browser | **nicht durchgeführt** | |
 
 Die Testanzahl 144 weicht von den Angaben in der README (95) und in der älteren Dokumentation (85) ab. Das Dokumentationsproblem ist bekannt und gehört nicht zur Designarbeit.
@@ -81,9 +91,9 @@ Die Testanzahl 144 weicht von den Angaben in der README (95) und in der älteren
 ## 7. Hinweise für die weitere Arbeit
 
 - Die Palette-Umstellung betrifft viele feste Farbwerte. Vorschlag für Phase 1: neue Tokens ergänzen, dann Bereich für Bereich migrieren, damit die App durchgehend lauffähig bleibt.
-- `FEATURES.md` nennt Futter-Schwellen 0/60/150/300/500, `src/logic/config.ts` hat 0/30/90/200/350. Konflikt gemeldet, nicht verändert.
+- **Konflikt Futter-Schwellen (weiterhin offen, keine Logikänderung):** `FEATURES.md` (Zeile 68) nennt die Schwellen 0/60/150/300/500, `src/logic/config.ts` (`foodFrom`) hat 0/30/90/200/350. Herkunft laut Git-Verlauf: Die Werte 60/150/300/500 stammen aus dem ersten Commit `a390925`. Commit `10686bd` ("Feedback-Runde 1", 2026-11-22) hat sie auf 30/90/200/350 geändert. `FEATURES.md` entstand in `583aa94` und wurde seitdem nicht angepasst. Der Quellcode ist damit sehr wahrscheinlich aktueller als `FEATURES.md`. Welche Werte gewollt sind, entscheidet der Projektinhaber. Weder `config.ts` noch `FEATURES.md` wurden angefasst.
 - Laut `FEATURES.md` geht der Versuchszähler beim Pausieren verloren. Das ist ein Logikthema außerhalb dieser Designaufgabe.
-- `DESIGN_SYSTEM.md` nennt "Umsetzung noch nicht begonnen", obwohl der Splash mit leuchtendem Logo in `c8d10e2` bereits verfeinert wurde. Konflikt gemeldet.
+- `DESIGN_SYSTEM.md` nannte "Umsetzung noch nicht begonnen", obwohl der Splash bereits umgesetzt wurde (`c8d10e2`, 2026-11-22: Änderungen an `src/App.tsx` und `src/index.css`). Der Status wurde differenziert (siehe Änderungsprotokoll der Roadmap).
 
 ## 8. Anfrage Schriftwahl (an ChatGPT als Creative Director)
 
@@ -95,3 +105,20 @@ Die Roadmap führt die Schrift als offen. Bitte um Entscheidung, damit Phase 1 s
 - Es gibt aktuell keine mitgelieferte Schrift. Eine Webfont muss lokal ausgeliefert werden (keine Abfrage bei Fremdservern, wegen Datenschutz bei Kindern, plus die App soll offlinefähig bleiben können). Die Lizenz muss das erlauben, zum Beispiel SIL Open Font License.
 - Bitte angeben: Schrift für Überschriften, Schrift für Fließtext und Zahlen, benötigte Schnitte (je zusätzlicher Schnitt kostet Ladezeit) und die Lizenz.
 - Mein Hinweis zur Entscheidung: Unterstützung der deutschen Umlaute und des ß ist Pflicht.
+
+## 9. Schriftentscheidung (Empfehlung von ChatGPT, zur Freigabe)
+
+**Status: Empfehlung des Creative Directors, vom Projektinhaber als passend kommentiert. Als Designentscheidung dokumentiert, förmliche Freigabe und Implementierung stehen aus. Es wurde keine Schrift eingebunden.**
+
+| Verwendung | Schrift und Schnitt |
+|---|---|
+| Aufgaben, Zahlen, Fließtext | Atkinson Hyperlegible, Regular 400 und Bold 700 |
+| Überschriften und kurze Belohnungstitel | Nunito, ExtraBold 800 |
+
+Bedingungen: Beide Schriften werden **lokal ausgeliefert, ohne externe Font-Requests**, und die **SIL-OFL-Lizenzdateien** liegen im Repository.
+
+**Technische Anmerkungen (Recherche, noch nicht am Code geprüft):**
+- Lizenz: Atkinson Hyperlegible steht laut [GitHub-Repository von Google Fonts](https://github.com/googlefonts/atkinson-hyperlegible) und der [Lizenzdatei](https://raw.githubusercontent.com/googlefonts/atkinson-hyperlegible/main/OFL.txt) unter der SIL Open Font License 1.1. Das Braille Institute bietet auf der eigenen [Seite](https://www.brailleinstitute.org/freefont/) einen Download mit eigener Lizenzvereinbarung an. Für die Einbindung sollte die OFL-Quelle genutzt werden. Nunito steht laut [Fontsource](https://fontsource.org/fonts/nunito/about) unter der OFL 1.1.
+- Schnitte: Die ursprüngliche Atkinson Hyperlegible hat nur Regular und Bold (jeweils mit Kursiv). Die neuere "Atkinson Hyperlegible Next" (Februar 2025, laut [Braille Institute](https://www.brailleinstitute.org/about-us/news/braille-institute-launches-enhanced-atkinson-hyperlegible-font-to-make-reading-easier/) mit sieben Schnitten) wäre eine andere Familie. Die Entscheidung nennt Regular 400 und Bold 700, also die ursprüngliche Familie. Nachfragen bei ChatGPT, falls "Next" gemeint war.
+- Nunito 800 ist laut [Fontsource](https://fontsource.org/fonts/nunito/about) verfügbar.
+- **Noch zu prüfen vor der Implementierung:** Vorhandensein von Umlauten und ß in den tatsächlich eingebundenen Dateien, Dateigröße je Schnitt (z. B. als WOFF2-Subset) und die Unterscheidbarkeit der Ziffern in der echten Oberfläche. Die Recherche hat Umlaute und ß für die Atkinson-Datei nicht ausdrücklich bestätigt.

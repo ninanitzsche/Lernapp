@@ -2,7 +2,10 @@
 
 > **Produkt:** Nico's Snake App  
 > **Designrichtung:** Luminous Fantasy Adventure  
-> **Status:** Designgrundlage – Umsetzung noch nicht begonnen  
+> **Status:**
+> - Designsystem: dokumentiert (dieses Dokument).
+> - Umsetzung: erste Umsetzung am Splash / Willkommensbildschirm vorhanden (Commit `c8d10e2`, Änderungen an `src/App.tsx` und `src/index.css`). Ob diese Umsetzung dem Designsystem vollständig entspricht, ist nicht abgenommen.
+> - Übrige Screens, Tokens, Schrift und Assets: vollständige Umsetzung noch offen.
 > **Zugehörige Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)
 
 Dieses Dokument ist die gemeinsame Referenz für UI, Illustrationen, Animationen und neue Screens.
@@ -133,7 +136,14 @@ UI-Bausteine:
 ## 6. Typografie, Layout und Bewegung
 
 ### Typografie
-- Freundliche, gut lesbare Schrift mit klarer Unterscheidung von Überschrift, Fließtext und Zahlen.
+
+**Entscheidungsvorschlag zur Freigabe (Empfehlung des Creative Directors, 2026-11-24, noch nicht implementiert):**
+- Aufgaben, Zahlen und Fließtext: Atkinson Hyperlegible, Regular 400 und Bold 700.
+- Überschriften und kurze Belohnungstitel: Nunito, ExtraBold 800.
+- Beide Schriften lokal ausliefern, keine externen Font-Requests. SIL-OFL-Lizenzdateien im Repository mitführen.
+- Details und offene technische Prüfpunkte: [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md), Abschnitt 9.
+
+Allgemeine Regeln:- Freundliche, gut lesbare Schrift mit klarer Unterscheidung von Überschrift, Fließtext und Zahlen.
 - Zahlen und Aufgabeninhalte müssen auch auf Tablets aus normalem Betrachtungsabstand eindeutig erkennbar sein.
 - Dekorative Display-Schrift nur für kurze Titel oder besondere Belohnungsmomente.
 - Keine verspielte Schrift für längere Erklärungen oder mathematische Inhalte.
