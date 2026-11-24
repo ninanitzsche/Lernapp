@@ -694,12 +694,7 @@ svg.strahl:not(.strahl-eingabe),
 @font-face { font-family: 'Atkinson Hyperlegible Next'; src: url('/fonts/AtkinsonHyperlegibleNext[wght].ttf') format('truetype'); font-style: normal; font-weight: 400 700; font-display: swap; }
 @font-face { font-family: 'Nunito'; src: url('/fonts/Nunito[wght].ttf') format('truetype'); font-style: normal; font-weight: 800; font-display: swap; }
 
-/* Gemeinsame Komponenten- und Layoutregeln – DOM-Struktur und Verhalten bleiben erhalten. */
-:root {
-  --surface-card: #FFFAEF; --surface-card-raised: #FFFDF7; --border-card: rgba(217,201,160,.9);
-  --shadow-card-raised: 0 3px 0 rgba(6,77,48,.12), 0 10px 24px rgba(7,29,53,.12);
-  --control-height: 52px; --touch-target: 48px; --content-width: 640px;
-}
+/* Gemeinsame Bedienregeln; Tokens sind im Phase-1-Block zentral definiert. */
 button,input,textarea,select,summary,[role="button"] { touch-action: manipulation; }
 :where(.shop-karte,.thema-karte,.album-karte,.dialog,.haut-karte,.rueckmeldung,.aufgabe-text,.zahlbilder,.stellentafel) { border: 1px solid var(--border-card); }
 :where(.shop-karte,.thema-karte,.album-karte) { background: var(--surface-card); box-shadow: var(--shadow-card-raised); }
