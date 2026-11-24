@@ -906,3 +906,4 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
   border: 2px solid var(--badge-gold-border);
   color: var(--badge-gold-text);
   font-weight: 800;
+}
