@@ -56,9 +56,9 @@ Das Original-Logo hat keinen Alpha-Kanal. Die Randpixel sind uneinheitlich; der 
 
 **Freigegebene Verwendung:** Das Original bleibt unverändert und wird für den Splash mit seinem vorhandenen dunklen Hintergrund auf einem dunklen Hintergrund gezeigt. Eine transparente Ableitung ist zurückgestellt. Keine Datei wurde im Rahmen der Bestandsaufnahme verändert.
 
-## 4. Visueller Ist-Stand aus bereitgestellten Screenshots
+## 4. Visueller Ist-Stand und Sichtprüfung
 
-Die Screenshots vom 24.11.2026 zeigen Home, Splash, Aufgabenansicht, Pause-Dialog und Shop in einer Desktop-Browseransicht. Eine separate Prüfung eines echten Smartphone-Viewports ist damit noch nicht belegt.
+Die bereitgestellten Screenshots vom 24.11.2026 zeigen Home, Splash, Aufgabenansicht, Pause-Dialog und Shop in einer Desktop-Browseransicht. Der Projektinhaber hat zusätzlich bestätigt, dass die App lokal im Smartphone-Hochformat funktioniert. Die mobile Darstellung wurde von ihm geprüft; es liegen hierzu in dieser Bestandsaufnahme keine separaten Screenshots vor.
 
 Beobachtungen:
 - Die Grundfarbwelt aus dunklem Grün, Creme, Gold und Limette ist bereits erkennbar.
@@ -69,7 +69,7 @@ Beobachtungen:
 - Der Shop zeigt ein dichtes Kartenraster. Bild, Titel und Preis sind erkennbar, aber Abstände, Kartenproportionen und Preisflächen wirken noch nicht ausreichend vereinheitlicht.
 - Die Screens wirken in Farbwelt und Formensprache verwandt, aber noch nicht vollständig wie ein konsistentes Komponenten-System.
 
-Diese Beobachtungen sind ein visueller Erstbefund, keine Abnahme und kein Nachweis der mobilen Responsivität.
+Diese Beobachtungen bilden den visuellen Ausgangsbefund für Phase 1. Die mobile Funktionsfähigkeit im Hochformat wurde vom Projektinhaber bestätigt.
 
 ## 5. Prüfstatus
 
@@ -77,12 +77,16 @@ Diese Beobachtungen sind ein visueller Erstbefund, keine Abnahme und kein Nachwe
 |---|---|
 | `npm test` | 144 von 144 bestanden in der Linux-Sandbox |
 | `tsc -b` | ohne Fehler in der Linux-Sandbox |
-| `vite build` | In der Linux-Sandbox wegen plattformspezifischer rolldown-Binärdateien fehlgeschlagen. Vorhandene `dist/`-Artefakte vom lokalen Mac sind kein vollständiger Nachweis für Exit-Code und Warnungen. |
-| Browser-Sichtprüfung | Screenshots vom Projektinhaber geprüft; Desktop-Browseransichten. Smartphone-Hochformat noch nicht separat geprüft. |
+| `vite build` | In der Linux-Sandbox wegen plattformspezifischer rolldown-Binärdateien nicht erfolgreich ausführbar. Der Projektinhaber hat inzwischen einen erfolgreichen lokalen Build auf dem Mac bestätigt. |
+| Browser-Sichtprüfung | Desktop-Screenshots geprüft; Smartphone-Hochformat lokal vom Projektinhaber geprüft und als funktionierend bestätigt. |
 
 Die Testanzahl weicht von älteren Angaben in README und Dokumentation ab. Diese Dokumentationsabweichung ist nicht Teil der visuellen Arbeit.
 
-## 6. Technische Hinweise für spätere Arbeit
+## 6. Abschluss Phase 0
+
+Phase 0 ist abgeschlossen. Der lokale Produktionsbuild auf dem Mac und die Funktion im Smartphone-Hochformat wurden vom Projektinhaber bestätigt. Die zugrunde liegenden Tests und die Typprüfung waren in der Linux-Sandbox erfolgreich. Diese beiden lokalen Prüfungen wurden nicht unabhängig von ChatGPT ausgeführt.
+
+## 7. Technische Hinweise für spätere Arbeit
 
 - Die neue Farbpalette erfordert mehr als die Anpassung der vorhandenen CSS-Variablen, da viele feste Farbwerte direkt in Regeln stehen.
 - Der Build-Ordner `dist/` war im erfassten Stand 78 MB groß. Ein großer Anteil entfiel auf Bilder in `public/images/`, die Vite unverändert kopiert. Rohbilder nicht ohne Prüfung ihrer Verwendung löschen oder verschieben.
@@ -90,7 +94,7 @@ Die Testanzahl weicht von älteren Angaben in README und Dokumentation ab. Diese
 - Der gespeicherte Pausenzustand enthält laut Codeprüfung nicht den vollständigen Versuchszustand. Das kann nach einem ersten Fehlversuch beim Fortsetzen relevant sein. Dies ist ein separates Logikthema und bleibt außerhalb visueller Änderungen.
 - Zwei überholte Arbeitsdokumente (`docs/spec.md` und `docs/bewertung-ux-und-spieldesign.md`) wurden aus dem aktuellen Arbeitsstand entfernt. Ihre bisherigen Fassungen bleiben über die Git-Historie nachvollziehbar.
 
-## 7. Freigegebene Schriftentscheidung
+## 8. Freigegebene Schriftentscheidung
 
 | Verwendung | Schrift | Schnitt |
 |---|---|---|
