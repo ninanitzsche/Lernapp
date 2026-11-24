@@ -688,3 +688,29 @@ svg.strahl:not(.strahl-eingabe),
   main { padding-inline: 20px; }
 }
 
+
+
+/* Lokal ausgelieferte, freigegebene Schriftfamilien. Variable TTF-Dateien; keine externen Requests. */
+@font-face { font-family: 'Atkinson Hyperlegible Next'; src: url('/fonts/AtkinsonHyperlegibleNext[wght].ttf') format('truetype'); font-style: normal; font-weight: 400 700; font-display: swap; }
+@font-face { font-family: 'Nunito'; src: url('/fonts/Nunito[wght].ttf') format('truetype'); font-style: normal; font-weight: 800; font-display: swap; }
+
+/* Gemeinsame Komponenten- und Layoutregeln – DOM-Struktur und Verhalten bleiben erhalten. */
+:root {
+  --surface-card: #FFFAEF; --surface-card-raised: #FFFDF7; --border-card: rgba(217,201,160,.9);
+  --shadow-card-raised: 0 3px 0 rgba(6,77,48,.12), 0 10px 24px rgba(7,29,53,.12);
+  --control-height: 52px; --touch-target: 48px; --content-width: 640px;
+}
+button,input,textarea,select,summary,[role="button"] { touch-action: manipulation; }
+:where(.shop-karte,.thema-karte,.album-karte,.dialog,.haut-karte,.rueckmeldung,.aufgabe-text,.zahlbilder,.stellentafel) { border: 1px solid var(--border-card); }
+:where(.shop-karte,.thema-karte,.album-karte) { background: var(--surface-card); box-shadow: var(--shadow-card-raised); }
+:where(.shop-karte,.thema-karte) { padding: clamp(12px,2.5vw,18px); }
+:where(.dialog,.haut-karte,.rueckmeldung) { background: var(--surface-card-raised); border: 2px solid var(--color-warm-gold); box-shadow: var(--shadow-card-raised),0 0 0 4px rgba(255,211,41,.13); }
+:where(.knopf,.knopf.klein,.knopf.preis,.knopf.gross) { min-height: var(--control-height); border-radius: 16px; font-weight: 700; }
+:where(.knopf:not(:disabled)):focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+:where(.shop-karte img,.thema-karte img) { object-fit: contain; }
+:where(.shop-name,.thema-karte,.album-karte) { overflow-wrap: anywhere; }
+@media (max-width:380px) {
+ main { gap: 8px; } .seitenkopf { gap: 6px; } .seitenkopf h2 { font-size: 1.35rem; }
+ .shop-liste { gap: 8px; } .shop-karte { padding: 10px; } .knopf.gross { min-height: 56px; padding-inline: 18px; }
+}
+@media (min-width:640px) { main { max-width: var(--content-width); } }

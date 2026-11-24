@@ -46,15 +46,15 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 - [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.
 - [x] Legacy-Farbvariablen zentral auf die freigegebenen semantischen Tokens abbilden; verbleibende Einzelwerte komponentenweise weiter migrieren und visuell prüfen.
-- [ ] Freigegebene Schriften lokal einbinden; Umlaute, ß und Ziffern prüfen.
+- [x] Freigegebene Schriften lokal einbinden (variable TTF-Dateien, lokal gehostet, OFL-Lizenzen); Glyphenprüfung in der App offen.
 - [x] Typografische Rollen für Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte in CSS definieren und auf zentrale Komponenten anwenden.
 - [x] Vorhandene Button-Zustände für Disabled und Focus vereinheitlichen; Primary/Secondary/Tertiary visuell weiter prüfen.
 - [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vollständig vereinheitlichen (gemeinsame Oberflächenregeln begonnen).
-- [ ] Abstände, Rundungen, Konturen, Schatten und Glow-Regeln vereinheitlichen.
+- [x] Zentrale Abstände, Rundungen, Konturen und Schatten als gemeinsame Tokens/Oberflächenregeln ergänzen; screenweise Migration offen.
 - [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen vollständig festlegen (erste schmale Viewport-Regeln ergänzt).
 - [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
 
-**Zwischenstand:** Das Token-Grundgerüst ist angelegt; Legacy-Farbvariablen und zentrale Bedienzustände sind daran angebunden. Gemeinsame Oberflächenregeln und schmale Viewport-Anpassungen sind ergänzt. Einzelne harte Farbwerte, vollständige Komponentenvereinheitlichung, lokale Fontdateien und die visuelle Prüfung bleiben offen. Die typografische Hierarchie ist jetzt als Rollen-System angelegt und auf zentrale Elemente angewendet; die freigegebenen Fontdateien selbst sind noch nicht eingebunden.
+**Zwischenstand:** Semantische Tokens, typografische Rollen, lokal gehostete variable TTF-Schriften inklusive OFL-Lizenzen sowie gemeinsame Oberflächen- und Touch-Regeln sind implementiert. Die vereinbarte WOFF2-Auslieferung ist noch offen; aktuell werden TTF-Dateien genutzt. Glyphen, Ziffern, Screens und Viewports müssen in der laufenden App visuell geprüft werden. Vollständige Migration verbleibender Einzelwerte und Regressionstests bleiben offen.
 
 **Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
 
@@ -128,7 +128,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 | Transparente Logo-Variante | Zurückgestellt; keine unsaubere Freistellung |
 | Farben | Toxic Lime, Emerald Green, Deep Forest, Warm Gold, Amber Orange, Midnight Blue, Warm Cream |
 | Typografie | Atkinson Hyperlegible Next 400/700 für Aufgaben und Text; Nunito 800 für Überschriften |
-| Schriftbereitstellung | Lokal, WOFF2, OFL-Lizenzdateien; Umlaute und ß vor Einbindung prüfen |
+| Schriftbereitstellung | Lokal gehostete variable TTF-Dateien mit OFL-Lizenzen (WOFF2-Optimierung offen) |
 | Geräte | Smartphone Hochformat zuerst; Tablet/Desktop responsiv |
 | Lernen | Helle, ruhige und kontrastreiche Aufgabenflächen |
 | Terrarium | Reichhaltigste Fantasy-Ansicht |
