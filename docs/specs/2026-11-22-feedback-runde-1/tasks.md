@@ -66,7 +66,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 - Dateien: `src/App.tsx`, `src/ui/Haeutung.tsx`, `src/ui/Album.tsx`, `src/ui/reaktion.ts`, `src/index.css` sowie passende Asset-Zuordnung
 - Tun: Ergebnis zeigt Knobelanteil getrennt. Ein vollständig gemeistertes Lernfeld erhält einen besonderen Abschluss mit thematischer Schlangenillustration und Pokal/Orden. Das Wissensalbum sammelt pro abgeschlossenem Lernfeld den Eintrag mit fünf Sternen und Bild. Die bestehende Münzbelohnung je Stern bleibt erhalten. Themenkarte zeigt den nächsten Kompetenzschritt und eine belegbare Fortschrittsanzeige.
 - Prüfen: Abschluss wird nur einmal ausgelöst; Album-Eintrag bleibt erhalten; Rückkehr aus dem Album; kein Scrollen; Fortschrittsanzeige behauptet keine nicht gemessene Genauigkeit.
-- Anforderungen: R1.4, R5.2 bis R5.5, R5.9, R7.1 bis R7.7, N3
+- Anforderungen: R1.4, R5.2 bis R5.5, R5.9, R7.1 bis R7.7, R7.13, N3
 
 ### T11 Elternbereich
 - Dateien: `src/ui/Parent.tsx`, `src/index.css`
@@ -112,6 +112,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 | R7.1 bis R7.5 | T7 | nach Freigabe der konkreten Kriterien |
 | R7.6, R7.7 | T10 | Sicht und Test |
 | R7.8 bis R7.12 | T13 | Sicht und Test |
+| R7.13 | T10 | Sicht und Test |
 | N1 | T3, T4 | Test (keine Minderung von Futter, Münzen, Sternen) |
 | N2 | T9, T10 | Sicht |
 | N3, N4 | T8 bis T11 | Sicht auf dem Mac |
