@@ -116,13 +116,13 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Tablet- und Desktop-Layouts prüfen.
 - [ ] Touch-Ziele und Drag-and-drop praktisch testen.
 - [ ] Kontrast, Lesbarkeit und Schriftgrößen kontrollieren.
-- [ ] Tests und Typprüfung nach der vollständigen Phase-1-Migration auf dem aktuellen Branch-Commit ausführen.
-- [ ] Produktionsbuild nach der vollständigen Phase-1-Migration auf dem aktuellen Branch-Commit erfolgreich ausführen.
+- [x] Tests und Typprüfung nach der vollständigen Phase-1-Migration auf dem aktuellen Branch-Commit ausführen (GitHub Actions: 149 Tests bestanden; TypeScript-Prüfung erfolgreich).
+- [x] Produktionsbuild nach der vollständigen Phase-1-Migration auf dem aktuellen Branch-Commit erfolgreich ausführen (GitHub Actions und Vercel Preview erfolgreich).
 - [ ] Bestehende Spielstände und Lernabläufe auf Regressionen prüfen.
 - [ ] Finale Screenshots dokumentieren.
 - [ ] Roadmap und Funktionsübersicht aktualisieren.
 
-**Aktueller Prüfhinweis:** Für den aktuellen Branch-Stand liegt kein bestätigter Test-/Build-Lauf vor. Der letzte Code-Commit meldete bei Vercel `failure`; der neueste Dokumentations-Commit ist derzeit `pending`; die konkrete Fehlerursache ist ohne Einsicht in die Vercel-Buildlogs nicht belastbar feststellbar. Das ist kein Nachweis für einen Testfehler.
+**Aktueller Prüfhinweis (24.11.2026):** Für Commit `c350d5e2319085e2f2a939e1e0a27b127f9ac7b7` sind 149 automatisierte Tests, TypeScript-Prüfung und Produktionsbuild in GitHub Actions erfolgreich. Die zugehörige Vercel Preview steht auf `READY`. Die Browser-/Viewport-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen sind weiterhin offen. Ein Vercel-Sandbox-Desktop konnte wegen fehlender Berechtigung (403) nicht gestartet werden; daher wird keine manuelle Browserprüfung als erledigt markiert.
 
 **Abnahmekriterium:** Die App ist visuell konsistent, auf dem Smartphone gut bedienbar, auf größeren Geräten responsiv und ohne bekannte Regressionen.
 
