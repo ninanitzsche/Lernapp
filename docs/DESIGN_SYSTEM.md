@@ -132,6 +132,10 @@ Beide Schriften sind vom Projektinhaber freigegeben. Die Auswahl ist verbindlich
 
 ## 7. Layout und Komponenten
 
+### Implementierte CSS-Grundtokens
+
+`src/index.css` enthält das erste semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Bestehende Legacy-Variablen bleiben vorerst als Kompatibilitätsschicht bestehen; ihre vollständige Migration erfolgt schrittweise und nach visueller Prüfung.
+
 - Mobile-first, Smartphone im Hochformat als primäre Referenz.
 - Tablet und Desktop bleiben responsiv nutzbar.
 - Einheitliche Abstände, Kartenraster, Rundungen, Konturen, Schatten und Button-Höhen.
