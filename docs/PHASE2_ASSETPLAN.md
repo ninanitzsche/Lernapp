@@ -5,7 +5,7 @@
 > **Verbindliche Art Direction:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)  
 > **Visuelle Weltenstrategie:** [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md)  
-> **Status:** Phase 2 aktiv; erster visueller Referenzentwurf A für Terrarium, Objekte und Belohnung erstellt, Freigabe noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md).
+> **Status:** Phase 2 aktiv; Bestandsanalyse und kanonische Nico-Arbeitsreferenzen dokumentiert. Die visuelle Freigabe des Charakter-/Stilpakets ist noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md) und [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md).
 
 ## 1. Ziel
 
@@ -92,10 +92,11 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 
 ## 8. Offene Produktionsschritte
 
-- [x] Vorhandene Charakterdateien visuell direkt vergleichen und Bestandsanalyse dokumentieren ([PHASE2_BESTANDSANALYSE.md](./PHASE2_BESTANDSANALYSE.md)); kanonische Quellen je Entwicklungsstufe werden im nächsten Freigabeschritt festgelegt.
+- [x] Vorhandene Charakterdateien visuell direkt vergleichen und Bestandsanalyse dokumentieren ([PHASE2_BESTANDSANALYSE.md](./PHASE2_BESTANDSANALYSE.md)).
+- [x] Kanonische Arbeitsreferenzen und Kontinuitätskriterien für alle fünf Nico-Stufen dokumentieren ([PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md)); die visuelle Endfreigabe bleibt offen.
 - [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (Referenzentwurf A; noch nicht freigegeben).
 - [ ] Referenzentwurf A gemeinsam mit kanonischer Nico-Referenz prüfen und visuell freigeben.
-- [ ] Kanonische Assets und vorhandene Lücken je Entwicklungsstufe festlegen.
+- [ ] Kanonische Bildfassungen nach visueller Freigabe final festlegen; offene Lücken je Stufe schließen.
 - [ ] Einzelassets in freigegebener Art Direction erstellen.
 - [ ] Asset-Katalog und technische Übergabe für Claude Code pflegen.
 - [ ] Integration, Optimierung und Viewport-Prüfung durch Claude Code / Projektinhaber begleiten.
