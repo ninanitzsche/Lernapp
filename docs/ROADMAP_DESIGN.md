@@ -14,7 +14,6 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen und Speicherung bewahren.
 
 ## Verbindliche Geräteentscheidung
-
 - **Primärgerät:** Smartphone
 - **Ausrichtung:** Hochformat (Portrait)
 - **Layoutstrategie:** Mobile-first. Die Smartphone-Oberfläche ist die Referenz; Tablet und Desktop sollen weiterhin responsiv und benutzbar bleiben, sind aber nicht die primäre Designfläche.
@@ -35,12 +34,13 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 - [x] Primärgerät Smartphone festgelegt
 - [x] Hochformat als primäre Ausrichtung festgelegt
 - [ ] Aktuelle Screens und Komponenten im Branch erneut inventarisieren
-- [ ] Vorhandene Logo-Datei und Nutzungsvarianten im Repository lokalisieren
-- [ ] Original-Logo in ausreichend hoher Auflösung als Ausgangsdatei bereitstellen
+- [x] Vorhandene Logo-Datei im Repository lokalisiert: public/images/logo.webp
+- [ ] Transparenzfähigkeit und Bildränder des vorhandenen Logos visuell prüfen
+- [ ] Aus dem vorhandenen Logo eine transparente PNG- und/oder WebP-Variante erstellen, falls sich der Hintergrund sauber entfernen lässt, ohne Glow, Konturen oder Schrift zu beschädigen
 - [ ] Bestehende Design-Tokens, CSS und UI-Komponenten erfassen
 - [ ] Ausgangszustand von Tests und Build dokumentieren
 
-**Abnahmekriterium:** Es gibt eine nachvollziehbare Übersicht über die vorhandenen UI-Bausteine und Assets, bevor diese verändert werden.
+**Abnahmekriterium:** Es gibt eine nachvollziehbare Übersicht über die vorhandenen UI-Bausteine und Assets, bevor diese verändert werden. Die Logo-Variante ist visuell geprüft und für den vorgesehenen Einsatz geeignet.
 
 ## Phase 1 – Designsystem
 **Ziel:** Ein wiederverwendbares visuelles Fundament schaffen.
@@ -60,8 +60,8 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 **Ziel:** Eine konsistente Schlange und eine wiederverwendbare Spielwelt schaffen.
 
 - [ ] Vorhandenes Logo exakt als Marken-Key-Visual einbinden
-- [ ] Original-Logo als transparente PNG- und/oder WebP-Variante bereitstellen, ohne Motiv, Schriftzug oder Leuchteffekte zu verändern
-- [ ] Transparenz sauber vom Hintergrund trennen; Leuchteffekte und feine Konturen erhalten
+- [ ] Vorhandene Datei public/images/logo.webp als Originalquelle verwenden
+- [ ] Geprüfte transparente Logo-Variante bereitstellen, sofern die Hintergrundfreistellung qualitativ sauber gelingt
 - [ ] Logo-Asset in geeigneter Auflösung und Format im Repository ablegen
 - [ ] Benötigte Darstellungen der fünf Entwicklungsstufen spezifizieren
 - [ ] Baby-, Kleinkind-, Kind-, Teenager- und Erwachsenen-Design konsistent erstellen
@@ -121,23 +121,23 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 |---|---|---|
 | Designstil | Luminous Fantasy Adventure | Festgelegt |
 | Logo | Original unverändert, prominent im Splash | Festgelegt |
-| Logo-Dateiformat | Transparente PNG- und/oder WebP-Variante zusätzlich zum Original | Festgelegt |
-| Logo-Quelldatei | Hochauflösendes Original als Ausgangsdatei wird benötigt | Offen – Nutzerinput |
-| Schlange | Baby bis legendäre erwachsene Form | Festgelegt |
-| Aufgabenansicht | Hell und besonders gut lesbar | Festgelegt |
-| Terrarium | Reichhaltigste Fantasy-Ansicht | Festgelegt |
+| Logo-Quelle | public/images/logo.webp im Branch vorhanden | Gefunden |
+| Transparente Logo-Variante | Aus vorhandener WebP-Datei ableiten und Qualität prüfen | In Prüfung |
 | Primärgerät | Smartphone | Festgelegt |
 | Primäre Ausrichtung | Hochformat (Portrait) | Festgelegt |
 | Weitere Geräte | Tablet/Desktop responsiv unterstützen | Festgelegt |
+| Schlange | Baby bis legendäre erwachsene Form | Festgelegt |
+| Aufgabenansicht | Hell und besonders gut lesbar | Festgelegt |
+| Terrarium | Reichhaltigste Fantasy-Ansicht | Festgelegt |
 | Schrift | Passende gut lesbare Schrift auswählen | Offen |
 | Splash-Verhalten | Kurzer Auftritt, überspringbar bzw. nicht blockierend | Vorschlag |
 
 ## Änderungsprotokoll
-
 | Datum | Änderung |
 |---|---|
 | 2026-11-24 | Roadmap und Designsystem initial angelegt; Arbeitsbranch erstellt |
-| 2026-11-24 | Smartphone als Primärgerät und Hochformat festgelegt; transparente PNG/WebP-Logo-Variante als Asset-Aufgabe ergänzt |
+| 2026-11-24 | Smartphone als Primärgerät und Hochformat festgelegt |
+| 2026-11-24 | Vorhandenes Logo unter public/images/logo.webp gefunden; transparente Ableitung als Prüfaufgabe dokumentiert |
 
 ## Pflege-Regeln
 1. Vor jeder größeren Arbeit den aktuellen Status dieser Roadmap prüfen.
