@@ -122,6 +122,26 @@ Dabei stehen `stage` für `baby`, `toddler`, `child`, `teen` und `adult`. Besteh
 - [ ] Varianten haben konsistente Perspektive, Lichtführung, Zuschnitt und technische Qualität.
 - [ ] Der Projektinhaber hat die Referenzbilder ausdrücklich freigegeben.
 
+
+## 11. Erste visuelle Konzeptprüfung
+
+Die erste Gesamtübersicht mit allen fünf Entwicklungsstufen und sieben Emotionen wurde vom Projektinhaber in ihrer Grundrichtung positiv aufgenommen. Die Konzeptbilder dienen als gemeinsame Stil- und Ausdrucksreferenz; sie sind ausdrücklich noch keine finalen Einzelassets und ersetzen keine technische Asset-Prüfung.
+
+**Was bereits funktioniert:**
+- Nico wirkt als freundliche, zugängliche Lernbegleiter-Schlange.
+- Die grüne Farbwelt, plastische 3D-Anmutung und weiche Beleuchtung ergeben eine stimmige gemeinsame Bildsprache.
+- Die sieben Zustände sind als System auf einen Blick nachvollziehbar.
+- Die Entwicklung von einer kleinen, runden Figur zu einer reiferen Schlange ist als gestalterisches Ziel verständlich.
+
+**Verfeinerungen vor der Produktion:**
+- `focused` muss sichtbar konzentriert und nachdenklich wirken, nicht verärgert oder grimmig. Augenbrauen-/Augenpartie entspannen; Blick eher auf einen gedachten Aufgabenpunkt richten.
+- Die fünf Altersstufen müssen stärker über Silhouette, Halslänge, Körperlänge, Kopf-Körper-Verhältnis und Haltung unterscheidbar werden. Die Gesamtübersicht ist hierfür nur ein erster Stiltest.
+- `disappointed` bleibt sanft und ermutigend; keine dramatische Trauer und keine beschämende Wirkung.
+- Die erwachsene/legendäre Stufe braucht mehr Eleganz und souveräne Präsenz sowie eine klarere Nähe zur Logo-Kopfidentität, ohne das Logo selbst zu kopieren.
+- Die finalen Varianten werden einzeln, mit einheitlichem Bildausschnitt und transparentem Hintergrund erstellt. Symbole, Beschriftungen und Dekorationen aus den Übersichtsblättern werden nicht in Charakterdateien übernommen.
+
+**Nächster Produktionsschritt:** Zuerst fünf neutrale Einzelreferenzen mit klar unterscheidbaren Altersproportionen festlegen. Danach die sieben Emotionen aus diesen freigegebenen Basen ableiten. So vermeiden wir, dass 35 Bilder unabhängig voneinander driften.
+
 ## 10. Abgrenzung
 
 Dieses Dokument ändert weder Spiel- noch Lernlogik und definiert keine neuen Laufzeit-Trigger. Es legt die visuelle Bedeutung und Produktionsstruktur fest. Welche konkrete App-Situation welchen Zustand auslöst, wird erst bei einer späteren, ausdrücklich geplanten Integration mit der vorhandenen Reaktionslogik abgeglichen.
