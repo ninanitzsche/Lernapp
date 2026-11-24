@@ -44,16 +44,16 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 **Ziel:** Wiederverwendbare visuelle Regeln und Komponenten schaffen.
 
-- [ ] Farb-Tokens in CSS definieren und vorhandene Farbwerte systematisch migrieren.
+- [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.\n- [ ] Bestehende feste Farbwerte systematisch auf die freigegebenen Tokens migrieren und visuell prüfen.
 - [ ] Freigegebene Schriften lokal einbinden; Umlaute, ß und Ziffern prüfen.
 - [ ] Typografische Hierarchie für Titel, Aufgaben, Zahlen und Fließtext umsetzen.
 - [ ] Button-System vereinheitlichen: Primary, Secondary, Tertiary, Disabled und Focus.
 - [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vereinheitlichen.
 - [ ] Abstände, Rundungen, Konturen, Schatten und Glow-Regeln vereinheitlichen.
 - [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen festlegen.
-- [ ] Reduced-motion-Verhalten berücksichtigen.
+- [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
 
-**Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
+**Zwischenstand:** Das Token-Grundgerüst und die semantischen Typografie-Rollen sind angelegt. Die Migration bestehender Einzelwerte, die lokale Einbindung der freigegebenen Fontdateien und die visuelle Prüfung der Komponenten sind noch offen.\n\n**Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
 
 ## Phase 2 – Charaktere und Assets
 
