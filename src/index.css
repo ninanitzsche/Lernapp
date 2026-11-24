@@ -77,7 +77,6 @@
   --gedaempft-papier: var(--color-muted-on-light);
   --rot: var(--color-danger);
   --text: var(--tinte);
-  --gruen: var(--color-success);
   --gruen-dunkel: #165C33;
   --gruen-hell: var(--color-success-soft);
   color-scheme: light;
