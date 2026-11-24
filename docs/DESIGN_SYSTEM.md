@@ -1,7 +1,7 @@
 # Design System – Luminous Fantasy Adventure
 
 > **Produkt:** Nico's Snake App  
-> **Status:** Visuelle Richtung und Designentscheidungen freigegeben. Phase 1 (Designsystem und UI-Grundlagen) ist auf Code-Ebene umgesetzt; die vollständige Vereinheitlichung aller Screens gehört zu Phase 3. Die manuelle Browser-/Viewport-Sichtprüfung ist separat offen.  
+> **Status:** Visuelle Richtung und Designentscheidungen freigegeben. Phase 1 (Designsystem und UI-Grundlagen) ist auf Code-Ebene abgeschlossen und automatisiert geprüft. Die manuelle Browser-/Viewport-Sichtprüfung ist als übergreifende Qualitätssicherung in Phase 5 offen; die vollständige Vereinheitlichung aller Screens gehört zu Phase 3.  
 > **Arbeitsstand:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md) · **Ausgangslage:** [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md)
 
 Dieses Dokument enthält ausschließlich die aktuell gültige visuelle Referenz.
