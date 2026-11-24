@@ -579,3 +579,74 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 @media (prefers-reduced-motion: reduce) {
   .willkommen-logo, .willkommen-bild { transition: none; }
 }
+
+/* ---------- Konsolidierung: gemeinsame Oberflächen und Zustände ---------- */
+/* Die vorhandenen Komponenten behalten ihre Selektoren und Interaktionen.
+   Diese letzte Ebene vereinheitlicht nur Material, Konturen und Bedienzustände. */
+.aufgabe-text,
+.zahlbilder,
+.stellentafel,
+.strahl-eingabe,
+svg.strahl:not(.strahl-eingabe),
+.shop-karte,
+.thema-karte,
+.album-karte,
+.dialog,
+.haut-karte,
+.rueckmeldung {
+  border-radius: var(--radius-card);
+}
+
+.dialog,
+.haut-karte,
+.rueckmeldung {
+  box-shadow: var(--shadow-card), 0 0 0 3px var(--color-warm-gold);
+}
+
+.shop-karte,
+.thema-karte,
+.album-karte,
+.knopf.klein {
+  box-shadow: var(--shadow-card);
+}
+
+.knopf,
+.thema-karte,
+.karte,
+.album-karte {
+  transition: var(--transition-press);
+}
+
+.knopf:disabled,
+.knopf[aria-disabled="true"] {
+  background: var(--color-disabled);
+  color: var(--color-disabled-text);
+  box-shadow: 0 4px 0 rgba(4, 35, 25, .35);
+  cursor: not-allowed;
+  filter: none;
+}
+
+.knopf.gefahr {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.aufgabe-text,
+.zahlbilder,
+.stellentafel,
+.strahl-eingabe {
+  background-color: var(--surface-content);
+  color: var(--color-ink);
+}
+
+@media (max-width: 380px) {
+  main { padding-inline: 10px; }
+  .knopf { padding-inline: 16px; }
+  .shop-liste { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .shop-karte { min-width: 0; }
+}
+
+@media (min-width: 640px) {
+  main { padding-inline: 20px; }
+}
+
