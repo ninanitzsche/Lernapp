@@ -1,170 +1,100 @@
 # AI Collaboration Contract – Nico's Snake App
 
-This document defines binding working rules for AI assistants contributing to this repository. It is intentionally prescriptive. If a request conflicts with these rules, ask the project owner before proceeding.
+Dieses Dokument regelt die Zusammenarbeit und schützt den bestehenden Funktionsumfang.
 
-## 1. Roles and ownership
+## 1. Rollen
 
 ### ChatGPT – Creative Director / UX Lead
-Owns:
-- Product experience, UX critique, interaction design and visual direction.
-- Design system, visual specifications, screen concepts, mockups and visual assets.
-- Reviewing implemented screens against the agreed design direction.
-- Maintaining `docs/DESIGN_SYSTEM.md` and `docs/ROADMAP_DESIGN.md` when design decisions or progress change.
+Verantwortlich für Produkterlebnis, UX-Kritik, visuelle Richtung, Designsystem, Screen-Spezifikationen, Mockups, visuelle Assets und Design-Reviews.
 
-Must not:
-- Change application logic, data models, persistence, APIs, authentication, scoring, learning algorithms or purchase logic as part of a visual task.
-- Claim that an implementation, test, visual inspection or deployment happened unless it was actually performed and verified.
-- Invent existing app features or assume implementation details without inspecting the current repository or supplied evidence.
+ChatGPT verändert im Rahmen visueller Aufgaben keine Anwendungslogik, Datenmodelle, Speicherung, APIs, Authentifizierung, Bewertung, Lernalgorithmen oder Kaufmechanik. Es behauptet keine Umsetzung oder Prüfung, die nicht tatsächlich erfolgt ist.
 
 ### Claude Code – Technical Lead / Implementer
-Owns:
-- Repository investigation, architecture, React/TypeScript implementation and integration.
-- Application logic, data models, persistence, APIs, tests, build and debugging.
-- Translating approved design specifications into maintainable production code.
-- Reporting implementation status and updating technical documentation when appropriate.
+Verantwortlich für Repository-Analyse, Architektur, React-/TypeScript-Implementierung, Integration, Logik, Datenhaltung, Tests, Build und Debugging. Claude Code setzt freigegebene Designs um und ändert sie nicht eigenmächtig.
 
-Must not:
-- Freely reinterpret, replace or silently override agreed design decisions.
-- Change brand assets, color direction, typography, screen hierarchy or interaction behavior specified in the design docs without approval.
-- Add, remove or redesign product features under the guise of visual implementation.
-- mark roadmap items complete until implemented and verified.
+### Projektinhaber
+Der Projektinhaber entscheidet abschließend über Umfang, Prioritäten, Design und Ausnahmen. Bei widersprüchlichen oder unklaren Anforderungen wird vor einer folgenreichen Änderung nachgefragt.
 
-### Project owner
-The human project owner has final authority over product scope, priorities, design decisions and exceptions. When instructions are ambiguous or conflict, pause and ask one focused question rather than guessing.
+## 2. Verbindliche Projektquellen
 
-## 2. Single source of truth and precedence
+Vor jeder relevanten Arbeit sind die jeweils passenden Dateien zu lesen:
 
-Read these files before work that touches the corresponding area:
-1. `CLAUDE.md` – concise entry point and mandatory working rules.
-2. `docs/AI_COLLABORATION_SPEC.md` – this role and collaboration contract.
-3. `docs/DESIGN_SYSTEM.md` – approved visual direction and UI rules.
-4. `docs/ROADMAP_DESIGN.md` – current design work, decisions and status.
-5. `FEATURES.md` – existing product capabilities; preserve them.
+1. `CLAUDE.md` – verbindliche Kurzregeln und Einstieg.
+2. `docs/AI_COLLABORATION_SPEC.md` – Rollen und Zusammenarbeit.
+3. `docs/DESIGN_SYSTEM.md` – aktuell gültige visuelle Entscheidungen.
+4. `docs/ROADMAP_DESIGN.md` – aktueller Arbeitsstand und nächste Schritte.
+5. `docs/PHASE0_INVENTAR.md` – technische und visuelle Ausgangslage.
+6. `FEATURES.md` – bestehende Produktfunktionen, die zu erhalten sind.
 
-Precedence:
-- Explicit, latest instruction from the project owner.
-- Current approved decisions in project documentation.
-- Existing application behavior and architecture.
-- Assistant assumptions (lowest priority; never treat assumptions as facts).
+Bei Konflikten gilt folgende Reihenfolge: aktuelle ausdrückliche Anweisung des Projektinhabers, freigegebene Designentscheidungen, tatsächliches Verhalten und Architektur im Repository, zuletzt Annahmen. Unklare Konflikte werden nicht stillschweigend entschieden.
 
-If documentation conflicts or appears stale, do not silently choose. Report the conflict and request clarification or propose a documented resolution.
+## 3. Produktschutz
 
-## 3. Non-negotiable product safeguards
+- Alle bestehenden Funktionen, Lernabläufe, Belohnungen, Shop- und Terrarium-Mechaniken, Navigation, Speicherformate und Nutzerdaten bleiben erhalten.
+- Ein visueller Auftrag ist keine Erlaubnis, Funktionen zu entfernen, zu vereinfachen, zu ersetzen oder neue Produktmechaniken einzuführen.
+- UI-Texte, Zahlen, Buttons und interaktive Zustände bleiben echte responsive Komponenten. Generierte Bilder sind Assets, kein Ersatz für UI.
+- Bestehende Komponenten bevorzugt anpassen statt eine parallele UI-Architektur aufzubauen.
+- Neue Abhängigkeiten nur mit nachvollziehbarer Begründung und vorheriger Abstimmung bei relevanten Auswirkungen.
+- Keine Zugangsdaten, Geheimnisse, persönlichen Daten oder Environment-Dateien committen.
 
-- Preserve all existing features and user data unless the owner explicitly approves a change.
-- Visual redesign is not permission to change business logic, learning behavior, reward calculations, shop transactions, terrarium interactions, save formats or navigation semantics.
-- Do not remove, stub, bypass or replace working functionality to make a screen easier to style.
-- Prefer adapting existing components and styles over creating a parallel UI architecture.
-- Avoid broad refactors during focused design tasks.
-- Keep UI content, controls and interactive states as real application components. Do not bake text, numbers, buttons or interactive controls into generated background images.
-- Generated artwork is an asset, not a substitute for responsive, accessible UI.
-- Do not introduce dependencies without explaining why they are needed and obtaining approval when they materially affect bundle size, maintenance or architecture.
-- Do not commit secrets, credentials, personal data or environment files.
+## 4. Verbindliche Designrichtung
 
-## 4. Design contract
+Die freigegebene Richtung heißt **Luminous Fantasy Adventure**:
+- Hochwertige, stilisierte 3D-Fantasy-Spielwelt.
+- Smaragdgrün, Giftgrün, warmes Gold, Mitternachtsblau und warmes Creme.
+- Nico entwickelt sich vom niedlichen Baby zur kraftvollen, leuchtenden Legende aus dem bestehenden Logo.
+- Das Original-Logo bleibt unverändert.
+- Glow und Partikel werden gezielt eingesetzt, nicht flächendeckend.
+- Lernaufgaben bleiben ruhig, hell, kontrastreich und besonders gut lesbar.
+- Das Terrarium darf die visuell reichste Ansicht sein; Lernansichten priorisieren Konzentration.
+- Bewegungen sind kurz, sinnvoll und möglichst mit Reduced-Motion-Verhalten.
 
-The approved direction is **Luminous Fantasy Adventure**:
-- Premium stylized 3D fantasy-game atmosphere.
-- Emerald, toxic lime, warm gold, midnight blue and warm cream palette.
-- The snake's story progresses from an adorable baby companion to the powerful, dangerous-looking but friendly legendary snake represented by the existing logo.
-- The original logo artwork must remain faithful to the source. Do not redraw, reinterpret, crop important details or alter its lettering without explicit approval.
-- Use toxic neon glow selectively for brand moments, magic and special progress—not on every component.
-- Learning tasks must remain calm, bright, high-contrast and exceptionally readable.
-- The terrarium may be the richest environmental screen; the learning interface must prioritize focus.
-- Motion should be brief, purposeful, non-blocking and respect reduced-motion preferences where practical.
+**Gerätepriorität:** Smartphone im Hochformat zuerst. Tablet und Desktop bleiben responsiv nutzbar.
 
-### Device priority
-- Primary target: smartphone.
-- Primary orientation: portrait.
-- Design mobile-first, then adapt responsively to tablets and desktop.
-- Prioritize comfortable touch targets, readable type, clear hierarchy and layouts that work on narrow screens.
+**Logo-Quelle:** `public/images/logo.webp`. Sie bleibt unverändert. Für den Splash ist die Verwendung des Originals mit seinem vorhandenen Hintergrund auf einem dunklen Hintergrund freigegeben. Eine transparente Ableitung ist zurückgestellt und darf nicht durch einfache, sichtbar schädliche Hintergrundentfernung ersetzt werden.
 
-### Existing logo
-- Current repository source: `public/images/logo.webp`.
-- Treat this file as the source of truth until a replacement is explicitly approved.
-- Inspect its actual transparency and visual edges before deciding whether background removal is needed.
-- If creating transparent PNG/WebP derivatives, preserve the original untouched, retain glow and fine contours, compare output against source, and document the derivative and its use. Never claim a clean extraction until visually checked.
+## 5. Arbeitsablauf
 
-## 5. Required workflow
+1. Branch, relevante Dateien, Komponenten und Dokumentation prüfen.
+2. Umfang und ausdrücklich ausgeschlossene Änderungen festhalten.
+3. Designziel und Abnahmekriterien dokumentieren.
+4. Kleinste zusammenhängende Änderung umsetzen.
+5. Relevante Tests, Typprüfung und Produktionsbuild ausführen, soweit möglich.
+6. UI am Smartphone-Hochformat prüfen; weitere Viewports passend zum Auftrag kontrollieren.
+7. Betroffene Bestandsfunktionen auf Regressionen prüfen.
+8. Roadmap nur mit belegtem Status aktualisieren.
+9. Änderungen, Prüfungen, Ergebnisse und offene Punkte transparent berichten.
 
-For every meaningful task:
-1. Inspect the current branch, relevant files, existing components and related docs before editing.
-2. State the intended scope and identify anything explicitly out of scope.
-3. For design work, document the intended result and acceptance criteria before or alongside implementation.
-4. For implementation, make the smallest coherent change that satisfies the approved specification.
-5. Run relevant tests, lint/type checks and production build where available.
-6. Inspect the actual result at smartphone portrait dimensions; also check responsive behavior where relevant.
-7. Check that existing features and flows touched by the change still work.
-8. Update the roadmap only with evidence-backed status. Keep incomplete work open.
-9. Summarize changed files, behavior, checks run, outcomes, known gaps and the commit/branch.
+Statusbegriffe sind eindeutig zu verwenden:
+- **Entworfen:** Spezifikation liegt vor.
+- **Implementiert:** Änderung ist im Code vorhanden.
+- **Verifiziert:** relevante Prüfung wurde tatsächlich ausgeführt.
+- **Offen / Blockiert:** noch nicht erledigt oder abhängig von einer Entscheidung.
 
-Do not claim tests passed if they were not run. Distinguish clearly between:
-- implemented and verified;
-- implemented but not yet verified;
-- proposed / designed only;
-- blocked / awaiting input.
+Keine Tests, Builds, Browserprüfungen oder Deployments als erfolgreich melden, wenn sie nicht selbst ausgeführt und überprüft wurden.
 
-## 6. Handoff between ChatGPT and Claude Code
+## 6. Handoff und Review
 
-A design handoff should include:
-- Screen or component and user goal.
-- Layout hierarchy and responsive behavior.
-- Exact colors/tokens and typography intent.
-- Component states (default, pressed, disabled, loading, success/error).
-- Motion and timing intent, if relevant.
-- Asset references and placement/cropping rules.
-- Accessibility/readability constraints.
-- Explicitly preserved existing behavior.
-- Acceptance criteria and out-of-scope changes.
+Design-Handoffs enthalten bei Bedarf:
+- Screen/Komponente und Nutzerziel
+- Layout-Hierarchie und responsive Verhalten
+- Farben, Typografie und Komponenten
+- Zustände und Interaktionen
+- Assets, Platzierung und Zuschnitt
+- Lesbarkeit, Touch-Bedienung und Accessibility
+- ausdrücklich zu erhaltendes Verhalten
+- Abnahmekriterien und Nicht-Ziele
 
-Claude Code should:
-- Read the relevant design documentation before implementation.
-- Ask about missing critical details rather than inventing them.
-- Implement the specification without silently changing its visual intent.
-- Report any technical limitation and propose alternatives before deviating.
+Reviews unterscheiden beobachtete Probleme von Vermutungen und formulieren konkrete, priorisierte Änderungen.
 
-ChatGPT reviewing an implementation should:
-- Evaluate screenshots or a running build actually supplied or accessible.
-- Separate observed issues from hypotheses.
-- Give actionable, prioritized changes rather than vague aesthetic feedback.
-- Avoid requesting changes that would compromise learning clarity, accessibility or existing behavior.
+## 7. Branches und Commits
 
-## 7. Branches, commits and pull requests
+- Designarbeit erfolgt auf `design/luminous-fantasy-adventure`, sofern nichts anderes vereinbart wurde.
+- Kein Push auf `main` und kein Merge ohne ausdrückliche Freigabe.
+- Commits bleiben fokussiert und nachvollziehbar.
+- Vor dem Commit Diff auf unbeabsichtigte Änderungen, Geheimnisse und Regressionen prüfen.
+- Gemeinsame Dateien vor dem Ändern erneut aus dem aktuellen Branch lesen. Keine fremden Änderungen überschreiben.
 
-- Design work for this initiative belongs on `design/luminous-fantasy-adventure` unless the owner directs otherwise.
-- Do not push directly to `main` or merge without explicit approval.
-- Keep commits focused and descriptive.
-- Before committing, inspect the diff for unrelated changes, generated clutter, secrets and accidental feature changes.
-- Do not overwrite another contributor's changes. Fetch/re-read the latest file before updating shared documentation.
-- If the working branch has changed unexpectedly, stop and reconcile before writing.
+## 8. Definition of Done
 
-## 8. Roadmap discipline
-
-`docs/ROADMAP_DESIGN.md` is the living status record.
-- Record decisions when the owner makes them.
-- Mark a task complete only after the acceptance criteria are met and checked.
-- Use “in progress”, “blocked” or “not verified” honestly.
-- Add a dated change-log entry for meaningful decisions and milestones.
-- Keep the design system and feature inventory consistent with roadmap changes.
-
-## 9. Communication style
-
-- Be direct, concrete and transparent.
-- Do not flatter instead of evaluating.
-- Explain trade-offs in user-facing terms.
-- Ask only for information that is genuinely blocking.
-- Never imply that another assistant has completed work unless its result has been inspected.
-- Do not fabricate repository access, tool results, commits, screenshots, test results or deployment status.
-
-## 10. Definition of done
-
-A task is done only when:
-- The requested scope is implemented.
-- Existing behavior in the affected flows is preserved.
-- Relevant checks have actually run and their results are reported.
-- The result has been inspected at the primary smartphone portrait viewport when UI is involved.
-- Documentation and roadmap accurately reflect the result.
-- No unresolved critical regression is known.
-
----
-Last updated: 2026-11-24
+Eine Aufgabe ist erst abgeschlossen, wenn der vereinbarte Umfang umgesetzt, das bestehende Verhalten im betroffenen Bereich erhalten, die relevanten Prüfungen ausgeführt und dokumentiert sowie die UI am primären Smartphone-Viewport geprüft wurde. Dokumentation und Roadmap müssen den tatsächlichen Stand wiedergeben.
