@@ -66,8 +66,6 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 ## Phase 2 – Charaktere und Assets
 
-<text></text>
-
 **Status: IN VORBEREITUNG.** Die Phase wurde gestartet. Das Asset-Inventar und der Produktions-/Freigabeablauf sind in [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) dokumentiert. Die vorhandene Charakterbasis ist identifiziert; neue Bildassets und das visuelle Referenzpaket sind noch nicht erstellt oder freigegeben.
 
 **Ziel:** Nico und die Spielwelt konsistent und wiederverwendbar gestalten.
