@@ -45,7 +45,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 **Ziel:** Wiederverwendbare visuelle Regeln und Komponenten schaffen.
 
 - [x] Semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens definieren.
-- [x] Die Legacy-Variablen zentral auf die freigegebenen Tokens abbilden; einzelne dekorative Farbwerte bleiben nur dort erhalten, wo sie bewusst Teil einer Illustration oder Animation sind.
+- [x] Die zentralen Legacy-Variablen auf die freigegebenen semantischen Tokens abbilden.\n- [ ] Verbleibende fest eingetragene Farb- und Abstands-Einzelwerte in den Screens schrittweise migrieren und visuell prüfen.
 - [x] Atkinson Hyperlegible Next 400/700 und Nunito variabel lokal als WOFF2 für Latin und Latin Extended einbinden.
 - [x] Typografische Rollen für Titel, Aufgaben, Fließtext, unterstützende Texte und Bedienelemente tatsächlich anwenden.
 - [x] Button-Zustände für Default, Pressed, Disabled und Focus zentral vereinheitlichen.
