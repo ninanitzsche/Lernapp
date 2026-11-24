@@ -92,7 +92,7 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 
 ## 8. Offene Produktionsschritte
 
-- [ ] Vorhandene Charakterdateien visuell direkt vergleichen und als kanonische Quellen je Entwicklungsstufe bestimmen.
+- [x] Vorhandene Charakterdateien visuell direkt vergleichen und Bestandsanalyse dokumentieren ([PHASE2_BESTANDSANALYSE.md](./PHASE2_BESTANDSANALYSE.md)); kanonische Quellen je Entwicklungsstufe werden im nächsten Freigabeschritt festgelegt.
 - [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (Referenzentwurf A; noch nicht freigegeben).
 - [ ] Referenzentwurf A gemeinsam mit kanonischer Nico-Referenz prüfen und visuell freigeben.
 - [ ] Kanonische Assets und vorhandene Lücken je Entwicklungsstufe festlegen.
