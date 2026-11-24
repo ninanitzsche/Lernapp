@@ -13,6 +13,13 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen und Speicherung bewahren.
 
+## Verbindliche Geräteentscheidung
+
+- **Primärgerät:** Smartphone
+- **Ausrichtung:** Hochformat (Portrait)
+- **Layoutstrategie:** Mobile-first. Die Smartphone-Oberfläche ist die Referenz; Tablet und Desktop sollen weiterhin responsiv und benutzbar bleiben, sind aber nicht die primäre Designfläche.
+- **Konsequenz:** Navigation, Hauptaktionen, Touch-Ziele, Aufgabenflächen und Bildkompositionen werden zuerst für schmale Hochformat-Viewports gestaltet und anschließend sinnvoll erweitert.
+
 ## Status-Legende
 - [ ] Offen
 - [x] Erledigt
@@ -25,8 +32,11 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 - [x] Arbeitsbranch von main erstellt: design/luminous-fantasy-adventure
 - [x] Visuelle Leitidee und Art Direction dokumentiert
 - [x] Roadmap als lebendes Projektdokument angelegt
+- [x] Primärgerät Smartphone festgelegt
+- [x] Hochformat als primäre Ausrichtung festgelegt
 - [ ] Aktuelle Screens und Komponenten im Branch erneut inventarisieren
 - [ ] Vorhandene Logo-Datei und Nutzungsvarianten im Repository lokalisieren
+- [ ] Original-Logo in ausreichend hoher Auflösung als Ausgangsdatei bereitstellen
 - [ ] Bestehende Design-Tokens, CSS und UI-Komponenten erfassen
 - [ ] Ausgangszustand von Tests und Build dokumentieren
 
@@ -40,17 +50,19 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 - [ ] Button-System (Primary, Secondary, Tertiary, Disabled)
 - [ ] Karten, Panels, Badges und Fortschrittsanzeigen gestalten
 - [ ] Schatten, Konturen, Glow und Rundungen vereinheitlichen
-- [ ] Responsive Abstände und Touch-Zielgrößen definieren
+- [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen definieren
 - [ ] Fokus-, Hover-, Active- und Disabled-Zustände festlegen
 - [ ] Reduced-motion-Verhalten berücksichtigen
 
-**Abnahmekriterium:** Die wichtigsten UI-Komponenten lassen sich aus konsistenten Tokens und wiederverwendbaren Styles aufbauen.
+**Abnahmekriterium:** Die wichtigsten UI-Komponenten lassen sich aus konsistenten Tokens und wiederverwendbaren Styles aufbauen und funktionieren im Smartphone-Hochformat.
 
 ## Phase 2 – Charakter- und Asset-System
 **Ziel:** Eine konsistente Schlange und eine wiederverwendbare Spielwelt schaffen.
 
 - [ ] Vorhandenes Logo exakt als Marken-Key-Visual einbinden
-- [ ] Logo-Asset in geeigneter Auflösung und Format im Repository bereitstellen
+- [ ] Original-Logo als transparente PNG- und/oder WebP-Variante bereitstellen, ohne Motiv, Schriftzug oder Leuchteffekte zu verändern
+- [ ] Transparenz sauber vom Hintergrund trennen; Leuchteffekte und feine Konturen erhalten
+- [ ] Logo-Asset in geeigneter Auflösung und Format im Repository ablegen
 - [ ] Benötigte Darstellungen der fünf Entwicklungsstufen spezifizieren
 - [ ] Baby-, Kleinkind-, Kind-, Teenager- und Erwachsenen-Design konsistent erstellen
 - [ ] Transparente Charakter-Assets und passende Posen erstellen
@@ -58,12 +70,12 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 - [ ] Dekoration, Kristalle und Effekte als einzelne Assets organisieren
 - [ ] Asset-Größen, Dateiformate und Ladeverhalten optimieren
 
-**Abnahmekriterium:** Die fünf Stufen sind erkennbar dieselbe Schlange; Assets funktionieren in echten UI-Kompositionen und nicht nur als Einzelbilder.
+**Abnahmekriterium:** Die fünf Stufen sind erkennbar dieselbe Schlange; Logo und Charakter-Assets funktionieren in echten UI-Kompositionen und nicht nur als Einzelbilder.
 
 ## Phase 3 – Screens überarbeiten
 **Ziel:** Die neue Designsprache auf die vorhandenen App-Bereiche übertragen.
 
-- [ ] Splash / Start: vollständiges Logo, dunkle Atmosphäre, kurzer Glow-Auftritt
+- [ ] Splash / Start: vollständiges vorhandenes Logo, dunkle Atmosphäre, kurzer Glow-Auftritt
 - [ ] Home / Begleiter: aktuelle Schlange, klare Hauptaktion und Lernfortschritt
 - [ ] Aufgaben: helle, kontrastreiche Lernfläche in dezenter Fantasy-Umgebung
 - [ ] Antwort-Feedback: positive und humorvolle Reaktionen im neuen Stil
@@ -90,8 +102,9 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 ## Phase 5 – Qualitätssicherung und Abschluss
 **Ziel:** Visuelle Qualität und funktionale Stabilität auf echten Geräten sicherstellen.
 
-- [ ] Smartphone-Layouts prüfen
-- [ ] Tablet-Layouts prüfen
+- [ ] Smartphone-Hochformat als primären Viewport prüfen
+- [ ] Kleine und große Smartphone-Displays prüfen
+- [ ] Tablet-Layouts als sekundäre responsive Ansichten prüfen
 - [ ] Touch-Ziele und Drag-and-drop praktisch testen
 - [ ] Kontrast, Lesbarkeit und Schriftgrößen überprüfen
 - [ ] Tests ausführen
@@ -100,19 +113,22 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 - [ ] Screenshots der finalen Ansichten dokumentieren
 - [ ] Roadmap und Feature-Inventar aktualisieren
 
-**Abnahmekriterium:** Der Relaunch ist visuell konsistent, auf den Zielgeräten bedienbar und ohne bekannte Regressionen.
+**Abnahmekriterium:** Der Relaunch ist visuell konsistent, im Smartphone-Hochformat gut bedienbar, auf größeren Geräten weiterhin nutzbar und ohne bekannte Regressionen.
 
 ## Entscheidungen und offene Fragen
 
-| Thema | Aktueller Vorschlag | Status |
+| Thema | Entscheidung / Vorschlag | Status |
 |---|---|---|
 | Designstil | Luminous Fantasy Adventure | Festgelegt |
 | Logo | Original unverändert, prominent im Splash | Festgelegt |
+| Logo-Dateiformat | Transparente PNG- und/oder WebP-Variante zusätzlich zum Original | Festgelegt |
+| Logo-Quelldatei | Hochauflösendes Original als Ausgangsdatei wird benötigt | Offen – Nutzerinput |
 | Schlange | Baby bis legendäre erwachsene Form | Festgelegt |
 | Aufgabenansicht | Hell und besonders gut lesbar | Festgelegt |
 | Terrarium | Reichhaltigste Fantasy-Ansicht | Festgelegt |
-| Zielgeräte | Smartphone und Tablet, responsive | Zu bestätigen |
-| Logo-Quelldatei | Originaldatei im Repository lokalisieren oder bereitstellen | Offen |
+| Primärgerät | Smartphone | Festgelegt |
+| Primäre Ausrichtung | Hochformat (Portrait) | Festgelegt |
+| Weitere Geräte | Tablet/Desktop responsiv unterstützen | Festgelegt |
 | Schrift | Passende gut lesbare Schrift auswählen | Offen |
 | Splash-Verhalten | Kurzer Auftritt, überspringbar bzw. nicht blockierend | Vorschlag |
 
@@ -121,6 +137,7 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 | Datum | Änderung |
 |---|---|
 | 2026-11-24 | Roadmap und Designsystem initial angelegt; Arbeitsbranch erstellt |
+| 2026-11-24 | Smartphone als Primärgerät und Hochformat festgelegt; transparente PNG/WebP-Logo-Variante als Asset-Aufgabe ergänzt |
 
 ## Pflege-Regeln
 1. Vor jeder größeren Arbeit den aktuellen Status dieser Roadmap prüfen.
