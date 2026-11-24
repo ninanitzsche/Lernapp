@@ -275,7 +275,7 @@ Die Serie wird in der Runde (UI) erkannt und als `serienFutter` in die `RoundAns
 | `src/ui/Treppe.tsx` (neu) | Fortschrittsleiste mit Stufenhöhen |
 | `src/ui/Halbzeit.tsx` (neu) | Zwischenstopp-Karte |
 | `src/ui/Haeutung.tsx` (neu) | Feierkarte mit Rückblick, nacheinander mehrere |
-| `src/ui/Album.tsx` (neu) | "Meine Häute" |
+| `src/ui/Album.tsx` (neu) | Wissensalbum für gemeisterte Lernfelder |
 | `src/ui/Round.tsx` | Rampe, Schuppen, Treppe, Halbzeit, Serie |
 | `src/App.tsx` | Ansicht `album`, Häutungen nach dem Ergebnis, Themenkarte mit Stufe |
 | `src/ui/Parent.tsx` | Neuer oberer Teil (Empfehlung, Bereitschaft, Typenliste, Verlauf) |
