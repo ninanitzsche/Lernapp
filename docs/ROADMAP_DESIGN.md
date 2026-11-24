@@ -44,19 +44,23 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 **Ziel:** Wiederverwendbare visuelle Regeln und Komponenten schaffen.
 
-- [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.
-- [x] Legacy-Farbvariablen zentral auf die freigegebenen semantischen Tokens abbilden; verbleibende Einzelwerte komponentenweise weiter migrieren und visuell prüfen.
-- [x] Freigegebene Schriften lokal als WOFF2 einbinden (Atkinson 400/700, Nunito variabel) und Latin-/Latin-Extended-Zeichensätze bereitstellen; visuelle Glyphen- und Ziffernprüfung in der App bleibt offen.
-- [x] Typografische Rollen für Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte in CSS definieren und auf zentrale Komponenten anwenden.
-- [x] Vorhandene Button-Zustände für Disabled und Focus vereinheitlichen; Primary/Secondary/Tertiary visuell weiter prüfen.
-- [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vollständig vereinheitlichen (Shop-/Album-Karten, Aufgaben-Eingaben, Dialoge und Fortschrittsbalken mit echten TSX-Klassen gezielt nachgezogen; visuelle Prüfung offen).
-- [x] Zentrale Abstände, Rundungen, Konturen und Schatten als gemeinsame Tokens/Oberflächenregeln ergänzen; screenweise Migration offen.
-- [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen vollständig festlegen (CSS-Regeln für schmale Viewports und Mindesthöhen ergänzt; Geräteprüfung offen).
-- [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
+- [x] Semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens definieren.
+- [x] Die Legacy-Variablen zentral auf die freigegebenen Tokens abbilden; einzelne dekorative Farbwerte bleiben nur dort erhalten, wo sie bewusst Teil einer Illustration oder Animation sind.
+- [x] Atkinson Hyperlegible Next 400/700 und Nunito variabel lokal als WOFF2 für Latin und Latin Extended einbinden.
+- [x] Typografische Rollen für Titel, Aufgaben, Fließtext, unterstützende Texte und Bedienelemente tatsächlich anwenden.
+- [x] Button-Zustände für Default, Pressed, Disabled und Focus zentral vereinheitlichen.
+- [x] Gemeinsame Oberflächenregeln auf Karten, Panels, Dialoge, Info-Flächen, Badges und Fortschrittsanzeigen anwenden.
+- [x] Abstandstokens in den zentralen Layouts und Komponenten verwenden.
+- [x] Mobile-first CSS-Regeln, 48-px-Touch-Ziele und schmale Viewports absichern.
+- [x] Globale Reduced-motion-Absicherung ergänzen.
+- [x] Automatisierte Design-System-Regressionstests für Token-Referenzen, lokale Fonts und Bedienregeln ergänzen.
+- [ ] Sichtprüfung der tatsächlichen Glyphen, Aufgabenansichten und Komponenten auf Smartphone, Tablet und Desktop durchführen.
 
-**Zwischenstand (Code-Audit):** Semantische Tokens, typografische Rollen und lokale WOFF2-Dateien inklusive OFL-Lizenzen sind vorhanden. Atkinson Hyperlegible Next wird mit getrennten 400-/700-Dateien für Latin und Latin Extended ausgeliefert; Nunito als variable WOFF2-Datei für beide Zeichensatzbereiche. Alle sechs WOFF2-Dateien wurden aus dem Repository zurückgelesen, auf WOFF2-Signatur geprüft und ihre CSS-Referenzen abgeglichen. Die Rückprüfung bestätigte sechs gültige WOFF2-Dateien, sechs passende lokale CSS-Referenzen, Latin-Extended-Ranges und beide OFL-Lizenzen; TTF-URLs sind aus dem Stylesheet entfernt. Die tatsächliche Darstellung von Umlauten und Ziffern im Browser bleibt offen. Die tatsächlichen Klassen in `Shop.tsx`, `Album.tsx`, `TaskView.tsx`, `Parent.tsx` und `Round.tsx` wurden gegen die CSS-Selektoren geprüft; die zentralen Shop-/Album-Karten, Antwortfelder, Zifferntasten, Dialoge und Fortschrittsanzeigen haben gezielte gemeinsame Regeln erhalten. Die Badge-Familie aus Serienbonus, Stufenanzeige und Live-Futter nutzt nun gemeinsame Gold-/Pill-Tokens; die Münzanzeige bleibt als bewusst gefüllter Belohnungs-Chip unterscheidbar. Der anschließende CSS-Check bestätigte alle vier tatsächlichen Badge-Selektoren und die gemeinsamen Tokens. Der GitHub-Diff des CSS-Schritts enthält ausschließlich `src/index.css`. Zusätzlich wurden die statisch verwendeten `className`-Selektoren aller 15 TSX-UI-Dateien gegen `src/index.css` abgeglichen; für keine der erfassten Klassen fehlt ein CSS-Treffer. Ein Token-Audit fand doppelte Definitionen in den neu ergänzten Foundation-Blöcken; diese wurden bereinigt und anschließend erneut geprüft. Die semantischen Custom Properties sind jetzt eindeutig deklariert (der einfache Regex-Audit meldet nur einen False-Positive-Treffer auf `--th`). Das ist ein Selektor-/Quellcode-Audit, keine Browser-Sichtprüfung. Ein nicht deployender GitHub-Actions-Workflow `.github/workflows/design-quality.yml` prüft jeden Push auf diesem Branch mit `npm ci`, `npm test` und `npm run build`. Der Lauf auf Commit `5456d00` war erfolgreich: 144/144 Tests bestanden, TypeScript-Prüfung und Vite-Produktionsbuild erfolgreich. Screen-/Viewport-Prüfung und vollständige Migration verbleibender Einzelwerte bleiben offen.
+**Umsetzung (Code):** Die bestehenden TSX-Komponenten und ihre Spiel-/Lernlogik bleiben unangetastet. Die Stylesheet-Ebene nutzt nun die zuvor definierten Abstands-, Typografie-, Oberflächen- und Zustands-Tokens auch in den vorhandenen Komponenten. Info-Flächen und Münz-Chips sind in dieselbe Oberflächenfamilie integriert. Die Dialoge, Karten, Antwortflächen, Buttons und Fortschrittsanzeigen teilen zentrale Material- und Bedienregeln. Die Font-Dateien werden weiterhin lokal geladen; Vite verwendet jetzt relative Asset-Pfade, damit Fonts und weitere öffentliche Assets auch bei Deployments unter einem Projekt-Unterpfad erreichbar bleiben.
 
-**Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
+**Automatisierte Prüfung:** Ein neuer Test prüft eindeutige Root-Tokens, auflösbare CSS-Variablen, Vorhandensein und WOFF2-Signaturen aller sechs lokalen Schriftdateien sowie Fokus-, Touch- und Reduced-motion-Regeln. Der Test ergänzt die bestehenden Spieltests. Der GitHub-Actions-Lauf nach diesem Commit ist der Nachweis für Tests und Produktionsbuild; eine tatsächliche Browser-/Viewport-Sichtprüfung wird dadurch nicht ersetzt.
+
+**Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem, die lokalen Assets funktionieren auch unter Projekt-Unterpfaden und die Bedienregeln sind automatisiert abgesichert. Die manuelle Geräteprüfung bleibt Voraussetzung für die endgültige Phase-1-Freigabe.
 
 ## Phase 2 – Charaktere und Assets
 
