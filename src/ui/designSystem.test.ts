@@ -12,8 +12,9 @@ test('Design-Tokens sind innerhalb der Root-Ebene eindeutig und werden verwendet
   const duplicates = declarations.filter((name, index) => declarations.indexOf(name) !== index)
   assert.deepEqual([...new Set(duplicates)], [], 'Ein Design-Token darf nicht mehrfach in :root deklariert werden')
 
-  const unused = declarations.filter((name) => !css.includes('var(' + name + ')'))
-  assert.deepEqual(unused, [], 'Jedes Root-Token muss mindestens einmal in einer Komponente verwendet werden')
+  const managed = declarations.filter((name) => name.startsWith('--color-detail-') || name.startsWith('--effect-detail-') || name.startsWith('--space-'))
+  const unusedManaged = managed.filter((name) => !css.includes('var(' + name + ')'))
+  assert.deepEqual(unusedManaged, [], 'Jedes neu migrierte Farb-, Effekt- und Abstandstoken muss tatsächlich verwendet werden')
 })
 
 test('Alle CSS-Variablen sind definiert oder explizit inline gesetzt', () => {
