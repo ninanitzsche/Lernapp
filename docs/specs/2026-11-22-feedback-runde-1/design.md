@@ -301,6 +301,52 @@ Tipps für zu Hause je Typ (für "Das hilft jetzt", beim Bauen einmal fachlich g
 
 ## 11. Offene Punkte
 
-1. Die Regeln für Sterne/Lernstand und Testbereitschaft sind ausdrücklich TBD. Sie werden vor ihrer Umsetzung in einem ausführlichen Interview mit Nina festgelegt. Bis dahin keine eigenen Schwellen oder Berechnungsregeln ergänzen.\n2. Ein Meilenstein für ein neues Themenfeld wird erst ausgelöst, wenn das Kind in diesem eigenständigen Lernfeld als fit gilt. Die genaue fachliche Definition von "fit" wird im späteren Interview festgelegt.\n3. Die konkreten Münzwerte und Wachstumsschwellen sind Startwerte und können nach Praxiserfahrung angepasst werden.
-4. Das Symbol der Schuppe und die Häutungs-Animation brauchen eine eigene Zeichnung (SVG, im Code gezeichnet). Falls später eigene Bilder entstehen, bleibt die Schnittstelle gleich.
-5. Der Vite-Build und die visuelle Prüfung laufen nur auf Ninas Mac (siehe Projektnotiz). Layout für kleine Höhen (N3) muss dort geprüft werden.
+1. **Noch offen: konkrete Kompetenzdefinition je Stern.** Festgelegt sind fünf aufeinanderfolgende Sterne pro Lernfeld und ein ausgewogener Kompetenznachweis. Welche konkreten Teilkompetenzen und Nachweiskriterien die einzelnen Sterne eines Lernfeldes repräsentieren, wird noch mit der Stakeholderin abgestimmt. Bis dahin keine Schwellen oder fachlichen Bewertungsregeln erfinden.
+2. **Noch offen: Testbereitschaft.** Die Kriterien und Berechnung der Testbereitschaft im Elternbereich sind noch nicht freigegeben. Keine bestehenden Diskussionswerte als Produktregel implementieren.
+3. Die konkreten Münzwerte und Wachstumsschwellen sind Startwerte und können nach Praxiserfahrung angepasst werden.
+4. Das Symbol der Schuppe und die Häutung-Animation brauchen eine eigene Zeichnung. Falls später eigene Bilder entstehen, bleibt die Schnittstelle gleich.
+5. Der Vite-Build und die visuelle Prüfung laufen nur auf dem Mac der Projektinhaberin. Layout für kleine Höhen (N3) muss dort geprüft werden.
+
+## 12. Verbindliche Entscheidungen aus dem Stakeholder-Interview
+
+Diese Entscheidungen ergänzen die bestehende Feedback-Spezifikation. Sie beschreiben das gewünschte Produktverhalten, nicht die technische Umsetzung der Aufgabenlogik.
+
+### 12.1 Sterne und Kompetenz
+
+- Sterne stehen für **nachgewiesene Kompetenz**, nicht für Fleiß, Zeit oder bloßes Ausprobieren.
+- Jedes Lernfeld hat **fünf Sterne**.
+- Die Sterne werden zwingend in Reihenfolge verdient. Ein höherer Stern setzt alle vorherigen Sterne voraus.
+- Anspruchsvollere Aufgaben dürfen jederzeit ausprobiert werden. Sie überspringen jedoch keinen Stern.
+- Ein ausgewogener Kompetenznachweis ist gewünscht: Das Kind soll eine Fähigkeit zuverlässig bei unterschiedlichen Aufgabenstellungen und über mehrere Übungsrunden hinweg zeigen. Es ist keine Mindestanzahl an Spieltagen vorgesehen.
+- Fehler während des Lernens nehmen bereits verdiente Sterne nicht weg.
+- Die genaue Zuordnung der fünf Sterne zu Teilkompetenzen und die fachlichen Nachweiskriterien je Lernfeld bleiben offen, bis sie mit der Stakeholderin abgestimmt sind.
+
+### 12.2 Hilfe und Belohnung
+
+- Ein **Denkimpuls** ist ausdrücklich erwünscht. Die Aufgabe darf weiterhin zum Kompetenznachweis beitragen. Für diese Aufgabe erhält das Kind eine Münze weniger für das Terrarium.
+- Die bestehenden Funktionen „Hilfe anzeigen“ und „bei falscher Antwort die richtige Lösung anzeigen“ bleiben erhalten.
+- Eine angezeigte Lösung ist kein selbstständiger Kompetenznachweis. Das Kind kann die Kompetenz später bei einer vergleichbaren Aufgabe selbstständig zeigen.
+- Die vorhandene Aufgaben-, Wiederholungs-, Hilfs- und Auswertungslogik bleibt in der Verantwortung von Claude Code. Dieses Interview gibt keine Erlaubnis, sie neu zu erfinden oder unabhängig von der bestehenden Implementierung zu verändern. UX-Anforderungen werden als gewünschtes Verhalten formuliert; technische Umsetzung und fachliche Details prüft Claude Code anhand des Repositories.
+
+### 12.3 Lernfortschritt sichtbar machen
+
+- Die Fortschrittsdarstellung kombiniert **Schlange und Wissensalbum**.
+- Das Kind sieht klar, welche Kompetenz als Nächstes ansteht, ergänzt durch eine sichtbare Fortschrittsanzeige.
+- Fortschrittsanzeigen müssen auf tatsächlich verfügbaren Lerninformationen beruhen. Keine scheinpräzisen Prozentwerte oder Fortschrittsstände erfinden.
+- Die Schlange macht Entwicklung emotional sichtbar; das Wissensalbum bewahrt die Lernerfolge dauerhaft.
+
+### 12.4 Abschluss eines Lernfeldes und Terrarium
+
+- Nach fünf verdienten Sternen gilt ein Lernfeld als gemeistert und wird sichtbar als abgeschlossen gekennzeichnet.
+- Für den Abschluss erhält das Kind einen eigenen Eintrag im Wissensalbum mit einer besonders schönen Illustration der Schlange passend zum Thema sowie einen thematisch passenden Pokal oder Orden.
+- Das Terrarium ist eine **frei gestaltbare Sammlung**: Das Kind entscheidet, wo es Pokale, Orden und Dekorationen platziert. Auszeichnungen können verschoben werden; die vollständige Sammlung bleibt unabhängig von der aktuellen Platzierung erhalten.
+- Ein gemeistertes Lernfeld bleibt jederzeit normal spielbar. Es gibt dort keine erneuten Sterne oder dieselbe Abschlussauszeichnung. Die App darf neue, noch nicht gemeisterte Lernfelder als nächste Möglichkeit sichtbar machen.
+
+### 12.5 Relikte – kleiner freiwilliger Expertenbereich
+
+- Relikte sind ein **Randfeature**, kein eigener großer Spielmodus und keine Pflicht.
+- Der Bereich wird erst sichtbar, wenn mindestens ein Lernfeld abgeschlossen wurde.
+- Der Pokal des abgeschlossenen Lernfeldes ist der Türöffner und öffnet die dazugehörigen Relikte.
+- Relikte greifen bekannte Inhalte bzw. Aufgaben auf und bieten anspruchsvollere Varianten, um bereits Gelerntes auf Expertenniveau zu festigen. Die bestehende Aufgabenlogik bleibt dabei maßgeblich.
+- Für Relikt-Herausforderungen gibt es Terrariummünzen.
+- Relikte vergeben ausdrücklich keine Sterne, Pokale, Medaillen oder Kompetenz-Auszeichnungen. Sie verändern den regulären Lernfortschritt nicht.
