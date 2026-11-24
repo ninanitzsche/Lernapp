@@ -44,7 +44,8 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 **Ziel:** Wiederverwendbare visuelle Regeln und Komponenten schaffen.
 
-- [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.\n- [ ] Bestehende feste Farbwerte systematisch auf die freigegebenen Tokens migrieren und visuell prüfen.
+- [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.
+- [ ] Bestehende feste Farbwerte systematisch auf die freigegebenen Tokens migrieren und visuell prüfen.
 - [ ] Freigegebene Schriften lokal einbinden; Umlaute, ß und Ziffern prüfen.
 - [ ] Typografische Hierarchie für Titel, Aufgaben, Zahlen und Fließtext umsetzen.
 - [ ] Button-System vereinheitlichen: Primary, Secondary, Tertiary, Disabled und Focus.
@@ -53,7 +54,9 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen festlegen.
 - [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
 
-**Zwischenstand:** Das Token-Grundgerüst und die semantischen Typografie-Rollen sind angelegt. Die Migration bestehender Einzelwerte, die lokale Einbindung der freigegebenen Fontdateien und die visuelle Prüfung der Komponenten sind noch offen.\n\n**Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
+**Zwischenstand:** Das Token-Grundgerüst und die semantischen Typografie-Rollen sind angelegt. Die Migration bestehender Einzelwerte, die lokale Einbindung der freigegebenen Fontdateien und die visuelle Prüfung der Komponenten sind noch offen.
+
+**Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
 
 ## Phase 2 – Charaktere und Assets
 
@@ -129,7 +132,9 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 | Geräte | Smartphone Hochformat zuerst; Tablet/Desktop responsiv |
 | Lernen | Helle, ruhige und kontrastreiche Aufgabenflächen |
 | Terrarium | Reichhaltigste Fantasy-Ansicht |
-| Bildproduktion | Einzelne, eigens erstellte 3D-Assets; keine generierten UI-Screenshots |\n| Zuständigkeit Assets | ChatGPT: Art Direction und Bildassets; Claude Code: technische Integration |\n| Funktionsumfang | Bestehende Funktionen und Mechaniken bleiben erhalten |
+| Bildproduktion | Einzelne, eigens erstellte 3D-Assets; keine generierten UI-Screenshots |
+| Zuständigkeit Assets | ChatGPT: Art Direction und Bildassets; Claude Code: technische Integration |
+| Funktionsumfang | Bestehende Funktionen und Mechaniken bleiben erhalten |
 
 ## Pflege
 
