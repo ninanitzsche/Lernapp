@@ -1,6 +1,7 @@
 # Nico – kanonische Charakterreferenz
 
-> **Status:** Arbeitsgrundlage für die visuelle Freigabe; noch keine finale Bildfreigabe.
+ > **Status:** Arbeitsgrundlage nach direktem Bildvergleich; finale Bildfreigabe weiterhin offen.
+> **Bildvergleich:** [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md)
 > **Gültig für:** Phase 2 · Luminous Fantasy Adventure
 > **Verbindliche Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [PHASE2_BESTANDSANALYSE.md](./PHASE2_BESTANDSANALYSE.md)
 
@@ -55,7 +56,17 @@ Der aktuelle Code in `src/ui/Snake.tsx` nutzt Gesichtsausdrucksdateien nur für 
 - Keine fehlenden Erwachsenenvarianten generieren, bevor die erwachsene Grundform am Logo ausgerichtet und freigegeben ist.
 - Emoji-Overlays und bestehende Reaktionslogik bleiben außerhalb dieser visuellen Referenz unverändert.
 
-## 6. Priorisierte Korrekturen vor Serienproduktion
+## 6. Ergebnis des direkten Bildvergleichs
+
+Der direkte Vergleich der fünf Standardbilder und des Logos ist in [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md) mit den Bildquellen dokumentiert. Daraus folgen diese verbindlichen Arbeitsentscheidungen:
+
+- Baby und Kleinkind bleiben unverändert die stilistische Basis.
+- Beim Kind werden Augenfarbe/Iris und Augenpartie als wichtigste Kontinuitätskorrektur behandelt; Körperstreckung und lebendiger Ausdruck bleiben grundsätzlich erhalten.
+- Beim Teenager bleiben Standardpose und schlanke Silhouette erhalten; Augenform und Schnauze werden im Übergang zum Kind geprüft.
+- Das bisherige Erwachsenenbild ist keine finale kanonische Referenz. Das Logo definiert die erwachsene Identität, aber die App benötigt daraus eine eigenständige, freundliche Begleiterpose ohne Logo-Schriftzug und fest integrierte Logo-Dekoration.
+- Die vorhandenen Teenager-Ausdrucksvarianten werden nicht aktiviert: Herzen, Sterne, „Zzz“ und Futterobjekt sind teilweise in die Bilder eingebrannt. Sie bleiben als Bestand unangetastet.
+
+## 7. Priorisierte Korrekturen vor Serienproduktion
 
 | Priorität | Thema | Nächster Schritt |
 |---|---|---|
@@ -65,7 +76,7 @@ Der aktuelle Code in `src/ui/Snake.tsx` nutzt Gesichtsausdrucksdateien nur für 
 | P1 | Teenager-Ausdrucksvarianten | Alle vier Zusatzvarianten gegen Standardbild und bestehende Reaktionszustände prüfen; Nutzungsentscheidung dokumentieren. |
 | P2 | Variantenabdeckung | Erst nach Freigabe der fünf Standardstufen festlegen, welche zusätzlichen Erwachsenen-Ausdrücke wirklich benötigt werden. |
 
-## 7. Produktionsregeln für neue Charakterbilder
+## 8. Produktionsregeln für neue Charakterbilder
 
 - Bestehende freigegebene Bilder und das Logo als Referenzen verwenden; keine unabhängige neue Schlange entwerfen.
 - Gleiche Kameraperspektive, vergleichbare Bildgröße und konsistente Lichtführung für alle fünf Standardstufen.
@@ -75,7 +86,7 @@ Der aktuelle Code in `src/ui/Snake.tsx` nutzt Gesichtsausdrucksdateien nur für 
 - Standardpose zuerst freigeben; Ausdrucks- und Aktionsvarianten erst anschließend ableiten.
 - Originale und historische Quellen nicht überschreiben. Neue Fassungen versioniert ablegen und im Asset-Katalog mit Format, Maßen, Alpha-Kanal, Dateigröße und Verwendung erfassen.
 
-## 8. Abnahmecheckliste
+## 9. Abnahmecheckliste
 
 - [ ] Alle fünf Standardstufen nebeneinander in vergleichbarer Größe und Perspektive geprüft.
 - [ ] Erwachsene/legendäre Form mit dem Original-Logo abgeglichen und ausdrücklich freigegeben.
@@ -85,6 +96,6 @@ Der aktuelle Code in `src/ui/Snake.tsx` nutzt Gesichtsausdrucksdateien nur für 
 - [ ] Transparenz, Zuschnitt, Auflösung und Dateigröße technisch geprüft.
 - [ ] Laufzeitvarianten und Code-Zuordnung nach visueller Freigabe bewusst entschieden.
 
-## 9. Nicht Bestandteil dieses Schritts
+## 10. Nicht Bestandteil dieses Schritts
 
 Keine Änderungen an Lernlogik, Entwicklungsgrenzen, Belohnungen, Shop, Speicherung, Navigation oder Laufzeitreaktionen. Keine Bereinigung historischer Dateien. Keine Serienproduktion weiterer Charakterbilder vor der visuellen Freigabe.
