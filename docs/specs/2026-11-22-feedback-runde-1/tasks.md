@@ -38,7 +38,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 ### T6 Meilensteine
 - Dateien: neu `src/logic/meilensteine.ts` plus Test, `src/logic/game.ts`
-- Tun: `pruefeMeilensteine(vorher, nachher, now)` für Entwicklung und den Abschluss eines Lernfeldes (fünf Sterne vollständig) mit Rückblick. Einzelne Sterne sind keine eigenen Münz-Meilensteine. Keine Wochenziele und keine Belohnungen für reine Rundenzahl. Abschluss-Auszeichnung und Relikt-Freischaltung gemäß `design.md` Abschnitt 12 dokumentieren; die genaue fachliche Stern-Zuordnung bleibt bis zur Freigabe offen. `nachtragen(state)` für Altstände. Doppelte Auslösung ausgeschlossen.
+- Tun: `pruefeMeilensteine(vorher, nachher, now)` für Entwicklung und den Abschluss eines Lernfeldes (fünf Sterne vollständig) mit Rückblick. Die bestehende Münzbelohnung je Stern bleibt erhalten. Keine Wochenziele und keine Belohnungen für reine Rundenzahl. Abschluss-Auszeichnung und Relikt-Freischaltung gemäß `design.md` Abschnitt 12 dokumentieren; die genaue fachliche Stern-Zuordnung bleibt bis zur Freigabe offen. `nachtragen(state)` für Altstände. Doppelte Auslösung ausgeschlossen.
 - Test zuerst: jeder freigegebene Auslöser genau einmal; Abschluss eines Lernfeldes schaltet genau den passenden Album-Eintrag/Pokal frei; keine Rundenzahl- oder Wochenziel-Auslösung; Altstand erzeugt keine nachträgliche Feier und keine doppelten Belohnungen; Meilensteine gehen bei späteren Fehlern nicht verloren.
 - Anforderungen: R5.1, R5.3, R5.4 (Logik), R5.6 bis R5.8
 
@@ -64,7 +64,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 ### T10 Ergebnis, Lernfeld-Abschluss und Wissensalbum
 - Dateien: `src/App.tsx`, `src/ui/Haeutung.tsx`, `src/ui/Album.tsx`, `src/ui/reaktion.ts`, `src/index.css` sowie passende Asset-Zuordnung
-- Tun: Ergebnis zeigt Knobelanteil getrennt. Ein vollständig gemeistertes Lernfeld erhält einen besonderen Abschluss mit thematischer Schlangenillustration und Pokal/Orden. Das Wissensalbum sammelt pro abgeschlossenem Lernfeld den Eintrag mit fünf Sternen und Bild. Keine eigenständige Münzbelohnung für einzelne Sterne. Themenkarte zeigt den nächsten Kompetenzschritt und eine belegbare Fortschrittsanzeige.
+- Tun: Ergebnis zeigt Knobelanteil getrennt. Ein vollständig gemeistertes Lernfeld erhält einen besonderen Abschluss mit thematischer Schlangenillustration und Pokal/Orden. Das Wissensalbum sammelt pro abgeschlossenem Lernfeld den Eintrag mit fünf Sternen und Bild. Die bestehende Münzbelohnung je Stern bleibt erhalten. Themenkarte zeigt den nächsten Kompetenzschritt und eine belegbare Fortschrittsanzeige.
 - Prüfen: Abschluss wird nur einmal ausgelöst; Album-Eintrag bleibt erhalten; Rückkehr aus dem Album; kein Scrollen; Fortschrittsanzeige behauptet keine nicht gemessene Genauigkeit.
 - Anforderungen: R1.4, R5.2 bis R5.5, R5.9, R7.1 bis R7.7, N3
 
