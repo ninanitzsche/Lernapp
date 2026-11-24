@@ -137,13 +137,15 @@ UI-Bausteine:
 
 ### Typografie
 
-**Entscheidungsvorschlag zur Freigabe (Empfehlung des Creative Directors, 2026-11-24, noch nicht implementiert):**
+**Freigegebene Designentscheidung (Projektinhaber, 2026-11-24; noch nicht implementiert):**
 - Aufgaben, Zahlen und Fließtext: Atkinson Hyperlegible Next (2025), Regular 400 und Bold 700.
 - Überschriften und kurze Belohnungstitel: Nunito, ExtraBold 800.
 - Beide Schriften lokal ausliefern, keine externen Font-Requests. SIL-OFL-Lizenzdateien im Repository mitführen.
-- Details und offene technische Prüfpunkte: [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md), Abschnitt 9.
+- Schriftquelle und technische Prüfpunkte: [Atkinson Hyperlegible Next – offizielles Projekt-README](https://github.com/googlefonts/atkinson-hyperlegible-next/blob/main/README.md) sowie [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md), Abschnitt 9.
+- Laut offiziellem README ist Atkinson Hyperlegible Next eine überarbeitete Fassung mit zusätzlichen Zeichen, verbesserten Glyphen und verbessertem Kerning; die Familie umfasst sechs aufrechte und kursive Gewichte. README-Changelog: Version 2.001 vom 20. November 2024. Lizenz: SIL Open Font License 1.1.
 
-Allgemeine Regeln:- Freundliche, gut lesbare Schrift mit klarer Unterscheidung von Überschrift, Fließtext und Zahlen.
+Allgemeine Regeln:
+- Freundliche, gut lesbare Schrift mit klarer Unterscheidung von Überschrift, Fließtext und Zahlen.
 - Zahlen und Aufgabeninhalte müssen auch auf Tablets aus normalem Betrachtungsabstand eindeutig erkennbar sein.
 - Dekorative Display-Schrift nur für kurze Titel oder besondere Belohnungsmomente.
 - Keine verspielte Schrift für längere Erklärungen oder mathematische Inhalte.
