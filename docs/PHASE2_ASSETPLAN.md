@@ -107,6 +107,55 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 - [ ] Asset-Katalog und technische Übergabe für Claude Code pflegen.
 - [ ] Integration, Optimierung und Viewport-Prüfung durch Claude Code / Projektinhaber begleiten.
 
+
+## 10. Autonomer Abarbeitungsplan und Produktions-Gates
+
+Phase 2 wird in abgeschlossenen, einzeln überprüfbaren Paketen bearbeitet. Ein Paket gilt erst dann als abgeschlossen, wenn Konzept, Asset-Dateien, technische Prüfung und Dokumentation zusammenpassen.
+
+### Paket A – Nico-Grundformen
+- Fünf neutrale Einzelcharaktere in konsistenter Perspektive und mit sauberer Freistellung.
+- Entwicklungsbogen: Baby niedlich; Kleinkind verspielt; Kind mutiger; Teenager schlank/wild; Erwachsen/legendär majestätisch und gefährlich wirkend.
+- Korrekte Schlangen-Anatomie in jeder Stufe: durchgehender Körper, keine Beine, Flossen oder Flügel.
+- Logo als Referenz für die höchste Stufe.
+- **Gate A:** fünf Einzelbilder nebeneinander visuell freigegeben; keine Konzepttafeln als Laufzeitassets.
+
+### Paket B – Nico-Emotionen
+- Sieben Kernemotionen je Stufe aus der freigegebenen neutralen Basis ableiten.
+- Mimik und Pose variieren, Identität, Perspektive und Material bleiben stabil.
+- Emotionen ohne Text, Symbole, Futter oder sonstige eingebrannte Requisiten.
+- **Gate B:** Lesbarkeit aller Emotionen in kleiner App-Darstellung und altersgerechte Wirkung geprüft.
+
+### Paket C – Terrarium und Welt
+- Einen modularen, schlangenspezifischen Luminous-Fantasy-Lebensraum als Hintergrund entwickeln.
+- Zonen: warmes Nest/Rückzugsort, moosige Wurzeln und Äste, Kristall-/Glow-Akzente, ruhige UI-Flächen.
+- Hintergrund, Vordergrundelemente und dekorative Einzelobjekte getrennt halten.
+- **Gate C:** Figuren und UI bleiben auf Mobilgeräten gut lesbar; Szene wirkt wie Nicos Welt, nicht wie generische Fantasy.
+
+### Paket D – Objekte und Shop
+- Bestehende 45 Shop-Objekte gegen neue Art Direction prüfen; Wiederverwendung vor Neuproduktion.
+- Objektfamilien definieren: Pflanzen, Felsen/Kristalle, Äste/Nester, Futter, Dekoration und besondere Relikte.
+- Einheitliche Perspektive, Maßstab, Lichtquelle, Materialqualität und Schatten.
+- **Gate D:** ein zusammenhängendes Objektset mit transparenten Einzelassets und dokumentierter Verwendung.
+
+### Paket E – Belohnungen und Wissensalbum
+- Schuppen-/Münzbelohnung, Pokale/Medaille, Freischaltungsreliquien und Themenillustrationen.
+- Belohnungsobjekte als eigenständige Assets; keine Schrift oder UI in die Bilder integrieren.
+- **Gate E:** Belohnungen sind in Größe und Wertigkeit klar unterscheidbar; passen zur bestehenden Spielmechanik.
+
+### Paket F – Integration und Übergabe
+- Asset-Katalog mit Pfad, Zweck, Format, Pixelmaßen, Transparenz, Dateigröße, Status und Code-Verwendung vervollständigen.
+- Laufzeitreferenzen in `src/ui/Snake.tsx` und weiteren UI-Komponenten nur nach Freigabe ändern.
+- Bildoptimierung, Viewport-Prüfung, Fallbacks und Build-/Lint-Checks.
+- **Gate F:** keine ungenutzten oder fehlenden Referenzen, keine Regressionen; Änderungen committen.
+
+### Statusregeln
+- **Konzept:** Bildrichtung zur Diskussion; nicht in der App verwenden.
+- **Freigegeben:** visuell bestätigt; technische Prüfung kann noch offen sein.
+- **Produktionsasset:** Einzeldatei, sauberer Zuschnitt/Transparenz und technische Daten geprüft.
+- **Integriert:** im Code referenziert und im Ziel-Viewport geprüft.
+
+Generierte Übersichtsblätter mit Text, mehreren Figuren oder simuliertem Schachbrett-/Hintergrundmuster sind ausschließlich Konzeptmaterial. Sie gelten nicht als freigestellte Produktionsassets.
+
 ## 9. Abgrenzung
 
 Die spätere fachübergreifende Lernplattform und Bildungsserver-basierte Aufgabenerstellung sind nicht Gegenstand dieser Asset-Phase. Die Bildwelt soll langfristig weitere Fächer tragen können, aber Phase 2 baut zunächst die visuelle Identität und Asset-Basis des bestehenden Produkts aus.
