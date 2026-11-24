@@ -32,6 +32,15 @@
   --font-body: 'Atkinson Hyperlegible Next', 'Trebuchet MS', system-ui, sans-serif;
   --font-display: 'Nunito', 'Arial Rounded MT Bold', system-ui, sans-serif;
 
+  /* Typografische Rollen – unabhängig von einzelnen Screens */
+  --type-display: clamp(2.25rem, 7vw, 2.6rem);
+  --type-page-title: clamp(1.55rem, 5vw, 1.8rem);
+  --type-section-title: 1.2rem;
+  --type-task: clamp(1.15rem, 3.4dvh, 1.7rem);
+  --type-body: 1rem;
+  --type-supporting: .875rem;
+  --type-control: 1rem;
+
   /* Semantische Zustände und Kontrastfarben */
   --color-success: #087A42;
   --color-success-soft: #E6F5EA;
@@ -579,6 +588,35 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 @media (prefers-reduced-motion: reduce) {
   .willkommen-logo, .willkommen-bild { transition: none; }
 }
+
+/* ---------- Typografische Hierarchie ---------- */
+body { font-family: var(--font-body); font-weight: 400; }
+h1 { font-size: var(--type-display); }
+h2 { font-size: var(--type-page-title); line-height: 1.15; }
+h3 { font-size: var(--type-section-title); line-height: 1.2; }
+p { line-height: 1.45; }
+.knopf { font-family: var(--font-body); font-weight: 700; }
+.aufgabe-text {
+  font-family: var(--font-body);
+  font-size: var(--type-task);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+.dialog-text,
+.rueckmeldung-titel,
+.haut-karte h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+.shop-name,
+.klein-text,
+.info-text,
+.futter-text {
+  font-family: var(--font-body);
+}
+.shop-name { font-weight: 700; line-height: 1.25; }
+.klein-text { font-size: var(--type-body); line-height: 1.45; }
 
 /* ---------- Konsolidierung: gemeinsame Oberflächen und Zustände ---------- */
 /* Die vorhandenen Komponenten behalten ihre Selektoren und Interaktionen.
