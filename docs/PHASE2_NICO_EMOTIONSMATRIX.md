@@ -16,13 +16,13 @@ Diese Ebenen dürfen bei der Asset-Produktion nicht untrennbar in ein einziges B
 
 ## 2. Unveränderliche Identität
 
-- **Spezies und Silhouette:** eindeutig Schlange; keine Beine oder humanoide Körperhaltung. Die Körperform wird mit dem Alter länger und reifer.
+- **Spezies und Silhouette:** eindeutig Schlange; langer, durchgehender, muskulöser Schlangenkörper ohne Beine, Flossen oder Flügel. Die Körperform wird mit dem Alter länger, kräftiger und reifer. Kammartige Schuppen oder stachelige Konturen dürfen als natürliche Schuppenfortsätze gestaltet werden.
 - **Kopf:** dieselbe grundlegende Kopf- und Schnauzenfamilie; altersgerechte Veränderung statt eines Identitätswechsels.
 - **Augen:** große, gut lesbare, ausdrucksstarke Augen. Irisfarbe und Augenaufbau werden über die Altersstufen harmonisiert. Der dokumentierte Sprung von Grün zu Bernstein beim Übergang zum Kind ist vor einer finalen Serie zu korrigieren oder bewusst zu begründen.
 - **Schuppen:** wiedererkennbare Schuppenstruktur und gemeinsame grüne Grundfarbwelt mit helleren gelbgrünen Akzenten.
 - **Material:** hochwertige, stilisierte 3D-Fantasy-Spielgrafik mit plastischer Tiefe und weichen, kontrollierten Highlights.
 - **Licht:** warme Grundbeleuchtung; biolumineszentes Giftgrün als gezielter Akzent. Mehr Präsenz und Leuchtkraft in späteren Stufen, aber keine überstrahlten Gesichter.
-- **Wesen:** freundlich, neugierig, zugewandt und humorvoll. Auch bei Fehlern oder Müdigkeit bleibt Nico sicher und unterstützend.
+- **Wesen:** Die Persönlichkeit bleibt neugierig und eigenständig, aber die visuelle Wirkung entwickelt sich deutlich: Baby und Kleinkind sind niedlich; Kind wird mutiger; Teenager wirkt schlank, wild und selbstbewusst; Erwachsen/legendär darf gefährlich, majestätisch und einschüchternd schön sein. Die mächtige Form bleibt auf der Seite des Kindes – nicht niedlich gemacht, aber auch nicht bösartig.
 - **Logo-Bezug:** Die erwachsene/legendäre Identität orientiert sich am bestehenden Logo. Das Logo selbst bleibt unverändert; die App benötigt eine eigenständige Begleiterpose.
 
 ## 3. Entwicklungsstufen
@@ -32,8 +32,8 @@ Diese Ebenen dürfen bei der Asset-Produktion nicht untrennbar in ein einziges B
 | Baby | sehr kompakt, rund, kurzer Hals, großer Kopf | besonders große Augen, weiche Wangen-/Schnauzenform | offen, staunend, unmittelbar |
 | Kleinkind | etwas längerer Hals und Körper, weiterhin kompakt | Baby-Gesichtsidentität klar erhalten | verspielt, neugierig, erste Eigenständigkeit |
 | Kind | sichtbar gestreckter, aktiver Körper | gleiche Augen-/Irisfamilie, lebendige Mimik | mutig, wissbegierig, stolz |
-| Teenager | schlanke, längere Silhouette | reifer, aber weiterhin sympathischer Blick; keine neue Spezies-Anmutung | selbstbewusst, humorvoll, gelegentlich müde |
-| Erwachsen / legendär | elegante, kraftvolle Schlangenform; mehr Präsenz | Logo-nahe Kopfidentität, freundliche und vertrauenswürdige Augen | ruhig, souverän, beschützend, begeistert |
+| Teenager | lange, schlanke, athletische Schlangenform; ausgeprägtere Schuppen-/Kammkontur | markanter Blick, selbstbewusste Augenpartie | wild, unabhängig, selbstbewusst; erste gefährliche Eleganz |
+| Erwachsen / legendär | großer, kräftiger, majestätischer Schlangenkörper; imposante Silhouette und ausgeprägte Schuppen | markanter, breiterer Logo-naher Kopf, intensive Augen, deutliche Brauen-/Schuppenpartie | uralt, mächtig, gefährlich wirkend und souverän; Beschützer statt Kuscheltier |
 
 Die Entwicklungsstufen verändern Proportionen und Nuancen – nicht die grundlegende emotionale Lesbarkeit. Freude muss beispielsweise in jeder Stufe als Freude erkennbar sein.
 
@@ -59,6 +59,7 @@ Die folgenden sieben Zustände bilden den gemeinsamen Kern. Die Namen beschreibe
 - `focused` ist nicht mit böse, streng oder verärgert gleichzusetzen.
 - `excited` bleibt lesbar und darf die Lernaufgabe nicht mit Effekten überlagern.
 - Kein Zustand darf Nico wie eine andere Figur oder Schlangenart aussehen lassen.
+- Die Emotionen der späten Stufen dürfen ihre erwachsene, kraftvolle Grundwirkung behalten; nicht jede Mimik muss durchgehend niedlich oder kindlich sein.
 
 ## 5. Matrix: Zustände über die fünf Entwicklungsstufen
 
