@@ -134,7 +134,7 @@ Beide Schriften sind vom Projektinhaber freigegeben. Die Auswahl ist verbindlich
 
 ### Implementierte CSS-Grundtokens
 
-`src/index.css` enthält das erste semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Bestehende Legacy-Variablen bleiben als bewusste Kompatibilitätsschicht erhalten und verweisen zentral auf die freigegebenen semantischen Tokens. So können vorhandene Komponenten schrittweise konsolidiert werden, ohne ihre Klassennamen oder Verhaltenslogik unnötig umzubauen.
+`src/index.css` enthält das erste semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Ergänzend sind typografische Größenrollen für Display-Titel, Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte definiert und auf die zentralen UI-Elemente angewendet. Bis die lokalen WOFF2-Dateien eingebunden sind, greifen die deklarierten Fallbacks. Bestehende Legacy-Variablen bleiben als bewusste Kompatibilitätsschicht erhalten und verweisen zentral auf die freigegebenen semantischen Tokens. So können vorhandene Komponenten schrittweise konsolidiert werden, ohne ihre Klassennamen oder Verhaltenslogik unnötig umzubauen.
 
 - Mobile-first, Smartphone im Hochformat als primäre Referenz.
 - Tablet und Desktop bleiben responsiv nutzbar.
