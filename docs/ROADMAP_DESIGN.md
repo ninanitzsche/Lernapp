@@ -45,16 +45,16 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 **Ziel:** Wiederverwendbare visuelle Regeln und Komponenten schaffen.
 
 - [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.
-- [ ] Bestehende feste Farbwerte systematisch auf die freigegebenen Tokens migrieren und visuell prüfen.
+- [x] Legacy-Farbvariablen zentral auf die freigegebenen semantischen Tokens abbilden; verbleibende Einzelwerte komponentenweise weiter migrieren und visuell prüfen.
 - [ ] Freigegebene Schriften lokal einbinden; Umlaute, ß und Ziffern prüfen.
 - [ ] Typografische Hierarchie für Titel, Aufgaben, Zahlen und Fließtext umsetzen.
-- [ ] Button-System vereinheitlichen: Primary, Secondary, Tertiary, Disabled und Focus.
-- [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vereinheitlichen.
+- [x] Vorhandene Button-Zustände für Disabled und Focus vereinheitlichen; Primary/Secondary/Tertiary visuell weiter prüfen.
+- [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vollständig vereinheitlichen (gemeinsame Oberflächenregeln begonnen).
 - [ ] Abstände, Rundungen, Konturen, Schatten und Glow-Regeln vereinheitlichen.
-- [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen festlegen.
+- [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen vollständig festlegen (erste schmale Viewport-Regeln ergänzt).
 - [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
 
-**Zwischenstand:** Das Token-Grundgerüst und die semantischen Typografie-Rollen sind angelegt. Die Migration bestehender Einzelwerte, die lokale Einbindung der freigegebenen Fontdateien und die visuelle Prüfung der Komponenten sind noch offen.
+**Zwischenstand:** Das Token-Grundgerüst ist angelegt; Legacy-Farbvariablen und zentrale Bedienzustände sind daran angebunden. Gemeinsame Oberflächenregeln und schmale Viewport-Anpassungen sind ergänzt. Einzelne harte Farbwerte, vollständige Komponentenvereinheitlichung, lokale Fontdateien und die visuelle Prüfung bleiben offen. Die Fontdateien konnten in diesem Schritt nicht als verifizierte lokale WOFF2-Dateien eingebunden werden.
 
 **Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
 
