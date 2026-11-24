@@ -16,7 +16,7 @@ Phase 2 wird paketweise bis zu den definierten Abnahme-Gates bearbeitet. Visuell
 - Kanonische Nico-Referenz und siebenstufige Emotionsmatrix angelegt.
 - Entwicklungsbogen präzisiert: frühe Stufen niedlich, spätere Stufen zunehmend wild, kraftvoll und legendär.
 - Schlangen-Anatomie festgelegt: durchgehender Schlangenkörper, keine Beine, Flossen oder Flügel.
-- Erste und zweite Charakter-Konzeptübersicht als Stilreferenzen erstellt; die zweite Übersicht ist die bevorzugte aktuelle Richtung, aber noch keine Freigabe für Laufzeitassets.
+- Mehrere weitere Art-Direction-Konzepttafeln zu Charakterentwicklung, Emotionen, Terrarium, Dekoration, Shop und Belohnungen erstellt und in einem Konzeptpaket gebündelt; sie sind keine Laufzeitassets.
 - Asset-Katalog und Produktions-Gates für Charaktere, Emotionen, Terrarium, Shop, Belohnungen und Integration angelegt.
 
 ## Aktueller Befund zu den jüngsten Charakterkonzepten
