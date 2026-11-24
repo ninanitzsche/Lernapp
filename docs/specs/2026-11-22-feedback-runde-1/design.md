@@ -133,7 +133,6 @@ Ein Raster aus Papierkarten (je Meilenstein ein Symbol, Titel, Datum). Antippen 
   Aufgabentypen
   Zahlwörter und Zahlen   ⬡⬡⬢ mittel   fast sicher   wird besser
   ...
-  Runden der letzten vier Wochen:  3 | 5 | 2 | 6
   Meilensteine: 10 Runden (14.12.), Kleinkind (03.12.) ...
 ```
 
