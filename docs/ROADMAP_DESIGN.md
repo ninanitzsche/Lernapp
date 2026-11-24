@@ -122,7 +122,9 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Finale Screenshots dokumentieren.
 - [ ] Roadmap und Funktionsübersicht aktualisieren.
 
-**Aktueller Prüfhinweis:** Für den aktuellen Branch-Stand liegt kein bestätigter Test-/Build-Lauf vor. Der zuletzt abgefragte Vercel-Status meldet `failure`; die konkrete Fehlerursache ist ohne Einsicht in die Vercel-Buildlogs nicht belastbar feststellbar. Das ist kein Nachweis für einen Testfehler.\n\n**Abnahmekriterium:** Die App ist visuell konsistent, auf dem Smartphone gut bedienbar, auf größeren Geräten responsiv und ohne bekannte Regressionen.
+**Aktueller Prüfhinweis:** Für den aktuellen Branch-Stand liegt kein bestätigter Test-/Build-Lauf vor. Der letzte Code-Commit meldete bei Vercel `failure`; der neueste Dokumentations-Commit ist derzeit `pending`; die konkrete Fehlerursache ist ohne Einsicht in die Vercel-Buildlogs nicht belastbar feststellbar. Das ist kein Nachweis für einen Testfehler.
+
+**Abnahmekriterium:** Die App ist visuell konsistent, auf dem Smartphone gut bedienbar, auf größeren Geräten responsiv und ohne bekannte Regressionen.
 
 ## Aktuelle Entscheidungen
 
