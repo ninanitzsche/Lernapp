@@ -35,10 +35,10 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Logo-Verwendung für Splash freigegeben: Original unverändert auf dunklem Hintergrund.
 - [x] Schriftwahl freigegeben: Atkinson Hyperlegible Next 400/700 und Nunito 800.
 - [x] Erste visuelle Sichtung der bereitgestellten Screenshots (Home, Splash, Aufgabenansicht, Pause-Dialog, Shop).
-- [ ] Smartphone-Hochformat separat prüfen.
-- [ ] Lokalen Produktionsbuild mit sichtbarem Exit-Code und Konsolenausgabe verifizieren.
+- [x] Smartphone-Hochformat vom Projektinhaber lokal geprüft und als funktionierend bestätigt.
+- [x] Lokaler Produktionsbuild auf dem Mac vom Projektinhaber erfolgreich ausgeführt und bestätigt.
 
-**Phase-0-Ergebnis:** Die Bestandsaufnahme und die Designentscheidungen liegen vor. Die Screenshot-Sichtung ist eine erste Desktop-Ansicht, keine mobile Abnahme. Tests und Typprüfung waren in der Linux-Sandbox erfolgreich; der Produktionsbuild ist dort wegen plattformspezifischer rolldown-Binärdateien nicht verifizierbar.
+**Phase-0-Ergebnis: ABGESCHLOSSEN.** Projektinventar, Funktionsschutz, visuelle Ausgangssichtung und verbindliche Designentscheidungen liegen vor. Der Projektinhaber hat die Smartphone-Darstellung im Hochformat lokal geprüft und als funktionierend bestätigt sowie den erfolgreichen lokalen Produktionsbuild auf dem Mac gemeldet. Tests (144/144) und Typprüfung (`tsc -b`) waren zusätzlich in der Linux-Sandbox erfolgreich. Die mobile Prüfung und der lokale Build sind Nutzerbestätigungen, keine von ChatGPT unabhängig ausgeführten Tests.
 
 ## Phase 1 – Designsystem und UI-Grundlagen
 
