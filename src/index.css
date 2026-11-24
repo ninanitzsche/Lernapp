@@ -860,7 +860,7 @@ button, input, textarea, select {
   gap: var(--space-1);
 }
 .dialog {
-  padding: clamp(var(--space-5), 5vw, var(--space-8));
+  padding: clamp(var(--space-5), 5vw, var(--space-6));
   color: var(--text);
   box-shadow: var(--shadow-panel), 0 0 0 3px rgba(255, 211, 41, .28);
 }
