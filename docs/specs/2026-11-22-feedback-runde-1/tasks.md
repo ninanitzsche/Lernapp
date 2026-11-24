@@ -38,14 +38,14 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 ### T6 Meilensteine
 - Dateien: neu `src/logic/meilensteine.ts` plus Test, `src/logic/game.ts`
-- Tun: `pruefeMeilensteine(vorher, nachher, now)` für Entwicklung, Stern, neue Themenfelder (Fit-Kriterium nach Interview), Entwicklung, Sterne und Knobelerfolg mit Rückblick (höchstens drei Aussagen) und Münzen. `nachtragen(state)` für Altstände. `finishRound` addiert Meilenstein-Münzen auf `bonusMuenzen`. Doppelte Auslösung ausgeschlossen. Keine Wochenziele oder Rundenzahl-Meilensteine. Die Fit-Regel für neue Themenfelder bleibt bis zum Interview offen. Münzen für bestehende Entwicklung/Sterne nicht doppelt zählen.
-- Test zuerst: jeder Auslöser genau einmal; Reihenfolge bei mehreren; Rückblick aus Daten berechnet; Altstand erzeugt Einträge mit 0 Münzen und keine Feier; Münzkonto der Altstände unverändert; Meilensteine gehen bei sinkendem Lernstand nicht verloren.
+- Tun: `pruefeMeilensteine(vorher, nachher, now)` für Entwicklung und den Abschluss eines Lernfeldes (fünf Sterne vollständig) mit Rückblick. Einzelne Sterne sind keine eigenen Münz-Meilensteine. Keine Wochenziele und keine Belohnungen für reine Rundenzahl. Abschluss-Auszeichnung und Relikt-Freischaltung gemäß `design.md` Abschnitt 12 dokumentieren; die genaue fachliche Stern-Zuordnung bleibt bis zur Freigabe offen. `nachtragen(state)` für Altstände. Doppelte Auslösung ausgeschlossen.
+- Test zuerst: jeder freigegebene Auslöser genau einmal; Abschluss eines Lernfeldes schaltet genau den passenden Album-Eintrag/Pokal frei; keine Rundenzahl- oder Wochenziel-Auslösung; Altstand erzeugt keine nachträgliche Feier und keine doppelten Belohnungen; Meilensteine gehen bei späteren Fehlern nicht verloren.
 - Anforderungen: R5.1, R5.3, R5.4 (Logik), R5.6 bis R5.8
 
 ### T7 Lernstand für Eltern
 - Dateien: neu `src/logic/lernstand.ts` plus Test
-- Tun: Die Implementierung von Lernstand, Sternen und Testbereitschaft bleibt bis zum ausführlichen Interview mit Nina zurückgestellt. Danach werden Regeln und Tests ergänzt.
-- Test zuerst: Grenzfälle der Ampel (4 Versuche gleich "zu wenig Daten"; 5 gleich Urteil; "sicher" nur mit mindestens 3 mittleren oder kniffeligen unter den letzten 10; 80 Prozent genau; 50 Prozent genau; 20 Prozent falsch genau); Trend nur ab 10 Versuchen; Empfehlung wählt den schwächsten Typ mit Daten, bei Gleichstand den mit weniger Versuchen; ohne Daten die Übe-Empfehlung; Bereitschaft je Thema (schlechtester Typ entscheidet, "noch offen" bei fehlenden Daten); Tage bis Test.
+- Tun: Bereits freigegeben sind fünf Sterne je Lernfeld, die feste Reihenfolge und der ausgewogene Kompetenznachweis über unterschiedliche Aufgabenstellungen und mehrere Übungsrunden. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sowie die Testbereitschaft bleiben bis zur weiteren Stakeholder-Freigabe zurückgestellt. Keine Schwellen oder Berechnungsregeln aus dem alten Diskussionsstand übernehmen. Denkimpuls darf zum Kompetenznachweis beitragen; die Münzreduktion beträgt eine Münze für die konkrete Aufgabe. Die bestehende Hilfe-/Lösungsanzeige bleibt erhalten; eine angezeigte Lösung ist kein selbstständiger Nachweis.
+- Test zuerst: Tests erst ergänzen, wenn die konkreten fachlichen Kriterien und die Testbereitschaft freigegeben sind. Bis dahin keine Stern- oder Testbereitschaftslogik implementieren.
 - Anforderungen: R6.1 bis R6.6 (nach Interview), R6.8
 
 ## Phase B: Oberfläche (je Aufgabe Sichtprüfung auf dem Mac)
@@ -62,11 +62,11 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 - Prüfen: Passt in `100dvh` auf kleinem Handy und im Querformat, Pause und Weitermachen vor und nach Halbzeit, Serie blockiert nichts.
 - Anforderungen: R1.2 bis R1.5, R2.2 bis R2.4, R3.3 bis R3.7, N2, N3
 
-### T10 Ergebnis, Häutung, Album
-- Dateien: `src/App.tsx`, neu `src/ui/Haeutung.tsx`, neu `src/ui/Album.tsx`, `src/ui/reaktion.ts`, `src/index.css`
-- Tun: Ergebnis zeigt Knobelanteil getrennt. Danach Häutungen nacheinander (bis drei, sonst zusammengefasst). Album über die Startseite. Themenkarte mit sichtbarer Stufe.
-- Prüfen: Mehrere Meilensteine in einer Runde, Zurück aus dem Album, kein Scrollen.
-- Anforderungen: R1.4, R4.4, R5.2, R5.4, R5.5, R5.9, N3
+### T10 Ergebnis, Lernfeld-Abschluss und Wissensalbum
+- Dateien: `src/App.tsx`, `src/ui/Haeutung.tsx`, `src/ui/Album.tsx`, `src/ui/reaktion.ts`, `src/index.css` sowie passende Asset-Zuordnung
+- Tun: Ergebnis zeigt Knobelanteil getrennt. Ein vollständig gemeistertes Lernfeld erhält einen besonderen Abschluss mit thematischer Schlangenillustration und Pokal/Orden. Das Wissensalbum sammelt pro abgeschlossenem Lernfeld den Eintrag mit fünf Sternen und Bild. Keine eigenständige Münzbelohnung für einzelne Sterne. Themenkarte zeigt den nächsten Kompetenzschritt und eine belegbare Fortschrittsanzeige.
+- Prüfen: Abschluss wird nur einmal ausgelöst; Album-Eintrag bleibt erhalten; Rückkehr aus dem Album; kein Scrollen; Fortschrittsanzeige behauptet keine nicht gemessene Genauigkeit.
+- Anforderungen: R1.4, R5.2 bis R5.5, R5.9, R7.1 bis R7.7, N3
 
 ### T11 Elternbereich
 - Dateien: `src/ui/Parent.tsx`, `src/index.css`
@@ -79,6 +79,13 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 ### T12 Prüfung und Doku
 - Tun: Rückverfolgbarkeitstabelle abhaken (Test oder M), README (Teststand, neue Ansichten), `config.ts` Kommentar, Sandbox-Grenzen benennen (kein Build, keine Sichtprüfung). Nina führt auf dem Mac `npm run build` und `npm run dev` aus und geht die manuellen Prüfpunkte M1 bis M5 mit dem Kind durch.
 - Anforderungen: alle
+
+
+### T13 Terrarium-Sammlung und Reliktzugang
+- Dateien: bestehende Terrarium-/Inventar-/Shop-Komponenten und Navigation; genaue Dateien nach Repository-Analyse durch Claude Code festlegen
+- Tun: Terrarium als frei gestaltbare Sammlung freigeschalteter Pokale, Orden und Dekorationen. Gegenstände lassen sich intuitiv platzieren und verschieben; die Sammlung bleibt unabhängig von der aktuellen Platzierung vollständig. Reliktzugang bleibt bis zum ersten Lernfeld-Abschluss unsichtbar. Der Pokal eines Lernfeldes öffnet ausschließlich die passenden freiwilligen Experten-Relikte. Relikte bleiben ein kleines Randfeature, nutzen die vorhandenen Aufgaben und deren bestehende Logik und vergüten mit Terrariummünzen. Keine Sterne, Medaillen oder weiteren Kompetenz-Auszeichnungen im Reliktbereich.
+- Prüfen: kein Reliktzugang vor Lernfeld-Abschluss; korrekte Zuordnung Pokal zu Relikt; Pokale frei platzierbar; Inventar bleibt vollständig; Reliktaufgaben verändern weder Sterne noch regulären Lernstand.
+- Anforderungen: R7.8 bis R7.12
 
 ## Rückverfolgbarkeit
 
@@ -102,6 +109,9 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 | R6.1 bis R6.6 (nach Interview), R6.8 | T7 | Test |
 | R6.7, R6.8 (Anzeige), R6.10 | T11 | Sicht plus M4 |
 | R6.9 | T5 | Test |
+| R7.1 bis R7.5 | T7 | nach Freigabe der konkreten Kriterien |
+| R7.6, R7.7 | T10 | Sicht und Test |
+| R7.8 bis R7.12 | T13 | Sicht und Test |
 | N1 | T3, T4 | Test (keine Minderung von Futter, Münzen, Sternen) |
 | N2 | T9, T10 | Sicht |
 | N3, N4 | T8 bis T11 | Sicht auf dem Mac |
