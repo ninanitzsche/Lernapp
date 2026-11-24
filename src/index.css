@@ -32,27 +32,50 @@
   --font-body: 'Atkinson Hyperlegible Next', 'Trebuchet MS', system-ui, sans-serif;
   --font-display: 'Nunito', 'Arial Rounded MT Bold', system-ui, sans-serif;
 
-  --nacht: #0f2f26;       /* tiefes Moos, Grundfläche */
-  --nacht-hell: #1b5240;  /* Moos im Lichtkegel */
-  --papier: #fff8e6;      /* Karten: Aufgaben, Antworten, Shop */
-  --papier-kante: #d9c9a0;/* Unterkante der Papiertasten */
-  --tinte: #1c2b24;       /* Text auf Papier */
-  --lime: #9bd93c;        /* richtig, Weiter, Prüfen */
-  --lime-kante: #5f9a14;
-  --amber: #ffb92e;       /* Hauptknopf, Münzen, Laternenlicht */
-  --amber-kante: #c27d00;
-  --blau: #2a6fb0;        /* Vorlesen */
-  --blau-kante: #174a7d;
-  --lila: #6b4bd1;        /* Knobelrunde */
-  --lila-kante: #4531a0;
-  --koralle: #ff7a63;
-  --gedaempft: #b8d6c5;   /* Nebentext auf dunklem Grund (Kontrast über 8:1) */
-  --gedaempft-papier: #4b5d54; /* Nebentext auf Papier */
-  --rot: #b3372a;
+  /* Semantische Zustände und Kontrastfarben */
+  --color-success: #087A42;
+  --color-success-soft: #E6F5EA;
+  --color-warning: #8A5A00;
+  --color-danger: #B3372A;
+  --color-danger-soft: #FFE7E1;
+  --color-info: #245F91;
+  --color-info-soft: #E6F1FA;
+  --color-disabled: #6C8175;
+  --color-disabled-text: #F0F4F1;
+  --focus-ring: #65C9FF;
+  --surface-overlay: rgba(4, 22, 16, .78);
+  --surface-inset: rgba(7, 29, 53, .08);
+  --shadow-interactive: 0 5px 0 rgba(4, 35, 25, .28);
+  --transition-press: transform .08s ease, box-shadow .08s ease, filter .15s ease;
+
+  /* Kompatibilitätsschicht: bestehende Komponenten behalten ihre Klassennamen,
+     beziehen ihre Farben aber zentral aus dem freigegebenen Designsystem. */
+  --nacht: var(--color-deep-forest);
+  --nacht-hell: #0B6844;
+  --papier: var(--color-warm-cream);
+  --papier-kante: var(--border-soft);
+  --tinte: var(--color-ink);
+  --lime: var(--color-toxic-lime);
+  --lime-kante: #5C9700;
+  --amber: var(--color-warm-gold);
+  --amber-kante: #B77A00;
+  --blau: var(--color-info);
+  --blau-kante: #174A70;
+  --lila: #6746B8;
+  --lila-kante: #49318A;
+  --koralle: #E86D59;
+  --gedaempft: var(--color-muted-on-dark);
+  --gedaempft-papier: var(--color-muted-on-light);
+  --rot: var(--color-danger);
   --text: var(--tinte);
-  --gruen: #1f7a45; --gruen-dunkel: #165c33; --gruen-hell: #e6f5ea;
+  --gruen: var(--color-success);
+  --gruen-dunkel: #165C33;
+  --gruen-hell: var(--color-success-soft);
+  color-scheme: light;
   font-family: var(--font-body);
-  color: #fff8e6; background: var(--nacht); font-size: 18px;
+  color: var(--color-warm-cream);
+  background: var(--surface-game);
+  font-size: 18px;
 }
 * { box-sizing: border-box; }
 html { background: var(--nacht); }
@@ -79,7 +102,7 @@ p { line-height: 1.4; }
   background: var(--lime); color: var(--tinte); font: inherit; font-weight: 800; cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   box-shadow: 0 5px 0 var(--lime-kante);
-  transition: transform .08s ease, box-shadow .08s ease, filter .15s ease;
+  transition: var(--transition-press);
 }
 .knopf:hover:not(:disabled) { filter: brightness(1.07); }
 .knopf:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 1px 0 var(--lime-kante); }
@@ -92,7 +115,10 @@ p { line-height: 1.4; }
 .hauptknopf { width: 100%; max-width: 380px; background: var(--amber); box-shadow: 0 6px 0 var(--amber-kante); }
 .hauptknopf:active:not(:disabled) { box-shadow: 0 1px 0 var(--amber-kante); transform: translateY(5px); }
 .link { background: none; border: 0; color: #ffd877; text-decoration: underline; cursor: pointer; font: inherit; font-weight: 700; padding: 12px; }
-:focus-visible { outline: 4px solid #5ec4ff; outline-offset: 3px; }
+:focus-visible { outline: 4px solid var(--focus-ring); outline-offset: 3px; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline-offset: 4px; }
+button { -webkit-tap-highlight-color: transparent; }
+::selection { color: var(--color-midnight); background: rgba(157, 255, 0, .42); }
 button, input, textarea, select { font-family: var(--font-body); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
@@ -316,7 +342,7 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 .hinweis-punkt { display: inline-block; width: 12px; height: 12px; margin-left: 8px; border-radius: 50%; background: var(--koralle); vertical-align: middle; box-shadow: 0 0 0 3px rgba(255, 122, 99, .3); }
 
 /* Rückfrage beim Verlassen der Runde */
-.dialog-hintergrund { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(6, 20, 16, .78); }
+.dialog-hintergrund { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 20px; background: var(--surface-overlay); }
 .dialog { width: 100%; max-width: 420px; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 20px; background: var(--papier); color: var(--tinte); border-radius: 26px; box-shadow: 0 6px 0 var(--papier-kante), 0 0 0 5px var(--amber); }
 .dialog-text { font-size: 1.35rem; font-weight: 800; text-align: center; margin: 0; }
 .dialog .klein-text { color: var(--gedaempft-papier); text-align: center; margin: 0; }
