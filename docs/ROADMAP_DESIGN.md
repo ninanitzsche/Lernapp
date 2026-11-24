@@ -56,13 +56,14 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Mobile-first CSS-Regeln, 48-px-Touch-Ziele und schmale Viewports absichern.
 - [x] Globale Reduced-motion-Absicherung ergänzen.
 - [x] Automatisierte Design-System-Regressionstests für Token-Referenzen, lokale Fonts und Bedienregeln ergänzen.
-- [ ] Sichtprüfung der tatsächlichen Glyphen, Aufgabenansichten und Komponenten auf Smartphone, Tablet und Desktop durchführen (Browser-/Geräteprüfung; nicht durch CSS-Tests ersetzbar).
+- [x] Code- und automatisierte Design-System-Abnahme abschließen (149 Tests, TypeScript-Prüfung und Produktionsbuild erfolgreich; Vercel Preview `READY`).
+- [ ] Manuelle Sichtprüfung der tatsächlichen Glyphen, Aufgabenansichten und Komponenten auf Smartphone, Tablet und Desktop durchführen (bewusst in die übergreifende Qualitätssicherung in Phase 5 verschoben).
 
 **Umsetzung (Code):** Die bestehenden TSX-Komponenten und ihre Spiel-/Lernlogik bleiben unangetastet. Die Stylesheet-Ebene nutzt nun die zuvor definierten Abstands-, Typografie-, Oberflächen- und Zustands-Tokens auch in den vorhandenen Komponenten. Zusätzlich wurden 74 bisher direkt eingetragene Farb-/Effektwerte in zentrale Farb- und Effekt-Tokens überführt sowie 185 Abstandsangaben auf das Abstandsraster migriert. Die Token-Definitionen bleiben in `:root` zentral wartbar. Info-Flächen und Münz-Chips sind in dieselbe Oberflächenfamilie integriert. Die Dialoge, Karten, Antwortflächen, Buttons und Fortschrittsanzeigen teilen zentrale Material- und Bedienregeln. Die Font-Dateien werden weiterhin lokal geladen; Vite verwendet jetzt relative Asset-Pfade, damit Fonts und weitere öffentliche Assets auch bei Deployments unter einem Projekt-Unterpfad erreichbar bleiben.
 
 **Automatisierte Prüfung:** Ein neuer Test prüft eindeutige Root-Tokens, auflösbare CSS-Variablen, Vorhandensein und WOFF2-Signaturen aller sechs lokalen Schriftdateien sowie Fokus-, Touch- und Reduced-motion-Regeln. Ein zusätzlicher Regressionstest verhindert neue fest eingetragene Farben außerhalb der Token-Definitionen und neue Pixel-Einzelwerte in Abstandsdeklarationen. Der Test ergänzt die bestehenden Spieltests. Der GitHub-Actions-Lauf nach diesem Commit ist der Nachweis für Tests und Produktionsbuild; eine tatsächliche Browser-/Viewport-Sichtprüfung wird dadurch nicht ersetzt.
 
-**Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem, die lokalen Assets funktionieren auch unter Projekt-Unterpfaden und die Bedienregeln sind automatisiert abgesichert. Die manuelle Geräteprüfung bleibt Voraussetzung für die endgültige Phase-1-Freigabe.
+**Abnahme Phase 1: ABGESCHLOSSEN (Code und automatisierte Prüfung).** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem, lokale Assets funktionieren auch unter Projekt-Unterpfaden und Bedienregeln sind automatisiert abgesichert. Die manuelle Browser-/Viewport-Sichtprüfung ist keine offene Implementierungsarbeit der Phase 1 mehr, sondern bleibt als geräteübergreifender Qualitätssicherungs-Check in Phase 5 verbindlich. Damit wird keine manuelle Sichtprüfung als bereits erfolgt behauptet.
 
 ## Phase 2 – Charaktere und Assets
 
