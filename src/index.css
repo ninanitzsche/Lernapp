@@ -743,9 +743,9 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
 /* ---------- Phase 1: geprüfte Komponenten-Oberflächen ---------- */
 /* Diese Selektoren wurden gegen die tatsächlich gerenderten TSX-Klassennamen geprüft. */
 :root {
-  --surface-card: #FFFAEF;
+  --surface-card: var(--surface-elevated);
   --surface-card-raised: #FFFDF7;
-  --border-card: #D9C9A0;
+  --border-card: var(--border-soft);
   --shadow-card-raised: 0 4px 0 rgba(6, 77, 48, .14), 0 10px 24px rgba(7, 29, 53, .12);
   --shadow-card-inset: inset 0 2px 5px rgba(7, 29, 53, .10);
   --space-card: clamp(12px, 2.8vw, 18px);
@@ -832,4 +832,105 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
 .muenzen {
   border-radius: var(--radius-pill);
   white-space: nowrap;
+}
+
+
+/* ---------- Phase 1: Token-Migration und gemeinsame Bedienregeln ---------- */
+/* Bestehende Komponenten bleiben funktional unverändert; nur ihre Gestaltung wird konsolidiert. */
+.knopf:not(.klein) {
+  box-shadow: var(--shadow-interactive);
+  gap: var(--space-2);
+}
+.knopf.klein {
+  box-shadow: var(--shadow-card);
+}
+.knopf.gross {
+  font-size: var(--type-control);
+}
+button, input, textarea, select {
+  font-size: var(--type-control);
+}
+.themen, .aufgabe, .shop-liste, .album {
+  gap: var(--space-3);
+}
+.runde-kopf, .aufgabe-kopf {
+  gap: var(--space-3);
+}
+.treppe, .schuppen {
+  gap: var(--space-1);
+}
+.dialog {
+  padding: clamp(var(--space-5), 5vw, var(--space-8));
+  color: var(--text);
+  box-shadow: var(--shadow-panel), 0 0 0 3px rgba(255, 211, 41, .28);
+}
+.haut-karte, .rueckmeldung {
+  box-shadow: var(--shadow-card-raised), 0 0 0 3px rgba(255, 211, 41, .28);
+}
+.info {
+  width: 100%;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-card);
+  overflow: clip;
+}
+.info summary {
+  min-height: var(--touch-target);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+}
+.info[open] summary {
+  border-bottom: 1px solid var(--border-card);
+}
+.info-text {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-info-soft);
+  color: var(--color-ink);
+}
+.info-text > :first-child { margin-top: 0; }
+.info-text > :last-child { margin-bottom: 0; }
+.muenzen {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: var(--touch-target);
+  padding: var(--space-1) var(--space-3);
+  border: 2px solid var(--color-amber);
+  background: #FFE9A8;
+  color: var(--color-ink);
+  font-weight: 800;
+}
+.anzeige {
+  background: var(--surface-inset);
+}
+.album-datum, .futter-text, .schuppen-wort {
+  font-size: var(--type-supporting);
+}
+.ampel.fast {
+  color: var(--color-warning);
+}
+.ampel.sicher, .ampel.bereit {
+  color: var(--gruen-dunkel);
+}
+.ampel.bereit {
+  background: var(--gruen-hell);
+  border-radius: var(--radius-pill);
+  padding-inline: var(--space-2);
+}
+.balken {
+  border-radius: var(--radius-pill);
+}
+@media (max-width: 380px) {
+  main { gap: var(--space-2); }
+  .dialog { padding: var(--space-4); }
+  .info summary { padding-inline: var(--space-3); }
+}
+@media (min-width: 640px) {
+  main { padding-inline: var(--space-5); }
 }
