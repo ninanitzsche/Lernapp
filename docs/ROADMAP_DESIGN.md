@@ -54,7 +54,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen vollständig festlegen (erste schmale Viewport-Regeln ergänzt).
 - [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
 
-**Zwischenstand:** Das Token-Grundgerüst ist angelegt; Legacy-Farbvariablen und zentrale Bedienzustände sind daran angebunden. Gemeinsame Oberflächenregeln und schmale Viewport-Anpassungen sind ergänzt. Einzelne harte Farbwerte, vollständige Komponentenvereinheitlichung, lokale Fontdateien und die visuelle Prüfung bleiben offen. Die typografische Hierarchie ist jetzt als Rollen-System angelegt und auf zentrale Elemente angewendet; die freigegebenen Fontdateien selbst sind noch nicht eingebunden. Die Fontdateien konnten in diesem Schritt nicht als verifizierte lokale WOFF2-Dateien eingebunden werden.
+**Zwischenstand:** Das Token-Grundgerüst ist angelegt; Legacy-Farbvariablen und zentrale Bedienzustände sind daran angebunden. Gemeinsame Oberflächenregeln und schmale Viewport-Anpassungen sind ergänzt. Einzelne harte Farbwerte, vollständige Komponentenvereinheitlichung, lokale Fontdateien und die visuelle Prüfung bleiben offen. Die typografische Hierarchie ist jetzt als Rollen-System angelegt und auf zentrale Elemente angewendet; die freigegebenen Fontdateien selbst sind noch nicht eingebunden.
 
 **Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
 
