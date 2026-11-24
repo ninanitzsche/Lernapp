@@ -46,15 +46,15 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 - [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.
 - [x] Legacy-Farbvariablen zentral auf die freigegebenen semantischen Tokens abbilden; verbleibende Einzelwerte komponentenweise weiter migrieren und visuell prüfen.
-- [x] Freigegebene Schriften lokal einbinden (variable TTF-Dateien, lokal gehostet, OFL-Lizenzen); Glyphenprüfung in der App offen.
+- [ ] Freigegebene Schriften in der vereinbarten WOFF2-Auslieferung lokal einbinden und Umlaute/Ziffern in der App prüfen (TTF-Zwischenstand ist vorhanden).
 - [x] Typografische Rollen für Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte in CSS definieren und auf zentrale Komponenten anwenden.
 - [x] Vorhandene Button-Zustände für Disabled und Focus vereinheitlichen; Primary/Secondary/Tertiary visuell weiter prüfen.
-- [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vollständig vereinheitlichen (gemeinsame Oberflächenregeln begonnen).
+- [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vollständig vereinheitlichen (Shop-/Album-Karten, Aufgaben-Eingaben, Dialoge und Fortschrittsbalken mit echten TSX-Klassen gezielt nachgezogen; visuelle Prüfung offen).
 - [x] Zentrale Abstände, Rundungen, Konturen und Schatten als gemeinsame Tokens/Oberflächenregeln ergänzen; screenweise Migration offen.
-- [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen vollständig festlegen (erste schmale Viewport-Regeln ergänzt).
+- [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen vollständig festlegen (CSS-Regeln für schmale Viewports und Mindesthöhen ergänzt; Geräteprüfung offen).
 - [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
 
-**Zwischenstand:** Semantische Tokens, typografische Rollen, lokal gehostete variable TTF-Schriften inklusive OFL-Lizenzen sowie gemeinsame Oberflächen- und Touch-Regeln sind implementiert. Die vereinbarte WOFF2-Auslieferung ist noch offen; aktuell werden TTF-Dateien genutzt. Glyphen, Ziffern, Screens und Viewports müssen in der laufenden App visuell geprüft werden. Vollständige Migration verbleibender Einzelwerte und Regressionstests bleiben offen.
+**Zwischenstand (Code-Audit):** Semantische Tokens, typografische Rollen und lokale variable TTF-Dateien inklusive OFL-Lizenzen sind vorhanden. Die vereinbarte WOFF2-Auslieferung und die Glyphenprüfung sind offen. Die tatsächlichen Klassen in `Shop.tsx`, `Album.tsx`, `TaskView.tsx`, `Parent.tsx` und `Round.tsx` wurden gegen die CSS-Selektoren geprüft; die zentralen Shop-/Album-Karten, Antwortfelder, Zifferntasten, Dialoge und Fortschrittsanzeigen haben gezielte gemeinsame Regeln erhalten. Der GitHub-Diff dieses Schritts enthält ausschließlich `src/index.css`. Das ist ein Quellcode-Audit, keine Browser-Sichtprüfung. Screen-/Viewport-Prüfung, vollständige Migration verbleibender Einzelwerte und Regressionstests bleiben offen.
 
 **Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
 
