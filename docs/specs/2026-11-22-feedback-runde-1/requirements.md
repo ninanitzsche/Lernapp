@@ -90,16 +90,16 @@ Meilensteintypen und Auslöser:
 | Neues Themenfeld | Das Kind ist in einem neu eingeführten, eigenständigen Lernfeld (z. B. Multiplikation) fachlich fit | Belohnung; genaue Höhe und Fit-Kriterium TBD |\n| Knobelerfolg | Erste starke Knobelrunde (mindestens 7 von 10 gleich richtig): 1 Münze. Dann 10, 25, 50 kniffelige Aufgaben insgesamt im ersten Versuch richtig: 1, 2, 3 Münzen | 1, dann 1, 2, 3 |
 
 - **R5.1** Jeder Meilenstein SHALL genau einmal ausgelöst und mit Datum und Rückblick gespeichert werden.
-- **R5.2** WHEN ein Meilenstein erreicht wird, THE App SHALL nach dem Rundenergebnis eine Häutungs-Feier zeigen: Konfetti, Spruch der Schlange, Name des Meilensteins und Rückblick.
-- **R5.3** THE Rückblick SHALL höchstens drei kurze Aussagen enthalten, gewählt aus: gelöste Aufgaben insgesamt, Übungstage, Anteil gleich richtig beim ersten Mal, stärkstes Thema. Alles SHALL aus gespeicherten Daten berechnet sein, nichts erfunden.
-- **R5.4** IF mehrere Meilensteine in derselben Runde eintreten, THEN THE App SHALL sie nacheinander mit "Weiter" zeigen, in der Reihenfolge Entwicklung, neues Themenfeld, Stern, Knobelerfolg. Mehr als drei Feiern hintereinander SHALL zu einer gemeinsamen Karte zusammengefasst werden.
-- **R5.5** THE App SHALL eine Ansicht "Meine Häute" (Album) bieten, in der alle bisherigen Meilensteine mit Datum und Rückblick wieder ansehbar sind.
+- **R5.2** WHEN ein Lernfeld vollständig gemeistert wird, THE App SHALL den Abschluss als besonderen Lernmeilenstein darstellen und den thematischen Album-Eintrag sowie den passenden Pokal/Orden freischalten.
+- **R5.3** THE Rückblick eines Lernmeilensteins SHALL höchstens drei kurze Aussagen enthalten, gewählt aus tatsächlich gespeicherten Lerninformationen (z. B. gelöste Aufgaben, Anteil gleich richtig beim ersten Mal, stärkstes Thema). Reine Nutzungstage oder Spielzeit sind keine Belohnungs- oder Fortschrittsziele. Alles SHALL aus gespeicherten Daten berechnet sein, nichts erfunden.
+- **R5.4** IF mehrere Meilensteine in derselben Runde eintreten, THEN THE App SHALL sie nacheinander mit "Weiter" zeigen. Der Abschluss eines Lernfeldes hat Vorrang vor nachgeordneten Relikt-Hinweisen. Mehr als drei Feiern hintereinander SHALL zu einer gemeinsamen Karte zusammengefasst werden.
+- **R5.5** THE App SHALL ein **Wissensalbum** bieten, in dem jedes gemeisterte Lernfeld mit fünf Sternen und einer besonders schönen, thematisch passenden Illustration der Schlange dauerhaft gesammelt wird.
 - **R5.6** THE Meilensteine SHALL nie verloren gehen, auch wenn der Lernstand später sinkt.
 - **R5.7** WHEN ein Altstand geladen wird, THE App SHALL rückwirkend Meilensteine für schon erreichte Zustände (Entwicklung, Sterne) ohne Feier eintragen, damit nach dem Update keine alte Leistung "nachgefeiert" wird und keine Münze doppelt zählt.
-- **R5.8** THE Münzen aus neuen Meilensteinen (Runden, Knobelerfolg) SHALL zum Münzkonto zählen und im Shop ausgegeben werden können.
+- **R5.8** THE Münzen aus Relikt-Herausforderungen SHALL zum Terrarium-Münzkonto zählen und im Shop bzw. Terrarium ausgegeben werden können.
 - **R5.9** THE Feier SHALL ohne Zeitdruck und ohne Verlust ablaufen. Das Kind schließt sie selbst mit "Weiter".
 
-## 9. Anforderungen: Elternbereich (Feedback 4)\n\n**TBD vor Umsetzung:** Die Regeln für Lernstand/Sterne und die Testbereitschaft werden in einem ausführlichen Interview mit Nina definiert. Die derzeitigen Prozentwerte und Ableitungen in diesem Abschnitt sind Diskussionsstand, keine freigegebene Produktregel. Bis zum Abschluss des Interviews dürfen diese Regeln nicht als verbindliche Logik implementiert werden.
+## 9. Anforderungen: Elternbereich (Feedback 4)\n\n**Teilweise geklärt:** Die Bedeutung und Reihenfolge der fünf Kompetenzsterne sowie der ausgewogene Nachweis sind in `design.md` Abschnitt 12 festgelegt. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sowie die Testbereitschaft werden noch im Interview geklärt. Die derzeitigen Prozentwerte und Ableitungen in diesem Abschnitt sind Diskussionsstand, keine freigegebene Produktregel. Bis zur Freigabe dürfen diese Regeln nicht als verbindliche Logik implementiert werden.
 
 - **R6.1** THE Elternbereich SHALL je Aufgabentyp eine Einschätzung zeigen: "sicher", "fast sicher", "noch üben" oder "noch zu wenig Daten". Die Einschätzung SHALL als Text und Symbol angezeigt werden, nicht nur als Farbe.
 - **R6.2** THE Einschätzung SHALL auf den letzten zehn Versuchen je Typ beruhen. Für ein Urteil SHALL es mindestens fünf Versuche geben, sonst "noch zu wenig Daten".
@@ -112,9 +112,25 @@ Meilensteintypen und Auslöser:
 - **R6.9** THE Verlaufsdaten SHALL nur auf dem Gerät liegen, im Export und Import enthalten sein und in Altständen fehlen dürfen (dann gilt "noch zu wenig Daten").
 - **R6.10** WHEN das Kind vom Elternbereich zurückkehrt, THE Kinderansicht SHALL unverändert sein. Einschätzungen und Ampeln SHALL nie im Kinderbereich erscheinen (kein Druck, kein Vergleich).
 
-## 10. Nicht-funktionale Anforderungen
 
-- **N1** Keine Strafe, kein Verlust, kein Zeitdruck. Fehler beenden nur Serien, senken nie Futter, Münzen, Sterne oder Meilensteine.
+## 10. Anforderungen aus dem Stakeholder-Interview: Kompetenz, Terrarium und Relikte
+
+- **R7.1** EACH Lernfeld SHALL genau fünf Kompetenzsterne haben. Sterne stehen für nachgewiesene Kompetenz, nicht für Zeit, Fleiß oder bloße Aufgabenmenge.
+- **R7.2** THE App SHALL die fünf Sterne eines Lernfeldes in fester Reihenfolge vergeben. Ein höherer Stern setzt alle vorherigen Sterne voraus. Anspruchsvollere Aufgaben dürfen trotzdem jederzeit ausprobiert werden und überspringen keinen Stern.
+- **R7.3** THE Kompetenznachweis SHALL ausgewogen sein: unterschiedliche Aufgabenstellungen und mehrere Übungsrunden sind einzubeziehen. Eine Mindestzahl von Spieltagen SHALL NICHT erforderlich sein. Die konkreten Kriterien je Lernfeld bleiben bis zur fachlichen Freigabe offen.
+- **R7.4** WHEN ein Kind einen Denkimpuls nutzt, THE Aufgabe SHALL weiterhin zum Kompetenznachweis beitragen dürfen. Für diese Aufgabe erhält das Kind eine Münze weniger für das Terrarium.
+- **R7.5** THE App SHALL die bestehenden Funktionen „Hilfe anzeigen“ und „bei falscher Antwort richtige Lösung anzeigen“ beibehalten. Eine angezeigte Lösung SHALL nicht als selbstständiger Kompetenznachweis zählen; spätere selbstständige Leistung kann den Nachweis erbringen.
+- **R7.6** THE Kinderansicht SHALL zeigen, welche Kompetenz als Nächstes ansteht, und dies mit einer Fortschrittsanzeige ergänzen. Die Anzeige SHALL auf tatsächlich verfügbaren Lerninformationen beruhen und keine unbelegten Prozentwerte vortäuschen.
+- **R7.7** WHEN alle fünf Sterne eines Lernfeldes verdient sind, THE App SHALL einen thematischen Eintrag im Wissensalbum mit einer besonderen Schlangenillustration und einen passenden Pokal/Orden freischalten.
+- **R7.8** THE Terrarium SHALL eine frei gestaltbare Sammlung sein. Das Kind kann freigeschaltete Pokale, Orden und Dekorationen selbst platzieren und verschieben. Die vollständige Sammlung bleibt unabhängig von der aktuellen Platzierung erhalten.
+- **R7.9** WHEN ein Lernfeld gemeistert ist, THE App SHALL es weiterhin jederzeit normal spielbar lassen. Es gibt dafür keine erneuten Sterne oder dieselbe Abschlussauszeichnung. Der Abschluss bleibt sichtbar.
+- **R7.10** THE Reliktbereich SHALL erst sichtbar werden, nachdem mindestens ein Lernfeld abgeschlossen wurde. Der Pokal eines Lernfeldes SHALL die passenden Relikte freischalten.
+- **R7.11** Relikte SHALL ein freiwilliges Randfeature mit anspruchsvollen Expertenvarianten bereits bekannter Inhalte sein. Sie dienen der Festigung, sind keine Pflicht und bilden keinen eigenständigen großen Spielmodus.
+- **R7.12** WHEN eine Relikt-Herausforderung abgeschlossen wird, THE App SHALL Terrariummünzen vergeben. Relikte SHALL keine Sterne, Pokale, Medaillen oder Kompetenz-Auszeichnungen vergeben und den regulären Lernfortschritt nicht verändern.
+
+## 11. Nicht-funktionale Anforderungen
+
+- **N1** Keine Strafe, kein Verlust, kein Zeitdruck. Fehler beenden nur Serien, senken nie Futter, Münzen, Sterne oder Meilensteine. Ein Denkimpuls reduziert ausschließlich die Münzbelohnung der konkreten Aufgabe um eine Münze.
 - **N2** Ton: Die Schlange spricht lustig, nie fies, nie "ey". Neue Texte (Halbzeit, Serie, Häutung) sind in mehreren Varianten vorhanden. Siehe `feedback_schlange_ton`.
 - **N3** Jede Kinderansicht passt ohne Scrollen in `100dvh`, auch die neuen (Halbzeit, Häutung, Album).
 - **N4** Zugänglichkeit: Kontrast mindestens 4,5:1, Zielgrößen mindestens 48 px, sichtbarer Tastaturfokus, `prefers-reduced-motion` respektiert, Stufen nicht nur über Farbe, Feiern ohne Pflicht zum Schnellklicken.
@@ -124,7 +140,7 @@ Meilensteintypen und Auslöser:
 - **N8** Keine Webfonts, keine Drittanbieter-Aufrufe, keine KI zur Laufzeit.
 - **N9** Eine laufende pausierte Runde (alter Rundenstand ohne Stufen) SHALL nach dem Update weiterlaufen. Fehlende Stufen gelten dort als Stufe 2.
 
-## 11. Pädagogische Absicherung und Risiken
+## 12. Pädagogische Absicherung und Risiken
 
 Quellenbasis: Dunlosky et al. (2013) zu Abrufübung und verteiltem Üben, Deci, Koestner und Ryan (1999) zu Belohnung und innerer Motivation. Alles weitere unten sind Annahmen für den Praxistest, keine belegten Tatsachen.
 
@@ -134,7 +150,7 @@ Quellenbasis: Dunlosky et al. (2013) zu Abrufübung und verteiltem Üben, Deci, 
 4. **Die Testbereitschaft ist eine Schätzung.** Sie ist kein Testergebnis und ersetzt weder Buch noch Arbeitsheft. Das steht im Elternbereich neben der Anzeige.
 5. **Unbestätigte Annahmen.** Die konkreten Schwellen (Futterwerte, Wachstumsschwellen und Ampel-Schwellen) sind Startwerte ohne empirische Grundlage und gehören in den Praxistest.
 
-## 12. Abnahme und Rückverfolgbarkeit
+## 13. Abnahme und Rückverfolgbarkeit
 
 Jede Anforderung hat einen automatischen Test oder einen manuellen Prüfpunkt. Die Zuordnung steht in `tasks.md`, Abschnitt "Rückverfolgbarkeit". Manuelle Prüfpunkte sind mit "M" markiert und laufen mit dem Kind (siehe unten).
 
