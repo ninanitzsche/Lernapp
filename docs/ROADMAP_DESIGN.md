@@ -47,14 +47,14 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Erste semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens in `src/index.css` definieren.
 - [x] Legacy-Farbvariablen zentral auf die freigegebenen semantischen Tokens abbilden; verbleibende Einzelwerte komponentenweise weiter migrieren und visuell prüfen.
 - [ ] Freigegebene Schriften lokal einbinden; Umlaute, ß und Ziffern prüfen.
-- [ ] Typografische Hierarchie für Titel, Aufgaben, Zahlen und Fließtext umsetzen.
+- [x] Typografische Rollen für Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte in CSS definieren und auf zentrale Komponenten anwenden.
 - [x] Vorhandene Button-Zustände für Disabled und Focus vereinheitlichen; Primary/Secondary/Tertiary visuell weiter prüfen.
 - [ ] Karten, Panels, Dialoge, Badges und Fortschrittsanzeigen vollständig vereinheitlichen (gemeinsame Oberflächenregeln begonnen).
 - [ ] Abstände, Rundungen, Konturen, Schatten und Glow-Regeln vereinheitlichen.
 - [ ] Mobile-first Raster, responsive Abstände und Touch-Zielgrößen vollständig festlegen (erste schmale Viewport-Regeln ergänzt).
 - [x] Globale Reduced-motion-Absicherung ergänzen; vorhandene spezifische Animationseinstellungen bleiben erhalten.
 
-**Zwischenstand:** Das Token-Grundgerüst ist angelegt; Legacy-Farbvariablen und zentrale Bedienzustände sind daran angebunden. Gemeinsame Oberflächenregeln und schmale Viewport-Anpassungen sind ergänzt. Einzelne harte Farbwerte, vollständige Komponentenvereinheitlichung, lokale Fontdateien und die visuelle Prüfung bleiben offen. Die Fontdateien konnten in diesem Schritt nicht als verifizierte lokale WOFF2-Dateien eingebunden werden.
+**Zwischenstand:** Das Token-Grundgerüst ist angelegt; Legacy-Farbvariablen und zentrale Bedienzustände sind daran angebunden. Gemeinsame Oberflächenregeln und schmale Viewport-Anpassungen sind ergänzt. Einzelne harte Farbwerte, vollständige Komponentenvereinheitlichung, lokale Fontdateien und die visuelle Prüfung bleiben offen. Die typografische Hierarchie ist jetzt als Rollen-System angelegt und auf zentrale Elemente angewendet; die freigegebenen Fontdateien selbst sind noch nicht eingebunden. Die Fontdateien konnten in diesem Schritt nicht als verifizierte lokale WOFF2-Dateien eingebunden werden.
 
 **Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem und funktionieren im Smartphone-Hochformat.
 
