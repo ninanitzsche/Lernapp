@@ -81,13 +81,15 @@ Das Feedback "Belohnung zu spät" ist nur zum Teil richtig, und das ändert die 
 
 Meilensteintypen und Auslöser:
 
-| Typ | Auslöser | Münzen |
+| Typ | Auslöser | Belohnung |
 |---|---|---|
-| Entwicklung | Stufenaufstieg der Schlange | 1 (wie bisher) |
-| Stern | Neuer Stern in einem Thema | 1 je Stern (wie bisher) |
-| Runden | Abgeschlossene Runden insgesamt: 10, 25, 50, 100 | 1, 2, 3, 5 |
-| Wochenziel | Wochenziel erreicht | 1 (wie bisher) |
-| Neues Themenfeld | Das Kind ist in einem neu eingeführten, eigenständigen Lernfeld (z. B. Multiplikation) fachlich fit | Belohnung; genaue Höhe und Fit-Kriterium TBD |\n| Knobelerfolg | Erste starke Knobelrunde (mindestens 7 von 10 gleich richtig): 1 Münze. Dann 10, 25, 50 kniffelige Aufgaben insgesamt im ersten Versuch richtig: 1, 2, 3 Münzen | 1, dann 1, 2, 3 |
+| Entwicklung | Stufenaufstieg der Schlange | Bestehende Wachstumsbelohnung |
+| Stern | Ein Kompetenzstern in einem Lernfeld wird neu verdient | Bestehende Münzbelohnung je Stern bleibt erhalten |
+| Lernfeld-Abschluss | Alle fünf Kompetenzsterne eines Lernfeldes sind verdient | Thematisches Schlangenbild im Wissensalbum und ein passender Pokal/Orden |
+| Knobelerfolg | Erste starke Knobelrunde und definierte Treffer-Meilensteine | Bestehende Knobel-Münzbelohnung |
+| Relikt | Freiwillige Expertenaufgabe aus einem freigeschalteten Relikt erfolgreich abgeschlossen | Terrariummünzen; konkrete Höhe folgt der bestehenden Belohnungslogik |
+
+Es gibt keine Belohnung für reine Rundenzahl oder Wochenziele.
 
 - **R5.1** Jeder Meilenstein SHALL genau einmal ausgelöst und mit Datum und Rückblick gespeichert werden.
 - **R5.2** WHEN ein Lernfeld vollständig gemeistert wird, THE App SHALL den Abschluss als besonderen Lernmeilenstein darstellen und den thematischen Album-Eintrag sowie den passenden Pokal/Orden freischalten.
@@ -99,7 +101,9 @@ Meilensteintypen und Auslöser:
 - **R5.8** THE Münzen aus Relikt-Herausforderungen SHALL zum Terrarium-Münzkonto zählen und im Shop bzw. Terrarium ausgegeben werden können.
 - **R5.9** THE Feier SHALL ohne Zeitdruck und ohne Verlust ablaufen. Das Kind schließt sie selbst mit "Weiter".
 
-## 9. Anforderungen: Elternbereich (Feedback 4)\n\n**Teilweise geklärt:** Die Bedeutung und Reihenfolge der fünf Kompetenzsterne sowie der ausgewogene Nachweis sind in `design.md` Abschnitt 12 festgelegt. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sowie die Testbereitschaft werden noch im Interview geklärt. Die derzeitigen Prozentwerte und Ableitungen in diesem Abschnitt sind Diskussionsstand, keine freigegebene Produktregel. Bis zur Freigabe dürfen diese Regeln nicht als verbindliche Logik implementiert werden.
+## 9. Anforderungen: Elternbereich (Feedback 4)
+
+**Teilweise geklärt:** Die Bedeutung und Reihenfolge der fünf Kompetenzsterne sowie der ausgewogene Nachweis sind in `design.md` Abschnitt 12 festgelegt. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sowie die Testbereitschaft werden noch im Interview geklärt. Die derzeitigen Prozentwerte und Ableitungen in diesem Abschnitt sind Diskussionsstand, keine freigegebene Produktregel. Bis zur Freigabe dürfen diese Regeln nicht als verbindliche Logik implementiert werden.
 
 - **R6.1** THE Elternbereich SHALL je Aufgabentyp eine Einschätzung zeigen: "sicher", "fast sicher", "noch üben" oder "noch zu wenig Daten". Die Einschätzung SHALL als Text und Symbol angezeigt werden, nicht nur als Farbe.
 - **R6.2** THE Einschätzung SHALL auf den letzten zehn Versuchen je Typ beruhen. Für ein Urteil SHALL es mindestens fünf Versuche geben, sonst "noch zu wenig Daten".
