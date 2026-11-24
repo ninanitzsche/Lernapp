@@ -134,7 +134,7 @@ Beide Schriften sind vom Projektinhaber freigegeben. Die Auswahl ist verbindlich
 
 ### Implementierte CSS-Grundtokens
 
-`src/index.css` enthält das erste semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Bestehende Legacy-Variablen bleiben vorerst als Kompatibilitätsschicht bestehen; ihre vollständige Migration erfolgt schrittweise und nach visueller Prüfung.
+`src/index.css` enthält das erste semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Bestehende Legacy-Variablen bleiben als bewusste Kompatibilitätsschicht erhalten und verweisen zentral auf die freigegebenen semantischen Tokens. So können vorhandene Komponenten schrittweise konsolidiert werden, ohne ihre Klassennamen oder Verhaltenslogik unnötig umzubauen.
 
 - Mobile-first, Smartphone im Hochformat als primäre Referenz.
 - Tablet und Desktop bleiben responsiv nutzbar.
@@ -177,16 +177,6 @@ Beide Schriften sind vom Projektinhaber freigegeben. Die Auswahl ist verbindlich
 - Hintergründe, Charaktere, UI und Effekte getrennt halten.
 - Einheitliche Lichtquelle, Materialqualität, Perspektive und Charakterproportionen beachten.
 - Texte, Zahlen, Buttons und andere interaktive UI bleiben echte responsive React-/CSS-Komponenten.
-- Bestehende Komponenten zuerst prüfen und wiederverwenden.
-- Lernlogik, Datenmodelle, Speicherung, Navigation und Shop-Mechanik bei visueller Arbeit nicht verändern.
-
-## 10. Qualitätskriterien
-
-- Original-Logo unter `public/images/logo.webp` nicht überschreiben.
-- Transparente Logo-Ableitung ist zurückgestellt; keine unsaubere automatische Freistellung verwenden.
-- Illustrationen einzeln exportieren und versionieren.
-- Hintergründe, Charaktere, UI und Effekte getrennt halten.
-- Einheitliche Lichtquelle, Materialqualität, Perspektive und Charakterproportionen beachten.
 - Bestehende Komponenten zuerst prüfen und wiederverwenden.
 - Lernlogik, Datenmodelle, Speicherung, Navigation und Shop-Mechanik bei visueller Arbeit nicht verändern.
 
