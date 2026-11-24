@@ -38,15 +38,15 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 ### T6 Meilensteine
 - Dateien: neu `src/logic/meilensteine.ts` plus Test, `src/logic/game.ts`
-- Tun: `pruefeMeilensteine(vorher, nachher, now)` für Entwicklung, Stern, Runden (10, 25, 50, 100), Wochenziel und Knobelerfolg mit Rückblick (höchstens drei Aussagen) und Münzen. `nachtragen(state)` für Altstände. `finishRound` addiert Meilenstein-Münzen auf `bonusMuenzen`. Doppelte Auslösung ausgeschlossen. Münzen für Entwicklung, Stern und Wochenziel nicht doppelt zählen (sie existieren schon).
+- Tun: `pruefeMeilensteine(vorher, nachher, now)` für Entwicklung, Stern, neue Themenfelder (Fit-Kriterium nach Interview), Entwicklung, Sterne und Knobelerfolg mit Rückblick (höchstens drei Aussagen) und Münzen. `nachtragen(state)` für Altstände. `finishRound` addiert Meilenstein-Münzen auf `bonusMuenzen`. Doppelte Auslösung ausgeschlossen. Keine Wochenziele oder Rundenzahl-Meilensteine. Die Fit-Regel für neue Themenfelder bleibt bis zum Interview offen. Münzen für bestehende Entwicklung/Sterne nicht doppelt zählen.
 - Test zuerst: jeder Auslöser genau einmal; Reihenfolge bei mehreren; Rückblick aus Daten berechnet; Altstand erzeugt Einträge mit 0 Münzen und keine Feier; Münzkonto der Altstände unverändert; Meilensteine gehen bei sinkendem Lernstand nicht verloren.
 - Anforderungen: R5.1, R5.3, R5.4 (Logik), R5.6 bis R5.8
 
 ### T7 Lernstand für Eltern
 - Dateien: neu `src/logic/lernstand.ts` plus Test
-- Tun: `typEinschaetzung`, `trend`, `themaBereitschaft`, `empfehlung` (mit Tipps aus `design.md` Abschnitt 9), `rundenProWoche`.
+- Tun: Die Implementierung von Lernstand, Sternen und Testbereitschaft bleibt bis zum ausführlichen Interview mit Nina zurückgestellt. Danach werden Regeln und Tests ergänzt.
 - Test zuerst: Grenzfälle der Ampel (4 Versuche gleich "zu wenig Daten"; 5 gleich Urteil; "sicher" nur mit mindestens 3 mittleren oder kniffeligen unter den letzten 10; 80 Prozent genau; 50 Prozent genau; 20 Prozent falsch genau); Trend nur ab 10 Versuchen; Empfehlung wählt den schwächsten Typ mit Daten, bei Gleichstand den mit weniger Versuchen; ohne Daten die Übe-Empfehlung; Bereitschaft je Thema (schlechtester Typ entscheidet, "noch offen" bei fehlenden Daten); Tage bis Test.
-- Anforderungen: R6.1 bis R6.6, R6.8 (Daten)
+- Anforderungen: R6.1 bis R6.6 (nach Interview), R6.8
 
 ## Phase B: Oberfläche (je Aufgabe Sichtprüfung auf dem Mac)
 
@@ -70,14 +70,14 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 ### T11 Elternbereich
 - Dateien: `src/ui/Parent.tsx`, `src/index.css`
-- Tun: Oberer Teil "Das hilft jetzt", Testbereitschaft mit Hinweis "Schätzung", Typenliste mit Schuppenband, Wort und Trend, Runden der letzten vier Wochen, Meilensteinliste. Bestehendes Transparenzpapier-Table bleibt darunter.
+- Tun: Oberer Teil "Das hilft jetzt", Testbereitschaft mit Hinweis "Schätzung", Typenliste mit Schuppenband, Wort und Trend, Meilensteinliste. Keine Nutzungsfrequenz oder Wochenziele. Bestehendes Transparenzpapier-Table bleibt darunter.
 - Prüfen: In unter einer Minute lesbar (M4), Zeilenlänge unter 70 Zeichen, keine Farbe als einziger Träger.
-- Anforderungen: R6.1 bis R6.8, R6.10, N4
+- Anforderungen: R6.1 bis R6.8 (nach Interview), R6.10, N4
 
 ## Phase C: Abschluss
 
 ### T12 Prüfung und Doku
-- Tun: Rückverfolgbarkeitstabelle abhaken (Test oder M), `docs/spec.md` Abschnitt 18 ergänzen (Verweis und Änderungen), README (Teststand, neue Ansichten), `config.ts` Kommentar, Sandbox-Grenzen benennen (kein Build, keine Sichtprüfung). Nina führt auf dem Mac `npm run build` und `npm run dev` aus und geht die manuellen Prüfpunkte M1 bis M5 mit dem Kind durch.
+- Tun: Rückverfolgbarkeitstabelle abhaken (Test oder M), README (Teststand, neue Ansichten), `config.ts` Kommentar, Sandbox-Grenzen benennen (kein Build, keine Sichtprüfung). Nina führt auf dem Mac `npm run build` und `npm run dev` aus und geht die manuellen Prüfpunkte M1 bis M5 mit dem Kind durch.
 - Anforderungen: alle
 
 ## Rückverfolgbarkeit
@@ -99,7 +99,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 | R4.6 | T3 | Test (Lernstand-Deckel) |
 | R5.1, R5.3, R5.6 bis R5.8 | T6 | Test |
 | R5.2, R5.4, R5.5, R5.9 | T10 | Sicht |
-| R6.1 bis R6.6, R6.8 (Daten) | T7 | Test |
+| R6.1 bis R6.6 (nach Interview), R6.8 | T7 | Test |
 | R6.7, R6.8 (Anzeige), R6.10 | T11 | Sicht plus M4 |
 | R6.9 | T5 | Test |
 | N1 | T3, T4 | Test (keine Minderung von Futter, Münzen, Sternen) |
