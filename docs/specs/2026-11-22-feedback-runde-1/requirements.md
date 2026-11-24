@@ -131,6 +131,7 @@ Es gibt keine Belohnung für reine Rundenzahl oder Wochenziele.
 - **R7.10** THE Reliktbereich SHALL erst sichtbar werden, nachdem mindestens ein Lernfeld abgeschlossen wurde. Der Pokal eines Lernfeldes SHALL die passenden Relikte freischalten.
 - **R7.11** Relikte SHALL ein freiwilliges Randfeature mit anspruchsvollen Expertenvarianten bereits bekannter Inhalte sein. Sie dienen der Festigung, sind keine Pflicht und bilden keinen eigenständigen großen Spielmodus.
 - **R7.12** WHEN eine Relikt-Herausforderung abgeschlossen wird, THE App SHALL Terrariummünzen vergeben. Relikte SHALL keine Sterne, Pokale, Medaillen oder Kompetenz-Auszeichnungen vergeben und den regulären Lernfortschritt nicht verändern.
+- **R7.13** WHEN ein neues übergeordnetes Themengebiet (z. B. Multiplikation) eingeführt wird, THE App SHALL es als eigenständiges Lernfeld mit eigenem Kompetenzfortschritt behandeln, nicht als bloße zusätzliche Schwierigkeitsstufe eines bestehenden Lernfeldes.
 
 ## 11. Nicht-funktionale Anforderungen
 
