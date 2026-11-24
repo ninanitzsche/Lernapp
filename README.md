@@ -21,6 +21,8 @@ Voraussetzung: Node 22.6 oder neuer.
 - Layout: jede Kinder-Ansicht passt in `100dvh`, Größen skalieren mit der Bildschirmhöhe (siehe Kommentar am Anfang von `main` in `src/index.css`)
 - `docs/spec.md` Spezifikation und Änderungen
 - `docs/product-vision.md` langfristige Vision der fachübergreifenden Lernapp und Leitplanken für heutige Architekturentscheidungen
+- `docs/VISUELLES_WELTENKONZEPT.md` gemeinsame Art Direction mit eigenständigen Tier- und Themenwelten pro Fach
+- `docs/PHASE2_ASSETPLAN.md` Asset- und Charakterproduktion für die aktuelle Nico-/Mathematik-Welt
 - `docs/specs/2026-11-22-feedback-runde-1/` Anforderungen, Design und Aufgaben zur Feedback-Runde 1 (Belohnung, Schwierigkeitsstufen, Meilensteine, Elternblick)
 - `public/images/snake/` Schlangen-Bilder (Kopien aus FamilyBoard)
 
