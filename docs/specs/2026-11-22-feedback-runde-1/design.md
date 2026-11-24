@@ -1,6 +1,6 @@
 # Design: Feedback-Runde 1
 
-Stand: 2026-11-22. Gehört zu `requirements.md` (Anforderungen R1 bis R6, N1 bis N9) und `tasks.md`.
+Stand: 2026-11-24. Gehört zu `requirements.md` (Anforderungen R1 bis R7, N1 bis N9) und `tasks.md`.
 
 ## 1. Gestaltungsziele aus UX-Sicht
 
@@ -20,7 +20,7 @@ Der erste Entwurf hat drei Dinge getan, die für jede Lern-App gelten würden. D
 | Erster Entwurf | Warum er zu austauschbar war | Ersatz |
 |---|---|---|
 | Stufen als Sterne (1 bis 3) | Sterne zeigen schon das Können je Thema. Zwei Sternsysteme verwirren, und Sterne sind bei jeder App dasselbe. | **Schuppen.** Eine Schlange hat Schuppen. Schwierigkeit = 1 bis 3 Sechsecke, die sich wie ein Schuppenband füllen. Sterne bleiben Können, Schuppen sind Anforderung. |
-| Meilenstein = Popup "Level up! Glückwunsch!" mit Konfetti | Das ist die Standardfeier jeder App und sagt nichts über die Schlange. | **Häutung.** Wachsende Schlangen häuten sich. Jeder Meilenstein lässt eine "alte Haut" zurück, die als Karte ins Album "Meine Häute" kommt, mit Rückblick. Sammeln statt Verschwinden. |
+| Meilenstein = Popup "Level up! Glückwunsch!" mit Konfetti | Das ist die Standardfeier jeder App und sagt nichts über die Schlange. | **Häutung.** Wachsende Schlangen häuten sich. Die Häutung bleibt die schlangenspezifische Feier für die Entwicklung der Schlange. Der Abschluss eines Lernfeldes erhält davon getrennt einen thematischen Eintrag im Wissensalbum. |
 | Eltern: Ampel mit grün, gelb, rot und Balkendiagrammen | Rot am Kind wirkt wie ein Urteil, und ein Diagramm ohne Aussage hilft nicht beim Handeln. | **Sätze zuerst.** Oben ein Satz "Das hilft jetzt". Je Typ ein Schuppenband (ein bis drei gefüllte Schuppen = höchste sichere Stufe) plus ein Wort. Farbe nur als Zusatz, Wort und Symbol tragen die Aussage. |
 
 Nach dem Austausch bleibt die Frage der Prüfung "Würde ein Designer das für jedes Kinderprodukt zeichnen?" nur noch für Konfetti und Rundungen mit Ja. Beides ist hier bewusst vorhanden, weil Kinder darauf reagieren, und gehört zum bestehenden Stil.
@@ -98,24 +98,39 @@ Eine Sprechblase der Schlange über der Aufgabe, drei Sekunden, mit Konfetti. Si
 ```
   +-------------------------------+
   |        [ Schlange schlüpft ]  |
-  |   Häutung Nr. 4               |
-  |   "Multiplikation gemeistert!" |
-  |   Du hast 87 Aufgaben gelöst  |
-  |   an 6 Tagen.                 |
-  |   Die meisten gleich richtig  |
-  |   bei Zahlenstrahl.           |
-  |   🪙 +1 Münze                 |
+  |   Häutung Nr. 4                |
+  |   "Ich bin wieder gewachsen!"  |
+  |   Ein neuer Entwicklungsschritt|
+  |   🪙 +1 Münze                  |
   |        [ Weiter ]             |
   +-------------------------------+
 ```
 
-Höchstens drei Rückblickzeilen (R5.3). Die Karte wandert danach ins Album.
+Die Häutung feiert die Entwicklung der Schlange. Sie ist vom Wissensalbum für gemeisterte Lernfelder getrennt; reine Nutzungsdauer oder Übungstage sind kein Ziel.
 
 ### 3.5 Wissensalbum
 
 Das Wissensalbum sammelt die abgeschlossenen Lernfelder. Jeder Abschluss erhält einen eigenen Eintrag mit einer besonders schönen, thematisch gestalteten Illustration der Schlange und den fünf verdienten Sternen. Das Album ist die dauerhafte Sammlung der Lernerfolge; seine Einträge bleiben erhalten, unabhängig davon, welche Auszeichnungen gerade im Terrarium platziert sind.
 
-### 3.6 Elternbereich (neuer oberer Teil)
+### 3.6 Abschluss eines Lernfeldes
+
+Der Abschluss ist ein eigener Moment und wird nicht mit der Häutung für Schlangenwachstum verwechselt:
+
+```
+  +--------------------------------+
+  |       [ besondere Schlange ]   |
+  |   Zahlenstrahl gemeistert!     |
+  |   ★ ★ ★ ★ ★                   |
+  |   Dein Themenbild ist im       |
+  |   Wissensalbum.                |
+  |   [ Zahlen-Kompass erhalten ]  |
+  |          [ Weiter ]            |
+  +--------------------------------+
+```
+
+Das Themenbild zeigt die Schlange in einer eigens gestalteten Szene passend zum Lernfeld. Der Pokal/Orden ist ein eigener Gegenstand für die frei gestaltbare Terrarium-Sammlung und zugleich der Schlüssel zu den passenden Relikten.
+
+### 3.7 Elternbereich (neuer oberer Teil)
 
 ```
   Bereich für Erwachsene
@@ -174,14 +189,13 @@ halbzeitNach: 5
 serieAb: 3, serieFutter: 1
 rundenBonus: { normal: 5, knobel: 10 }
 knobelMuenzen: 2
-meilensteinRunden: { 10: 1, 25: 2, 50: 3, 100: 5 }   // Münzen
 knobelErfolg: { ersteStarkeRunde: 1, treffer: { 10: 1, 25: 2, 50: 3 } }   // Münzen; Treffer = kniffelige Aufgaben gleich richtig, insgesamt
 ampel: { fenster: 10, minVersuche: 5, sicherQuote: 0.8, sicherMinMittel: 3, uebenQuote: 0.5, uebenFalschMax: 0.2 }
 ```
 
-Die Münzwerte der Knobelerfolge entsprechen der Tabelle in `requirements.md` Abschnitt 8 (erste starke Knobelrunde 1, dann 10, 25, 50 Treffer mit 1, 2, 3 Münzen). Das ergibt höchstens 7 Münzen. "Starke Knobelrunde" heißt wie bisher mindestens 7 von 10 im ersten Versuch.
+Die Münzwerte der Knobelerfolge entsprechen der Tabelle in `requirements.md` Abschnitt 8 (erste starke Knobelrunde 1, dann 10, 25, 50 Treffer mit 1, 2, 3 Münzen). Das ergibt höchstens 7 Münzen. "Starke Knobelrunde" heißt wie bisher mindestens 7 von 10 im ersten Versuch. Reine Rundenzahl und Wochenziele lösen keine Belohnung aus.
 
-Anmerkung zur Wirtschaft: Die Meilenstein-Belohnungen sollen bedeutsame Lernfortschritte honorieren, nicht die reine Nutzungsmenge. Der Shop hat Dinge zu 1 bis 3 Münzen. Das sind spürbare, aber keine inflationären Zugaben. Nach dem Praxistest prüfen, ob der Shop leer gekauft wird.
+Anmerkung zur Wirtschaft: Belohnungen honorieren Lernfortschritt und freiwillige Expertenherausforderungen, nicht die reine Nutzungsmenge. Der Shop hat Dinge zu 1 bis 3 Münzen. Das sind spürbare, aber keine inflationären Zugaben. Nach dem Praxistest prüfen, ob der Shop leer gekauft wird.
 
 ## 5. Leichte Varianten der Aufgabentypen (R2.10)
 
