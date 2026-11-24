@@ -88,7 +88,7 @@ Die Testanzahl weicht von älteren Angaben in README und Dokumentation ab. Diese
 - Der Build-Ordner `dist/` war im erfassten Stand 78 MB groß. Ein großer Anteil entfiel auf Bilder in `public/images/`, die Vite unverändert kopiert. Rohbilder nicht ohne Prüfung ihrer Verwendung löschen oder verschieben.
 - **Offener Funktionsdokumentations-Konflikt:** `FEATURES.md` nennt Futter-Schwellen 0/60/150/300/500; `src/logic/config.ts` enthält 0/30/90/200/350. Keine Werte im Rahmen der visuellen Arbeit ändern. Entscheidung des Projektinhabers erforderlich.
 - Der gespeicherte Pausenzustand enthält laut Codeprüfung nicht den vollständigen Versuchszustand. Das kann nach einem ersten Fehlversuch beim Fortsetzen relevant sein. Dies ist ein separates Logikthema und bleibt außerhalb visueller Änderungen.
-- `docs/spec.md` und `docs/bewertung-ux-und-spieldesign.md` enthalten laut vorheriger Bestandsprüfung teilweise veraltete Aussagen. Sie sind nicht die Design-Referenz.
+- Zwei überholte Arbeitsdokumente (`docs/spec.md` und `docs/bewertung-ux-und-spieldesign.md`) wurden aus dem aktuellen Arbeitsstand entfernt. Ihre bisherigen Fassungen bleiben über die Git-Historie nachvollziehbar.
 
 ## 7. Freigegebene Schriftentscheidung
 
