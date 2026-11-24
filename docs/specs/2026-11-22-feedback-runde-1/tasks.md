@@ -1,6 +1,6 @@
 # Aufgaben: Feedback-Runde 1
 
-Stand: 2026-11-22. Gehört zu `requirements.md` und `design.md`. Reihenfolge: erst Test, dann Code (rot, grün). Jede Aufgabe endet mit `npx tsc --noEmit` und `npm test` ohne Fehler. Der Vite-Build und die Sichtprüfung laufen auf Ninas Mac.
+Stand: 2026-11-24. Gehört zu `requirements.md` und `design.md`. Reihenfolge: erst Test, dann Code (rot, grün). Jede Aufgabe endet mit `npx tsc --noEmit` und `npm test` ohne Fehler. Der Vite-Build und die Sichtprüfung laufen auf Ninas Mac.
 
 Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneinander unabhängig. T7 nach T5 und T6. T8 zuletzt.
 
@@ -74,18 +74,18 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 - Prüfen: In unter einer Minute lesbar (M4), Zeilenlänge unter 70 Zeichen, keine Farbe als einziger Träger.
 - Anforderungen: R6.1 bis R6.8 (nach Interview), R6.10, N4
 
+### T13 Terrarium-Sammlung und Reliktzugang
+- Dateien: bestehende Terrarium-/Inventar-/Shop-Komponenten und Navigation; genaue Dateien nach Repository-Analyse durch Claude Code festlegen
+- Tun: Terrarium als frei gestaltbare Sammlung freigeschalteter Pokale, Orden und Dekorationen. Gegenstände lassen sich intuitiv platzieren und verschieben; die Sammlung bleibt unabhängig von der aktuellen Platzierung vollständig. Reliktzugang bleibt bis zum ersten Lernfeld-Abschluss unsichtbar. Der Pokal eines Lernfeldes öffnet ausschließlich die passenden freiwilligen Experten-Relikte. Relikte bleiben ein kleines Randfeature, nutzen die vorhandenen Aufgaben und deren bestehende Logik und vergüten mit Terrariummünzen. Keine Sterne, Medaillen oder weiteren Kompetenz-Auszeichnungen im Reliktbereich.
+- Prüfen: kein Reliktzugang vor Lernfeld-Abschluss; korrekte Zuordnung Pokal zu Relikt; Pokale frei platzierbar; Inventar bleibt vollständig; Reliktaufgaben verändern weder Sterne noch regulären Lernstand.
+- Anforderungen: R7.8 bis R7.12
+
 ## Phase C: Abschluss
 
 ### T12 Prüfung und Doku
 - Tun: Rückverfolgbarkeitstabelle abhaken (Test oder M), README (Teststand, neue Ansichten), `config.ts` Kommentar, Sandbox-Grenzen benennen (kein Build, keine Sichtprüfung). Nina führt auf dem Mac `npm run build` und `npm run dev` aus und geht die manuellen Prüfpunkte M1 bis M5 mit dem Kind durch.
 - Anforderungen: alle
 
-
-### T13 Terrarium-Sammlung und Reliktzugang
-- Dateien: bestehende Terrarium-/Inventar-/Shop-Komponenten und Navigation; genaue Dateien nach Repository-Analyse durch Claude Code festlegen
-- Tun: Terrarium als frei gestaltbare Sammlung freigeschalteter Pokale, Orden und Dekorationen. Gegenstände lassen sich intuitiv platzieren und verschieben; die Sammlung bleibt unabhängig von der aktuellen Platzierung vollständig. Reliktzugang bleibt bis zum ersten Lernfeld-Abschluss unsichtbar. Der Pokal eines Lernfeldes öffnet ausschließlich die passenden freiwilligen Experten-Relikte. Relikte bleiben ein kleines Randfeature, nutzen die vorhandenen Aufgaben und deren bestehende Logik und vergüten mit Terrariummünzen. Keine Sterne, Medaillen oder weiteren Kompetenz-Auszeichnungen im Reliktbereich.
-- Prüfen: kein Reliktzugang vor Lernfeld-Abschluss; korrekte Zuordnung Pokal zu Relikt; Pokale frei platzierbar; Inventar bleibt vollständig; Reliktaufgaben verändern weder Sterne noch regulären Lernstand.
-- Anforderungen: R7.8 bis R7.12
 
 ## Rückverfolgbarkeit
 
