@@ -1,7 +1,7 @@
 # Design System – Luminous Fantasy Adventure
 
 > **Produkt:** Nico's Snake App  
-> **Status:** Visuelle Richtung und Designentscheidungen freigegeben. Erste Umsetzung am Splash vorhanden. Die vollständige Vereinheitlichung der Screens und Komponenten ist offen.  
+> **Status:** Visuelle Richtung und Designentscheidungen freigegeben. Phase 1 (Designsystem und UI-Grundlagen) ist auf Code-Ebene umgesetzt; die vollständige Vereinheitlichung aller Screens gehört zu Phase 3. Die manuelle Browser-/Viewport-Sichtprüfung ist separat offen.  
 > **Arbeitsstand:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md) · **Ausgangslage:** [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md)
 
 Dieses Dokument enthält ausschließlich die aktuell gültige visuelle Referenz.
@@ -121,7 +121,7 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 | Aufgaben, Zahlen und Fließtext | **Atkinson Hyperlegible Next** | Regular 400, Bold 700 |
 | Überschriften und kurze Belohnungstitel | **Nunito** | ExtraBold 800 |
 
-Beide Schriften sind freigegeben und lokal als WOFF2 unter `public/fonts/` eingebunden. Atkinson Hyperlegible Next wird in den Schnitten 400 und 700 jeweils für Latin und Latin Extended ausgeliefert; Nunito als variable WOFF2-Datei für Latin und Latin Extended. Die zugehörigen OFL-Lizenzdateien liegen ebenfalls dort. Die Browserprüfung der konkreten Glyphendarstellung und Ziffern bleibt offen.
+Beide Schriften sind freigegeben und lokal als WOFF2 unter `public/fonts/` eingebunden. Atkinson Hyperlegible Next wird in den Schnitten 400 und 700 jeweils für Latin und Latin Extended ausgeliefert; Nunito als variable WOFF2-Datei für Latin und Latin Extended. Die zugehörigen OFL-Lizenzdateien liegen ebenfalls dort. Die Browserprüfung der konkreten Glyphendarstellung und Ziffern bleibt als manuelle Qualitätssicherung offen.
 
 - Fonts lokal als WOFF2 ausliefern; keine externen Font-Requests.
 - SIL Open Font License (OFL) und zugehörige Lizenzdateien im Repository mitführen.
@@ -134,7 +134,7 @@ Beide Schriften sind freigegeben und lokal als WOFF2 unter `public/fonts/` einge
 
 ### Implementierte CSS-Grundtokens
 
-`src/index.css` enthält das semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Ergänzend sind typografische Größenrollen für Display-Titel, Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte definiert und auf zentrale UI-Elemente angewendet. Die lokalen WOFF2-Dateien werden über `@font-face` geladen; Latin und Latin Extended sind getrennt eingebunden. Bestehende Legacy-Variablen bleiben als bewusste Kompatibilitätsschicht erhalten und verweisen zentral auf die freigegebenen semantischen Tokens. So können vorhandene Komponenten schrittweise konsolidiert werden, ohne ihre Klassennamen oder Verhaltenslogik unnötig umzubauen. Die visuelle Prüfung der Glyphen im echten Browser bleibt ein eigener offener Check.
+`src/index.css` enthält das semantische Token-Grundgerüst für die freigegebene Farbpalette, Inhalts- und Spielweltflächen, Textkontraste, Schatten, Rundungen, Abstände sowie getrennte Schriftrollen für Fließtext und Überschriften. Ergänzend sind typografische Größenrollen für Display-Titel, Seitentitel, Abschnittstitel, Aufgaben, Fließtext und unterstützende Texte definiert und auf zentrale UI-Elemente angewendet. Die lokalen WOFF2-Dateien werden über `@font-face` geladen; Latin und Latin Extended sind getrennt eingebunden. Bestehende Legacy-Variablen bleiben als bewusste Kompatibilitätsschicht erhalten und verweisen zentral auf die freigegebenen semantischen Tokens. So können vorhandene Komponenten schrittweise konsolidiert werden, ohne ihre Klassennamen oder Verhaltenslogik unnötig umzubauen. Die visuelle Prüfung der Glyphen im echten Browser bleibt ein eigener offener Check und ist Teil der manuellen Qualitätssicherung.
 
 - Mobile-first, Smartphone im Hochformat als primäre Referenz.
 - Tablet und Desktop bleiben responsiv nutzbar.
