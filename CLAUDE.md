@@ -4,23 +4,24 @@ Before making changes, read:
 - `docs/AI_COLLABORATION_SPEC.md`
 - `docs/DESIGN_SYSTEM.md`
 - `docs/ROADMAP_DESIGN.md`
+- `docs/PHASE0_INVENTAR.md`
 - `FEATURES.md`
 
 ## Mandatory rules
 - You are the technical lead and implementation owner. ChatGPT is the Creative Director / UX Lead; the project owner has final authority.
-- Follow the collaboration contract and approved design docs. Do not silently reinterpret or override design decisions.
+- Follow the collaboration contract and approved design decisions. Do not silently reinterpret or override them.
 - Preserve all existing features, learning logic, reward behavior, shop/terrarium mechanics, persistence and user data. A visual task does not authorize logic changes.
-- Do not invent features or implementation facts. Inspect the repository and current branch before acting.
+- Inspect the current repository, branch, relevant components and docs before acting.
 - Prefer existing components and the smallest coherent change. Avoid unrelated refactors and new dependencies without justification.
-- The design is Luminous Fantasy Adventure. The primary target is smartphone portrait; tablet and desktop remain responsive secondary targets.
+- The design direction is Luminous Fantasy Adventure. Primary target: smartphone portrait; tablet and desktop remain responsive secondary targets.
 - Keep learning tasks bright, calm, high-contrast and readable. Use toxic neon glow selectively.
-- Preserve the original logo source `public/images/logo.webp`. Do not redraw or alter it without approval. Verify transparency before creating derivatives; never overwrite the source.
+- Preserve the original logo source `public/images/logo.webp`. Do not redraw or alter it without approval. The approved splash treatment uses the original on a dark background. A transparent derivative is postponed.
 - Keep text, numbers, buttons and interactive UI as real components, not embedded in generated images.
-- Do not push to main or merge without explicit approval. Work on `design/luminous-fantasy-adventure` unless told otherwise.
+- Do not push to `main` or merge without explicit approval. Work on `design/luminous-fantasy-adventure` unless told otherwise.
 - Do not mark roadmap tasks complete until implemented and verified.
 - Run relevant checks and report exactly what was and was not run. Never claim unverified success.
 - Before committing, inspect the diff for unrelated changes, secrets and regressions.
-- If requirements conflict or a critical detail is missing, stop and ask the project owner rather than guessing.
+- If requirements conflict or a critical detail is missing, stop and ask the project owner.
 
 ## Required completion report
 Summarize:
