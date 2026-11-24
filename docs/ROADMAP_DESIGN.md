@@ -4,6 +4,7 @@
 > **Branch:** `design/luminous-fantasy-adventure`  
 > **Designreferenz:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Ausgangslage:** [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md)  
+> **Phase-2-Arbeitsplan:** [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md)  
 > **Bestehende Funktionen:** [FEATURES.md](../FEATURES.md)
 
 ## Ziel
@@ -64,6 +65,10 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 **Abnahmekriterium:** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem, die lokalen Assets funktionieren auch unter Projekt-Unterpfaden und die Bedienregeln sind automatisiert abgesichert. Die manuelle Geräteprüfung bleibt Voraussetzung für die endgültige Phase-1-Freigabe.
 
 ## Phase 2 – Charaktere und Assets
+
+<text></text>
+
+**Status: IN VORBEREITUNG.** Die Phase wurde gestartet. Das Asset-Inventar und der Produktions-/Freigabeablauf sind in [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) dokumentiert. Die vorhandene Charakterbasis ist identifiziert; neue Bildassets und das visuelle Referenzpaket sind noch nicht erstellt oder freigegeben.
 
 **Ziel:** Nico und die Spielwelt konsistent und wiederverwendbar gestalten.
 
