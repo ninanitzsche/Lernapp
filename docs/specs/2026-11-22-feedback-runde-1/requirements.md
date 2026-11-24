@@ -2,7 +2,7 @@
 
 Stand: 2026-11-22. Status: umgesetzt (Logik mit Tests, Oberfläche ohne Sichtprüfung). Offen: Vite-Build und manuelle Prüfpunkte auf dem Mac.
 Verfahren: spec-driven in drei Dokumenten (Anforderungen, Design, Aufgaben), nach dem Muster Requirements, Design, Tasks mit Anforderungen im EARS-Format. Dieses Dokument sagt, WAS gelten muss. `design.md` sagt, WIE. `tasks.md` sagt, in welcher Reihenfolge gebaut und geprüft wird.
-Das übergeordnete Dokument bleibt `docs/spec.md`. Bei Widerspruch gilt dieses Dokument für die hier genannten Punkte, danach wird `docs/spec.md` Abschnitt 18 nachgezogen.
+Die verbindlichen visuellen Grundlagen stehen in `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Diese Feedback-Spezifikation ergänzt sie; sie verweist nicht auf ein separates `docs/spec.md`.
 
 ## 1. Auslöser (Feedback)
 
@@ -13,7 +13,7 @@ Das übergeordnete Dokument bleibt `docs/spec.md`. Bei Widerspruch gilt dieses D
 5. Knobelaufgaben sollen besser vergütet werden.
 6. Meilensteine dürfen resümiert und gefeiert werden.
 
-Entscheidungen von Nina (2026-11-22): Belohnung sofort plus Zwischenstopp. Schwierigkeit als automatische Rampe, Stufe sichtbar. Meilensteine: Stufenaufstieg, neue Sterne, Rundenzahl (10, 25, 50, 100), Wochenziel und Knobelerfolge. Elternbereich: Ampel je Aufgabentyp, Empfehlung "Das hilft jetzt", Testbereitschaft.
+Entscheidungen von Nina (2026-11-22): Belohnung sofort plus Zwischenstopp. Schwierigkeit als automatische Rampe, Stufe sichtbar. Meilensteine: Entwicklung der Schlange, neue Sterne und bedeutsame Lernfortschritte in einem eigenständigen neuen Themenfeld (z. B. Multiplikation) sowie Knobelerfolge. Kein Wochenziel und keine Belohnung für reine Rundenzahl. Elternbereich: Ampel je Aufgabentyp, Empfehlung "Das hilft jetzt", Testbereitschaft.
 
 ## 2. Befund zum Ist-Stand (aus dem Quellcode)
 
@@ -87,19 +87,19 @@ Meilensteintypen und Auslöser:
 | Stern | Neuer Stern in einem Thema | 1 je Stern (wie bisher) |
 | Runden | Abgeschlossene Runden insgesamt: 10, 25, 50, 100 | 1, 2, 3, 5 |
 | Wochenziel | Wochenziel erreicht | 1 (wie bisher) |
-| Knobelerfolg | Erste starke Knobelrunde (mindestens 7 von 10 gleich richtig): 1 Münze. Dann 10, 25, 50 kniffelige Aufgaben insgesamt im ersten Versuch richtig: 1, 2, 3 Münzen | 1, dann 1, 2, 3 |
+| Neues Themenfeld | Das Kind ist in einem neu eingeführten, eigenständigen Lernfeld (z. B. Multiplikation) fachlich fit | Belohnung; genaue Höhe und Fit-Kriterium TBD |\n| Knobelerfolg | Erste starke Knobelrunde (mindestens 7 von 10 gleich richtig): 1 Münze. Dann 10, 25, 50 kniffelige Aufgaben insgesamt im ersten Versuch richtig: 1, 2, 3 Münzen | 1, dann 1, 2, 3 |
 
 - **R5.1** Jeder Meilenstein SHALL genau einmal ausgelöst und mit Datum und Rückblick gespeichert werden.
 - **R5.2** WHEN ein Meilenstein erreicht wird, THE App SHALL nach dem Rundenergebnis eine Häutungs-Feier zeigen: Konfetti, Spruch der Schlange, Name des Meilensteins und Rückblick.
 - **R5.3** THE Rückblick SHALL höchstens drei kurze Aussagen enthalten, gewählt aus: gelöste Aufgaben insgesamt, Übungstage, Anteil gleich richtig beim ersten Mal, stärkstes Thema. Alles SHALL aus gespeicherten Daten berechnet sein, nichts erfunden.
-- **R5.4** IF mehrere Meilensteine in derselben Runde eintreten, THEN THE App SHALL sie nacheinander mit "Weiter" zeigen, in der Reihenfolge Entwicklung, Runden, Stern, Knobelerfolg, Wochenziel. Mehr als drei Feiern hintereinander SHALL zu einer gemeinsamen Karte zusammengefasst werden.
+- **R5.4** IF mehrere Meilensteine in derselben Runde eintreten, THEN THE App SHALL sie nacheinander mit "Weiter" zeigen, in der Reihenfolge Entwicklung, neues Themenfeld, Stern, Knobelerfolg. Mehr als drei Feiern hintereinander SHALL zu einer gemeinsamen Karte zusammengefasst werden.
 - **R5.5** THE App SHALL eine Ansicht "Meine Häute" (Album) bieten, in der alle bisherigen Meilensteine mit Datum und Rückblick wieder ansehbar sind.
 - **R5.6** THE Meilensteine SHALL nie verloren gehen, auch wenn der Lernstand später sinkt.
-- **R5.7** WHEN ein Altstand geladen wird, THE App SHALL rückwirkend Meilensteine für schon erreichte Zustände (Runden, Entwicklung, Sterne) ohne Feier eintragen, damit nach dem Update keine alte Leistung "nachgefeiert" wird und keine Münze doppelt zählt.
+- **R5.7** WHEN ein Altstand geladen wird, THE App SHALL rückwirkend Meilensteine für schon erreichte Zustände (Entwicklung, Sterne) ohne Feier eintragen, damit nach dem Update keine alte Leistung "nachgefeiert" wird und keine Münze doppelt zählt.
 - **R5.8** THE Münzen aus neuen Meilensteinen (Runden, Knobelerfolg) SHALL zum Münzkonto zählen und im Shop ausgegeben werden können.
 - **R5.9** THE Feier SHALL ohne Zeitdruck und ohne Verlust ablaufen. Das Kind schließt sie selbst mit "Weiter".
 
-## 9. Anforderungen: Elternbereich (Feedback 4)
+## 9. Anforderungen: Elternbereich (Feedback 4)\n\n**TBD vor Umsetzung:** Die Regeln für Lernstand/Sterne und die Testbereitschaft werden in einem ausführlichen Interview mit Nina definiert. Die derzeitigen Prozentwerte und Ableitungen in diesem Abschnitt sind Diskussionsstand, keine freigegebene Produktregel. Bis zum Abschluss des Interviews dürfen diese Regeln nicht als verbindliche Logik implementiert werden.
 
 - **R6.1** THE Elternbereich SHALL je Aufgabentyp eine Einschätzung zeigen: "sicher", "fast sicher", "noch üben" oder "noch zu wenig Daten". Die Einschätzung SHALL als Text und Symbol angezeigt werden, nicht nur als Farbe.
 - **R6.2** THE Einschätzung SHALL auf den letzten zehn Versuchen je Typ beruhen. Für ein Urteil SHALL es mindestens fünf Versuche geben, sonst "noch zu wenig Daten".
@@ -108,7 +108,7 @@ Meilensteintypen und Auslöser:
 - **R6.5** THE Elternbereich SHALL oben einen Satz "Das hilft jetzt" zeigen: der schwächste Typ mit ausreichend Daten und ein konkreter Übungstipp, der ohne App machbar ist. IF kein Typ ausreichend Daten hat, THEN THE Satz SHALL dazu raten, ein paar Runden zu üben.
 - **R6.6** THE Elternbereich SHALL je Thema eine Testbereitschaft zeigen ("bereit", "fast bereit", "noch üben", "noch offen") mit dem Hinweis, dass das eine Schätzung aus den App-Daten ist und kein Testergebnis. Ist ein Testdatum gesetzt, SHALL die Anzeige die Tage bis zum Test nennen.
 - **R6.7** THE Elternbereich SHALL die Stufen in Worten nennen (leicht, mittel, knifflig) und keine internen Kürzel (A1 und so weiter) ohne Klartext.
-- **R6.8** THE Elternbereich SHALL die erreichten Meilensteine mit Datum auflisten und die Rundenzahl der letzten vier Wochen zeigen.
+- **R6.8** THE Elternbereich SHALL die erreichten Meilensteine mit Datum auflisten. Eine Auswertung oder Zielvorgabe zur Nutzungsfrequenz wird nicht angezeigt.
 - **R6.9** THE Verlaufsdaten SHALL nur auf dem Gerät liegen, im Export und Import enthalten sein und in Altständen fehlen dürfen (dann gilt "noch zu wenig Daten").
 - **R6.10** WHEN das Kind vom Elternbereich zurückkehrt, THE Kinderansicht SHALL unverändert sein. Einschätzungen und Ampeln SHALL nie im Kinderbereich erscheinen (kein Druck, kein Vergleich).
 
@@ -126,13 +126,13 @@ Meilensteintypen und Auslöser:
 
 ## 11. Pädagogische Absicherung und Risiken
 
-Quellenbasis wie in `docs/spec.md` Abschnitt 3: Dunlosky et al. (2013) zu Abrufübung und verteiltem Üben, Deci, Koestner und Ryan (1999) zu Belohnung und innerer Motivation. Alles weitere unten sind Annahmen für den Praxistest, keine belegten Tatsachen.
+Quellenbasis: Dunlosky et al. (2013) zu Abrufübung und verteiltem Üben, Deci, Koestner und Ryan (1999) zu Belohnung und innerer Motivation. Alles weitere unten sind Annahmen für den Praxistest, keine belegten Tatsachen.
 
 1. **Größere Belohnungen können die Lust am Üben verschieben.** Die Metaanalyse von Deci et al. (1999) fand, dass erwartete, an Leistung gebundene materielle Belohnungen die innere Motivation senken können. Gegenmaßnahmen im Design: Belohnt wird Fortschritt und Dranbleiben (Meilensteine, Halbzeit), nicht Tempo, die Schlange wächst nur, nie Verlust, Futter bleibt der zentrale Ausdruck. Das Risiko wird im Praxistest beobachtet (siehe Prüfpunkte).
 2. **Gut bezahltes Knobeln kann Grundlagenüben verdrängen.** Das Kind könnte nur noch Knobelrunden spielen. Gegenmaßnahmen: R4.5 (Tageslimit), R4.6 (Sterne ruhen auf mittleren Aufgaben) und R2.7 (kein Verlust, deshalb kein Anreiz, Knobeln zu meiden). Der Mathe-Test am 24.11. prüft Grundlagen, daher bleibt die normale Runde der Standard.
 3. **Leichte Aufgaben zu Beginn können unterfordern.** Annahme: Ein Erfolgserlebnis in den ersten Aufgaben hilft. Die Rampe hebt schon nach wenigen Aufgaben an (Aufgabe 5), und nach `leichtRunden` Runden öffnet sich Stufe 2. Beides ist per Konfiguration verstellbar. Wenn das Kind sich langweilt, hilft Verkürzen auf `leichtRunden = 1`.
 4. **Die Testbereitschaft ist eine Schätzung.** Sie ist kein Testergebnis und ersetzt weder Buch noch Arbeitsheft. Das steht im Elternbereich neben der Anzeige.
-5. **Unbestätigte Annahmen.** Die konkreten Schwellen (Futterwerte, 30/90/180/320, 80 und 50 Prozent der Ampel, Rundenzahlen) sind Startwerte ohne empirische Grundlage und gehören in den Praxistest.
+5. **Unbestätigte Annahmen.** Die konkreten Schwellen (Futterwerte, Wachstumsschwellen und Ampel-Schwellen) sind Startwerte ohne empirische Grundlage und gehören in den Praxistest.
 
 ## 12. Abnahme und Rückverfolgbarkeit
 
