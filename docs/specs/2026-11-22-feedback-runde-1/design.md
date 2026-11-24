@@ -111,9 +111,9 @@ Eine Sprechblase der Schlange über der Aufgabe, drei Sekunden, mit Konfetti. Si
 
 Höchstens drei Rückblickzeilen (R5.3). Die Karte wandert danach ins Album.
 
-### 3.5 Album "Meine Häute"
+### 3.5 Wissensalbum
 
-Ein Raster aus Papierkarten (je Meilenstein ein Symbol, Titel, Datum). Antippen zeigt den Rückblick von damals. Erreichbar über einen kleinen Knopf auf der Startseite neben "Shop".
+Das Wissensalbum sammelt die abgeschlossenen Lernfelder. Jeder Abschluss erhält einen eigenen Eintrag mit einer besonders schönen, thematisch gestalteten Illustration der Schlange und den fünf verdienten Sternen. Das Album ist die dauerhafte Sammlung der Lernerfolge; seine Einträge bleiben erhalten, unabhängig davon, welche Auszeichnungen gerade im Terrarium platziert sind.
 
 ### 3.6 Elternbereich (neuer oberer Teil)
 
