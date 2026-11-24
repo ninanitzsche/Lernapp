@@ -36,7 +36,8 @@ Folgende Merkmale müssen über alle Stufen erkennbar verwandt bleiben:
 - **Schuppen und Oberfläche:** erkennbare Schuppenstruktur, plastische 3D-Materialität und eine gemeinsame grün-gelbe Grundfarbwelt.
 - **Silhouette:** dieselbe Grundanatomie und Körperlogik. Der Körper wird mit dem Alter länger und schlanker, ohne dass Nico wie eine andere Schlangenart wirkt.
 - **Licht:** warme, weiche Grundbeleuchtung. Giftgrünes Leuchten und magische Akzente nehmen mit der Reife zu, bleiben aber kontrolliert.
-- **Ausdruck:** freundlich, neugierig und dem Kind zugewandt. Auch die legendäre Form darf mächtig und geheimnisvoll sein, aber nicht bedrohlich gegenüber dem Kind wirken.
+- **Ausdruck und Charakterbogen:** Die Niedlichkeit ist ein bewusstes Merkmal der frühen Stufen, aber kein Dauerzustand. Nico entwickelt sich sichtbar zu einer imposanten, selbstbewussten und schließlich legendären Schlange. Späte Stufen dürfen gefährlich, wild und majestätisch wirken – als machtvoller Beschützer, nicht als bösartiger Gegner.
+- **Anatomie:** Nico bleibt in jeder Stufe eindeutig eine Schlange: langer, zusammenhängender, muskulöser Schlangenkörper ohne Beine, Flossen oder Flügel. Keine fischartigen Flossen und keine drachenartigen Gliedmaßen. Kammartige Schuppen, Hörner/Schuppenfortsätze oder stachelartige Konturen am Kopf/Rücken sind möglich, sofern sie wie Schuppenwachstum wirken und die Schlangen-Anatomie nicht brechen.
 
 ## 4. Entwicklungsbogen
 
@@ -44,7 +45,7 @@ Folgende Merkmale müssen über alle Stufen erkennbar verwandt bleiben:
 2. **Kleinkind – erste Eigenständigkeit:** etwas längerer Hals und Körper; weiterhin kompakt und verspielt; Gesicht bleibt klar mit dem Baby verwandt.
 3. **Kind – aktiver Begleiter:** sichtbar gestrecktere Proportionen; selbstbewusster, lebendiger Ausdruck; Augen- und Gesichtsübergang zu den jüngeren Stufen harmonisieren.
 4. **Teenager – schlank und kraftvoll:** deutlich längere, schlankere Silhouette; reifer, aber weiterhin sympathischer Gesichtsausdruck; keine abrupte Veränderung von Kopf oder Farbidentität.
-5. **Erwachsen / legendär – die Ikone:** Ausrichtung auf das bestehende Logo. Mehr Präsenz, Details und kontrolliertes giftgrünes Leuchten; mächtig und geheimnisvoll, zugleich eindeutig Nicos vertraute Identität.
+5. **Erwachsen / legendär – die Ikone:** deutlich weniger niedlich, dafür majestätisch und einschüchternd schön. Markanter, breiterer Kopf, ausgeprägte Augen-/Brauenpartie, intensive leuchtende Augen, kräftiger Schlangenkörper, überlappende dunkle Smaragd- und Goldschuppen sowie kontrollierte giftgrüne Magie. Enge Orientierung am Logo. Die Wirkung darf gefährlich und uralt sein, bleibt aber Nicos vertraute Identität.
 
 ## 5. Varianten und Laufzeitverhalten
 
@@ -91,7 +92,8 @@ Der direkte Vergleich der fünf Standardbilder und des Logos ist in [PHASE2_NICO
 - [ ] Alle fünf Standardstufen nebeneinander in vergleichbarer Größe und Perspektive geprüft.
 - [ ] Erwachsene/legendäre Form mit dem Original-Logo abgeglichen und ausdrücklich freigegeben.
 - [ ] Augenfarbe und Gesichtsidentität über Baby, Kleinkind und Kind harmonisiert.
-- [ ] Übergang Kind → Teenager → Erwachsen wirkt wie eine nachvollziehbare Entwicklung derselben Figur.
+- [ ] Übergang Kind → Teenager → Erwachsen zeigt eine deutliche Entwicklung von niedlich über selbstbewusst zu majestätisch/legendär.
+- [ ] Alle Stufen haben korrekte Schlangen-Anatomie: durchgehender Schlangenkörper, keine Beine, Flossen oder Flügel.
 - [ ] Material, Schuppen, Licht und Detailgrad entsprechen der freigegebenen 3D-Art-Direction.
 - [ ] Transparenz, Zuschnitt, Auflösung und Dateigröße technisch geprüft.
 - [ ] Laufzeitvarianten und Code-Zuordnung nach visueller Freigabe bewusst entschieden.
