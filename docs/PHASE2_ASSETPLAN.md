@@ -4,7 +4,7 @@
 > **Branch:** `design/luminous-fantasy-adventure`  
 > **Verbindliche Art Direction:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)  
-> **Status:** Vorbereitung gestartet; visuelle Referenzfreigabe und neue Asset-Produktion stehen noch aus.
+> **Status:** Phase 2 aktiv; erster visueller Referenzentwurf A für Terrarium, Objekte und Belohnung erstellt, Freigabe noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md).
 
 ## 1. Ziel
 
@@ -90,8 +90,8 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 ## 8. Offene Produktionsschritte
 
 - [ ] Vorhandene Charakterdateien visuell direkt vergleichen und als kanonische Quellen je Entwicklungsstufe bestimmen.
-- [ ] Stil-Referenzpaket erzeugen.
-- [ ] Referenzpaket mit Projektinhaber freigeben.
+- [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (Referenzentwurf A; noch nicht freigegeben).
+- [ ] Referenzentwurf A gemeinsam mit kanonischer Nico-Referenz prüfen und visuell freigeben.
 - [ ] Kanonische Assets und vorhandene Lücken je Entwicklungsstufe festlegen.
 - [ ] Einzelassets in freigegebener Art Direction erstellen.
 - [ ] Asset-Katalog und technische Übergabe für Claude Code pflegen.
