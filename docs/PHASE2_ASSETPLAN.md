@@ -96,9 +96,10 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 - [x] Kanonische Arbeitsreferenzen und Kontinuitätskriterien für alle fünf Nico-Stufen dokumentieren ([PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md)); die visuelle Endfreigabe bleibt offen.
 - [x] Alle fünf Standardstufen, das Logo und die Teenager-Ausdrucksvarianten direkt visuell vergleichen und Befunde dokumentieren ([PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md)).
 - [x] Gemeinsame Charakteridentität und siebenstufige Emotionsbibliothek für alle fünf Entwicklungsstufen definieren ([PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md)).
-- [ ] Visuelle Emotionskonzepte zunächst an Baby und Kind testen und anschließend auf alle fünf Stufen übertragen.
+- [x] Erste visuelle Emotionskonzepte für alle fünf Stufen mit sieben Zuständen als Gesamtübersicht explorieren; die Grundrichtung wurde vom Projektinhaber positiv bestätigt. Die Übersicht bleibt Konzept, nicht Produktionsfreigabe.
 - [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (Referenzentwurf A; noch nicht freigegeben).
 - [ ] Referenzentwurf A gemeinsam mit kanonischer Nico-Referenz prüfen und visuell freigeben.
+- [ ] Emotionskonzepte verfeinern: Konzentration weniger grimmig, Altersstufen stärker über Silhouette und Proportionen differenzieren; danach neutrale Einzelreferenzen je Stufe festlegen.
 - [ ] Kanonische Bildfassungen nach visueller Freigabe final festlegen; offene Lücken je Stufe schließen.
 - [ ] Einzelassets in freigegebener Art Direction erstellen.
 - [ ] Asset-Katalog und technische Übergabe für Claude Code pflegen.
