@@ -138,7 +138,7 @@ UI-Bausteine:
 ### Typografie
 
 **Entscheidungsvorschlag zur Freigabe (Empfehlung des Creative Directors, 2026-11-24, noch nicht implementiert):**
-- Aufgaben, Zahlen und Fließtext: Atkinson Hyperlegible, Regular 400 und Bold 700.
+- Aufgaben, Zahlen und Fließtext: Atkinson Hyperlegible Next (2025), Regular 400 und Bold 700.
 - Überschriften und kurze Belohnungstitel: Nunito, ExtraBold 800.
 - Beide Schriften lokal ausliefern, keine externen Font-Requests. SIL-OFL-Lizenzdateien im Repository mitführen.
 - Details und offene technische Prüfpunkte: [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md), Abschnitt 9.

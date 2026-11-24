@@ -112,13 +112,18 @@ Die Roadmap führt die Schrift als offen. Bitte um Entscheidung, damit Phase 1 s
 
 | Verwendung | Schrift und Schnitt |
 |---|---|
-| Aufgaben, Zahlen, Fließtext | Atkinson Hyperlegible, Regular 400 und Bold 700 |
+| Aufgaben, Zahlen, Fließtext | **Atkinson Hyperlegible Next** (Version 2025), Regular 400 und Bold 700 |
 | Überschriften und kurze Belohnungstitel | Nunito, ExtraBold 800 |
+
+Klarstellung des Projektinhabers (2026-11-24): Gemeint ist **Atkinson Hyperlegible Next**, nicht die ursprüngliche Atkinson Hyperlegible von 2020.
 
 Bedingungen: Beide Schriften werden **lokal ausgeliefert, ohne externe Font-Requests**, und die **SIL-OFL-Lizenzdateien** liegen im Repository.
 
 **Technische Anmerkungen (Recherche, noch nicht am Code geprüft):**
-- Lizenz: Atkinson Hyperlegible steht laut [GitHub-Repository von Google Fonts](https://github.com/googlefonts/atkinson-hyperlegible) und der [Lizenzdatei](https://raw.githubusercontent.com/googlefonts/atkinson-hyperlegible/main/OFL.txt) unter der SIL Open Font License 1.1. Das Braille Institute bietet auf der eigenen [Seite](https://www.brailleinstitute.org/freefont/) einen Download mit eigener Lizenzvereinbarung an. Für die Einbindung sollte die OFL-Quelle genutzt werden. Nunito steht laut [Fontsource](https://fontsource.org/fonts/nunito/about) unter der OFL 1.1.
-- Schnitte: Die ursprüngliche Atkinson Hyperlegible hat nur Regular und Bold (jeweils mit Kursiv). Die neuere "Atkinson Hyperlegible Next" (Februar 2025, laut [Braille Institute](https://www.brailleinstitute.org/about-us/news/braille-institute-launches-enhanced-atkinson-hyperlegible-font-to-make-reading-easier/) mit sieben Schnitten) wäre eine andere Familie. Die Entscheidung nennt Regular 400 und Bold 700, also die ursprüngliche Familie. Nachfragen bei ChatGPT, falls "Next" gemeint war.
+- Lizenz: Atkinson Hyperlegible Next steht laut [GitHub-Repository](https://github.com/googlefonts/atkinson-hyperlegible-next) unter der SIL Open Font License 1.1 (Copyright "2020-2024 The Atkinson Hyperlegible Next Project Authors"). Nunito steht laut [Fontsource](https://fontsource.org/fonts/nunito/about) unter der OFL 1.1. Die Lizenzdateien beider Projekte müssen mitgeführt werden. Beachte: Das Braille Institute bietet für die ältere Familie auf der eigenen [Seite](https://www.brailleinstitute.org/freefont/) einen Download mit eigener Lizenzvereinbarung an. Für die Einbindung sollte die OFL-Quelle genutzt werden.
+- Schnitte: Laut [Fontsource](https://fontsource.org/fonts/atkinson-hyperlegible-next/about) ist die Schrift als Variable Font mit dem Gewichtsbereich 200 bis 800 verfügbar (plus Kursiv). Die Angaben zur Zahl der statischen Schnitte widersprechen sich (GitHub: sechs, [Braille Institute](https://www.brailleinstitute.org/about-us/news/braille-institute-launches-enhanced-atkinson-hyperlegible-font-to-make-reading-easier/): sieben). Für die Entscheidung ist das unerheblich, weil Regular 400 und Bold 700 in jedem Fall dazugehören.
 - Nunito 800 ist laut [Fontsource](https://fontsource.org/fonts/nunito/about) verfügbar.
-- **Noch zu prüfen vor der Implementierung:** Vorhandensein von Umlauten und ß in den tatsächlich eingebundenen Dateien, Dateigröße je Schnitt (z. B. als WOFF2-Subset) und die Unterscheidbarkeit der Ziffern in der echten Oberfläche. Die Recherche hat Umlaute und ß für die Atkinson-Datei nicht ausdrücklich bestätigt.
+- **Noch zu prüfen vor der Implementierung:**
+  - Vorhandensein von Ä, Ö, Ü, ä, ö, ü und ß in den tatsächlich eingebundenen Dateien. Die Recherche hat das für Atkinson Hyperlegible Next **nicht ausdrücklich bestätigt**, es ist nur wahrscheinlich, weil die Familie als Latin-Schrift mit erweiterter Sprachunterstützung beschrieben wird. Die GitHub-Dokumentation war in dieser Umgebung nicht abrufbar.
+  - Dateigröße je Schnitt. Variable Font oder zwei statische Schnitte (jeweils als WOFF2, gegebenenfalls als Subset) ist eine technische Entscheidung für Phase 1.
+  - Unterscheidbarkeit der Ziffern in der echten Oberfläche. Das ist das erklärte Designziel der Schrift, aber hier noch nicht beobachtet.

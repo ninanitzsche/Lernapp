@@ -130,7 +130,7 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 | Schlange | Baby bis legendäre erwachsene Form | Festgelegt |
 | Aufgabenansicht | Hell und besonders gut lesbar | Festgelegt |
 | Terrarium | Reichhaltigste Fantasy-Ansicht | Festgelegt |
-| Schrift | Atkinson Hyperlegible Regular 400 und Bold 700 für Aufgaben, Zahlen und Fließtext. Nunito ExtraBold 800 für Überschriften und Belohnungstitel. Lokal ausliefern, keine externen Requests, OFL-Lizenzdateien mitführen. Siehe PHASE0_INVENTAR.md, Abschnitt 9 | Empfehlung ChatGPT, zur Freigabe. Nicht implementiert |
+| Schrift | Atkinson Hyperlegible Next (2025) Regular 400 und Bold 700 für Aufgaben, Zahlen und Fließtext. Nunito ExtraBold 800 für Überschriften und Belohnungstitel. Lokal ausliefern, keine externen Requests, OFL-Lizenzdateien mitführen. "Next" vom Projektinhaber bestätigt. Siehe PHASE0_INVENTAR.md, Abschnitt 9 | Empfehlung ChatGPT, zur Freigabe. Nicht implementiert. Zeichensatz (Umlaute, ß) vor Einbindung zu prüfen |
 | Splash-Verhalten | Kurzer Auftritt, überspringbar bzw. nicht blockierend | Vorschlag |
 
 ## Änderungsprotokoll
@@ -142,6 +142,7 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 | 2026-11-24 | Phase 0: Inventar von Ansichten, Komponenten, CSS und Assets erstellt. Logo hat keinen Alpha-Kanal, keine saubere transparente Variante vorhanden. Tests 144/144 und Typprüfung grün. Build: Artefakte vorhanden, Konsolenausgabe nicht verifiziert. Sichtprüfung offen |
 | 2026-11-24 | Korrekturen nach Review: Status in DESIGN_SYSTEM.md differenziert (Designsystem dokumentiert, erste Umsetzung am Splash seit `c8d10e2`, vollständige Umsetzung offen). Logo-Prüfung in technische Analyse und visuelle Betrachtung getrennt. Konflikt Futter-Schwellen (FEATURES.md 0/60/150/300/500 gegen config.ts 0/30/90/200/350, Änderung durch `10686bd`) dokumentiert, keine Logikänderung |
 | 2026-11-24 | Entscheidungen: Logo im Splash Weg 3 freigegeben. Schriftempfehlung (Atkinson Hyperlegible 400/700, Nunito 800, lokal, OFL) als Designentscheidung zur Freigabe dokumentiert, nicht implementiert |
+| 2026-11-24 | Klarstellung Schrift: Gemeint ist Atkinson Hyperlegible Next (2025). Dokumentation angepasst. Umlaute und ß in der Next-Datei weiterhin nicht belegt, Prüfpunkt vor Implementierung. Remote-Stand nach `git fetch` geprüft: `origin/design/luminous-fantasy-adventure` steht auf `ba92ba4`, keine fremden Änderungen |
 
 ## Pflege-Regeln
 1. Vor jeder größeren Arbeit den aktuellen Status dieser Roadmap prüfen.
