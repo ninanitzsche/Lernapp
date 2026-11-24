@@ -33,12 +33,12 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 - [x] Roadmap als lebendes Projektdokument angelegt
 - [x] Primärgerät Smartphone festgelegt
 - [x] Hochformat als primäre Ausrichtung festgelegt
-- [ ] Aktuelle Screens und Komponenten im Branch erneut inventarisieren
+- [x] Aktuelle Screens und Komponenten im Branch erneut inventarisieren (siehe [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md))
 - [x] Vorhandene Logo-Datei im Repository lokalisiert: public/images/logo.webp
-- [ ] Transparenzfähigkeit und Bildränder des vorhandenen Logos visuell prüfen
-- [ ] Aus dem vorhandenen Logo eine transparente PNG- und/oder WebP-Variante erstellen, falls sich der Hintergrund sauber entfernen lässt, ohne Glow, Konturen oder Schrift zu beschädigen
-- [ ] Bestehende Design-Tokens, CSS und UI-Komponenten erfassen
-- [ ] Ausgangszustand von Tests und Build dokumentieren
+- [x] Transparenzfähigkeit und Bildränder des vorhandenen Logos visuell prüfen (Ergebnis: kein Alpha-Kanal, Hintergrund uneinheitlich durch Glow bis zum Rand)
+- [ ] **Zurückgestellt (Entscheidung 2026-11-24):** Transparente PNG- und/oder WebP-Variante des Logos. Einfaches Freistellen über den Farbabstand liefert kein sauberes Ergebnis (Glow wird zum Schleier, Konturen leiden). Wird separat und später entschieden. Für den Splash gilt Weg 3 (Original auf dunklem Hintergrund), siehe Entscheidungstabelle.
+- [x] Bestehende Design-Tokens, CSS und UI-Komponenten erfassen
+- [x] Ausgangszustand von Tests und Build dokumentieren. Tests 144 von 144 und Typprüfung grün (Sandbox). Produktionsbuild vom Projektinhaber auf dem Mac ausgeführt: `dist/` mit `index.html`, JS-Bundle (453 KB, 144 KB gzip) und CSS (31 KB, 7,5 KB gzip) liegt vor (Zeitstempel 2026-11-24 10:34). Die Konsolenausgabe des Builds wurde nicht gesehen, Warnungen sind daher unbekannt. Beobachtung: `dist/` ist 78 MB groß, weil `public/images/` ungefiltert kopiert wird (siehe PHASE0_INVENTAR.md, Abschnitt 6).
 
 **Abnahmekriterium:** Es gibt eine nachvollziehbare Übersicht über die vorhandenen UI-Bausteine und Assets, bevor diese verändert werden. Die Logo-Variante ist visuell geprüft und für den vorgesehenen Einsatz geeignet.
 
@@ -122,14 +122,15 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 | Designstil | Luminous Fantasy Adventure | Festgelegt |
 | Logo | Original unverändert, prominent im Splash | Festgelegt |
 | Logo-Quelle | public/images/logo.webp im Branch vorhanden | Gefunden |
-| Transparente Logo-Variante | Aus vorhandener WebP-Datei ableiten und Qualität prüfen | In Prüfung |
+| Transparente Logo-Variante | Einfache Freistellung ungeeignet (2026-11-24 geprüft). Wird separat und später entschieden. Optionen: Matting-Verfahren, oder Quelldatei mit Transparenz neu exportieren | Zurückgestellt, wichtig laut Projektinhaber |
+| Logo im Splash | Weg 3: Original unverändert mit eingebranntem dunklem Hintergrund auf dunklem Splash, keine Transparenz nötig | Festgelegt (2026-11-24) |
 | Primärgerät | Smartphone | Festgelegt |
 | Primäre Ausrichtung | Hochformat (Portrait) | Festgelegt |
 | Weitere Geräte | Tablet/Desktop responsiv unterstützen | Festgelegt |
 | Schlange | Baby bis legendäre erwachsene Form | Festgelegt |
 | Aufgabenansicht | Hell und besonders gut lesbar | Festgelegt |
 | Terrarium | Reichhaltigste Fantasy-Ansicht | Festgelegt |
-| Schrift | Passende gut lesbare Schrift auswählen | Offen |
+| Schrift | Passende gut lesbare Schrift auswählen. Anfrage an ChatGPT in PHASE0_INVENTAR.md, Abschnitt 8 | Offen, Anfrage vorbereitet |
 | Splash-Verhalten | Kurzer Auftritt, überspringbar bzw. nicht blockierend | Vorschlag |
 
 ## Änderungsprotokoll
@@ -138,6 +139,7 @@ Der Relaunch soll die vorhandene Lernlogik, Shop-Mechanik, Terrarium-Funktionen 
 | 2026-11-24 | Roadmap und Designsystem initial angelegt; Arbeitsbranch erstellt |
 | 2026-11-24 | Smartphone als Primärgerät und Hochformat festgelegt |
 | 2026-11-24 | Vorhandenes Logo unter public/images/logo.webp gefunden; transparente Ableitung als Prüfaufgabe dokumentiert |
+| 2026-11-24 | Phase 0: Inventar von Ansichten, Komponenten, CSS und Assets erstellt. Logo hat keinen Alpha-Kanal, einfache Freistellung nicht sauber. Tests 144/144 und Typprüfung grün, Produktionsbuild auf dem Mac erfolgreich (Artefakte in `dist/` vorhanden), Sichtprüfung offen |
 
 ## Pflege-Regeln
 1. Vor jeder größeren Arbeit den aktuellen Status dieser Roadmap prüfen.
