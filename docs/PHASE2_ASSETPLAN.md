@@ -4,11 +4,12 @@
 > **Branch:** `design/luminous-fantasy-adventure`  
 > **Verbindliche Art Direction:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)  
+> **Visuelle Weltenstrategie:** [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md)  
 > **Status:** Phase 2 aktiv; erster visueller Referenzentwurf A für Terrarium, Objekte und Belohnung erstellt, Freigabe noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md).
 
 ## 1. Ziel
 
-Eine konsistente, wiederverwendbare Bildwelt für Luminous Fantasy Adventure aufbauen. Nico, Umgebungen, Spielobjekte und Belohnungen sollen erkennbar aus derselben hochwertigen stilisierten 3D-Fantasy-Spielwelt stammen.
+Eine konsistente, wiederverwendbare Bildwelt für Luminous Fantasy Adventure aufbauen. In dieser Phase ausschließlich die schlangenspezifische Mathematik-Welt rund um Nico produzieren. Langfristig sind weitere eigenständige Fachwelten mit eigenen tierischen Begleitern und Lebensräumen vorgesehen; siehe VISUELLES_WELTENKONZEPT.md.
 
 Diese Phase produziert Bildassets und verbindliche visuelle Referenzen. Sie ersetzt keine UI durch gerenderte Screenshots und verändert weder Lernlogik noch Navigation, Speicherung, Shop- oder Terrarium-Mechanik.
 
@@ -18,6 +19,8 @@ Diese Phase produziert Bildassets und verbindliche visuelle Referenzen. Sie erse
 - Biolumineszente Fantasy: gezielte giftgrüne Lichtakzente, magische Pflanzen und Kristalle.
 - Warme, hochwertige Mobile-Game-Anmutung mit Goldakzenten.
 - Nico bleibt über alle Entwicklungsstufen dieselbe Figur: Gesicht, Augen, Silhouette und Farbwelt müssen verwandt bleiben.
+- Die Mathematik-Umgebung muss schlangenspezifisch sein (Wurzeln, Höhlen, Nester, Äste, Schuppen, Häutung, passende Pflanzen und Requisiten), nicht bloß generische Fantasy mit Schlangenmotiven.
+- Weitere Fächer erhalten langfristig eigene Tiercharaktere und Themenwelten; Phase 2 produziert dafür ausdrücklich noch keine Assets.
 - Das vorhandene Logo ist die Referenz für die erwachsene/legendäre Form und bleibt unverändert.
 - Einheitliche Lichtquelle, Materialqualität, Perspektive, Proportionen und Detailgrad über alle Asset-Gruppen.
 - Aufgaben und interaktive UI bleiben echte responsive React-/CSS-Komponenten; keine Texte oder Buttons in Bildassets einbetten.
