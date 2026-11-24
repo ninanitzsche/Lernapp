@@ -66,12 +66,13 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 ## Phase 2 – Charaktere und Assets
 
-**Status: IN VORBEREITUNG.** Die Phase wurde gestartet. Das Asset-Inventar und der Produktions-/Freigabeablauf sind in [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) dokumentiert. Die vorhandene Charakterbasis ist identifiziert; neue Bildassets und das visuelle Referenzpaket sind noch nicht erstellt oder freigegeben.
+**Status: IN ARBEIT.** Asset-Inventar und Produktions-/Freigabeablauf sind in [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) dokumentiert. Ein erster visueller Referenzentwurf für Terrarium, Spielobjekte und Belohnung wurde erstellt und in [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md) festgehalten. Er ist noch nicht freigegeben; die Prüfung zusammen mit einer kanonischen Nico-Referenz steht aus.
 
 **Ziel:** Nico und die Spielwelt konsistent und wiederverwendbar gestalten.
 
 - [ ] Bestehendes Logo im Splash unverändert verwenden.
-- [ ] Stil-Referenzpaket erstellen und freigeben (Nico, Terrarium, Shop-Objekte, Belohnung).
+- [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erstellen.
+- [ ] Referenzentwurf zusammen mit einer kanonischen Nico-Referenz prüfen und als Stil-Referenzpaket freigeben.
 - [ ] Fünf Entwicklungsstufen als konsistente Charakterfamilie spezifizieren und gestalten.
 - [ ] Benötigte transparente Charakter-Assets und Posen festlegen.
 - [ ] Einzelne 3D-Spielgrafiken mit ChatGPT erstellen; Claude Code bindet die freigegebenen Assets technisch ein.
