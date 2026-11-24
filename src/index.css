@@ -2,6 +2,36 @@
    Dunkles Moos und warmes Laternenlicht als Rahmen, helle Papierkarten für alles, was gelesen wird,
    dicke Tasten, die beim Drücken einsinken. Farben stammen aus den Schlangen- und Terrarium-Bildern. */
 :root {
+  /* Luminous Fantasy Adventure – freigegebene Design-Tokens */
+  --color-toxic-lime: #9DFF00;
+  --color-emerald: #00C853;
+  --color-deep-forest: #064D30;
+  --color-warm-gold: #FFD329;
+  --color-amber: #FF9D16;
+  --color-midnight: #071D35;
+  --color-warm-cream: #FFF4DE;
+  --color-ink: #1C2B24;
+  --color-muted-on-dark: #B8D6C5;
+  --color-muted-on-light: #4B5D54;
+  --surface-game: var(--color-deep-forest);
+  --surface-content: var(--color-warm-cream);
+  --surface-elevated: #FFFAEF;
+  --border-soft: #D9C9A0;
+  --shadow-panel: 0 8px 0 rgba(4, 35, 25, .28), 0 14px 28px rgba(2, 20, 14, .22);
+  --shadow-card: 0 4px 0 var(--border-soft), 0 8px 18px rgba(7, 29, 53, .10);
+  --radius-card: 22px;
+  --radius-panel: 28px;
+  --radius-control: 18px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --font-body: 'Atkinson Hyperlegible Next', 'Trebuchet MS', system-ui, sans-serif;
+  --font-display: 'Nunito', 'Arial Rounded MT Bold', system-ui, sans-serif;
+
   --nacht: #0f2f26;       /* tiefes Moos, Grundfläche */
   --nacht-hell: #1b5240;  /* Moos im Lichtkegel */
   --papier: #fff8e6;      /* Karten: Aufgaben, Antworten, Shop */
@@ -21,7 +51,7 @@
   --rot: #b3372a;
   --text: var(--tinte);
   --gruen: #1f7a45; --gruen-dunkel: #165c33; --gruen-hell: #e6f5ea;
-  font-family: ui-rounded, 'SF Pro Rounded', 'Arial Rounded MT Bold', 'Hiragino Maru Gothic ProN', 'Nunito', 'Trebuchet MS', system-ui, sans-serif;
+  font-family: var(--font-body);
   color: #fff8e6; background: var(--nacht); font-size: 18px;
 }
 * { box-sizing: border-box; }
@@ -37,7 +67,7 @@ body {
 }
 /* Jede Ansicht passt in die Bildschirmhöhe. Nur auf winzigen Geräten scrollt sie als Notlösung. */
 main { max-width: 640px; margin: 0 auto; padding: 8px 14px calc(8px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; align-items: center; gap: clamp(6px, 1.2dvh, 14px); height: 100dvh; overflow-y: auto; overflow-x: hidden; }
-h1, h2, h3 { margin: 8px 0; text-align: center; font-weight: 800; letter-spacing: -.01em; }
+h1, h2, h3 { margin: 8px 0; text-align: center; font-family: var(--font-display); font-weight: 800; letter-spacing: -.01em; }
 h1 { font-size: 2.6rem; line-height: 1.05; text-shadow: 0 4px 0 #0a1f19; }
 h2 { font-size: 1.6rem; }
 h3 { font-size: 1.2rem; color: var(--gedaempft); }
@@ -45,7 +75,7 @@ p { line-height: 1.4; }
 
 /* Tasten: dicke Unterkante, sinken beim Drücken ein */
 .knopf {
-  min-height: 52px; min-width: 52px; padding: 10px 22px; border: 0; border-radius: 18px;
+  min-height: 52px; min-width: 52px; padding: 10px 22px; border: 0; border-radius: var(--radius-control);
   background: var(--lime); color: var(--tinte); font: inherit; font-weight: 800; cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   box-shadow: 0 5px 0 var(--lime-kante);
@@ -63,6 +93,10 @@ p { line-height: 1.4; }
 .hauptknopf:active:not(:disabled) { box-shadow: 0 1px 0 var(--amber-kante); transform: translateY(5px); }
 .link { background: none; border: 0; color: #ffd877; text-decoration: underline; cursor: pointer; font: inherit; font-weight: 700; padding: 12px; }
 :focus-visible { outline: 4px solid #5ec4ff; outline-offset: 3px; }
+button, input, textarea, select { font-family: var(--font-body); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
 
 .schlange { text-align: center; width: 100%; position: relative; display: flex; flex-direction: column; align-items: center; gap: clamp(4px, .8dvh, 10px); flex: none; }
 .kopfzeile-ton { position: absolute; top: 0; right: 0; z-index: 5; }
