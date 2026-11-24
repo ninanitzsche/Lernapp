@@ -4,12 +4,12 @@ Stand: 2026-11-22. Gehört zu `requirements.md` (Anforderungen R1 bis R6, N1 bis
 
 ## 1. Gestaltungsziele aus UX-Sicht
 
-1. Das Kind spürt in jeder Minute, dass etwas passiert (Futter, Halbzeit, Serie), und in jeder Woche, dass es vorankommt (Meilensteine).
+1. Das Kind spürt beim Üben, dass etwas passiert (Futter, Halbzeit, Serie) und erkennt bedeutsame Lernfortschritte (Meilensteine) – ohne Nutzungs- oder Zeitdruck.
 2. Das Kind sieht, wie schwer eine Aufgabe ist, ohne ein Wort lesen zu müssen.
 3. Das Kind fühlt sich nie dumm: Es beginnt mit Erfolg, Schweres ist ein Angebot und kein Test.
 4. Eltern bekommen in unter einer Minute ein ehrliches Bild, ohne dass es im Kinderbereich Druck erzeugt.
 
-Das visuelle System bleibt das bestehende "beleuchtete Terrarium" (`docs/spec.md` Abschnitt 17). Neu sind nur Bausteine, die das Feedback braucht. Es gibt keine neue Schrift und keine neuen Webfonts.
+Das visuelle System bleibt das bestehende "beleuchtete Terrarium" gemäß `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Neu sind nur Bausteine, die das Feedback braucht. Es gibt keine neue Schrift und keine neuen Webfonts.
 
 ## 2. Designplan nach dem Design-Skill
 
@@ -99,7 +99,7 @@ Eine Sprechblase der Schlange über der Aufgabe, drei Sekunden, mit Konfetti. Si
   +-------------------------------+
   |        [ Schlange schlüpft ]  |
   |   Häutung Nr. 4               |
-  |   "10 Runden geschafft!"      |
+  |   "Multiplikation gemeistert!" |
   |   Du hast 87 Aufgaben gelöst  |
   |   an 6 Tagen.                 |
   |   Die meisten gleich richtig  |
@@ -182,7 +182,7 @@ ampel: { fenster: 10, minVersuche: 5, sicherQuote: 0.8, sicherMinMittel: 3, uebe
 
 Die Münzwerte der Knobelerfolge entsprechen der Tabelle in `requirements.md` Abschnitt 8 (erste starke Knobelrunde 1, dann 10, 25, 50 Treffer mit 1, 2, 3 Münzen). Das ergibt höchstens 7 Münzen. "Starke Knobelrunde" heißt wie bisher mindestens 7 von 10 im ersten Versuch.
 
-Anmerkung zur Wirtschaft: Die Meilensteine bringen auf lange Sicht höchstens 11 Münzen (Runden) und 7 (Knobelerfolge). Der Shop hat Dinge zu 1 bis 3 Münzen. Das sind spürbare, aber keine inflationären Zugaben. Nach dem Praxistest prüfen, ob der Shop leer gekauft wird.
+Anmerkung zur Wirtschaft: Die Meilenstein-Belohnungen sollen bedeutsame Lernfortschritte honorieren, nicht die reine Nutzungsmenge. Der Shop hat Dinge zu 1 bis 3 Münzen. Das sind spürbare, aber keine inflationären Zugaben. Nach dem Praxistest prüfen, ob der Shop leer gekauft wird.
 
 ## 5. Leichte Varianten der Aufgabentypen (R2.10)
 
@@ -224,8 +224,8 @@ interface Rueckblick {
 }
 
 interface Meilenstein {
-  id: string              // 'entwicklung-2', 'runden-10', 'stern-A-2', 'knobel-10', 'woche-2026-11-16' ...
-  art: 'entwicklung' | 'stern' | 'runden' | 'woche' | 'knobel'
+  id: string              // 'entwicklung-2', 'stern-A-2', 'thema-multiplikation', 'knobel-10' ...
+  art: 'entwicklung' | 'stern' | 'thema' | 'knobel'
   datum: string           // JJJJ-MM-TT
   rueckblick: Rueckblick
   muenzen: number         // Münzen, die dieser Meilenstein gebracht hat
@@ -246,7 +246,7 @@ Neue reine Module, jeweils mit Test zuerst:
 - `stufen.ts`: `rampeFuer(knobel, position)`, `stufeFuerAufgabe(...)`, `hoechsteStufe(lernstand, abgeschlosseneRunden)`, `lernstandNach(level, outcome, stufe)` (Regeln R2.6 und R2.7). `rundenbau.ts` baut die zehn Aufgaben einer Runde.
 - `belohnung.ts`: `futterFuer(outcome, stufe)`, `serieErkannt(antworten)`, `halbzeitErreicht(index, bereitsGezeigt)`.
 - `meilensteine.ts`: `pruefeMeilensteine(vorher: GameState, nachher: GameState, now)` gibt neue Meilensteine mit Rückblick und Münzen zurück. `nachtragen(state)` für Altstände ohne Feier (R5.7).
-- `lernstand.ts` (Elternbereich): `typEinschaetzung(verlauf)`, `trend(verlauf)`, `themaBereitschaft(...)`, `empfehlung(...)`, `rundenProWoche(rounds, now, wochen)`.
+- `lernstand.ts` (Elternbereich): `typEinschaetzung(verlauf)`, `trend(verlauf)`, `themaBereitschaft(...)`, `empfehlung(...)`, 
 
 Geänderte Module: `config.ts` (Werte), `tasks.ts` (Stufe in `Task`, Generatoren nehmen eine Stufe statt `schwer`, `generateTask(type, rng, stufeOderSchwer)` bleibt rückwärtskompatibel), `game.ts` (`finishRound` nutzt Stufen und ruft die Meilensteine auf, `parseState` und `initialState` kennen die neuen Felder), `runde.ts` (Wiederholungen mit Stufe, Parser mit Standardstufe 2), `shop.ts` (unverändert).
 
@@ -288,6 +288,6 @@ Tipps für zu Hause je Typ (für "Das hilft jetzt", beim Bauen einmal fachlich g
 
 ## 11. Offene Punkte
 
-1. Die Münzmenge für Meilensteine und die Schwellen sind Startwerte. Nach einer Woche mit dem Kind prüfen (siehe `requirements.md` Abschnitt 11, Punkte 1 und 5).
-2. Das Symbol der Schuppe und die Häutungs-Animation brauchen eine eigene Zeichnung (SVG, im Code gezeichnet). Falls später eigene Bilder entstehen, bleibt die Schnittstelle gleich.
-3. Der Vite-Build und die visuelle Prüfung laufen nur auf Ninas Mac (siehe Projektnotiz). Layout für kleine Höhen (N3) muss dort geprüft werden.
+1. Die Regeln für Sterne/Lernstand und Testbereitschaft sind ausdrücklich TBD. Sie werden vor ihrer Umsetzung in einem ausführlichen Interview mit Nina festgelegt. Bis dahin keine eigenen Schwellen oder Berechnungsregeln ergänzen.\n2. Ein Meilenstein für ein neues Themenfeld wird erst ausgelöst, wenn das Kind in diesem eigenständigen Lernfeld als fit gilt. Die genaue fachliche Definition von "fit" wird im späteren Interview festgelegt.\n3. Die konkreten Münzwerte und Wachstumsschwellen sind Startwerte und können nach Praxiserfahrung angepasst werden.
+4. Das Symbol der Schuppe und die Häutungs-Animation brauchen eine eigene Zeichnung (SVG, im Code gezeichnet). Falls später eigene Bilder entstehen, bleibt die Schnittstelle gleich.
+5. Der Vite-Build und die visuelle Prüfung laufen nur auf Ninas Mac (siehe Projektnotiz). Layout für kleine Höhen (N3) muss dort geprüft werden.
