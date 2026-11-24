@@ -98,6 +98,25 @@ Der direkte Vergleich der fünf Standardbilder und des Logos ist in [PHASE2_NICO
 - [ ] Transparenz, Zuschnitt, Auflösung und Dateigröße technisch geprüft.
 - [ ] Laufzeitvarianten und Code-Zuordnung nach visueller Freigabe bewusst entschieden.
 
+
+## 11. Zweite visuelle Konzeptiteration – neutrale Entwicklungsstufen
+
+Die zweite Konzeptübersicht setzt das Feedback zur stärkeren Entwicklung um: Die frühen Stufen bleiben niedlich, Teenager und Erwachsen/Legendär werden deutlich schlanker, markanter und weniger kindlich. Die Übersicht zeigt Ganzkörper-Silhouetten und ergänzende Kopfansichten. Sie ist eine Stil- und Proportionsstudie, noch keine finale Assetfreigabe.
+
+**Positiv festgehalten:**
+- Der Entwicklungsbogen von rund und niedlich zu elegant, kräftig und majestätisch ist klarer.
+- Teenager und Erwachsen/Legendär haben markantere Augen-/Brauenpartien, ausgeprägtere Schuppen und dunklere Smaragd-/Goldkontraste.
+- Die Schlangen-Anatomie bleibt durchgehend erhalten: langer, zusammenhängender Körper, keine Beine, Flossen oder Flügel.
+- Die Kopfansichten helfen, Nicos Identität über die Stufen hinweg zu vergleichen.
+
+**Vor einer finalen Einzelproduktion noch prüfen:**
+- Die erwachsene/legendäre Kopfform noch enger an das Logo angleichen: breitere, ikonischere Stirn-/Augenpartie und klarere Cobra-Anmutung, ohne Drachenanatomie.
+- Die erwachsene Silhouette darf noch imposanter und gefährlicher wirken; nicht durch niedliche Augen oder ein zu sanftes Lächeln verharmlosen.
+- Den Übergang Kind → Teenager weiter schärfen, damit der Teenager nicht nur eine größere Kind-Version ist.
+- Für die späteren Einzelassets keine Beschriftungen, Panels oder Symbolleisten übernehmen; nur den Charakter freigestellt exportieren.
+
+**Produktionsentscheidung:** Diese Übersicht ist die bevorzugte aktuelle Richtung für die fünf neutralen Grundformen. Die finale Freigabe erfolgt anhand von fünf separaten, freigestellten Einzelbildern in vergleichbarer Pose und Größe.
+
 ## 10. Nicht Bestandteil dieses Schritts
 
 Keine Änderungen an Lernlogik, Entwicklungsgrenzen, Belohnungen, Shop, Speicherung, Navigation oder Laufzeitreaktionen. Keine Bereinigung historischer Dateien. Keine Serienproduktion weiterer Charakterbilder vor der visuellen Freigabe.
