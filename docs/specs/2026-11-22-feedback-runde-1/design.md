@@ -337,6 +337,8 @@ Diese Entscheidungen ergänzen die bestehende Feedback-Spezifikation. Sie beschr
 
 ### 12.4 Abschluss eines Lernfeldes und Terrarium
 
+- Ein Lernfeld ist ein konkreter Lernbereich wie Zahlenstrahl oder Zahlenbilder. Es hat fünf eigene Kompetenzsterne.
+- Ein neues übergeordnetes Themengebiet (z. B. Multiplikation) wird als eigenes Lernfeld eingeführt und nicht bloß als weitere Schwierigkeitsstufe eines bestehenden Lernfeldes behandelt.
 - Nach fünf verdienten Sternen gilt ein Lernfeld als gemeistert und wird sichtbar als abgeschlossen gekennzeichnet.
 - Für den Abschluss erhält das Kind einen eigenen Eintrag im Wissensalbum mit einer besonders schönen Illustration der Schlange passend zum Thema sowie einen thematisch passenden Pokal oder Orden.
 - Das Terrarium ist eine **frei gestaltbare Sammlung**: Das Kind entscheidet, wo es Pokale, Orden und Dekorationen platziert. Auszeichnungen können verschoben werden; die vollständige Sammlung bleibt unabhängig von der aktuellen Platzierung erhalten.
