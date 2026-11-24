@@ -1,6 +1,6 @@
 # Anforderungen: Feedback-Runde 1 (Belohnung, Stufen, Meilensteine, Elternblick)
 
-Stand: 2026-11-22. Status: umgesetzt (Logik mit Tests, Oberfläche ohne Sichtprüfung). Offen: Vite-Build und manuelle Prüfpunkte auf dem Mac.
+Stand: 2026-11-24. Die ursprüngliche Feedback-Runde ist implementiert; die in Abschnitt 10 ergänzten Interview-Anforderungen sind spezifiziert, aber noch nicht implementiert oder verifiziert.
 Verfahren: spec-driven in drei Dokumenten (Anforderungen, Design, Aufgaben), nach dem Muster Requirements, Design, Tasks mit Anforderungen im EARS-Format. Dieses Dokument sagt, WAS gelten muss. `design.md` sagt, WIE. `tasks.md` sagt, in welcher Reihenfolge gebaut und geprüft wird.
 Die verbindlichen visuellen Grundlagen stehen in `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Diese Feedback-Spezifikation ergänzt sie; sie verweist nicht auf ein separates `docs/spec.md`.
 
