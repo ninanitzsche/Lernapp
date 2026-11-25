@@ -124,7 +124,7 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 - [ ] Integration, Optimierung und Viewport-Prüfung durch Claude Code / Projektinhaber begleiten.
 
 
-## 10. Autonomer Abarbeitungsplan und Produktions-Gates
+## 9. Autonomer Abarbeitungsplan und Produktions-Gates
 
 Phase 2 wird in abgeschlossenen, einzeln überprüfbaren Paketen bearbeitet. Ein Paket gilt erst dann als abgeschlossen, wenn Konzept, Asset-Dateien, technische Prüfung und Dokumentation zusammenpassen.
 
@@ -172,6 +172,6 @@ Phase 2 wird in abgeschlossenen, einzeln überprüfbaren Paketen bearbeitet. Ein
 
 Generierte Übersichtsblätter mit Text, mehreren Figuren oder simuliertem Schachbrett-/Hintergrundmuster sind ausschließlich Konzeptmaterial. Sie gelten nicht als freigestellte Produktionsassets.
 
-## 9. Abgrenzung
+## 10. Abgrenzung
 
 Die spätere fachübergreifende Lernplattform und Bildungsserver-basierte Aufgabenerstellung sind nicht Gegenstand dieser Asset-Phase. Die Bildwelt soll langfristig weitere Fächer tragen können, aber Phase 2 baut zunächst die visuelle Identität und Asset-Basis des bestehenden Produkts aus.
