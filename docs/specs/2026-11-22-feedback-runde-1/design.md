@@ -285,7 +285,7 @@ Diese Entscheidungen dokumentieren das Stakeholder-Interview. Die konsolidierte 
 
 ### 12.2 Hilfe und Belohnung
 
-- Ein **Denkimpuls** ist ausdrücklich erwünscht. Die Aufgabe darf weiterhin zum Kompetenznachweis beitragen. Für diese Aufgabe erhält das Kind eine Münze weniger für das Terrarium.
+- Ein **Denkimpuls** ist ausdrücklich erwünscht. Die Aufgabe darf weiterhin zum Kompetenznachweis beitragen, wenn sie im ersten Versuch richtig gelöst wird. Pro genutztem Impuls wird eine Münze vom Bonusmünzen-Pool der Runde abgezogen, höchstens bis zu den in dieser Runde entstandenen Bonusmünzen. Es gibt keine Münzen je Aufgabe; vorhandene Münzen und Sternmünzen bleiben unberührt. Maßgeblich ist `docs/REWARD_SYSTEM.md` Abschnitt 5.
 - Die bestehenden Funktionen „Hilfe anzeigen“ und „bei falscher Antwort die richtige Lösung anzeigen“ bleiben erhalten.
 - Eine angezeigte Lösung ist kein selbstständiger Kompetenznachweis. Das Kind kann die Kompetenz später bei einer vergleichbaren Aufgabe selbstständig zeigen.
 - Die vorhandene Aufgaben-, Wiederholungs-, Hilfs- und Auswertungslogik bleibt in der Verantwortung von Claude Code. Dieses Interview gibt keine Erlaubnis, sie neu zu erfinden oder unabhängig von der bestehenden Implementierung zu verändern. UX-Anforderungen werden als gewünschtes Verhalten formuliert; technische Umsetzung und fachliche Details prüft Claude Code anhand des Repositories.
