@@ -52,7 +52,7 @@ Die früher getrennten Bestandsanalysen, Bildvergleiche, Konzeptnotizen und das 
 - [x] Phase-2-Dokumente auf vier primäre Quellen konsolidieren; relevante Referenzen und Entscheidungen übernommen, Git-Historie bleibt erhalten.
 - [x] Aufgabenlisten und Roadmap mit tatsächlichem Implementierungsstand abgeglichen; manuelle Prüfungen bleiben separat offen.
 - [x] Alle internen Markdown-Links prüfen und tote Verweise entfernen (keine defekten Links gefunden).
-- [ ] Abschließenden Dokumentations-Review und CI-Prüfung nach den letzten Korrekturen durchführen.
+- [x] Abschließenden Dokumentations-Review und CI-Prüfung durchführen (178 Tests bestanden; TypeScript-Prüfung und Produktionsbuild erfolgreich, GitHub Actions Lauf 146).
 
 ## Technische Quellen
 
