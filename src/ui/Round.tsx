@@ -44,7 +44,7 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
   const seed = useMemo(() => fortsetzen?.seed ?? Date.now() % 2_147_483_647, [fortsetzen])
   const [aufgaben, setAufgaben] = useState<Task[]>(() => fortsetzen?.aufgaben ?? baueAufgaben({ skill: state.skill, abgeschlosseneRunden: abgeschlosseneRunden, topic, quelle, knobel: schwer, seed }))
   const [index, setIndex] = useState(fortsetzen?.index ?? 0)
-  const [versuch, setVersuch] = useState<1 | 2>(1)
+  const [versuch, setVersuch] = useState<1 | 2>(fortsetzen?.versuch ?? 1)
   const [antworten, setAntworten] = useState<RoundAnswer[]>(fortsetzen?.antworten ?? [])
   const [ergebnis, setErgebnis] = useState<Outcome | null>(null)
   const [wiederholungenGeplant, setWiederholungenGeplant] = useState(fortsetzen?.wiederholungenGeplant ?? false)
@@ -109,8 +109,8 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
     }
   }
 
-  function stand(f: { aufgaben: Task[]; index: number; wiederholungenGeplant: boolean }, halbzeitSchonGezeigt = halbzeitGezeigt): RundenStand {
-    return { version: 1, name: state.name, topic, quelle, schwer, seed, aufgaben: f.aufgaben, index: f.index, antworten, wiederholungenGeplant: f.wiederholungenGeplant, halbzeitGezeigt: halbzeitSchonGezeigt }
+  function stand(f: { aufgaben: Task[]; index: number; wiederholungenGeplant: boolean }, halbzeitSchonGezeigt = halbzeitGezeigt, aktuellerVersuch: 1 | 2 = 1): RundenStand {
+    return { version: 1, name: state.name, topic, quelle, schwer, seed, aufgaben: f.aufgaben, index: f.index, antworten, wiederholungenGeplant: f.wiederholungenGeplant, halbzeitGezeigt: halbzeitSchonGezeigt, versuch: aktuellerVersuch }
   }
 
   function weiter() {
@@ -137,13 +137,15 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
   /** Pause: speichert, wo das Kind war. Wurde die Antwort schon gezeigt, geht es bei der nächsten Aufgabe weiter. */
   function pausieren() {
     stoppe()
-    if (ergebnis === null && antworten.length === 0) {
+    // Noch nichts beantwortet und noch kein Fehlversuch: es gibt nichts zu merken.
+    if (ergebnis === null && antworten.length === 0 && versuch === 1) {
       loescheRunde()
       onPause()
       return
     }
     if (ergebnis === null) {
-      speichereRunde(stand({ aufgaben, index, wiederholungenGeplant }))
+      // Der Versuchszähler wird mitgespeichert, damit nach einem Fehlversuch der zweite Versuch (mit Tipp) weiterläuft.
+      speichereRunde(stand({ aufgaben, index, wiederholungenGeplant }, halbzeitGezeigt, versuch))
       onPause()
       return
     }

@@ -21,6 +21,8 @@ export interface RundenStand {
   wiederholungenGeplant: boolean
   /** Der Halbzeit-Zwischenstopp wurde in dieser Runde schon gezeigt. Fehlt bei Altständen: false. */
   halbzeitGezeigt?: boolean
+  /** Versuch der aktuellen Aufgabe (2 nach einem ersten Fehlversuch mit Tipp). Fehlt bei Altständen: 1. */
+  versuch?: 1 | 2
 }
 
 export interface Fortschritt {
@@ -98,5 +100,6 @@ export function parseRunde(text: string, name: string): RundenStand | null {
     antworten: r.antworten as RoundAnswer[],
     wiederholungenGeplant: r.wiederholungenGeplant,
     halbzeitGezeigt: r.halbzeitGezeigt === true,
+    versuch: r.versuch === 2 ? 2 : 1,
   }
 }
