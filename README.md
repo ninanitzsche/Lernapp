@@ -16,10 +16,11 @@ Voraussetzung: Node 22.6 oder neuer.
 
 ## Aufbau
 
-- `src/logic/` reine Logik ohne React (Zahlwörter, Aufgabengeneratoren, Futter, Stufen, Stimmung, Wochenziel, Lernstand)
+- `src/logic/` reine Logik ohne React (Zahlwörter, Aufgabengeneratoren, Futter, Stufen, Stimmung, Lernstand)
 - `src/ui/` Oberfläche (Schlange, Aufgaben, Runde, Elternbereich). Animationen: `motion` (Federn, Übergänge) und `canvas-confetti` (Konfetti, Münzregen)
 - Layout: jede Kinder-Ansicht passt in `100dvh`, Größen skalieren mit der Bildschirmhöhe (siehe Kommentar am Anfang von `main` in `src/index.css`)
 - `docs/spec.md` Spezifikation und Änderungen
+- `docs/REWARD_SYSTEM.md` verbindliche Produktregeln für Futter, Wachstum, Schuppen, Sterne, Münzen, Pokale, Relikte und Meilensteine
 - `docs/product-vision.md` langfristige Vision der fachübergreifenden Lernapp und Leitplanken für heutige Architekturentscheidungen
 - `docs/VISUELLES_WELTENKONZEPT.md` gemeinsame Art Direction mit eigenständigen Tier- und Themenwelten pro Fach
 - `docs/PHASE2_ASSETPLAN.md` Asset- und Charakterproduktion für die aktuelle Nico-/Mathematik-Welt
