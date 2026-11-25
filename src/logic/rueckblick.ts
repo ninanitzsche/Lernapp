@@ -1,7 +1,7 @@
 // Texte und Karten der Häutungs-Feier. Reine Logik ohne React, damit die Regeln aus R5.3 und R5.4 testbar sind.
 import { STAGES } from './config.ts'
 import { TOPIC_NAMES, TYPE_NAMES } from './tasks.ts'
-import type { TaskType } from './tasks.ts'
+import type { TaskType, Topic } from './tasks.ts'
 import type { Meilenstein, MeilensteinArt, Rueckblick } from './meilensteine.ts'
 
 /** Höchstens drei kurze Aussagen, alle aus gespeicherten Daten. */
@@ -18,8 +18,8 @@ export function titelVon(m: Meilenstein, name: string): string {
   switch (art) {
     case 'entwicklung': return `${name} ist gewachsen: ${STAGES[Number(a) - 1]?.name ?? ''}`
     case 'runden': return `${a} Runden geschafft`
-    case 'stern': return `${b} ${b === '1' ? 'Stern' : 'Sterne'} bei ${TOPIC_NAMES[a as 'A' | 'B' | 'C']}`
-    case 'lernfeld': return `${TOPIC_NAMES[a as 'A' | 'B' | 'C']} gemeistert!`
+    case 'stern': return `${b} ${b === '1' ? 'Stern' : 'Sterne'} bei ${TOPIC_NAMES[a as Topic]}`
+    case 'lernfeld': return `${TOPIC_NAMES[a as Topic]} gemeistert!`
     case 'relikt': return `Relikt gefunden: ${TYPE_NAMES[a as TaskType] ?? a}`
     case 'knobel': return a === 'erste' ? 'Erste starke Knobelrunde' : `${a} Knobelaufgaben gleich richtig`
     default: return 'Wochenziel geschafft'

@@ -1,5 +1,6 @@
 // Rundenstand für die Pause: reine Logik ohne React und ohne Browser-Speicher, damit sie testbar ist.
 import { TASK_TYPES, generateDifferent } from './tasks.ts'
+import { istTopic } from './tasks.ts'
 import type { Task, Topic } from './tasks.ts'
 import { createRng } from './rng.ts'
 import { CONFIG } from './config.ts'
@@ -94,7 +95,7 @@ export function parseRunde(text: string, name: string): RundenStand | null {
   return {
     version: 1,
     name,
-    topic: r.topic === 'A' || r.topic === 'B' || r.topic === 'C' ? r.topic : undefined,
+    topic: istTopic(r.topic) ? r.topic : undefined,
     quelle: r.quelle,
     schwer: r.schwer,
     seed: r.seed,

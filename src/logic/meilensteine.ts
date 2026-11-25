@@ -1,7 +1,7 @@
 // Meilensteine: erkennen, mit Rückblick speichern, für Altstände rückwirkend eintragen. Reine Logik ohne React.
 // Importiert aus game.ts nur Typen, damit es keine Kreisabhängigkeit gibt.
 import { CONFIG, STAGES } from './config.ts'
-import { TOPICS, TOPIC_OF, TASK_TYPES } from './tasks.ts'
+import { TOPICS, TOPIC_OF, TASK_TYPES, istTopic } from './tasks.ts'
 import type { Topic } from './tasks.ts'
 import type { GameState } from './game.ts'
 import { MAX_STERNE } from './kompetenz.ts'
@@ -124,7 +124,7 @@ export function parseMeilensteine(raw: unknown): Meilenstein[] {
     if (typeof m.datum !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(m.datum)) continue
     const r = m.rueckblick as Partial<Rueckblick> | undefined
     if (!r || ![r.runden, r.tage, r.aufgaben, r.quote].every((v) => typeof v === 'number' && Number.isFinite(v) && v >= 0)) continue
-    const thema = r.staerkstesThema === 'A' || r.staerkstesThema === 'B' || r.staerkstesThema === 'C' ? r.staerkstesThema : null
+    const thema = istTopic(r.staerkstesThema) ? r.staerkstesThema : null
     const muenzen = typeof m.muenzen === 'number' && Number.isFinite(m.muenzen) && m.muenzen >= 0 ? Math.floor(m.muenzen) : 0
     gesehen.add(m.id)
     ergebnis.push({

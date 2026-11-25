@@ -1,7 +1,7 @@
 // Kompetenzsterne je Lernfeld: Nachweise sammeln, Sterne der Reihe nach vergeben, Fortschritt zum nächsten Stern.
 // Reine Logik ohne React. Importiert aus game.ts nur Typen, damit es keine Kreisabhängigkeit gibt.
 import { CONFIG } from './config.ts'
-import { TASK_TYPES, TOPICS, TOPIC_OF } from './tasks.ts'
+import { TASK_TYPES, TOPICS, TOPIC_OF, jeLernfeld } from './tasks.ts'
 import type { Stufe, TaskType, Topic } from './tasks.ts'
 import type { RoundAnswer } from './game.ts'
 
@@ -21,7 +21,7 @@ export const STERN_ZIEL: readonly string[] = [
 ]
 
 export function leereNachweise(): Nachweise {
-  return { A: [], B: [], C: [] }
+  return jeLernfeld(() => [])
 }
 
 export function typenDesFeldes(topic: Topic): TaskType[] {
@@ -30,7 +30,7 @@ export function typenDesFeldes(topic: Topic): TaskType[] {
 
 /** Nimmt die selbstständig gelösten Aufgaben einer Runde auf. Tipp, zweiter Versuch und gezeigte Lösung zählen nicht. */
 export function nachweiseNach(bisher: Nachweise, antworten: RoundAnswer[], runde: number): Nachweise {
-  const neu: Nachweise = { A: [...bisher.A], B: [...bisher.B], C: [...bisher.C] }
+  const neu: Nachweise = jeLernfeld((t) => [...(bisher[t] ?? [])])
   for (const a of antworten) {
     if (a.outcome !== 'first') continue
     neu[TOPIC_OF[a.type]].push({ r: runde, t: a.type, s: a.stufe ?? 2 })

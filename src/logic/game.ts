@@ -1,5 +1,5 @@
 import { CONFIG, STAGES } from './config.ts'
-import { TASK_TYPES, TOPIC_OF, TOPICS } from './tasks.ts'
+import { TASK_TYPES, TOPIC_OF, TOPICS, MIX_TOPICS, jeLernfeld } from './tasks.ts'
 import type { Stufe, TaskType, Topic } from './tasks.ts'
 import { futterFuer, futterFuerAntwort } from './belohnung.ts'
 import { istPokal } from './shop.ts'
@@ -84,7 +84,7 @@ export function leererVerlauf(): Record<TaskType, Versuch[]> {
 export function initialState(name: string): GameState {
   const skill = {} as Record<TaskType, number>
   for (const t of TASK_TYPES) skill[t] = 0
-  return { version: 1, name, totalFood: 0, lastFedAt: null, rounds: {}, skill, testDate: null, sterneErreicht: { A: 0, B: 0, C: 0 }, bonusMuenzen: 0, knobelTage: [], gekauft: [], positionen: {}, verlauf: leererVerlauf(), statistik: { bearbeitet: 0, geloest: 0, ersteTreffer: 0, knobelTreffer: 0 }, meilensteine: [], nachweise: leereNachweise(), reliktErfolge: [] }
+  return { version: 1, name, totalFood: 0, lastFedAt: null, rounds: {}, skill, testDate: null, sterneErreicht: jeLernfeld(() => 0), bonusMuenzen: 0, knobelTage: [], gekauft: [], positionen: {}, verlauf: leererVerlauf(), statistik: { bearbeitet: 0, geloest: 0, ersteTreffer: 0, knobelTreffer: 0 }, meilensteine: [], nachweise: leereNachweise(), reliktErfolge: [] }
 }
 
 // ---------- Futter und Stufen ----------
@@ -131,11 +131,10 @@ export function updateSkill(level: number, outcome: Outcome, stufe: Stufe = 2): 
   return lernstandNach(level, outcome, stufe)
 }
 
-const TYPES_OF_TOPIC: Record<Topic, TaskType[]> = {
-  A: TASK_TYPES.filter((t) => TOPIC_OF[t] === 'A'),
-  B: TASK_TYPES.filter((t) => TOPIC_OF[t] === 'B'),
-  C: TASK_TYPES.filter((t) => TOPIC_OF[t] === 'C'),
-}
+const TYPES_OF_TOPIC: Record<Topic, TaskType[]> = jeLernfeld((topic) => TASK_TYPES.filter((t) => TOPIC_OF[t] === topic))
+
+/** Aufgabentypen der Lernfelder, die in gemischten Runden, Knobelrunden und im Buchmodus vorkommen. */
+const MIX_TYPES: TaskType[] = TASK_TYPES.filter((t) => MIX_TOPICS.includes(TOPIC_OF[t]))
 
 /** Altstände ohne gespeicherte Sterne: 0 bis 3 Sterne je Thema aus dem Lernstand. Neue Sterne laufen über `kompetenz.ts`. */
 export function topicStars(skill: Record<TaskType, number>, topic: Topic): 0 | 1 | 2 | 3 {
@@ -150,10 +149,10 @@ export function topicStars(skill: Record<TaskType, number>, topic: Topic): 0 | 1
 
 /** Wählt `count` Aufgabentypen: ca. 60 % schwache (Stufe 0/1), 30 % mittlere (2), 10 % starke (3). */
 export function selectTypes(rng: Rng, skill: Record<TaskType, number>, count: number, topic?: Topic): TaskType[] {
-  const pool = topic ? TYPES_OF_TOPIC[topic] : [...TASK_TYPES]
+  const pool = topic ? TYPES_OF_TOPIC[topic] : [...MIX_TYPES]
   const result: TaskType[] = []
   if (!topic) {
-    for (const t of TOPICS) result.push(pick(rng, TYPES_OF_TOPIC[t]))
+    for (const t of MIX_TOPICS) result.push(pick(rng, TYPES_OF_TOPIC[t]))
   }
   const buckets = [
     { weight: 0.6, types: pool.filter((t) => skill[t] <= 1) },
@@ -257,7 +256,7 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
   // Kompetenzsterne: Nachweise sammeln, dann der Reihe nach vergeben (nie weniger als bisher).
   const rundenBisher = Object.values(state.rounds).reduce((s, n) => s + n, 0)
   const nachweise = nachweiseNach(state.nachweise ?? leereNachweise(), answers, rundenBisher + 1)
-  const sterneErreicht: Record<Topic, number> = { A: state.sterneErreicht?.A ?? 0, B: state.sterneErreicht?.B ?? 0, C: state.sterneErreicht?.C ?? 0 }
+  const sterneErreicht: Record<Topic, number> = jeLernfeld((t) => state.sterneErreicht?.[t] ?? 0)
   let neueSterne = 0
   for (const t of TOPICS) {
     const jetzt = sterneNach(sterneErreicht[t], nachweise[t], t)

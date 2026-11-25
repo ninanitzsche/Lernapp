@@ -3,7 +3,7 @@
 // Reine Logik ohne React.
 import { CONFIG } from './config.ts'
 import { createRng } from './rng.ts'
-import { TYPE_NAMES, generateTask } from './tasks.ts'
+import { TYPE_NAMES, TOPICS, generateTask } from './tasks.ts'
 import type { Task, TaskType, Topic } from './tasks.ts'
 import type { GameState } from './game.ts'
 import { typenDesFeldes } from './kompetenz.ts'
@@ -20,7 +20,7 @@ export interface Relikt {
 
 /** Lernfelder, deren Pokal vorhanden ist (Abschluss mit fünf Sternen). */
 export function pokaleVon(state: GameState): Topic[] {
-  return (['A', 'B', 'C'] as Topic[]).filter((t) => state.meilensteine.some((m) => m.id === `lernfeld-${t}`))
+  return TOPICS.filter((t) => state.meilensteine.some((m) => m.id === `lernfeld-${t}`))
 }
 
 /** Der Reliktbereich ist erst sichtbar, wenn mindestens ein Lernfeld abgeschlossen wurde. */

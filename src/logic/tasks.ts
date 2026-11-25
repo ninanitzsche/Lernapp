@@ -5,7 +5,27 @@ import {
   zahlZuWort, zahlwortTeile, einerStamm, zehnerWort, ALLE_EINER_STAEMME, ALLE_ZEHNER_WOERTER,
 } from './zahlwort.ts'
 
-export type Topic = 'A' | 'B' | 'C'
+/**
+ * Zentrale Lernfeld-Liste. Neue Lernfelder werden nur hier eingetragen.
+ * `imMix`: Das Lernfeld taucht in gemischten Runden, Knobelrunden und im Buchmodus auf.
+ */
+export const LERNFELDER = [
+  { id: 'A', name: 'Zehner und Einer', imMix: true },
+  { id: 'B', name: 'Zahlbilder', imMix: true },
+  { id: 'C', name: 'Zahlenstrahl', imMix: true },
+] as const
+export type Topic = (typeof LERNFELDER)[number]['id']
+
+/** Baut einen Record je Lernfeld, damit nirgends `{ A: ..., B: ..., C: ... }` von Hand steht. */
+export function jeLernfeld<T>(wert: (t: Topic) => T): Record<Topic, T> {
+  const r = {} as Record<Topic, T>
+  for (const f of LERNFELDER) r[f.id] = wert(f.id)
+  return r
+}
+
+export function istTopic(x: unknown): x is Topic {
+  return LERNFELDER.some((f) => f.id === x)
+}
 /** Schwierigkeit: 1 leicht, 2 mittel (das bisherige Normal), 3 knifflig (die bisherige Knobelrunde). */
 export type Stufe = 1 | 2 | 3
 export const STUFEN_NAMEN: Record<Stufe, string> = { 1: 'leicht', 2: 'mittel', 3: 'knifflig' }
@@ -15,12 +35,10 @@ export type TaskType = (typeof TASK_TYPES)[number]
 export const TOPIC_OF: Record<TaskType, Topic> = {
   A1: 'A', A2: 'A', A3: 'A', B1: 'B', B2: 'B', B3: 'B', C1: 'C', C2: 'C', C3: 'C', C4: 'C',
 }
-export const TOPICS: Topic[] = ['A', 'B', 'C']
-export const TOPIC_NAMES: Record<Topic, string> = {
-  A: 'Zehner und Einer',
-  B: 'Zahlbilder',
-  C: 'Zahlenstrahl',
-}
+export const TOPICS: Topic[] = LERNFELDER.map((f) => f.id)
+/** Lernfelder, aus denen gemischte Runden, Knobelrunden und der Buchmodus Aufgaben ziehen. */
+export const MIX_TOPICS: Topic[] = LERNFELDER.filter((f) => f.imMix).map((f) => f.id)
+export const TOPIC_NAMES: Record<Topic, string> = jeLernfeld((t) => LERNFELDER.find((f) => f.id === t)!.name)
 export const TYPE_NAMES: Record<TaskType, string> = {
   A1: 'Zahlwörter und Zahlen',
   A2: 'Stellentafel',
