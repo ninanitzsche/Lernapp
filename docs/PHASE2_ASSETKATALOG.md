@@ -49,7 +49,7 @@
 
 | Assetgruppe | Zielumfang | Status | Nächster Schritt |
 |---|---:|---|---|
-| Schuppe / Sammelwährung | 1 Grundmotiv + Zustände | Zu produzieren | Wertigkeit und Lesbarkeit in kleiner UI-Größe testen |
+| Schuppenband / Schwierigkeitsanzeige | 1 Grundmotiv + 0–3 gefüllte Zustände | Zu produzieren | Zeigt leicht/mittel/knifflig; keine Sammelwährung (siehe `REWARD_SYSTEM.md`) |
 | Pokale / Medaillen | 3–5 | Zu produzieren / Bestand prüfen | Terrarium-Belohnungen konsistent gestalten |
 | Relikt / Expertenbereich | 1 Tür + 3–5 Relikte | Zu produzieren | Erst nach Themenabschluss sichtbar; bestehende Spiellogik beachten |
 | Wissensalbum-Themenillustrationen | modular je Lernfeld | Zu produzieren | Motivsystem definieren; keine Fachwelten anderer Fächer vorwegnehmen |

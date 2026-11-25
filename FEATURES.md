@@ -209,3 +209,7 @@ Bei jeder größeren Änderung:
 5. Aussagen zu Tests nur dann als erledigt markieren, wenn Tests tatsächlich ausgeführt wurden.
 
 **Diese Datei ist eine Funktionsübersicht, keine Garantie für vollständige manuelle Qualitätssicherung.**
+
+**Maßgebliche Quelle:** [docs/REWARD_SYSTEM.md](docs/REWARD_SYSTEM.md).
+Diese Datei beschreibt den Implementierungsstand. Bei Abweichungen
+sind die verbindlichen Produktregeln in REWARD_SYSTEM.md maßgeblich.

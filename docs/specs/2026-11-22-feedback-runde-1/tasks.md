@@ -8,7 +8,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 ### T1 Spielwerte und Typen
 - Dateien: `src/logic/config.ts`, `src/logic/tasks.ts` (nur Typ `Stufe`)
-- Tun: Werte aus `design.md` 4.1 bis 4.3 eintragen, Schwellen in `STAGES` senken, Typ `Stufe` anlegen.
+- Tun: Werte aus `docs/REWARD_SYSTEM.md` eintragen, Schwellen in `STAGES` senken, Typ `Stufe` anlegen.
 - Test zuerst: `config.test.ts`: Schwellen steigen streng, Rampenlängen gleich `roundLength`, Münztabellen vollständig.
 - Anforderungen: R3.1, R3.2, R4.1 bis R4.3, N5
 
@@ -38,7 +38,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 ### T6 Meilensteine
 - Dateien: neu `src/logic/meilensteine.ts` plus Test, `src/logic/game.ts`
-- Tun: `pruefeMeilensteine(vorher, nachher, now)` für Entwicklung und den Abschluss eines Lernfeldes (fünf Sterne vollständig) mit Rückblick. Die bestehende Münzbelohnung je Stern bleibt erhalten. Keine Wochenziele und keine Belohnungen für reine Rundenzahl. Abschluss-Auszeichnung und Relikt-Freischaltung gemäß `design.md` Abschnitt 12 dokumentieren; die genaue fachliche Stern-Zuordnung bleibt bis zur Freigabe offen. `nachtragen(state)` für Altstände. Doppelte Auslösung ausgeschlossen.
+- Tun: `pruefeMeilensteine(vorher, nachher, now)` für Entwicklung und den Abschluss eines Lernfeldes (fünf Sterne vollständig) mit Rückblick. Die bestehende Münzbelohnung je Stern bleibt erhalten. Keine Wochenziele und keine Belohnungen für reine Rundenzahl. Abschluss-Auszeichnung und Relikt-Freischaltung gemäß `docs/REWARD_SYSTEM.md` dokumentieren; die genaue fachliche Stern-Zuordnung bleibt bis zur Freigabe offen. `nachtragen(state)` für Altstände. Doppelte Auslösung ausgeschlossen.
 - Test zuerst: jeder freigegebene Auslöser genau einmal; Abschluss eines Lernfeldes schaltet genau den passenden Album-Eintrag/Pokal frei; keine Rundenzahl- oder Wochenziel-Auslösung; Altstand erzeugt keine nachträgliche Feier und keine doppelten Belohnungen; Meilensteine gehen bei späteren Fehlern nicht verloren.
 - Anforderungen: R5.1, R5.3, R5.4 (Logik), R5.6 bis R5.8
 

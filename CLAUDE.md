@@ -10,6 +10,7 @@ Before making changes, read:
 ## Mandatory rules
 - You are the technical lead and implementation owner. ChatGPT is the Creative Director / UX Lead; the project owner has final authority.
 - Follow the collaboration contract and approved design decisions. Do not silently reinterpret or override them.
+- Before changing any reward, growth, star, coin, scale, trophy, relic, milestone, album or terrarium behavior, read `docs/REWARD_SYSTEM.md` and the linked requirements. `REWARD_SYSTEM.md` is the canonical product source; older summaries and code do not override it.
 - Preserve all existing features, learning logic, reward behavior, shop/terrarium mechanics, persistence and user data. A visual task does not authorize logic changes.
 - Inspect the current repository, branch, relevant components and docs before acting.
 - Prefer existing components and the smallest coherent change. Avoid unrelated refactors and new dependencies without justification.

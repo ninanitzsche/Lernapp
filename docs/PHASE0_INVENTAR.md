@@ -1,5 +1,7 @@
 # Projektinventar – Ausgangslage
 
+> **Historische Bestandsaufnahme.** Dieses Dokument hält den damaligen technischen Zustand fest und ist keine aktuelle Produktvorgabe. Insbesondere die hier notierten alten Futter-Schwellen und Schriftangaben sind überholt. Verbindliche aktuelle Belohnungs- und Wachstumsregeln stehen in [REWARD_SYSTEM.md](./REWARD_SYSTEM.md); aktuelle Typografie und Art Direction stehen in [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md).
+
 > **Stand:** 24.11.2026  
 > **Branch:** `design/luminous-fantasy-adventure`  
 > **Zweck:** Faktenbasis für den visuellen Relaunch. Dieses Dokument beschreibt den geprüften Ausgangsstand, nicht die Roadmap.
@@ -35,7 +37,7 @@ Sound, Sprachausgabe und Reaktionen liegen unter anderem in `src/ui/feier.ts`, `
 - 19 CSS-Variablen, daneben zahlreiche feste Farbwerte direkt in CSS-Regeln.
 - Vorhandene Palette: Moosgrün/Papier mit unter anderem `--nacht #0f2f26`, `--nacht-hell #1b5240`, `--papier #fff8e6`, `--tinte #1c2b24`, `--lime #9bd93c`, `--amber #ffb92e`, `--blau #2a6fb0`, `--lila #6b4bd1`, `--koralle #ff7a63`.
 - Die freigegebene neue Designpalette ist noch nicht vollständig in CSS-Tokens umgesetzt.
-- Ausgangsstand (Phase 0): System-Fontstack ohne mitgelieferte Fonts. Seit Phase 1 sind Atkinson Hyperlegible Next und Nunito lokal als WOFF2 per `@font-face` eingebunden (siehe Abschnitt 8).
+- Aktuell System-Fontstack; keine mitgelieferten Fonts und kein `@font-face`.
 - Vorhandene Button-Klassen unter anderem `.knopf` mit Varianten; Karten, Balken, Sterne und Münzen haben bestehende Styles.
 - `main` nutzt `max-width: 640px`, `height: 100dvh`, Safe-Area-Insets. Es gibt einen Höhen-Breakpoint, aber im Inventar keinen Breiten-Breakpoint.
 - Vier `prefers-reduced-motion`-Blöcke und ungefähr 25 `@keyframes`-Animationen.
@@ -75,7 +77,7 @@ Diese Beobachtungen bilden den visuellen Ausgangsbefund für Phase 1. Die mobile
 
 | Prüfung | Ergebnis |
 |---|---|
-| `npm test` | Stand dieses Inventars (24.11.2026): 144 von 144 bestanden in der Linux-Sandbox. Aktuelle Zahl: siehe README. |
+| `npm test` | 144 von 144 bestanden in der Linux-Sandbox |
 | `tsc -b` | ohne Fehler in der Linux-Sandbox |
 | `vite build` | In der Linux-Sandbox wegen plattformspezifischer rolldown-Binärdateien nicht erfolgreich ausführbar. Der Projektinhaber hat inzwischen einen erfolgreichen lokalen Build auf dem Mac bestätigt. |
 | Browser-Sichtprüfung | Desktop-Screenshots geprüft; Smartphone-Hochformat lokal vom Projektinhaber geprüft und als funktionierend bestätigt. |
@@ -90,9 +92,9 @@ Phase 0 ist abgeschlossen. Der lokale Produktionsbuild auf dem Mac und die Funkt
 
 - Die neue Farbpalette erfordert mehr als die Anpassung der vorhandenen CSS-Variablen, da viele feste Farbwerte direkt in Regeln stehen.
 - Der Build-Ordner `dist/` war im erfassten Stand 78 MB groß. Ein großer Anteil entfiel auf Bilder in `public/images/`, die Vite unverändert kopiert. Rohbilder nicht ohne Prüfung ihrer Verwendung löschen oder verschieben.
-- **Gelöst (25.11.2026):** Maßgeblich sind die Futter-Schwellen 0/30/90/200/350 aus `src/logic/config.ts` (Feedback-Runde 1, R3.2). `FEATURES.md` wurde angepasst. Keine Werte im Rahmen der visuellen Arbeit ändern.
-- Der gespeicherte Pausenzustand enthielt zum Zeitpunkt dieses Inventars nicht den Versuchszähler. Behoben am 25.11.2026 in einem eigenen Commit (siehe `FEATURES.md`, Abschnitt 8).
-- Zwei überholte Arbeitsdokumente (`spec.md` und `bewertung-ux-und-spieldesign.md` im Ordner `docs/`) wurden aus dem Arbeitsstand entfernt. Ihre bisherigen Fassungen bleiben über die Git-Historie nachvollziehbar.
+- **Historischer, inzwischen fachlich geklärter Konflikt:** Die damaligen Schwellen 0/60/150/300/500 sind überholt. Verbindlich sind 0/30/90/200/350 Gesamtfutter gemäß `docs/REWARD_SYSTEM.md`. Dieses Inventar bleibt als historische Momentaufnahme unverändert; es ist keine Quelle für aktuelle Spielwerte.
+- Der zum Zeitpunkt dieses Inventars unvollständige Pausenzustand wurde am 25.11.2026 behoben: Der Versuchszähler wird beim Pausieren und Fortsetzen einer Runde gespeichert.
+- Zwei überholte Arbeitsdokumente (`docs/spec.md` und `docs/bewertung-ux-und-spieldesign.md`) wurden aus dem aktuellen Arbeitsstand entfernt. Ihre bisherigen Fassungen bleiben über die Git-Historie nachvollziehbar.
 
 ## 8. Freigegebene Schriftentscheidung
 
@@ -101,6 +103,6 @@ Phase 0 ist abgeschlossen. Der lokale Produktionsbuild auf dem Mac und die Funkt
 | Aufgaben, Zahlen und Fließtext | Atkinson Hyperlegible Next | Regular 400, Bold 700 |
 | Überschriften und kurze Belohnungstitel | Nunito | ExtraBold 800 |
 
-Die Auswahl ist freigegeben und seit Phase 1 implementiert (lokale WOFF2-Dateien unter `public/fonts/`, `@font-face` in `src/index.css`). Beide Fonts lokal als WOFF2 ausliefern und OFL-Lizenzdateien mitführen. Vor der Einbindung Umlaute und ß in den konkreten Fontdateien prüfen; außerdem Dateigröße und Zifferndarstellung im echten UI kontrollieren.
+Die Auswahl ist freigegeben, aber noch nicht implementiert. Beide Fonts lokal als WOFF2 ausliefern und OFL-Lizenzdateien mitführen. Vor der Einbindung Umlaute und ß in den konkreten Fontdateien prüfen; außerdem Dateigröße und Zifferndarstellung im echten UI kontrollieren.
 
 Offizielle Atkinson-Quelle: [Atkinson Hyperlegible Next – Projekt-README](https://github.com/googlefonts/atkinson-hyperlegible-next/blob/main/README.md). Das README nennt Version 2.001 (20.11.2024) und SIL Open Font License 1.1. Die konkrete Zeichensatzabdeckung der später eingebundenen Dateien ist damit noch nicht nachgewiesen.

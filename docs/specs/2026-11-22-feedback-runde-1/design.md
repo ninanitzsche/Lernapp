@@ -153,49 +153,11 @@ Das Themenbild zeigt die Schlange in einer eigens gestalteten Szene passend zum 
 
 Das bisherige Transparenzpapier-Table bleibt erhalten (darunter), weil es das Lernziel zuordnet.
 
-## 4. Spielwerte (alle in `src/logic/config.ts`, Startwerte)
+## 4. Verbindliche Spielwerte
 
-### 4.1 Futter je Stufe
+Die Produktregeln und sämtliche freigegebenen Startwerte für Futter, Tageslimit, Wachstumsschwellen, Serienbonus, Knobelbelohnungen und Münzen stehen zentral in [docs/REWARD_SYSTEM.md](../../REWARD_SYSTEM.md). Dieses Design-Dokument beschreibt die visuelle Darstellung und Interaktion. Es ist keine zweite Quelle für abweichende Spielwerte.
 
-| Stufe | richtig im 1. Versuch | richtig im 2. Versuch | falsch |
-|---|---|---|---|
-| 1 leicht | 2 | 1 | 0 |
-| 2 mittel | 2 | 1 | 0 |
-| 3 knifflig | 5 | 3 | 0 |
-
-Stufe 1 und 2 zahlen bewusst gleich viel wie heute: Das Kind verliert nichts, und leichte Aufgaben sind kein "Betrug". Knifflig zahlt zweieinhalbmal so viel (R4.1). Der Rundenbonus ist 5 in der normalen Runde und 10 in der Knobelrunde (R4.2). Serie: +1 Futter einmal pro Runde (R3.5, R3.6).
-
-Beispielrechnung (Mittel über viele Runden, gleich richtig, Tageslimit dreimal): normale Runde 10 Aufgaben mit 10 mal 2 = 20 plus Bonus 5 = 25 (wie bisher). Knobelrunde: 2 Aufwärmaufgaben zu 2 plus 8 kniffelige zu 5 = 44 plus Bonus 10 = 54, rund zweimal so viel wie eine normale. Bei nur 7 von 10 gleich richtig sinkt sie auf etwa 35 bis 40, bleibt aber über der normalen Runde.
-
-### 4.2 Schwellen der Entwicklung
-
-| Stufe | Name | bisher | neu |
-|---|---|---|---|
-| 1 | Baby | 0 | 0 |
-| 2 | Kleinkind | 60 | 30 |
-| 3 | Kind | 150 | 90 |
-| 4 | Teenager | 300 | 200 |
-| 5 | Erwachsen | 500 | 350 |
-
-Bei etwa 25 Futter pro Runde: Kleinkind in der zweiten Runde des ersten Tages (R3.2), Kind nach etwa vier Runden, Teenager nach etwa acht, Erwachsen nach etwa 14 Runden. Eine Schlange, die schon höher war, bleibt höher (Schwellen sinken nur).
-
-### 4.3 Sonstige neue Werte
-
-```
-leichtRunden: 3               // so lange nur Stufe 1 (R2.1)
-rampeNormal: [1,1,1,1,2,2,2,2,2,2]
-rampeKnobel: [2,2,3,3,3,3,3,3,3,3]
-halbzeitNach: 5
-serieAb: 3, serieFutter: 1
-rundenBonus: { normal: 5, knobel: 10 }
-knobelMuenzen: 2
-knobelErfolg: { ersteStarkeRunde: 1, treffer: { 10: 1, 25: 2, 50: 3 } }   // Münzen; Treffer = kniffelige Aufgaben gleich richtig, insgesamt
-ampel: { fenster: 10, minVersuche: 5, sicherQuote: 0.8, sicherMinMittel: 3, uebenQuote: 0.5, uebenFalschMax: 0.2 }
-```
-
-Die Münzwerte der Knobelerfolge entsprechen der Tabelle in `requirements.md` Abschnitt 8 (erste starke Knobelrunde 1, dann 10, 25, 50 Treffer mit 1, 2, 3 Münzen). Das ergibt höchstens 7 Münzen. "Starke Knobelrunde" heißt wie bisher mindestens 7 von 10 im ersten Versuch. Reine Rundenzahl und Wochenziele lösen keine Belohnung aus.
-
-Anmerkung zur Wirtschaft: Belohnungen honorieren Lernfortschritt und freiwillige Expertenherausforderungen, nicht die reine Nutzungsmenge. Der Shop hat Dinge zu 1 bis 3 Münzen. Das sind spürbare, aber keine inflationären Zugaben. Nach dem Praxistest prüfen, ob der Shop leer gekauft wird.
+Bei Widersprüchen gilt `REWARD_SYSTEM.md`; technische Werte in `src/logic/config.ts` sind daran anzupassen.
 
 ## 5. Leichte Varianten der Aufgabentypen (R2.10)
 
@@ -309,7 +271,7 @@ Tipps für zu Hause je Typ (für "Das hilft jetzt", beim Bauen einmal fachlich g
 
 ## 12. Verbindliche Entscheidungen aus dem Stakeholder-Interview
 
-Diese Entscheidungen ergänzen die bestehende Feedback-Spezifikation. Sie beschreiben das gewünschte Produktverhalten, nicht die technische Umsetzung der Aufgabenlogik.
+Diese Entscheidungen dokumentieren das Stakeholder-Interview. Die konsolidierte und maßgebliche Produktquelle ist inzwischen `docs/REWARD_SYSTEM.md`; dieser Abschnitt bleibt als Interview-Nachweis erhalten und darf ihr nicht widersprechen. Er beschreibt gewünschtes Produktverhalten, nicht die technische Umsetzung der Aufgabenlogik.
 
 ### 12.1 Sterne und Kompetenz
 

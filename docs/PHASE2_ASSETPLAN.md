@@ -140,7 +140,7 @@ Phase 2 wird in abgeschlossenen, einzeln überprüfbaren Paketen bearbeitet. Ein
 - **Gate D:** ein zusammenhängendes Objektset mit transparenten Einzelassets und dokumentierter Verwendung.
 
 ### Paket E – Belohnungen und Wissensalbum
-- Schuppen-/Münzbelohnung, Pokale/Medaille, Freischaltungsreliquien und Themenillustrationen.
+- Schuppenband als Schwierigkeitsanzeige, Münzen als Währung, Pokale/Orden als Lernfeldabschluss, Relikte als freiwillige Expertenobjekte und Themenillustrationen fürs Wissensalbum. Die Produktbedeutung ist in `REWARD_SYSTEM.md` verbindlich festgelegt.
 - Belohnungsobjekte als eigenständige Assets; keine Schrift oder UI in die Bilder integrieren.
 - **Gate E:** Belohnungen sind in Größe und Wertigkeit klar unterscheidbar; passen zur bestehenden Spielmechanik.
 
