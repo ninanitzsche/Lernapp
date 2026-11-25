@@ -21,6 +21,16 @@ test('Futter pro Aufgabe', () => {
   assert.equal(foodForOutcome('failed'), 0)
 })
 
+test('Tagesmitbringsel: genau die erste abgeschlossene Runde des Tages bringt eine Münze', () => {
+  const first = finishRound(initialState('S'), runde('failed'), MO)
+  assert.equal(first.tagesMuenze, true)
+  assert.equal(first.neueBonusMuenzen, 1)
+  const second = finishRound(first.state, runde('failed'), tag(0, 11))
+  assert.equal(second.tagesMuenze, false)
+  assert.equal(second.neueBonusMuenzen, 0)
+  assert.equal(second.state.bonusMuenzen, 1)
+})
+
 test('Denkimpuls: eine Münze weniger aus dem Bonuspool der Runde', () => {
   const antworten = runde('first').map((a, i) => i === 0 ? { ...a, denkimpuls: true } : a)
   const start = { ...initialState('S'), totalFood: 20 }
