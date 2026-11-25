@@ -22,14 +22,7 @@ Der Projektinhaber entscheidet abschließend über Umfang, Prioritäten, Design 
 - `FEATURES.md` ist eine knappe Statusübersicht, keine zweite Spezifikation.
 - `docs/PHASE0_INVENTAR.md` ist ein historischer Snapshot und keine aktuelle Arbeitsanweisung.
 
-Vor jeder relevanten Arbeit sind die jeweils passenden Dateien zu lesen:
-
-1. `CLAUDE.md` – verbindliche Kurzregeln und Einstieg.
-2. `docs/AI_COLLABORATION_SPEC.md` – Rollen und Zusammenarbeit.
-3. `docs/DESIGN_SYSTEM.md` – aktuell gültige visuelle Entscheidungen.
-4. `docs/ROADMAP_DESIGN.md` – aktueller Arbeitsstand und nächste Schritte.
-5. `docs/PHASE0_INVENTAR.md` – technische und visuelle Ausgangslage.
-6. `FEATURES.md` – bestehende Produktfunktionen, die zu erhalten sind.
+Vor jeder relevanten Arbeit dient `docs/README.md` als Index. Gelesen werden die verbindlichen Kurzregeln in `CLAUDE.md`, dieser Zusammenarbeitsvertrag, die aktuelle Roadmap und die für den Auftrag maßgeblichen Fach-/Designquellen. `FEATURES.md` wird zur Bestandssicherung herangezogen. `PHASE0_INVENTAR.md` ist ein historischer Snapshot und wird nur gelesen, wenn die ursprüngliche Ausgangslage relevant ist.
 
 Bei Konflikten gilt folgende Reihenfolge: aktuelle ausdrückliche Anweisung des Projektinhabers, freigegebene Produkt- und Designentscheidungen, danach die tatsächliche Implementierung als Beleg für den Ist-Zustand, zuletzt Annahmen. Code beschreibt nicht automatisch das gewünschte Soll. Bei einer ausdrücklich vom Projektinhaber bestätigten bestehenden Implementierung (aktuell: Tagesmitbringsel und Denkimpuls-Münzabzug) wird diese als Produktregel dokumentiert. Andere Widersprüche werden nicht stillschweigend entschieden.
 
