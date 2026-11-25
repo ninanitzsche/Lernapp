@@ -20,7 +20,7 @@ Diese Seite ist der Einstieg in alle Projektdokumente. Sie sagt, **wo eine Infor
 
 ## Phase 2 – Nico und Assets
 
-Die folgenden Dateien gehören zusammen und beschreiben die aktuelle Schlangenwelt:
+Die folgenden vier Dateien sind die einzigen primären Phase-2-Dokumente und beschreiben die aktuelle Schlangenwelt:
 
 | Datei | Zuständigkeit |
 |---|---|
@@ -28,12 +28,8 @@ Die folgenden Dateien gehören zusammen und beschreiben die aktuelle Schlangenwe
 | [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md) | Vorhandene Assets, Dateipfade und Status |
 | [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) | Kanonische Identität und Proportionen von Nico |
 | [PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md) | Emotionszustände und ihre Übersetzung über Entwicklungsstufen |
-| [PHASE2_BESTANDSANALYSE.md](./PHASE2_BESTANDSANALYSE.md) | Analyse des vorhandenen Asset-Bestands |
-| [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md) | Visueller Vergleich der fünf Entwicklungsstufen |
-| [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md) | Früher Stil-Referenzentwurf |
-| [PHASE2_ARBEITSPROTOKOLL.md](./PHASE2_ARBEITSPROTOKOLL.md) | Chronologisches Arbeitsprotokoll |
 
-Die letzten vier Dokumente sind Prüf- bzw. Verlaufsmaterial. Sie sollen nicht dauerhaft parallel dieselben Entscheidungen wiederholen. Im laufenden Aufräumgang werden ihre bleibenden Erkenntnisse in die vier primären Phase-2-Dokumente übernommen; danach werden redundante Texte zusammengeführt oder als klar gekennzeichnete Historie abgelegt. Keine freigegebene Gestaltungsentscheidung und keine Asset-Referenz geht dabei verloren.
+Die früher getrennten Bestandsanalysen, Bildvergleiche, Konzeptnotizen und das chronologische Arbeitsprotokoll wurden in diese vier Primärdokumente überführt. Ihre redundanten Einzeldateien werden aus der aktiven Dokumentation entfernt; die Git-Historie bleibt erhalten. Keine relevante Asset-Referenz oder bestätigte Gestaltungsentscheidung geht dadurch verloren.
 
 ## Verbindliche Pflege-Regeln
 
@@ -53,7 +49,7 @@ Die letzten vier Dokumente sind Prüf- bzw. Verlaufsmaterial. Sie sollen nicht d
 - [x] Veralteten README-Verweis und fest eingetragene Testanzahl entfernt.
 - [x] Einstieg und Zuständigkeiten dieser Dokumentation angelegt.
 - [ ] Alle Dokumente auf widersprüchliche, überholte oder doppelte Regeln prüfen.
-- [ ] Phase-2-Dokumente auf vier primäre Quellen konsolidieren, ohne Referenzen oder Entscheidungen zu verlieren.
+- [x] Phase-2-Dokumente auf vier primäre Quellen konsolidieren; relevante Referenzen und Entscheidungen übernommen, Git-Historie bleibt erhalten.
 - [ ] Aufgabenlisten und Roadmap mit tatsächlichem Implementierungsstand abgleichen.
 - [ ] Alle internen Markdown-Links prüfen und tote Verweise entfernen.
 - [ ] Abschließenden Dokumentations-Review und CI-Prüfung durchführen.
