@@ -2,7 +2,7 @@
 
 > **Status:** Verbindliche Arbeitsgrundlage für die visuelle Konzeptproduktion; noch keine finale Bildfreigabe.
 > **Geltungsbereich:** Nico in fünf Entwicklungsstufen und seine wiederverwendbaren emotionalen Zustände.
-> **Verwandte Dokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) · [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md)
+> **Verwandte Dokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md)
 
 ## 1. Ziel und Leitprinzip
 
