@@ -271,7 +271,7 @@ Tipps für zu Hause je Typ (für "Das hilft jetzt", beim Bauen einmal fachlich g
 
 ## 12. Verbindliche Entscheidungen aus dem Stakeholder-Interview
 
-Diese Entscheidungen ergänzen die bestehende Feedback-Spezifikation. Sie beschreiben das gewünschte Produktverhalten, nicht die technische Umsetzung der Aufgabenlogik.
+Diese Entscheidungen dokumentieren das Stakeholder-Interview. Die konsolidierte und maßgebliche Produktquelle ist inzwischen `docs/REWARD_SYSTEM.md`; dieser Abschnitt bleibt als Interview-Nachweis erhalten und darf ihr nicht widersprechen. Er beschreibt gewünschtes Produktverhalten, nicht die technische Umsetzung der Aufgabenlogik.
 
 ### 12.1 Sterne und Kompetenz
 
