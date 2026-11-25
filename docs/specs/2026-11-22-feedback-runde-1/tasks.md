@@ -1,6 +1,6 @@
 # Aufgaben: Feedback-Runde 1
 
-Stand: 2026-11-24. Gehört zu `requirements.md` und `design.md`. Reihenfolge: erst Test, dann Code (rot, grün). Jede Aufgabe endet mit `npx tsc --noEmit` und `npm test` ohne Fehler. Der Vite-Build und die Sichtprüfung laufen auf Ninas Mac.
+Historischer Umsetzungsplan vom 24.11.2026. Gehört zu `requirements.md` und `design.md`. Die ursprünglichen Aufgabenbeschreibungen dokumentieren den damaligen Arbeitsauftrag; sie sind keine aktuelle To-do-Liste. Der tatsächliche Status steht in `FEATURES.md` und `docs/ROADMAP_DESIGN.md`. Neue Änderungen folgen weiterhin dem Prinzip: erst Test, dann Code (rot, grün); relevante Prüfungen und manuelle Sichtprüfungen werden getrennt ausgewiesen.
 
 Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneinander unabhängig. T7 nach T5 und T6. T8 zuletzt.
 
@@ -44,8 +44,8 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 ### T7 Lernstand für Eltern
 - Dateien: neu `src/logic/lernstand.ts` plus Test
-- Tun: Bereits freigegeben sind fünf Sterne je Lernfeld, die feste Reihenfolge und der ausgewogene Kompetenznachweis über unterschiedliche Aufgabenstellungen und mehrere Übungsrunden. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sowie die Testbereitschaft bleiben bis zur weiteren Stakeholder-Freigabe zurückgestellt. Keine Schwellen oder Berechnungsregeln aus dem alten Diskussionsstand übernehmen. Denkimpuls darf zum Kompetenznachweis beitragen; die Münzreduktion beträgt eine Münze für die konkrete Aufgabe. Die bestehende Hilfe-/Lösungsanzeige bleibt erhalten; eine angezeigte Lösung ist kein selbstständiger Nachweis.
-- Test zuerst: Tests erst ergänzen, wenn die konkreten fachlichen Kriterien und die Testbereitschaft freigegeben sind. Bis dahin keine Stern- oder Testbereitschaftslogik implementieren.
+- Tun: Bereits freigegeben sind fünf Sterne je Lernfeld, die feste Reihenfolge und der ausgewogene Kompetenznachweis über unterschiedliche Aufgabenstellungen und mehrere Übungsrunden. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sind als konfigurierbare Startwerte in `src/logic/config.ts` umgesetzt, aber fachlich noch nicht freigegeben. Denkimpuls darf zum Kompetenznachweis beitragen; pro genutztem Impuls wird eine Münze vom Bonusmünzen-Pool der Runde abgezogen (begrenzt auf die in der Runde entstandenen Bonusmünzen), nicht von einer Aufgabenmünze. Die bestehende Hilfe-/Lösungsanzeige bleibt erhalten; eine angezeigte Lösung ist kein selbstständiger Nachweis.
+- Test zuerst: Tests erst ergänzen, wenn die konkreten fachlichen Kriterien und die Testbereitschaft freigegeben sind. Die Sternlogik ist implementiert. Die fachliche Freigabe der konfigurierten Kriterien und eine gesonderte Validierung der Testbereitschaft bleiben offen.
 - Anforderungen: R6.1 bis R6.6 (nach Interview), R6.8
 
 ## Phase B: Oberfläche (je Aufgabe Sichtprüfung auf dem Mac)
@@ -81,6 +81,8 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 - Anforderungen: R7.8 bis R7.12
 
 ## Nachtrag 25.11.2026: Umsetzungsstand der Interview-Anforderungen
+
+Dieser Nachtrag ist der aktuelle Status gegenüber dem historischen Arbeitsplan. Die ursprünglichen Formulierungen unter T1–T13 bleiben als nachvollziehbare Aufgabenherkunft erhalten; sie dürfen nicht als offene Implementierungsaufträge gelesen werden.
 
 Siehe `docs/PLAN_LERNFELDER_RELIKTE.md`. Umgesetzt (Logik mit Tests, Oberfläche ohne Browserprüfung): fünf Kompetenzsterne je Lernfeld als Startwerte (T7 Teil Sterne), Lernfeld-Abschluss mit Wissensalbum und Pokal (T10), Terrarium-Sammlung mit Pokalen und Relikte (T13), Denkimpuls (R7.4). Entfernt: Wochenziel, Rundenzahl-Belohnungen und die Auswertung der Nutzungsfrequenz im Elternbereich (R6.8). Offen: fachliche Freigabe der Sternkriterien, Testbereitschaft (Startwerte aus dem Diskussionsstand bleiben vorläufig bestehen), Elternbereich T11 (Umbau auf Sätze zuerst) und alle Sichtprüfungen.
 
