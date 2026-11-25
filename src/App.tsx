@@ -315,7 +315,7 @@ function Ergebnis({ state, summary, onDone }: { state: GameState; summary: Round
           {summary.knobelFutter > 0 && <span className="chip">davon knifflig: +{summary.knobelFutter}</span>}
           {summary.serienFutter > 0 && <span className="chip">+{summary.serienFutter} Serie</span>}
           {summary.bonusFood > 0 && <span className="chip">+{summary.bonusFood} Rundenbonus</span>}
-          {summary.denkimpulsAbzug > 0 && <span className="chip">Denkimpuls: {summary.denkimpulsAbzug} {summary.denkimpulsAbzug === 1 ? 'Münze' : 'Münzen'} weniger</span>}
+          {summary.denkimpulsFutter > 0 && <span className="chip">Denkimpuls: {summary.denkimpulsFutter} Futter weniger</span>}
         </p>
       )}
       <button className="knopf gross hauptknopf" type="button" onClick={onDone}>{summary.meilensteine.length > 0 ? 'Weiter' : 'Fertig'}</button>

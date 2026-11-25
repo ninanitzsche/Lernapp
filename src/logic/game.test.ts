@@ -31,32 +31,30 @@ test('Tagesmitbringsel: genau die erste abgeschlossene Runde des Tages bringt ei
   assert.equal(second.state.bonusMuenzen, 1)
 })
 
-test('Denkimpuls: eine Münze weniger aus dem Bonuspool der Runde', () => {
+test('Denkimpuls: die Aufgabe bringt 1 statt 2 Futter, die Münzen bleiben unberührt', () => {
+  const ohne = finishRound({ ...initialState('S'), totalFood: 20 }, runde('first'), MO)
   const antworten = runde('first').map((a, i) => i === 0 ? { ...a, denkimpuls: true } : a)
-  const start = { ...initialState('S'), totalFood: 20 }
-  const r = finishRound(start, antworten, MO)
-  // Stufenaufstieg + Tagesmitbringsel = 2 Bonusmünzen; ein Impuls zieht genau eine davon ab.
-  assert.equal(r.denkimpulsAbzug, 1)
-  assert.equal(r.neueBonusMuenzen, 1)
-  assert.equal(r.state.bonusMuenzen, 1)
-  // Futter und Kompetenznachweise werden durch den Impuls nicht reduziert.
-  assert.equal(r.foodGained, 20)
-  assert.ok(r.state.nachweise.A.length + r.state.nachweise.B.length + r.state.nachweise.C.length > 0)
+  const r = finishRound({ ...initialState('S'), totalFood: 20 }, antworten, MO)
+  assert.equal(r.foodGained, ohne.foodGained - 1)
+  assert.equal(r.denkimpulsFutter, 1)
+  // Aufstieg und Tagesmitbringsel bleiben beide erhalten: kein Münzabzug.
+  assert.equal(r.neueBonusMuenzen, ohne.neueBonusMuenzen)
+  // Die Aufgabe zählt weiter zum Kompetenznachweis.
+  assert.equal(r.state.nachweise.A.length + r.state.nachweise.B.length + r.state.nachweise.C.length,
+    ohne.state.nachweise.A.length + ohne.state.nachweise.B.length + ohne.state.nachweise.C.length)
 })
 
-test('Denkimpuls: Abzug ist auf Bonusmünzen dieser Runde begrenzt', () => {
-  const antworten = runde('first').map((a) => ({ ...a, denkimpuls: true }))
+test('Denkimpuls: wirkt auch bei kniffligen Aufgaben wie ein zweiter Versuch (3 statt 5)', () => {
+  const antworten = runde('first').map((a, i) => i === 0 ? { ...a, stufe: 3 as const, denkimpuls: true } : a)
   const r = finishRound(initialState('S'), antworten, MO)
-  // In dieser Runde gibt es nur das Tagesmitbringsel; zehn Impulse können höchstens eine Münze kosten.
-  assert.equal(r.denkimpulsAbzug, 1)
-  assert.equal(r.neueBonusMuenzen, 0)
-  assert.equal(r.state.bonusMuenzen, 0)
+  assert.equal(r.denkimpulsFutter, 2)
 })
 
-test('Ein falscher Versuch ohne Denkimpuls kostet keine Münze', () => {
-  const r = finishRound(initialState('S'), runde('failed', 1), MO)
-  assert.equal(r.denkimpulsAbzug, 0)
-  assert.equal(r.neueBonusMuenzen, 1) // Tagesmitbringsel
+test('Denkimpuls plus zweiter Versuch gibt nicht doppelt weniger: 1 Futter', () => {
+  const antworten: RoundAnswer[] = [{ type: TASK_TYPES[0], outcome: 'second', denkimpuls: true }]
+  const r = finishRound(initialState('S'), antworten, MO)
+  assert.equal(r.foodGained, 1)
+  assert.equal(r.denkimpulsFutter, 0)
 })
 
 test('Perfekte Runde: 10 mal 2 Futter plus 5 Bonus', () => {

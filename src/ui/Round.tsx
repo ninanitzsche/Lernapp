@@ -4,8 +4,8 @@ import { checkAnswer, TYPE_NAMES } from '../logic/tasks.ts'
 import type { Response, Task, Topic } from '../logic/tasks.ts'
 import { CONFIG } from '../logic/config.ts'
 import { baueAufgaben } from '../logic/rundenbau.ts'
-import { serieErkannt, halbzeitErreicht } from '../logic/belohnung.ts'
-import { dayKey, foodForOutcome, stageFor } from '../logic/game.ts'
+import { serieErkannt, halbzeitErreicht, futterFuerAntwort } from '../logic/belohnung.ts'
+import { dayKey, stageFor } from '../logic/game.ts'
 import { futterBisJetzt, naechsterSchritt } from '../logic/runde.ts'
 import type { RundenStand } from '../logic/runde.ts'
 import { loescheRunde, speichereRunde } from '../storage.ts'
@@ -45,7 +45,7 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
   const [aufgaben, setAufgaben] = useState<Task[]>(() => fortsetzen?.aufgaben ?? baueAufgaben({ skill: state.skill, abgeschlosseneRunden: abgeschlosseneRunden, topic, quelle, knobel: schwer, seed }))
   const [index, setIndex] = useState(fortsetzen?.index ?? 0)
   const [versuch, setVersuch] = useState<1 | 2>(fortsetzen?.versuch ?? 1)
-  // Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiter, die Runde bringt eine Münze weniger.
+  // Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiter zum Nachweis, bringt aber wie ein zweiter Versuch weniger Futter.
   const [denkimpuls, setDenkimpuls] = useState(fortsetzen?.denkimpuls ?? false)
   const [antworten, setAntworten] = useState<RoundAnswer[]>(fortsetzen?.antworten ?? [])
   const [ergebnis, setErgebnis] = useState<Outcome | null>(null)
@@ -223,7 +223,7 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
               <p className="rueckmeldung-titel">{ergebnis === 'first' ? 'Richtig!' : 'Geschafft!'}</p>
               {basisTask && (
                 <p>
-                  +{foodForOutcome(ergebnis, task.stufe)} Futter für deine Schlange
+                  +{futterFuerAntwort({ outcome: ergebnis, stufe: task.stufe, denkimpuls })} Futter für deine Schlange
                   {serieDa && <span className="chip">+{CONFIG.serieFutter} Serie</span>}
                 </p>
               )}
@@ -234,7 +234,7 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
       )}
       {ergebnis === null && versuch === 1 && !denkimpuls && (
         <button className="knopf klein denkimpuls" type="button" onClick={() => { setDenkimpuls(true); sprich(`Denkimpuls: ${task.hint}`) }}>
-          <span aria-hidden="true">💡</span> Denkimpuls (eine Münze weniger)
+          <span aria-hidden="true">💡</span> Denkimpuls (weniger Futter)
         </button>
       )}
       {ergebnis === null && denkimpuls && <p className="hinweis" role="status"><span className="gluehbirne" aria-hidden="true">💡</span> Denkimpuls: {task.hint}</p>}

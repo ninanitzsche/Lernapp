@@ -1,7 +1,7 @@
 import { CONFIG, STAGES } from './config.ts'
 import { TASK_TYPES, TOPIC_OF, TOPICS } from './tasks.ts'
 import type { Stufe, TaskType, Topic } from './tasks.ts'
-import { futterFuer } from './belohnung.ts'
+import { futterFuer, futterFuerAntwort } from './belohnung.ts'
 import { istPokal } from './shop.ts'
 import { lernstandNach } from './stufen.ts'
 import { MAX_STERNE, leereNachweise, nachweiseNach, parseNachweise, sterneNach } from './kompetenz.ts'
@@ -218,8 +218,8 @@ export interface RoundSummary {
   serienFutter: number
   /** Neue Meilensteine dieser Runde, in Feier-Reihenfolge */
   meilensteine: Meilenstein[]
-  /** Münzen, die der Denkimpuls in dieser Runde gekostet hat (bereits in `neueBonusMuenzen` abgezogen) */
-  denkimpulsAbzug: number
+  /** Futter, das durch Denkimpulse in dieser Runde weniger gebracht wurde (schon aus `foodGained` herausgerechnet) */
+  denkimpulsFutter: number
 }
 
 export function finishRound(state: GameState, answers: RoundAnswer[], now: Date, knobel = false): RoundSummary {
@@ -238,8 +238,10 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
     skill[a.type] = updateSkill(skill[a.type], a.outcome, stufe)
     verlauf[a.type] = [...(verlauf[a.type] ?? []), { o: a.outcome, s: stufe }].slice(-VERLAUF_LAENGE)
   }
+  let denkimpulsFutter = 0
   for (const a of basisAntworten) {
-    const f = foodForOutcome(a.outcome, a.stufe ?? 2)
+    const f = futterFuerAntwort(a)
+    denkimpulsFutter += foodForOutcome(a.outcome, a.stufe ?? 2) - f
     food += f
     if ((a.stufe ?? 2) === 3) knobelFutter += f
     if (a.serieBonus) { food += CONFIG.serieFutter; serienFutter += CONFIG.serieFutter }
@@ -270,7 +272,7 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
   const ersteVersuche = basisAntworten.filter((a) => a.outcome === 'first').length
   const knobelMuenze = knobel && vollstaendig && ersteVersuche >= CONFIG.knobelMinRichtig && !knobelTage.includes(heute)
   if (knobelMuenze) knobelTage.push(heute)
-  // Tagesmitbringsel: die erste abgeschlossene Runde jedes Tages bringt eine Münze; das Futterlimit greift erst ab der vierten Runde.
+  // Tagesmitbringsel: die erste abgeschlossene Runde jedes Tages bringt eine Münze (die App beendet eine Runde erst nach allen Aufgaben); das Futterlimit greift erst ab der vierten Runde.
   const tagesMuenze = roundsToday === 0
 
   const statistik: Statistik = {
@@ -285,13 +287,9 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
     gekauft: state.gekauft ?? [], positionen: state.positionen ?? {}, verlauf, statistik, nachweise,
   }
   const meilensteine = pruefeMeilensteine(state, nachher, heute, knobelMuenze)
-  const bonusRoh =
+  // Münzen kommen nie je Aufgabe. Ein Denkimpuls kostet Futter (siehe oben), keine Münze.
+  const neueBonusMuenzen =
     Math.max(0, stageAfter - stageBefore) + (knobelMuenze ? CONFIG.knobelMuenzen : 0) + (tagesMuenze ? 1 : 0) + zusatzMuenzen(meilensteine)
-  // Denkimpuls: eine Münze weniger je genutztem Impuls, höchstens so viele, wie die Runde an Bonusmünzen gebracht hat.
-  // Sterne (nachgewiesene Kompetenz) und schon verdientes Geld bleiben unberührt, der Kontostand sinkt nie.
-  const denkimpulse = answers.filter((a) => a.denkimpuls).length
-  const denkimpulsAbzug = Math.min(denkimpulse, bonusRoh)
-  const neueBonusMuenzen = bonusRoh - denkimpulsAbzug
 
   return {
     state: { ...nachher, bonusMuenzen: (state.bonusMuenzen ?? 0) + neueBonusMuenzen, meilensteine: [...state.meilensteine, ...meilensteine] },
@@ -309,7 +307,7 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
     knobelFutter: satt ? 0 : knobelFutter,
     serienFutter: satt ? 0 : serienFutter,
     meilensteine,
-    denkimpulsAbzug,
+    denkimpulsFutter: satt ? 0 : denkimpulsFutter,
   }
 }
 

@@ -94,19 +94,15 @@ test('Nachweise und Relikt-Erfolge überstehen Export und Import', () => {
   assert.deepEqual(geladen.reliktErfolge, ['B1'])
 })
 
-test('Denkimpuls: Aufgabe zählt zum Nachweis, die Runde bringt eine Münze weniger, der Kontostand sinkt nie', () => {
+test('Denkimpuls: Aufgabe zählt zum Nachweis, kostet Futter statt Münzen, der Kontostand sinkt nie', () => {
   const ohne = finishRound(initialState('S'), feldRunde('A'), tag(0))
   const mit = finishRound(initialState('S'), feldRunde('A', { denkimpuls: true }), tag(0))
   assert.equal(mit.state.nachweise.A.length, ohne.state.nachweise.A.length, 'zählt weiter zum Nachweis')
   assert.equal(ohne.neueBonusMuenzen, 1) // Tagesmitbringsel
-  assert.equal(mit.neueBonusMuenzen, 0)
-  assert.equal(mit.denkimpulsAbzug, 1)
+  assert.equal(mit.neueBonusMuenzen, 1, 'keine Münze weniger')
+  assert.ok(mit.denkimpulsFutter > 0, 'weniger Futter')
+  assert.ok(mit.foodGained < ohne.foodGained)
   assert.ok(kontostand(mit.state) >= 0)
-  // mehr Impulse als Münzen: höchstens bis null
-  const viele = finishRound(initialState('S'), feldRunde('A').map((a) => ({ ...a, denkimpuls: true })), tag(0))
-  assert.equal(viele.neueBonusMuenzen, 0)
-  assert.equal(viele.denkimpulsAbzug, 1)
-  assert.ok(kontostand(viele.state) >= 0)
 })
 
 test('Denkimpuls kostet keine Sterne: ein verdienter Stern bringt seine Münze trotzdem', () => {

@@ -3,7 +3,8 @@ import { TASK_TYPES, generateDifferent } from './tasks.ts'
 import type { Task, Topic } from './tasks.ts'
 import { createRng } from './rng.ts'
 import { CONFIG } from './config.ts'
-import { foodForOutcome, pickRepeatAnswers } from './game.ts'
+import { pickRepeatAnswers } from './game.ts'
+import { futterFuerAntwort } from './belohnung.ts'
 import type { Stufe } from './tasks.ts'
 import type { Outcome, RoundAnswer } from './game.ts'
 
@@ -54,7 +55,7 @@ export function naechsterSchritt(a: { aufgaben: Task[]; index: number; antworten
 
 /** Futter, das die Runde bis jetzt gebracht hat (nach Stufe, mit Serienfutter). Wiederholungen zählen nicht. */
 export function futterBisJetzt(antworten: RoundAnswer[]): number {
-  return antworten.filter((x) => !x.isRepeat).reduce((s, x) => s + foodForOutcome(x.outcome, x.stufe ?? 2) + (x.serieBonus ? CONFIG.serieFutter : 0), 0)
+  return antworten.filter((x) => !x.isRepeat).reduce((s, x) => s + futterFuerAntwort(x) + (x.serieBonus ? CONFIG.serieFutter : 0), 0)
 }
 
 export function serializeRunde(r: RundenStand): string {
