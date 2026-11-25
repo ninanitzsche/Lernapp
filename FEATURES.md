@@ -99,13 +99,14 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 - **Implementiert:** Abschluss eines Lernfeldes (fünf Sterne): einmaliger Meilenstein mit Feier, Eintrag im Wissensalbum und Pokal im Terrarium. Das Lernfeld bleibt normal spielbar, ohne erneute Sterne oder Auszeichnung. Die Pokal- und Albumgrafik ist ein Platzhalter (`src/ui/pokal.ts`) bis zur freigegebenen Illustration.
 - **Implementiert:** Terrarium als Sammlung: Pokale stehen automatisch im Terrarium und lassen sich wie gekaufte Dinge verschieben. Das Wissensalbum bleibt unabhängig von der Platzierung vollständig.
 - **Implementiert:** Relikte: freiwillige Expertenaufgaben (fünf kniffelige Aufgaben je Aufgabentyp, vier Treffer im ersten Versuch nötig), erst sichtbar nach dem ersten Lernfeld-Abschluss. Beim ersten Erfolg gibt es Münzen, danach keine mehr. Relikte ändern weder Sterne noch Lernstand, Verlauf oder Futter.
-- **Implementiert:** Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiter zum Kompetenznachweis, die Runde bringt eine Münze weniger (höchstens bis die Bonusmünzen der Runde aufgebraucht sind, Sterne bleiben unberührt). Diese Auslegung ist noch zu bestätigen.
-- **Implementiert:** Eine beim ersten Versuch richtige Antwort bringt 2 Futter, eine beim zweiten Versuch richtige Antwort 1 Futter; bei nicht gelöster Aufgabe gibt es kein Futter.
-- **Implementiert:** Der Abschluss einer Runde bringt zusätzlich 5 Futter.
+- **Implementiert:** Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiterhin zum Kompetenznachweis, wenn sie im ersten Versuch richtig gelöst wird. Pro genutztem Impuls wird eine Münze vom Bonusmünzen-Pool dieser Runde abgezogen, höchstens bis dieser Pool aufgebraucht ist. Bereits vorhandene Münzen und Sternmünzen bleiben unberührt. Ein falscher Versuch allein kostet keine Münze. Diese Regel ist vom Projektinhaber bestätigt und in `docs/REWARD_SYSTEM.md` verbindlich beschrieben.
+- **Implementiert:** Futter je Aufgabe hängt von der Schwierigkeit ab: Stufe 1 und 2 bringen 2 Futter im ersten bzw. 1 im zweiten Versuch; Stufe 3 bringt 5 bzw. 3. Nicht gelöste Aufgaben bringen kein Futter.
+- **Implementiert:** Eine vollständig abgeschlossene normale Runde bringt zusätzlich 5 Futter, eine Knobelrunde 10 Futter. Drei richtige Antworten hintereinander im ersten Versuch bringen einmal pro Runde zusätzlich 1 Futter.
 - **Implementiert:** Es gibt eine Begrenzung auf drei futterbringende Runden pro Tag. Weitere Lernrunden bleiben möglich und aktualisieren weiterhin den Lernstand.
-- **Entfernt (25.11.2026):** Wochenziel und Belohnungen für reine Rundenzahl. Es gibt keinen Bonus für Übungstage oder Rundenzahl. Schon verdiente Münzen und gespeicherte Meilensteine bleiben erhalten.
-- **Implementiert:** Münzen können unter anderem durch den ersten Tagesdurchlauf, Stufenaufstiege, Sterne und den Knobelmodus verdient werden.
-- **Implementiert:** Für den Knobelbonus gilt eine Mindestleistung von 7 aus 10 Aufgaben beim ersten Versuch; der Bonus ist auf einmal pro Tag begrenzt.
+- **Entfernt (25.11.2026):** Wochenziel und Belohnungen für reine Rundenzahl. Es gibt keinen Wochenziel- oder bloßen Rundenzahlbonus. Davon getrennt bleibt das ausdrücklich gewollte Tagesmitbringsel: eine Münze für die erste abgeschlossene Runde eines Kalendertages, auch nach Erreichen des Futterlimits. Schon verdiente Münzen und gespeicherte Meilensteine bleiben erhalten.
+- **Implementiert:** Münzen kommen aus Kompetenzsternen (eine je Stern), Entwicklungsstufen (eine je überschrittener Stufenschwelle), dem Tagesmitbringsel, Knobelerfolgen und Relikt-Erstabschlüssen.
+- **Implementiert:** Eine starke Knobelrunde (mindestens 7 von 10 Aufgaben im ersten Versuch richtig) bringt 2 Münzen, höchstens einmal pro Tag. Die erste starke Knobelrunde bringt zusätzlich einmalig 1 Münze als Meilenstein. Kumulative knifflige Ersttreffer lösen weitere einmalige Meilensteine bei 10, 25 und 50 Treffern aus (1, 2 bzw. 3 Münzen).
+- **Implementiert:** Ein erstmals erfolgreich abgeschlossenes Relikt bringt 2 Münzen; Wiederholungen desselben Relikts bringen keine weiteren Münzen.
 - **Implementiert:** Bereits erreichte Sterne bleiben erhalten, auch wenn sich der Kompetenzstand später verändert. Altstände behalten ihre bisherigen Sterne (0 bis 3); weitere Sterne brauchen neue Nachweise.
 - **Implementiert:** Es gibt keinen Verlust von Wachstum bei Lernpausen und keine aufeinander aufbauende Streak-Pflicht.
 
@@ -175,9 +176,8 @@ Daraus folgt: Eine installierbare PWA mit verlässlichem Offline-Caching sollte 
 
 ### Dokumentation
 
-- **Erledigt:** Die überholten Dokumente `docs/spec.md` und `docs/bewertung-ux-und-spieldesign.md` wurden entfernt (Git-Historie). Maßgeblich sind `docs/DESIGN_SYSTEM.md`, `docs/ROADMAP_DESIGN.md` und `docs/specs/2026-11-22-feedback-runde-1/`.
-- **Tests:** Die aktuelle Testanzahl steht in der README und wird nur aus einem tatsächlichen Testlauf übernommen.
-- **Prüfen:** Der Produktionsbuild läuft in der Sandbox nicht (plattformspezifische Binärdateien); Nachweis über GitHub Actions oder den lokalen Build.
+- **Erledigt:** Der Einstieg und die Zuständigkeiten stehen in `docs/README.md`. Maßgeblich sind `docs/REWARD_SYSTEM.md` für Produktregeln, `docs/specs/2026-11-22-feedback-runde-1/requirements.md` für testbare Anforderungen, `design.md` für UX, `docs/DESIGN_SYSTEM.md` für die visuelle Sprache und `docs/ROADMAP_DESIGN.md` für den Arbeitsstand. Historische Aufgabenpläne sind keine aktuelle To-do-Liste.
+- **Tests und Build:** Keine feste Testanzahl in der Dokumentation pflegen. Der aktuelle, reproduzierbare Nachweis für `npm ci`, `npm test` und `npm run build` ist der verlinkte GitHub-Actions-Lauf in `docs/ROADMAP_DESIGN.md`. Der Build führt über `npm run build` auch `tsc -b` aus.
 
 ### Repository-Größe
 
