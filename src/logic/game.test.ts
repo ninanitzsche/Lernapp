@@ -1,8 +1,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import {
-  initialState, foodForOutcome, stageFor, nextStageFood, moodAt, dayKey, weekKey, updateSkill, topicStars,
-  selectTypes, pickRepeats, pickRepeatAnswers, finishRound, serializeState, parseState, daysPracticedInWeek,
+  initialState, foodForOutcome, stageFor, nextStageFood, moodAt, dayKey, updateSkill, topicStars,
+  selectTypes, pickRepeats, pickRepeatAnswers, finishRound, serializeState, parseState,
 } from './game.ts'
 import type { RoundAnswer } from './game.ts'
 import { createRng } from './rng.ts'
@@ -110,45 +110,6 @@ test('Wachstum sinkt nie, auch nicht nach langer Pause', () => {
   assert.equal(stageFor(s.totalFood).stage, 3)
   const r = finishRound(s, runde('failed'), MO)
   assert.ok(r.state.totalFood >= 100)
-})
-
-test('Wochenschlüssel: Woche läuft Montag bis Sonntag', () => {
-  assert.equal(weekKey(new Date(2026, 10, 23)), '2026-11-23')
-  assert.equal(weekKey(new Date(2026, 10, 29, 23, 59)), '2026-11-23')
-  assert.equal(weekKey(new Date(2026, 10, 30)), '2026-11-30')
-  assert.equal(weekKey(new Date(2026, 10, 22)), '2026-11-16')
-})
-
-test('Wochenziel: 3 verschiedene Tage, Bonus nur einmal pro Woche', () => {
-  let s = initialState('S')
-  let r = finishRound(s, runde('first'), tag(0))
-  assert.equal(r.weeklyBonus, 0)
-  s = r.state
-  r = finishRound(s, runde('first'), tag(0, 15))
-  assert.equal(r.weeklyBonus, 0, 'zweite Runde am selben Tag zählt nicht als neuer Tag')
-  s = r.state
-  r = finishRound(s, runde('first'), tag(2))
-  assert.equal(r.weeklyBonus, 0)
-  s = r.state
-  assert.equal(daysPracticedInWeek(s.rounds, tag(2)), 2)
-  r = finishRound(s, runde('first'), tag(4))
-  assert.equal(r.weeklyBonus, 20)
-  s = r.state
-  r = finishRound(s, runde('first'), tag(5))
-  assert.equal(r.weeklyBonus, 0, 'Bonus nur einmal pro Woche')
-  s = r.state
-  // neue Woche: wieder möglich
-  for (const off of [7, 8, 9]) {
-    r = finishRound(s, runde('first'), tag(off))
-    s = r.state
-  }
-  assert.equal(r.weeklyBonus, 20)
-})
-
-test('Tage über Wochengrenze zählen nicht zusammen', () => {
-  let s = initialState('S')
-  for (const off of [5, 6, 7]) s = finishRound(s, runde('first'), tag(off)).state
-  assert.equal(s.weeklyBonusWeeks.length, 0)
 })
 
 test('Lernstand bleibt zwischen 0 und 3', () => {

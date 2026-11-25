@@ -9,7 +9,7 @@ import { Info } from './Info.tsx'
 import { Schuppen } from './Schuppen.tsx'
 import { titelVon } from '../logic/rueckblick.ts'
 import {
-  BEREITSCHAFT_TEXT, EINSCHAETZUNG_TEXT, TREND_TEXT, empfehlung, erreichteStufe, rundenProWoche, tageBisTest, themaBereitschaft, trend, typEinschaetzung,
+  BEREITSCHAFT_TEXT, EINSCHAETZUNG_TEXT, TREND_TEXT, empfehlung, erreichteStufe, tageBisTest, themaBereitschaft, trend, typEinschaetzung,
 } from '../logic/lernstand.ts'
 import type { Bereitschaft, Einschaetzung } from '../logic/lernstand.ts'
 
@@ -74,7 +74,6 @@ export function Parent({ state, onChange, onReset, onClose }: Props) {
   const jetzt = new Date()
   const tageBis = tageBisTest(state.testDate, jetzt)
   const rat = empfehlung(state.verlauf, state.name)
-  const wochen = rundenProWoche(state.rounds, jetzt, 4)
 
   return (
     <main className="eltern">
@@ -119,9 +118,6 @@ export function Parent({ state, onChange, onReset, onClose }: Props) {
         </tbody>
       </table>
       <p className="klein-text">Grundlage sind die letzten zehn Versuche je Typ, mindestens fünf sind nötig. Für "sicher" müssen mindestens 8 von 10 gleich richtig sein und mindestens 3 davon auf mittlerer oder kniffliger Stufe.</p>
-
-      <h2>Runden in den letzten vier Wochen</h2>
-      <p>Diese Woche: {wochen[3]} | letzte Woche: {wochen[2]} | davor: {wochen[1]} und {wochen[0]}</p>
 
       <h2>Meilensteine</h2>
       {state.meilensteine.length === 0 ? <p>Noch keine.</p> : (

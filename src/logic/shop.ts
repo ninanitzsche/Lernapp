@@ -78,7 +78,7 @@ export function bildFuer(id: string): string {
   return `${import.meta.env.BASE_URL}images/snake/app/shop/${id}.webp`
 }
 
-/** Münzen, die insgesamt verdient wurden: ein Stern = eine Münze, dazu je eine für Stufenaufstieg und Wochenziel. */
+/** Münzen, die insgesamt verdient wurden: ein Stern = eine Münze, dazu Bonusmünzen (Stufenaufstieg, Tagesmitbringsel, Knobelerfolge). */
 export function verdiente(state: GameState): number {
   return TOPICS.reduce((s, t) => s + (state.sterneErreicht?.[t] ?? 0), 0) + (state.bonusMuenzen ?? 0)
 }

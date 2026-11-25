@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { TOPICS, TOPIC_NAMES } from './logic/tasks.ts'
 import type { Topic } from './logic/tasks.ts'
 import { CONFIG } from './logic/config.ts'
-import { dayKey, daysPracticedInWeek, finishRound, initialState, topicStars } from './logic/game.ts'
+import { dayKey, finishRound, initialState, topicStars } from './logic/game.ts'
 import type { GameState, RoundAnswer, RoundSummary } from './logic/game.ts'
 import { bitteUmDauerhaftenSpeicher, ladeRunde, letzteSicherung, loadState, loescheRunde, saveState, sicherungFaellig } from './storage.ts'
 import type { RundenStand } from './logic/runde.ts'
@@ -128,7 +128,6 @@ function AppInhalt() {
   if (view === 'themen') return <Themen state={state} pausiert={pause !== null} onStart={starten} onClose={() => setView('home')} />
 
   const heuteRunden = state.rounds[dayKey(now)] ?? 0
-  const tage = daysPracticedInWeek(state.rounds, now)
   const gesamtRunden = Object.values(state.rounds).reduce((s, n) => s + n, 0)
   const sichern = sicherungFaellig(gesamtRunden, letzteSicherung(), now)
   return (
@@ -152,12 +151,6 @@ function AppInhalt() {
           <span aria-hidden="true">🛍️</span>&nbsp;Shop&nbsp;<Muenzen n={kontostand(state)} />
         </button>
       </div>
-      <p className="woche">
-        Woche: {tage} von {CONFIG.weeklyGoalDays} Tagen
-        <span className="wochenpunkte">
-          {Array.from({ length: CONFIG.weeklyGoalDays }, (_, i) => <span key={i} className={i < tage ? 'wpunkt an' : 'wpunkt'} />)}
-        </span>
-      </p>
       <div className="zeile">
         <button className="link" type="button" onClick={() => setIntro(true)}>Wie geht das?</button>
         <button className="link" type="button" onClick={() => setView('parent')}>
@@ -259,7 +252,7 @@ function Willkommen({ onStart }: { onStart: (name: string) => void }) {
 }
 
 function Ergebnis({ state, summary, onDone }: { state: GameState; summary: RoundSummary; onDone: () => void }) {
-  const gesamt = summary.foodGained + summary.bonusFood + summary.weeklyBonus
+  const gesamt = summary.foodGained + summary.bonusFood
   const muenzen = summary.neueSterne + summary.neueBonusMuenzen
   const [mitbringsel] = useState(() => spruch('mitbringsel'))
   useEffect(() => (summary.tagesMuenze ? muenzRegen() : undefined), [summary.tagesMuenze])
@@ -293,7 +286,6 @@ function Ergebnis({ state, summary, onDone }: { state: GameState; summary: Round
           {summary.knobelFutter > 0 && <span className="chip">davon knifflig: +{summary.knobelFutter}</span>}
           {summary.serienFutter > 0 && <span className="chip">+{summary.serienFutter} Serie</span>}
           {summary.bonusFood > 0 && <span className="chip">+{summary.bonusFood} Rundenbonus</span>}
-          {summary.weeklyBonus > 0 && <span className="chip">+{summary.weeklyBonus} Wochenziel</span>}
         </p>
       )}
       <button className="knopf gross hauptknopf" type="button" onClick={onDone}>{summary.meilensteine.length > 0 ? 'Weiter' : 'Fertig'}</button>

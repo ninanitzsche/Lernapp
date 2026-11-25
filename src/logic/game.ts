@@ -45,12 +45,11 @@ export interface GameState {
   lastFedAt: string | null
   /** Anzahl abgeschlossener Runden pro Tag (Schlüssel JJJJ-MM-TT). */
   rounds: Record<string, number>
-  weeklyBonusWeeks: string[]
   skill: Record<TaskType, number>
   testDate: string | null
   /** Höchste je erreichte Sternzahl pro Thema. Jeder Stern ist eine Münze für den Shop und geht nie verloren. */
   sterneErreicht: Record<Topic, number>
-  /** Zusätzliche Münzen: je eine pro Stufenaufstieg und pro geschafftem Wochenziel. */
+  /** Zusätzliche Münzen: Stufenaufstieg, Tagesmitbringsel und Knobelerfolge. */
   bonusMuenzen: number
   /** Tage (JJJJ-MM-TT), an denen die Knobelrunde schon eine Zusatzmünze gebracht hat (höchstens eine pro Tag). */
   knobelTage: string[]
@@ -76,7 +75,7 @@ export function leererVerlauf(): Record<TaskType, Versuch[]> {
 export function initialState(name: string): GameState {
   const skill = {} as Record<TaskType, number>
   for (const t of TASK_TYPES) skill[t] = 0
-  return { version: 1, name, totalFood: 0, lastFedAt: null, rounds: {}, weeklyBonusWeeks: [], skill, testDate: null, sterneErreicht: { A: 0, B: 0, C: 0 }, bonusMuenzen: 0, knobelTage: [], gekauft: [], positionen: {}, verlauf: leererVerlauf(), statistik: { bearbeitet: 0, geloest: 0, ersteTreffer: 0, knobelTreffer: 0 }, meilensteine: [] }
+  return { version: 1, name, totalFood: 0, lastFedAt: null, rounds: {}, skill, testDate: null, sterneErreicht: { A: 0, B: 0, C: 0 }, bonusMuenzen: 0, knobelTage: [], gekauft: [], positionen: {}, verlauf: leererVerlauf(), statistik: { bearbeitet: 0, geloest: 0, ersteTreffer: 0, knobelTreffer: 0 }, meilensteine: [] }
 }
 
 // ---------- Futter und Stufen ----------
@@ -106,7 +105,7 @@ export function moodAt(lastFedAt: string | null, now: Date): Mood {
   return 'schlaeft'
 }
 
-// ---------- Tage und Wochen ----------
+// ---------- Tage ----------
 
 function pad(n: number): string {
   return String(n).padStart(2, '0')
@@ -116,22 +115,6 @@ export function dayKey(d: Date): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
 }
 
-/** Wochenschlüssel = Datum des Montags (Woche läuft Montag bis Sonntag). */
-export function weekKey(d: Date): string {
-  const montag = new Date(d.getFullYear(), d.getMonth(), d.getDate())
-  montag.setDate(montag.getDate() - ((montag.getDay() + 6) % 7))
-  return dayKey(montag)
-}
-
-export function daysPracticedInWeek(rounds: Record<string, number>, now: Date): number {
-  const woche = weekKey(now)
-  return Object.keys(rounds).filter((k) => rounds[k] > 0 && weekKey(parseDay(k)) === woche).length
-}
-
-function parseDay(key: string): Date {
-  const [y, m, d] = key.split('-').map(Number)
-  return new Date(y, m - 1, d)
-}
 
 // ---------- Lernstand ----------
 
@@ -205,7 +188,6 @@ export interface RoundSummary {
   state: GameState
   foodGained: number
   bonusFood: number
-  weeklyBonus: number
   /** true, wenn das Tageslimit erreicht war: kein Futter, nur Lernstand. */
   satt: boolean
   stageBefore: number
@@ -213,7 +195,7 @@ export interface RoundSummary {
   leveledUp: boolean
   /** Neu erreichte Sterne in dieser Runde (je eine Münze) */
   neueSterne: number
-  /** Bonus-Münzen in dieser Runde: Stufenaufstieg, Wochenziel und Knobelrunde */
+  /** Bonus-Münzen in dieser Runde: Stufenaufstieg, Tagesmitbringsel und Knobelrunde */
   neueBonusMuenzen: number
   /** true, wenn die Knobelrunde in dieser Runde eine Zusatzmünze gebracht hat */
   knobelMuenze: boolean
@@ -258,13 +240,6 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
   const bonusGained = satt ? 0 : bonus
 
   const rounds = { ...state.rounds, [heute]: roundsToday + 1 }
-  let weeklyBonus = 0
-  const woche = weekKey(now)
-  const weeklyBonusWeeks = [...state.weeklyBonusWeeks]
-  if (daysPracticedInWeek(rounds, now) >= CONFIG.weeklyGoalDays && !weeklyBonusWeeks.includes(woche)) {
-    weeklyBonus = CONFIG.weeklyBonus
-    weeklyBonusWeeks.push(woche)
-  }
 
   const sterneErreicht: Record<Topic, number> = { A: state.sterneErreicht?.A ?? 0, B: state.sterneErreicht?.B ?? 0, C: state.sterneErreicht?.C ?? 0 }
   let neueSterne = 0
@@ -273,7 +248,7 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
     if (jetzt > sterneErreicht[t]) { neueSterne += jetzt - sterneErreicht[t]; sterneErreicht[t] = jetzt }
   }
 
-  const totalFood = state.totalFood + gained + bonusGained + weeklyBonus
+  const totalFood = state.totalFood + gained + bonusGained
   const stageBefore = stageFor(state.totalFood).stage
   const stageAfter = stageFor(totalFood).stage
   // Knobelrunde: Zusatzmünzen, wenn mindestens 7 von 10 Aufgaben gleich beim ersten Versuch stimmen, höchstens einmal pro Tag.
@@ -292,18 +267,17 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
   }
 
   const nachher: GameState = {
-    ...state, totalFood, lastFedAt: now.toISOString(), rounds, weeklyBonusWeeks, skill, sterneErreicht, knobelTage: knobelTage.slice(-60),
+    ...state, totalFood, lastFedAt: now.toISOString(), rounds, skill, sterneErreicht, knobelTage: knobelTage.slice(-60),
     gekauft: state.gekauft ?? [], positionen: state.positionen ?? {}, verlauf, statistik,
   }
   const meilensteine = pruefeMeilensteine(state, nachher, heute, knobelMuenze)
   const neueBonusMuenzen =
-    Math.max(0, stageAfter - stageBefore) + (weeklyBonus > 0 ? 1 : 0) + (knobelMuenze ? CONFIG.knobelMuenzen : 0) + (tagesMuenze ? 1 : 0) + zusatzMuenzen(meilensteine)
+    Math.max(0, stageAfter - stageBefore) + (knobelMuenze ? CONFIG.knobelMuenzen : 0) + (tagesMuenze ? 1 : 0) + zusatzMuenzen(meilensteine)
 
   return {
     state: { ...nachher, bonusMuenzen: (state.bonusMuenzen ?? 0) + neueBonusMuenzen, meilensteine: [...state.meilensteine, ...meilensteine] },
     foodGained: gained,
     bonusFood: bonusGained,
-    weeklyBonus,
     satt,
     stageBefore,
     stageAfter,
@@ -345,9 +319,6 @@ export function parseState(text: string): GameState | null {
     for (const [k, v] of Object.entries(r.rounds)) {
       if (/^\d{4}-\d{2}-\d{2}$/.test(k) && typeof v === 'number' && v >= 0) state.rounds[k] = Math.floor(v)
     }
-  }
-  if (Array.isArray(r.weeklyBonusWeeks)) {
-    state.weeklyBonusWeeks = r.weeklyBonusWeeks.filter((w): w is string => typeof w === 'string')
   }
   if (typeof r.skill === 'object' && r.skill !== null) {
     const s = r.skill as Record<string, unknown>

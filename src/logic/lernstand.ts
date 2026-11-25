@@ -3,7 +3,7 @@
 import { CONFIG } from './config.ts'
 import { TASK_TYPES, TOPIC_OF, TYPE_NAMES } from './tasks.ts'
 import type { Stufe, TaskType, Topic } from './tasks.ts'
-import { weekKey, dayKey } from './game.ts'
+import { dayKey } from './game.ts'
 import type { Versuch } from './game.ts'
 
 export type Einschaetzung = 'sicher' | 'fast' | 'ueben' | 'wenig'
@@ -82,19 +82,6 @@ export function empfehlung(verlauf: Record<TaskType, Versuch[]>, name: string): 
     rang(a) - rang(b) || ersteQuote(fenster(verlauf[a])) - ersteQuote(fenster(verlauf[b])) || verlauf[a].length - verlauf[b].length)[0]
   if (rang(schwaechster) === 2) return { typ: null, text: `Alles, was bisher geübt wurde, sitzt sicher. ${name} kann ruhig eine Knobelrunde probieren.` }
   return { typ: schwaechster, text: `${name} kann „${TYPE_NAMES[schwaechster]}" noch üben. Tipp für zu Hause: ${TIPPS[schwaechster]}` }
-}
-
-/** Runden pro Woche der letzten `wochen` Wochen, ältere zuerst, die aktuelle Woche zuletzt. */
-export function rundenProWoche(rounds: Record<string, number>, now: Date, wochen = 4): number[] {
-  const ergebnis = Array.from({ length: wochen }, () => 0)
-  const aktuell = new Date(weekKey(now) + 'T00:00:00')
-  for (const [tag, n] of Object.entries(rounds)) {
-    const [y, m, d] = tag.split('-').map(Number)
-    const montag = new Date(weekKey(new Date(y, m - 1, d)) + 'T00:00:00')
-    const diff = Math.round((aktuell.getTime() - montag.getTime()) / (7 * 86_400_000))
-    if (diff >= 0 && diff < wochen) ergebnis[wochen - 1 - diff] += n
-  }
-  return ergebnis
 }
 
 /** Tage bis zum Testdatum (0 am Testtag, negativ danach), null ohne Datum. */

@@ -5,6 +5,10 @@ import { TOPICS, TOPIC_OF, TASK_TYPES } from './tasks.ts'
 import type { Topic } from './tasks.ts'
 import type { GameState } from './game.ts'
 
+/**
+ * 'runden' und 'woche' werden nicht mehr vergeben (keine Belohnung für reine Rundenzahl oder Wochenziele).
+ * Sie bleiben als Art erhalten, damit schon gespeicherte Meilensteine nie verloren gehen.
+ */
 export type MeilensteinArt = 'entwicklung' | 'stern' | 'runden' | 'woche' | 'knobel'
 export const ART_REIHENFOLGE: MeilensteinArt[] = ['entwicklung', 'runden', 'stern', 'knobel', 'woche']
 
@@ -21,13 +25,13 @@ export interface Rueckblick {
 }
 
 export interface Meilenstein {
-  /** zum Beispiel 'entwicklung-2', 'runden-10', 'stern-A-2', 'knobel-erste', 'knobel-10', 'woche-2026-11-23' */
+  /** zum Beispiel 'entwicklung-2', 'stern-A-2', 'knobel-erste', 'knobel-10' (Altstände: 'runden-10', 'woche-2026-11-23') */
   id: string
   art: MeilensteinArt
   /** JJJJ-MM-TT */
   datum: string
   rueckblick: Rueckblick
-  /** Münzen, die dieser Meilenstein gebracht hat (Entwicklung, Stern und Wochenziel zahlt das Spiel schon an anderer Stelle aus) */
+  /** Münzen, die dieser Meilenstein gebracht hat (Entwicklung und Stern zahlt das Spiel schon an anderer Stelle aus) */
   muenzen: number
 }
 
@@ -52,10 +56,6 @@ export function rueckblickVon(state: GameState): Rueckblick {
   }
 }
 
-function gesamtRunden(s: GameState): number {
-  return Object.values(s.rounds).reduce((a, n) => a + n, 0)
-}
-
 function sortiere(liste: Meilenstein[]): Meilenstein[] {
   return [...liste].sort((a, b) => ART_REIHENFOLGE.indexOf(a.art) - ART_REIHENFOLGE.indexOf(b.art))
 }
@@ -74,13 +74,6 @@ export function pruefeMeilensteine(vorher: GameState, nachher: GameState, datum:
 
   for (let s = stufeVon(vorher.totalFood) + 1; s <= stufeVon(nachher.totalFood); s++) add(`entwicklung-${s}`, 'entwicklung', 1)
 
-  const vorherRunden = gesamtRunden(vorher)
-  const jetztRunden = gesamtRunden(nachher)
-  for (const [grenze, muenzen] of Object.entries(CONFIG.meilensteinRunden)) {
-    const n = Number(grenze)
-    if (vorherRunden < n && jetztRunden >= n) add(`runden-${n}`, 'runden', muenzen)
-  }
-
   for (const t of TOPICS) {
     for (let n = (vorher.sterneErreicht[t] ?? 0) + 1; n <= nachher.sterneErreicht[t]; n++) add(`stern-${t}-${n}`, 'stern', 1)
   }
@@ -91,14 +84,12 @@ export function pruefeMeilensteine(vorher: GameState, nachher: GameState, datum:
     if (vorher.statistik.knobelTreffer < n && nachher.statistik.knobelTreffer >= n) add(`knobel-${n}`, 'knobel', muenzen)
   }
 
-  for (const w of nachher.weeklyBonusWeeks) if (!vorher.weeklyBonusWeeks.includes(w)) add(`woche-${w}`, 'woche', 1)
-
   return sortiere(neu)
 }
 
-/** Münzen aus Meilensteinen, die zusätzlich zu den schon bestehenden Münzquellen kommen (Runden und Knobelerfolge). */
+/** Münzen aus Meilensteinen, die zusätzlich zu den schon bestehenden Münzquellen kommen (Knobelerfolge). */
 export function zusatzMuenzen(liste: Meilenstein[]): number {
-  return liste.filter((m) => m.art === 'runden' || m.art === 'knobel').reduce((s, m) => s + m.muenzen, 0)
+  return liste.filter((m) => m.art === 'knobel').reduce((s, m) => s + m.muenzen, 0)
 }
 
 /** Altstände: schon Erreichtes wird ohne Feier und ohne Münzen eingetragen, damit nichts nachgefeiert oder doppelt bezahlt wird. */
@@ -107,10 +98,8 @@ export function nachtragen(state: GameState, datum: string): Meilenstein[] {
   const liste: Meilenstein[] = []
   const add = (id: string, art: MeilensteinArt) => liste.push({ id, art, datum, rueckblick: rb, muenzen: 0 })
   for (let s = 2; s <= stufeVon(state.totalFood); s++) add(`entwicklung-${s}`, 'entwicklung')
-  for (const grenze of Object.keys(CONFIG.meilensteinRunden)) if (gesamtRunden(state) >= Number(grenze)) add(`runden-${grenze}`, 'runden')
   for (const t of TOPICS) for (let n = 1; n <= state.sterneErreicht[t]; n++) add(`stern-${t}-${n}`, 'stern')
   if (state.knobelTage.length > 0) add('knobel-erste', 'knobel')
-  for (const w of state.weeklyBonusWeeks) add(`woche-${w}`, 'woche')
   return sortiere(liste)
 }
 

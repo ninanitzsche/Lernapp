@@ -66,16 +66,13 @@ test('Stufenaufstieg bringt eine Bonus-Münze', () => {
   assert.equal(verdiente(r.state), r.neueSterne + 2)
 })
 
-test('Wochenziel bringt eine Bonus-Münze, einmal pro Woche', () => {
+test('Es gibt kein Wochenziel: Üben an mehreren Tagen derselben Woche bringt nur das Tagesmitbringsel', () => {
   let s = initialState('S')
   const antworten: RoundAnswer[] = [{ type: 'A1', outcome: 'failed' }]
   for (const tag of [5, 6]) s = finishRound(s, antworten, new Date(2026, 0, tag, 12)).state
   const r = finishRound(s, antworten, new Date(2026, 0, 7, 12))
-  assert.equal(r.weeklyBonus > 0, true)
-  assert.equal(r.neueBonusMuenzen, 2) // Wochenziel + Tagesmitbringsel
-  const r2 = finishRound(r.state, antworten, new Date(2026, 0, 8, 12))
-  assert.equal(r2.weeklyBonus, 0)
-  assert.equal(r2.neueBonusMuenzen, 1) // nur das Tagesmitbringsel
+  assert.equal(r.neueBonusMuenzen, 1) // nur das Tagesmitbringsel
+  assert.equal(r.foodGained + r.bonusFood, 0)
 })
 
 test('Bonus-Münzen überleben Speichern und Laden, alte Stände starten bei 0', () => {
@@ -130,7 +127,7 @@ test('Tagesmitbringsel: nur die erste Runde des Tages bringt eine Münze', () =>
 
 test('Wirtschaft: bei üblichem Üben ist der Shop in etwa acht Wochen leergekauft, nicht in zwei', () => {
   // Annahme: 5 Tage pro Woche je eine Runde, Knobelrunde an 2 Tagen mit Erfolg. Sterne und Aufstiege: 13 Münzen am Anfang.
-  const proWoche = 5 /* Tagesmitbringsel */ + 1 /* Wochenziel */ + 4 /* Knobel: 2 Münzen an 2 Tagen */
+  const proWoche = 5 /* Tagesmitbringsel */ + 4 /* Knobel: 2 Münzen an 2 Tagen */
   const wochen = (89 - 13) / proWoche
   assert.ok(wochen > 6 && wochen < 11, `Wochen bis alles gekauft: ${wochen}`)
 })

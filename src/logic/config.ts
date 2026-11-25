@@ -4,8 +4,6 @@ export const CONFIG = {
   roundBonus: 5,
   foodRoundsPerDay: 3,
   maxRepeatsPerRound: 3,
-  weeklyGoalDays: 3,
-  weeklyBonus: 20,
   hungryAfterHours: 24,
   sleepAfterHours: 48,
   skillMax: 3,
@@ -28,8 +26,6 @@ export const CONFIG = {
   /** So viele richtige im ersten Versuch hintereinander lösen den Serien-Jubel aus. */
   serieAb: 3,
   serieFutter: 1,
-  /** Münzen für abgeschlossene Runden insgesamt. */
-  meilensteinRunden: { 10: 1, 25: 2, 50: 3, 100: 5 } as Record<number, number>,
   /** Münzen für kniffelige Aufgaben, die insgesamt gleich im ersten Versuch stimmten. */
   knobelTreffer: { 10: 1, 25: 2, 50: 3 } as Record<number, number>,
   /** Münze für die erste starke Knobelrunde. */

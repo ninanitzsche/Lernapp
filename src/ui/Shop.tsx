@@ -42,7 +42,7 @@ export function Shop({ state, onChange }: { state: GameState; onChange: (s: Game
         <Muenzen n={stand} />
       </div>
       <Info titel="Wie bekomme ich Münzen?">
-        Für die erste Runde jeden Tages, für Sterne, neue Stufen, Wochenziele und starke Knobelrunden. Gekaufte Dinge kannst du im Terrarium hin- und herziehen.
+        Für die erste Runde jeden Tages, für Sterne, neue Stufen und starke Knobelrunden. Gekaufte Dinge kannst du im Terrarium hin- und herziehen.
       </Info>
       {meldung && <p className="satt" role="status">{meldung}</p>}
       {angebot.length === 0 ? (

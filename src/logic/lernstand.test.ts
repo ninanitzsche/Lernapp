@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { empfehlung, erreichteStufe, rundenProWoche, tageBisTest, themaBereitschaft, trend, typEinschaetzung } from './lernstand.ts'
+import { empfehlung, erreichteStufe, tageBisTest, themaBereitschaft, trend, typEinschaetzung } from './lernstand.ts'
 import { leererVerlauf } from './game.ts'
 import type { Versuch } from './game.ts'
 import type { Stufe } from './tasks.ts'
@@ -91,12 +91,6 @@ test('Empfehlung: bei Gleichstand, wenn alles sicher ist kommt keine Übung', ()
   sicher.A1 = mehrfach(10, v('first'))
   assert.equal(empfehlung(sicher, 'N').typ, null)
   assert.match(empfehlung(sicher, 'N').text, /sicher/)
-})
-
-test('Runden der letzten vier Wochen, Montag bis Sonntag', () => {
-  const jetzt = new Date(2026, 10, 25) // Mittwoch, Woche ab 23.11.
-  const runden = { '2026-11-23': 2, '2026-11-24': 1, '2026-11-22': 4, '2026-11-16': 1, '2026-11-02': 3, '2026-10-25': 9 }
-  assert.deepEqual(rundenProWoche(runden, jetzt, 4), [3, 0, 5, 3])
 })
 
 test('Tage bis zum Test', () => {
