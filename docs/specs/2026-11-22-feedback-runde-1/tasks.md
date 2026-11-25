@@ -84,7 +84,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 Dieser Nachtrag ist der aktuelle Status gegenüber dem historischen Arbeitsplan. Die ursprünglichen Formulierungen unter T1–T13 bleiben als nachvollziehbare Aufgabenherkunft erhalten; sie dürfen nicht als offene Implementierungsaufträge gelesen werden.
 
-Siehe `docs/PLAN_LERNFELDER_RELIKTE.md`. Umgesetzt (Logik mit Tests, Oberfläche ohne Browserprüfung): fünf Kompetenzsterne je Lernfeld als Startwerte (T7 Teil Sterne), Lernfeld-Abschluss mit Wissensalbum und Pokal (T10), Terrarium-Sammlung mit Pokalen und Relikte (T13), Denkimpuls (R7.4). Entfernt: Wochenziel, Rundenzahl-Belohnungen und die Auswertung der Nutzungsfrequenz im Elternbereich (R6.8). Offen: fachliche Freigabe der Sternkriterien, Testbereitschaft (Startwerte aus dem Diskussionsstand bleiben vorläufig bestehen), Elternbereich T11 (Umbau auf Sätze zuerst) und alle Sichtprüfungen.
+Der verbindliche Regelstand steht in `docs/REWARD_SYSTEM.md`, der aktuelle Funktionsstatus in `FEATURES.md`. Umgesetzt (Logik mit Tests, Oberfläche ohne Browserprüfung): fünf Kompetenzsterne je Lernfeld als Startwerte (T7 Teil Sterne), Lernfeld-Abschluss mit Wissensalbum und Pokal (T10), Terrarium-Sammlung mit Pokalen und Relikte (T13), Denkimpuls (R7.4). Entfernt: Wochenziel, Rundenzahl-Belohnungen und die Auswertung der Nutzungsfrequenz im Elternbereich (R6.8). Offen: fachliche Freigabe der Sternkriterien, Testbereitschaft (Startwerte aus dem Diskussionsstand bleiben vorläufig bestehen), Elternbereich T11 (Umbau auf Sätze zuerst) und alle Sichtprüfungen.
 
 ## Phase C: Abschluss
 
