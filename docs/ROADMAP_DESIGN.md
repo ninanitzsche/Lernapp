@@ -71,10 +71,11 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 **Ziel:** Nico und die Spielwelt konsistent und wiederverwendbar gestalten.
 
-- [ ] Bestehendes Logo im Splash unverändert verwenden.
+- [x] Bestehendes Original-Logo im Splash unverändert verwenden (`src/App.tsx`, `public/images/logo.webp`).
 - [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erstellen.
-- [ ] Referenzentwurf zusammen mit einer kanonischen Nico-Referenz prüfen und als Stil-Referenzpaket freigeben.
-- [ ] Fünf Entwicklungsstufen als konsistente Charakterfamilie spezifizieren und gestalten.
+- [x] Zweite neutrale Nico-Konzeptiteration als bevorzugte Richtung bestätigt und mit der kanonischen Charakterreferenz dokumentiert; späte Stufen bleiben kraftvoll/legendär und schlangengerecht.
+- [x] Fünf Entwicklungsstufen als konsistente Charakterfamilie spezifizieren (visuelle Einzelasset-Freigabe und Produktion bleiben offen).
+- [ ] Vollständiges Stil-Referenzpaket aus Nico, Terrarium, Einzelobjekten und Belohnungen final visuell freigeben.
 - [ ] Benötigte transparente Charakter-Assets und Posen festlegen.
 - [ ] Einzelne 3D-Spielgrafiken mit ChatGPT erstellen; Claude Code bindet die freigegebenen Assets technisch ein.
 - [ ] Hintergründe für Home, Lernansicht und Terrarium definieren.
@@ -125,7 +126,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Produktionsbuild nach der vollständigen Phase-1-Migration erfolgreich ausführen (GitHub Actions und Vercel Preview erfolgreich; aktueller Nachweis siehe Prüfhinweis unten).
 - [ ] Bestehende Spielstände und Lernabläufe auf Regressionen prüfen.
 - [ ] Finale Screenshots dokumentieren.
-- [ ] Roadmap und Funktionsübersicht aktualisieren.
+- [x] Roadmap und Funktionsübersicht nach dem Dokumentationsaudit aktualisieren (25.11.2026).
 
 **Prüfhinweis (25.11.2026):** `npm ci`, `npm test` und `npm run build` sind im [GitHub-Actions-Lauf 128 erfolgreich](https://github.com/ninanitzsche/Lernapp/actions/runs/45602462375). Die danach folgenden Änderungen waren ausschließlich Dokumentationsbereinigungen; Spiellogik und Testcode wurden nicht verändert. Der CI-Nachweis bestätigt automatisierte Tests und Produktionsbuild, ersetzt aber keine manuelle Browser-/Viewport-Sichtprüfung. Smartphone-, Tablet- und Desktop-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen bleiben offen.
 
