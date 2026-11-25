@@ -3,7 +3,7 @@
 import { CONFIG } from './config.ts'
 import { TASK_TYPES, TOPIC_OF, TYPE_NAMES } from './tasks.ts'
 import type { Stufe, TaskType, Topic } from './tasks.ts'
-import { weekKey, dayKey } from './game.ts'
+import { dayKey } from './game.ts'
 import type { Versuch } from './game.ts'
 
 export type Einschaetzung = 'sicher' | 'fast' | 'ueben' | 'wenig'
@@ -66,6 +66,11 @@ export const TIPPS: Record<TaskType, string> = {
   C2: 'Zeigt auf einen Strich eines selbst gezeichneten Zahlenstrahls und lasst die Zahl ablesen.',
   C3: 'Fragt nach den Nachbarn: Welche Hausnummer kommt vor und nach der 17?',
   C4: 'Sucht an Hausnummern und Seitenzahlen den Zehner davor und den Zehner danach.',
+  D1: 'Sucht zu Hause runde, dreieckige und viereckige Dinge, zum Beispiel Teller, Dachgiebel und Fenster, und lasst sie benennen.',
+  D2: 'Zeigt auf ein Blatt Papier oder ein Fenster und zählt gemeinsam Ecken und Seiten.',
+  D3: 'Findet Dinge, die Kugel, Würfel oder Quader sind: Ball, Spielwürfel, Schuhkarton.',
+  D4: 'Nehmt einen Schuhkarton und zählt gemeinsam Flächen, Ecken und Kanten.',
+  D5: 'Stellt drei bis fünf Dinge in eine Reihe und fragt: Was steht links vom Ball? Was steht zwischen Becher und Buch?',
 }
 
 export interface Empfehlung {
@@ -82,19 +87,6 @@ export function empfehlung(verlauf: Record<TaskType, Versuch[]>, name: string): 
     rang(a) - rang(b) || ersteQuote(fenster(verlauf[a])) - ersteQuote(fenster(verlauf[b])) || verlauf[a].length - verlauf[b].length)[0]
   if (rang(schwaechster) === 2) return { typ: null, text: `Alles, was bisher geübt wurde, sitzt sicher. ${name} kann ruhig eine Knobelrunde probieren.` }
   return { typ: schwaechster, text: `${name} kann „${TYPE_NAMES[schwaechster]}" noch üben. Tipp für zu Hause: ${TIPPS[schwaechster]}` }
-}
-
-/** Runden pro Woche der letzten `wochen` Wochen, ältere zuerst, die aktuelle Woche zuletzt. */
-export function rundenProWoche(rounds: Record<string, number>, now: Date, wochen = 4): number[] {
-  const ergebnis = Array.from({ length: wochen }, () => 0)
-  const aktuell = new Date(weekKey(now) + 'T00:00:00')
-  for (const [tag, n] of Object.entries(rounds)) {
-    const [y, m, d] = tag.split('-').map(Number)
-    const montag = new Date(weekKey(new Date(y, m - 1, d)) + 'T00:00:00')
-    const diff = Math.round((aktuell.getTime() - montag.getTime()) / (7 * 86_400_000))
-    if (diff >= 0 && diff < wochen) ergebnis[wochen - 1 - diff] += n
-  }
-  return ergebnis
 }
 
 /** Tage bis zum Testdatum (0 am Testtag, negativ danach), null ohne Datum. */

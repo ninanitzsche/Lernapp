@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import type { PointerEvent, ReactNode } from 'react'
-import { bildFuer, hintergrundVon, platziere } from '../logic/shop.ts'
+import { bildFuer, hintergrundVon, istPokal, platziere, pokalId } from '../logic/shop.ts'
+import { pokaleVon } from '../logic/relikte.ts'
+import { pokalBild } from './pokal.ts'
 import type { Ebene } from '../logic/shop.ts'
 import type { GameState } from '../logic/game.ts'
 
@@ -22,7 +24,8 @@ interface Zug {
 export function Terrarium({ state, onChange, children }: { state: GameState; onChange: (s: GameState) => void; children: ReactNode }) {
   const box = useRef<HTMLDivElement>(null)
   const [zug, setZug] = useState<Zug | null>(null)
-  const dinge = platziere(state.gekauft ?? [], state.positionen)
+  // Pokale gehören zur Sammlung: Sie stehen automatisch im Terrarium und lassen sich wie alle Dinge verschieben.
+  const dinge = platziere([...(state.gekauft ?? []), ...pokaleVon(state).map(pokalId)], state.positionen)
 
   function prozent(e: PointerEvent): { px: number; py: number } {
     const r = box.current!.getBoundingClientRect()
@@ -57,7 +60,7 @@ export function Terrarium({ state, onChange, children }: { state: GameState; onC
           return (
             <img
               key={item.id} className={`deko ${item.ebene === 'oben' ? 'oben' : ''} ${hinten ? 'hinten' : 'vorn'} ${gezogen ? 'gezogen' : ''}`}
-              src={bildFuer(item.id)} alt={`${item.name}, zum Verschieben ziehen`} draggable={false}
+              src={istPokal(item.id) ? pokalBild(item.id) : bildFuer(item.id)} alt={`${item.name}, zum Verschieben ziehen`} draggable={false}
               style={{ left: `${gezogen ? zug.x : x}%`, top: `${gezogen ? zug.y : y}%`, width: `${item.breite}%` }}
               onPointerDown={(e) => an(e, item.id, item.ebene, x, y)} onPointerMove={bewege} onPointerUp={los} onPointerCancel={() => setZug(null)}
             />

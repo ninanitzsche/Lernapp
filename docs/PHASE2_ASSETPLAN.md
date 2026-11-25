@@ -1,0 +1,177 @@
+# Phase 2 – Asset- und Charakterproduktion
+
+> **Projekt:** Nico's Snake App  
+> **Branch:** `design/luminous-fantasy-adventure`  
+> **Verbindliche Art Direction:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
+> **Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)  
+> **Visuelle Weltenstrategie:** [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md)  
+> **Asset-Katalog:** [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md)  
+> **Status:** Phase 2 aktiv. Produktionsumfang, Asset-Katalog, kanonische Nico-Referenz und Emotionsmatrix sind in den vier Primärdokumenten festgehalten. Die endgültige Freigabe der Charakter-Einzelassets und der Spielwelt steht noch aus. Siehe [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md), [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) und [PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md).
+
+## 1. Ziel
+
+Eine konsistente, wiederverwendbare Bildwelt für Luminous Fantasy Adventure aufbauen. In dieser Phase ausschließlich die schlangenspezifische Mathematik-Welt rund um Nico produzieren. Langfristig sind weitere eigenständige Fachwelten mit eigenen tierischen Begleitern und Lebensräumen vorgesehen; siehe VISUELLES_WELTENKONZEPT.md.
+
+Diese Phase produziert Bildassets und verbindliche visuelle Referenzen. Sie ersetzt keine UI durch gerenderte Screenshots und verändert weder Lernlogik noch Navigation, Speicherung, Shop- oder Terrarium-Mechanik.
+
+## 2. Verbindliche visuelle Leitplanken
+
+- Stylized 3D Fantasy Game Art mit plastischen Formen und räumlicher Tiefe.
+- Biolumineszente Fantasy: gezielte giftgrüne Lichtakzente, magische Pflanzen und Kristalle.
+- Warme, hochwertige Mobile-Game-Anmutung mit Goldakzenten.
+- Nico bleibt über alle Entwicklungsstufen dieselbe Figur: Gesicht, Augen, Silhouette und Farbwelt müssen verwandt bleiben.
+- Die Mathematik-Umgebung muss schlangenspezifisch sein (Wurzeln, Höhlen, Nester, Äste, Schuppen, Häutung, passende Pflanzen und Requisiten), nicht bloß generische Fantasy mit Schlangenmotiven.
+- Weitere Fächer erhalten langfristig eigene Tiercharaktere und Themenwelten; Phase 2 produziert dafür ausdrücklich noch keine Assets.
+- Das vorhandene Logo ist die Referenz für die erwachsene/legendäre Form und bleibt unverändert.
+- Einheitliche Lichtquelle, Materialqualität, Perspektive, Proportionen und Detailgrad über alle Asset-Gruppen.
+- Aufgaben und interaktive UI bleiben echte responsive React-/CSS-Komponenten; keine Texte oder Buttons in Bildassets einbetten.
+- Glow, Partikel und starke Effekte gezielt einsetzen, nicht flächendeckend.
+
+## 3. Bestand – vor Neuproduktion berücksichtigen
+
+Im Branch existiert bereits eine Bildbasis unter `public/images/`:
+
+- `public/images/logo.webp`: bestehendes Original-Logo; unverändert lassen.
+- `public/images/snake/snake-baby.png`
+- `public/images/snake/snake-smallChild.png`
+- `public/images/snake/snake-child.png`
+- `public/images/snake/snake-teen.png`
+- `public/images/snake/snake-adult.png`
+- `public/images/snake/app/`: WebP-Charakterdarstellungen und Ausdrucks-/Aktionsvarianten für mehrere Entwicklungsstufen.
+- Weitere Unterordner unter `public/images/snake/`, darunter `baby`, `babychild`, `child`, `teen`, `adult`, `transparent`, `Shop` und `opt`.
+
+Vorhandene Assets werden nicht pauschal ersetzt oder gelöscht. Insbesondere sind Dateinamen, Formate, Transparenz, tatsächliche Verwendung im Code und Bildqualität vor jeder Migration zu prüfen. Die vorhandenen Charaktere bilden den Ausgangspunkt; neue Motive müssen sich an ihnen und am Original-Logo orientieren, nicht eine unabhängige Schlange erfinden.
+
+### Bestandsbefund (Snapshot vom 24.11.2026)
+
+- Unter `public/images/` lagen 175 Bilddateien, davon 169 in `public/images/snake/`. Diese Zählung ist ein historischer Inventarwert, keine aktuelle Dateiprüfung.
+- `public/images/snake/app/` enthielt 21 Charakterbilder und 45 Shop-/Terrarium-WebP-Dateien; davon sind 44 Shop-Gegenstände und ein Standardhintergrund.
+- Fünf Standardstufen sind bereits vorhanden. Baby, Kleinkind, Kind und Teenager haben zusätzliche Varianten; die Erwachsenenstufe besitzt nur ein Standardbild.
+- Zwei Terrarium-Hintergründe sind vorhanden. Beide sind funktionale Ausgangsbasis, bilden die gewünschte schlangenspezifische Luminous-Fantasy-Welt aber noch nicht vollständig ab.
+- Die vorhandenen Shop-Motive sind breit genug, um Wiederverwendung vor Neuproduktion zu priorisieren. Materialität, Perspektive und Lichtführung sind selektiv zu vereinheitlichen; keine pauschale Neuerstellung aller 44 Gegenstände.
+- Historische Quellordner und Dubletten wurden identifiziert. Vor jeder Bereinigung müssen Code- und Dokumentationsreferenzen geprüft werden; bis dahin nichts löschen oder verschieben.
+
+
+
+## 4. Stil-Referenzpaket – erster Freigabeschritt
+
+Vor einer größeren Asset-Serie wird ein kleines Referenzpaket erstellt und vom Projektinhaber visuell freigegeben. Es besteht aus vier Motivgruppen:
+
+1. **Nico:** repräsentative Darstellung der bestehenden Figur; eine klare Standardpose, konsistente Gesichtsmerkmale und Material-/Lichtreferenz. Keine neue Charakteridentität.
+2. **Terrarium / Umgebung:** eine repräsentative Luminous-Fantasy-Szene mit Tiefe, Pflanzen, Kristallen und ruhigen Flächen, in denen UI später lesbar platziert werden kann.
+3. **Spielobjekte / Shop:** drei bis fünf zusammengehörige Einzelobjekte (z. B. Kristall, Pflanze, Futter, Dekoration) mit einheitlicher Perspektive, Beleuchtung und Maßstab.
+4. **Belohnung:** eine kleine Belohnungskomposition aus Schuppe/Münze/Glow als Referenz für Material, Wertigkeit und Effektstärke.
+
+Die Referenzen sind Konzept-/Asset-Vorlagen, keine fertigen Screens. Nach Freigabe werden benötigte Assets einzeln und mit produktionsgerechtem Zuschnitt erstellt.
+
+### Historische Konzeptexploration A
+
+Eine frühe Konzepttafel kombinierte ein leuchtendes Waldterrarium, modulare Pflanzen-/Kristallobjekte und eine Edelstein-/Münzbelohnung. Sie war eine Stilsondierung, keine Freigabe und kein verbindlicher Prompt für die spätere Produktion. Die damalige Formulierung „cute stylized realism“ ist für die späteren Nico-Stufen ausdrücklich nicht maßgeblich: Baby und Kleinkind dürfen niedlich sein; Teenager und Erwachsen/Legendär sollen deutlich wilder, kraftvoller und legendärer wirken. Die Spielwelt muss schlangenspezifisch sein und darf nicht bei generischer Fantasy mit Schlangenmotiven stehen bleiben.
+
+## 5. Asset-Gruppen und Reihenfolge
+
+| Reihenfolge | Gruppe | Geplieferte Inhalte | Verwendung |
+|---|---|---|---|
+| 1 | Charakter-Referenz | Nico-Standardpose, Silhouette, Material- und Lichtregeln | gemeinsame Figurenbasis |
+| 2 | Entwicklungsstufen | Baby, Kleinkind, Kind, Teenager, Erwachsen/legendär; Abgleich und gezielte Lücken schließen | Home, Terrarium, Entwicklung |
+| 3 | Umgebung | Terrarium-Hintergrund und modulare Szenenbausteine | Terrarium, später Home |
+| 4 | Objekte | Pflanzen, Äste, Steine, Kristalle, Futter und Shop-Objekte | Terrarium, Shop |
+| 5 | Belohnungen | Schuppen, Münzen, Freischaltungsobjekte, dezente Effekte | Feedback, Ergebnis, Album |
+| 6 | Screen-Hintergründe | erst nach Referenzfreigabe: Home und Lernansicht | Phase 3 vorbereiten |
+
+Die Lernansicht erhält nur so viel Hintergrundgrafik, wie die Lesbarkeit der Aufgabe zulässt. Reichhaltige Szenen sind primär für Terrarium und ausgewählte Home-/Belohnungsmomente vorgesehen.
+
+## 6. Produktions- und Ablageregeln
+
+- Jedes Asset erhält einen eindeutigen, sprechenden Dateinamen und einen dokumentierten Einsatzzweck.
+- Charaktere und freigestellte Objekte benötigen transparenten Hintergrund, sofern sie in mehreren UI-Kompositionen verwendet werden.
+- Umgebungen werden separat von Figuren und UI exportiert.
+- Keine Texte, Zahlen, Buttons, Preise oder interaktiven Zustände in Illustrationen einbetten.
+- Originale/Quellen nicht überschreiben; neue Fassungen versioniert und mit klarer Zuordnung ablegen.
+- Bevorzugt WebP für fotografisch/3D-artige Rastergrafiken; PNG nur, wenn es für Transparenz oder Qualitätsanforderungen sinnvoll ist. Tatsächliche Dateigrößen und Alpha-Kanal prüfen.
+- Bildabmessungen auf den konkreten UI-Einsatz abstimmen; keine unnötig großen Rohbilder in den Produktions-Build übernehmen.
+- Vor dem Löschen, Umbenennen oder Verschieben bestehender Bilder sämtliche Code-Referenzen und mögliche externe Nutzungen prüfen.
+- Asset-Katalog mit Dateipfad, Motiv, Entwicklungsstufe/Variante, Format, Abmessungen, Transparenz, Dateigröße, Status und Verwendung pflegen.
+
+## 7. Abnahmekriterien
+
+Das Stil-Referenzpaket ist freigabefähig, wenn:
+
+- Nico klar als dieselbe Figur wie im vorhandenen Bestand und im Logo erkennbar bleibt;
+- die vier Motivgruppen sichtbar dieselbe Art Direction, Lichtführung, Perspektive und Materialwelt teilen;
+- keine generierten UI-Texte oder Bedienelemente enthalten sind;
+- die Motive in einer realistischen Smartphone-Komposition funktionieren;
+- die Lerninhalte auf hellen, ruhigen Flächen lesbar bleiben;
+- der Projektinhaber die visuelle Richtung ausdrücklich freigegeben hat.
+
+Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung, Dateigröße und tatsächlicher Darstellung in der App als integriert/verifiziert.
+
+## 8. Offene Produktionsschritte
+
+- [x] Vorhandene Charakterdateien visuell direkt vergleichen und Bestandsanalyse dokumentieren (dieser Abschnitt „Bestandsbefund“).
+- [x] Kanonische Arbeitsreferenzen und Kontinuitätskriterien für alle fünf Nico-Stufen dokumentieren ([PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md)); die visuelle Endfreigabe bleibt offen.
+- [x] Alle fünf Standardstufen, das Logo und die Teenager-Ausdrucksvarianten direkt visuell vergleichen und Befunde dokumentieren ([PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md)).
+- [x] Gemeinsame Charakteridentität und siebenstufige Emotionsbibliothek für alle fünf Entwicklungsstufen definieren ([PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md)).
+- [x] Erste visuelle Emotionskonzepte für alle fünf Stufen mit sieben Zuständen als Gesamtübersicht explorieren; die Grundrichtung wurde vom Projektinhaber positiv bestätigt. Die Übersicht bleibt Konzept, nicht Produktionsfreigabe.
+- [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (frühe Konzeptexploration; nicht freigegeben).
+- [ ] Schlangenspezifische Spielwelt und Nico-Referenz als zusammenhängendes Art-Direction-Paket weiterentwickeln und visuell freigeben.
+- [x] Zweite Nico-Konzeptiteration anhand des Feedbacks prüfen: erste Übersicht als bessere Basis bestätigt; späte Stufen müssen deutlich weniger niedlich und stärker majestätisch/gefährlich werden. Schlangen-Anatomie ohne Flossen, Beine oder Flügel verbindlich festgelegt.
+- [x] Zweite visuelle Konzeptübersicht der fünf neutralen Entwicklungsstufen erstellen und als bevorzugte aktuelle Richtung dokumentieren; Einzelassets und finale Freigabe bleiben offen.
+- [ ] Fünf neutrale Einzelreferenzen ausarbeiten: Baby süß, Kleinkind verspielt, Kind mutiger, Teenager wild/elegant, Erwachsen/legendär imposant und logo-nah. Konzentration freundlich-nachdenklich halten.
+- [ ] Kanonische Bildfassungen nach visueller Freigabe final festlegen; offene Lücken je Stufe schließen.
+- [ ] Einzelassets in freigegebener Art Direction erstellen.
+- [ ] Asset-Katalog und technische Übergabe für Claude Code pflegen.
+- [ ] Integration, Optimierung und Viewport-Prüfung durch Claude Code / Projektinhaber begleiten.
+
+
+## 9. Autonomer Abarbeitungsplan und Produktions-Gates
+
+Phase 2 wird in abgeschlossenen, einzeln überprüfbaren Paketen bearbeitet. Ein Paket gilt erst dann als abgeschlossen, wenn Konzept, Asset-Dateien, technische Prüfung und Dokumentation zusammenpassen.
+
+### Paket A – Nico-Grundformen
+- Fünf neutrale Einzelcharaktere in konsistenter Perspektive und mit sauberer Freistellung.
+- Entwicklungsbogen: Baby niedlich; Kleinkind verspielt; Kind mutiger; Teenager schlank/wild; Erwachsen/legendär majestätisch und gefährlich wirkend.
+- Korrekte Schlangen-Anatomie in jeder Stufe: durchgehender Körper, keine Beine, Flossen oder Flügel.
+- Logo als Referenz für die höchste Stufe.
+- **Gate A:** fünf Einzelbilder nebeneinander visuell freigegeben; keine Konzepttafeln als Laufzeitassets.
+
+### Paket B – Nico-Emotionen
+- Sieben Kernemotionen je Stufe aus der freigegebenen neutralen Basis ableiten.
+- Mimik und Pose variieren, Identität, Perspektive und Material bleiben stabil.
+- Emotionen ohne Text, Symbole, Futter oder sonstige eingebrannte Requisiten.
+- **Gate B:** Lesbarkeit aller Emotionen in kleiner App-Darstellung und altersgerechte Wirkung geprüft.
+
+### Paket C – Terrarium und Welt
+- Einen modularen, schlangenspezifischen Luminous-Fantasy-Lebensraum als Hintergrund entwickeln.
+- Zonen: warmes Nest/Rückzugsort, moosige Wurzeln und Äste, Kristall-/Glow-Akzente, ruhige UI-Flächen.
+- Hintergrund, Vordergrundelemente und dekorative Einzelobjekte getrennt halten.
+- **Gate C:** Figuren und UI bleiben auf Mobilgeräten gut lesbar; Szene wirkt wie Nicos Welt, nicht wie generische Fantasy.
+
+### Paket D – Objekte und Shop
+- Bestehende 44 Shop-Objekte gegen neue Art Direction prüfen; Wiederverwendung vor Neuproduktion.
+- Objektfamilien definieren: Pflanzen, Felsen/Kristalle, Äste/Nester, Futter, Dekoration und besondere Relikte.
+- Einheitliche Perspektive, Maßstab, Lichtquelle, Materialqualität und Schatten.
+- **Gate D:** ein zusammenhängendes Objektset mit transparenten Einzelassets und dokumentierter Verwendung.
+
+### Paket E – Belohnungen und Wissensalbum
+- Schuppenband als Schwierigkeitsanzeige, Münzen als Währung, Pokale/Orden als Lernfeldabschluss, Relikte als freiwillige Expertenobjekte und Themenillustrationen fürs Wissensalbum. Die Produktbedeutung ist in `REWARD_SYSTEM.md` verbindlich festgelegt.
+- Belohnungsobjekte als eigenständige Assets; keine Schrift oder UI in die Bilder integrieren.
+- **Gate E:** Belohnungen sind in Größe und Wertigkeit klar unterscheidbar; passen zur bestehenden Spielmechanik.
+
+### Paket F – Integration und Übergabe
+- Asset-Katalog mit Pfad, Zweck, Format, Pixelmaßen, Transparenz, Dateigröße, Status und Code-Verwendung vervollständigen.
+- Laufzeitreferenzen in `src/ui/Snake.tsx` und weiteren UI-Komponenten nur nach Freigabe ändern.
+- Bildoptimierung, Viewport-Prüfung, Fallbacks und Build-/Lint-Checks.
+- **Gate F:** keine ungenutzten oder fehlenden Referenzen, keine Regressionen; Änderungen committen.
+
+### Statusregeln
+- **Konzept:** Bildrichtung zur Diskussion; nicht in der App verwenden.
+- **Freigegeben:** visuell bestätigt; technische Prüfung kann noch offen sein.
+- **Produktionsasset:** Einzeldatei, sauberer Zuschnitt/Transparenz und technische Daten geprüft.
+- **Integriert:** im Code referenziert und im Ziel-Viewport geprüft.
+
+Generierte Übersichtsblätter mit Text, mehreren Figuren oder simuliertem Schachbrett-/Hintergrundmuster sind ausschließlich Konzeptmaterial. Sie gelten nicht als freigestellte Produktionsassets.
+
+## 10. Abgrenzung
+
+Die spätere fachübergreifende Lernplattform und Bildungsserver-basierte Aufgabenerstellung sind nicht Gegenstand dieser Asset-Phase. Die Bildwelt soll langfristig weitere Fächer tragen können, aber Phase 2 baut zunächst die visuelle Identität und Asset-Basis des bestehenden Produkts aus.

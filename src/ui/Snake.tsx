@@ -189,7 +189,7 @@ export function RundenSchlange({ state, reaktion, ruheText }: { state: GameState
 
 /** Ergebnis: Futter fliegt nacheinander ins Maul. Bei Aufstieg wächst die Schlange mit Konfetti. */
 export function ErgebnisSchlange({ state, summary }: { state: GameState; summary: RoundSummary }) {
-  const gesamt = summary.foodGained + summary.bonusFood + summary.weeklyBonus
+  const gesamt = summary.foodGained + summary.bonusFood
   const anzahl = summary.satt ? 0 : Math.min(8, Math.max(1, Math.ceil(gesamt / 3)))
   const reaktion = useMemo(() => (anzahl > 0 ? neueReaktion('lecker', spruch('lecker'), anzahl) : null), [anzahl])
   const fresszeit = anzahl * 0.35 + 1.4

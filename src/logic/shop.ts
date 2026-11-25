@@ -1,4 +1,5 @@
-import { TOPICS } from './tasks.ts'
+import { TOPICS, TOPIC_NAMES } from './tasks.ts'
+import type { Topic } from './tasks.ts'
 import type { GameState } from './game.ts'
 
 // Shop: Für jeden erreichten Stern gibt es eine Münze. Sterne gehen nie verloren, auch wenn der Lernstand später sinkt.
@@ -16,7 +17,19 @@ export interface ShopItem {
   breite: number
 }
 
+/** Ding im Terrarium: gekaufter Gegenstand oder Pokal. */
+export type TerrariumItem = Pick<ShopItem, 'id' | 'name' | 'ebene' | 'breite'>
+
 export const STANDARD_HINTERGRUND = 'terrarium1'
+
+/** Pokale gehören zur Sammlung, werden nicht gekauft und stehen im Terrarium. Die ID beginnt mit 'pokal-'. */
+export const POKAL_VORSATZ = 'pokal-'
+export const pokalId = (topic: Topic): string => `${POKAL_VORSATZ}${topic}`
+export function pokalItem(id: string): TerrariumItem | undefined {
+  const topic = id.startsWith(POKAL_VORSATZ) ? id.slice(POKAL_VORSATZ.length) : ''
+  return (TOPICS as string[]).includes(topic) ? { id, name: `Pokal ${TOPIC_NAMES[topic as Topic]}`, ebene: 'boden', breite: 15 } : undefined
+}
+export const istPokal = (id: string): boolean => pokalItem(id) !== undefined
 
 const I = (id: string, name: string, preis: 1 | 2 | 3, ebene: Ebene, breite: number): ShopItem => ({ id, name, preis, ebene, breite })
 
@@ -78,7 +91,7 @@ export function bildFuer(id: string): string {
   return `${import.meta.env.BASE_URL}images/snake/app/shop/${id}.webp`
 }
 
-/** Münzen, die insgesamt verdient wurden: ein Stern = eine Münze, dazu je eine für Stufenaufstieg und Wochenziel. */
+/** Münzen, die insgesamt verdient wurden: ein Stern = eine Münze, dazu Bonusmünzen (Stufenaufstieg, Tagesmitbringsel, Knobelerfolge). */
 export function verdiente(state: GameState): number {
   return TOPICS.reduce((s, t) => s + (state.sterneErreicht?.[t] ?? 0), 0) + (state.bonusMuenzen ?? 0)
 }
@@ -112,20 +125,20 @@ const BODEN_PLAETZE = [
 const OBEN_PLAETZE = [{ x: 28, y: 3 }, { x: 72, y: 3 }, { x: 50, y: 3 }, { x: 15, y: 3 }, { x: 85, y: 3 }]
 
 export interface Platziert {
-  item: ShopItem
+  item: TerrariumItem
   x: number
   y: number
   /** Der erste Platz in der Mitte liegt hinter der Schlange. */
   hinten: boolean
 }
 
-/** Verteilt die gekauften Dinge in der Reihenfolge des Kaufs auf die Plätze. */
+/** Verteilt die gekauften Dinge und die Pokale in der angegebenen Reihenfolge auf die Plätze. */
 export function platziere(gekauft: string[], positionen: Record<string, { x: number; y: number }> = {}): Platziert[] {
   let boden = 0
   let oben = 0
   const result: Platziert[] = []
   for (const id of gekauft) {
-    const item = itemFor(id)
+    const item: TerrariumItem | undefined = itemFor(id) ?? pokalItem(id)
     if (!item || item.ebene === 'hintergrund') continue
     if (item.ebene === 'boden') {
       const p = BODEN_PLAETZE[boden % BODEN_PLAETZE.length]

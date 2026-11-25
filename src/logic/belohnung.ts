@@ -9,6 +9,15 @@ export function futterFuer(outcome: Ausgang, stufe: Stufe = 2): number {
   return 0
 }
 
+/**
+ * Futter einer Antwort. Ein richtiges Ergebnis im ersten Versuch mit Denkimpuls zählt beim Futter wie ein
+ * Ergebnis im zweiten Versuch (Stufe 1 und 2: 1 statt 2, Stufe 3: 3 statt 5). Zum Kompetenznachweis zählt die Aufgabe weiter.
+ */
+export function futterFuerAntwort(a: { outcome: Ausgang; stufe?: Stufe; denkimpuls?: boolean }): number {
+  const ausgang: Ausgang = a.denkimpuls && a.outcome === 'first' ? 'second' : a.outcome
+  return futterFuer(ausgang, a.stufe ?? 2)
+}
+
 interface SerieAntwort { outcome: Ausgang; isRepeat?: boolean; serieBonus?: boolean }
 
 /**

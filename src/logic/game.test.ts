@@ -1,8 +1,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import {
-  initialState, foodForOutcome, stageFor, nextStageFood, moodAt, dayKey, weekKey, updateSkill, topicStars,
-  selectTypes, pickRepeats, pickRepeatAnswers, finishRound, serializeState, parseState, daysPracticedInWeek,
+  initialState, foodForOutcome, stageFor, nextStageFood, moodAt, dayKey, updateSkill, topicStars,
+  selectTypes, pickRepeats, pickRepeatAnswers, finishRound, serializeState, parseState,
 } from './game.ts'
 import type { RoundAnswer } from './game.ts'
 import { createRng } from './rng.ts'
@@ -19,6 +19,42 @@ test('Futter pro Aufgabe', () => {
   assert.equal(foodForOutcome('first'), 2)
   assert.equal(foodForOutcome('second'), 1)
   assert.equal(foodForOutcome('failed'), 0)
+})
+
+test('Tagesmitbringsel: genau die erste abgeschlossene Runde des Tages bringt eine Münze', () => {
+  const first = finishRound(initialState('S'), runde('failed'), MO)
+  assert.equal(first.tagesMuenze, true)
+  assert.equal(first.neueBonusMuenzen, 1)
+  const second = finishRound(first.state, runde('failed'), tag(0, 11))
+  assert.equal(second.tagesMuenze, false)
+  assert.equal(second.neueBonusMuenzen, 0)
+  assert.equal(second.state.bonusMuenzen, 1)
+})
+
+test('Denkimpuls: die Aufgabe bringt 1 statt 2 Futter, die Münzen bleiben unberührt', () => {
+  const ohne = finishRound({ ...initialState('S'), totalFood: 20 }, runde('first'), MO)
+  const antworten = runde('first').map((a, i) => i === 0 ? { ...a, denkimpuls: true } : a)
+  const r = finishRound({ ...initialState('S'), totalFood: 20 }, antworten, MO)
+  assert.equal(r.foodGained, ohne.foodGained - 1)
+  assert.equal(r.denkimpulsFutter, 1)
+  // Aufstieg und Tagesmitbringsel bleiben beide erhalten: kein Münzabzug.
+  assert.equal(r.neueBonusMuenzen, ohne.neueBonusMuenzen)
+  // Die Aufgabe zählt weiter zum Kompetenznachweis.
+  assert.equal(r.state.nachweise.A.length + r.state.nachweise.B.length + r.state.nachweise.C.length,
+    ohne.state.nachweise.A.length + ohne.state.nachweise.B.length + ohne.state.nachweise.C.length)
+})
+
+test('Denkimpuls: wirkt auch bei kniffligen Aufgaben wie ein zweiter Versuch (3 statt 5)', () => {
+  const antworten = runde('first').map((a, i) => i === 0 ? { ...a, stufe: 3 as const, denkimpuls: true } : a)
+  const r = finishRound(initialState('S'), antworten, MO)
+  assert.equal(r.denkimpulsFutter, 2)
+})
+
+test('Denkimpuls plus zweiter Versuch gibt nicht doppelt weniger: 1 Futter', () => {
+  const antworten: RoundAnswer[] = [{ type: TASK_TYPES[0], outcome: 'second', denkimpuls: true }]
+  const r = finishRound(initialState('S'), antworten, MO)
+  assert.equal(r.foodGained, 1)
+  assert.equal(r.denkimpulsFutter, 0)
 })
 
 test('Perfekte Runde: 10 mal 2 Futter plus 5 Bonus', () => {
@@ -110,45 +146,6 @@ test('Wachstum sinkt nie, auch nicht nach langer Pause', () => {
   assert.equal(stageFor(s.totalFood).stage, 3)
   const r = finishRound(s, runde('failed'), MO)
   assert.ok(r.state.totalFood >= 100)
-})
-
-test('Wochenschlüssel: Woche läuft Montag bis Sonntag', () => {
-  assert.equal(weekKey(new Date(2026, 10, 23)), '2026-11-23')
-  assert.equal(weekKey(new Date(2026, 10, 29, 23, 59)), '2026-11-23')
-  assert.equal(weekKey(new Date(2026, 10, 30)), '2026-11-30')
-  assert.equal(weekKey(new Date(2026, 10, 22)), '2026-11-16')
-})
-
-test('Wochenziel: 3 verschiedene Tage, Bonus nur einmal pro Woche', () => {
-  let s = initialState('S')
-  let r = finishRound(s, runde('first'), tag(0))
-  assert.equal(r.weeklyBonus, 0)
-  s = r.state
-  r = finishRound(s, runde('first'), tag(0, 15))
-  assert.equal(r.weeklyBonus, 0, 'zweite Runde am selben Tag zählt nicht als neuer Tag')
-  s = r.state
-  r = finishRound(s, runde('first'), tag(2))
-  assert.equal(r.weeklyBonus, 0)
-  s = r.state
-  assert.equal(daysPracticedInWeek(s.rounds, tag(2)), 2)
-  r = finishRound(s, runde('first'), tag(4))
-  assert.equal(r.weeklyBonus, 20)
-  s = r.state
-  r = finishRound(s, runde('first'), tag(5))
-  assert.equal(r.weeklyBonus, 0, 'Bonus nur einmal pro Woche')
-  s = r.state
-  // neue Woche: wieder möglich
-  for (const off of [7, 8, 9]) {
-    r = finishRound(s, runde('first'), tag(off))
-    s = r.state
-  }
-  assert.equal(r.weeklyBonus, 20)
-})
-
-test('Tage über Wochengrenze zählen nicht zusammen', () => {
-  let s = initialState('S')
-  for (const off of [5, 6, 7]) s = finishRound(s, runde('first'), tag(off)).state
-  assert.equal(s.weeklyBonusWeeks.length, 0)
 })
 
 test('Lernstand bleibt zwischen 0 und 3', () => {

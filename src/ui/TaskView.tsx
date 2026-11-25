@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { Response, Task } from '../logic/tasks.ts'
 import { VisualView, Zahlbild, Zahlenstrahl } from './Visuals.tsx'
 import { sprich } from './stimme.ts'
+import { Figur } from './Figuren.tsx'
 
 interface Props {
   task: Task
@@ -76,6 +77,7 @@ function Eingabe({ task, onSubmit }: { task: Task; onSubmit: (r: Response) => vo
     case 'build': return <Legen onSubmit={onSubmit} />
     case 'line': return <StrahlEingabe input={input} onSubmit={onSubmit} />
     case 'cards': return <Karten pool={input.pool} laenge={input.answer.length} onSubmit={onSubmit} />
+    case 'figuren': return <FigurenKarten karten={input.karten} onSubmit={onSubmit} />
   }
 }
 
@@ -239,6 +241,27 @@ function Karten({ pool, laenge, onSubmit }: { pool: string[]; laenge: number; on
         <button className="knopf klein" type="button" onClick={() => setGewaehlt(gewaehlt.slice(0, -1))} disabled={gewaehlt.length === 0}>Zurück</button>
         <button className="knopf" type="button" disabled={gewaehlt.length !== laenge} onClick={() => onSubmit(gewaehlt.map((i) => pool[i]))}>Prüfen</button>
       </div>
+    </div>
+  )
+}
+
+/** Große Figurenkarten: Auswahl mit dickerer Kontur und Haken (nicht nur Farbe), dann Prüfen. */
+function FigurenKarten({ karten, onSubmit }: { karten: Extract<Task['input'], { kind: 'figuren' }>['karten']; onSubmit: (r: Response) => void }) {
+  const [gewaehlt, setGewaehlt] = useState<number | null>(null)
+  return (
+    <div className="eingabe spalte">
+      <div className="figurenkarten">
+        {karten.map((k, i) => (
+          <button
+            key={i} type="button" className={gewaehlt === i ? 'figurenkarte gewaehlt' : 'figurenkarte'}
+            aria-pressed={gewaehlt === i} onClick={() => setGewaehlt(i)}
+          >
+            <Figur figur={k.figur} variante={k.variante} label={k.label} />
+            {gewaehlt === i && <span className="haken" aria-hidden="true">✓</span>}
+          </button>
+        ))}
+      </div>
+      <button className="knopf" type="button" disabled={gewaehlt === null} onClick={() => gewaehlt !== null && onSubmit(gewaehlt)}>Prüfen</button>
     </div>
   )
 }

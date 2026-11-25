@@ -18,7 +18,7 @@ test('Ohne Sterne gibt es keine Münzen und nichts zu kaufen', () => {
 })
 
 test('Ein Stern ist eine Münze, Kaufen zieht den Preis ab', () => {
-  const s: GameState = { ...initialState('S'), sterneErreicht: { A: 2, B: 1, C: 0 } }
+  const s: GameState = { ...initialState('S'), sterneErreicht: { A: 2, B: 1, C: 0, D: 0 } }
   assert.equal(verdiente(s), 3)
   const k = kaufen(s, 'felshoehle')
   assert.ok(k)
@@ -27,7 +27,7 @@ test('Ein Stern ist eine Münze, Kaufen zieht den Preis ab', () => {
 })
 
 test('Sinkt der Lernstand, bleiben die Münzen erhalten', () => {
-  const s: GameState = { ...initialState('S'), sterneErreicht: { A: 3, B: 0, C: 0 } }
+  const s: GameState = { ...initialState('S'), sterneErreicht: { A: 3, B: 0, C: 0, D: 0 } }
   const antworten: RoundAnswer[] = [{ type: 'A1', outcome: 'failed' }]
   const r = finishRound(s, antworten, MO)
   assert.equal(r.state.sterneErreicht.A, 3)
@@ -36,18 +36,18 @@ test('Sinkt der Lernstand, bleiben die Münzen erhalten', () => {
 
 test('Neue Sterne werden in der Runde gezählt', () => {
   const s = initialState('S')
-  const skill = { ...s.skill }
-  for (const k of Object.keys(skill) as (keyof typeof skill)[]) skill[k] = 2
-  skill.A1 = 1
-  const r = finishRound({ ...s, skill }, [{ type: 'A1', outcome: 'first' }], MO)
-  assert.ok(r.neueSterne >= 3)
+  // Drei selbstständige Treffer aus zwei früheren Runden, die Runde bringt den vierten und schließt Stern 1 ab.
+  const nachweise = { A: [{ r: 1, t: 'A1' as const, s: 2 as const }, { r: 1, t: 'A2' as const, s: 2 as const }, { r: 2, t: 'A1' as const, s: 2 as const }], B: [], C: [], D: [] }
+  const r = finishRound({ ...s, nachweise }, [{ type: 'A2', outcome: 'first' }], MO)
+  assert.equal(r.neueSterne, 1)
+  assert.equal(r.state.sterneErreicht.A, 1)
   assert.equal(verdiente(r.state), r.neueSterne + 1) // +1: Tagesmitbringsel der ersten Runde
 })
 
 test('Alte Spielstände ohne Münzen bekommen ihre Sterne rückwirkend', () => {
   const s = initialState('S')
   const skill = { ...s.skill }
-  for (const k of Object.keys(skill) as (keyof typeof skill)[]) skill[k] = 3
+  for (const k of Object.keys(skill) as (keyof typeof skill)[]) if (k[0] !== 'D') skill[k] = 3
   const alt = JSON.parse(serializeState({ ...s, skill }))
   delete alt.sterneErreicht
   delete alt.gekauft
@@ -66,16 +66,13 @@ test('Stufenaufstieg bringt eine Bonus-Münze', () => {
   assert.equal(verdiente(r.state), r.neueSterne + 2)
 })
 
-test('Wochenziel bringt eine Bonus-Münze, einmal pro Woche', () => {
+test('Es gibt kein Wochenziel: Üben an mehreren Tagen derselben Woche bringt nur das Tagesmitbringsel', () => {
   let s = initialState('S')
   const antworten: RoundAnswer[] = [{ type: 'A1', outcome: 'failed' }]
   for (const tag of [5, 6]) s = finishRound(s, antworten, new Date(2026, 0, tag, 12)).state
   const r = finishRound(s, antworten, new Date(2026, 0, 7, 12))
-  assert.equal(r.weeklyBonus > 0, true)
-  assert.equal(r.neueBonusMuenzen, 2) // Wochenziel + Tagesmitbringsel
-  const r2 = finishRound(r.state, antworten, new Date(2026, 0, 8, 12))
-  assert.equal(r2.weeklyBonus, 0)
-  assert.equal(r2.neueBonusMuenzen, 1) // nur das Tagesmitbringsel
+  assert.equal(r.neueBonusMuenzen, 1) // nur das Tagesmitbringsel
+  assert.equal(r.foodGained + r.bonusFood, 0)
 })
 
 test('Bonus-Münzen überleben Speichern und Laden, alte Stände starten bei 0', () => {
@@ -130,7 +127,7 @@ test('Tagesmitbringsel: nur die erste Runde des Tages bringt eine Münze', () =>
 
 test('Wirtschaft: bei üblichem Üben ist der Shop in etwa acht Wochen leergekauft, nicht in zwei', () => {
   // Annahme: 5 Tage pro Woche je eine Runde, Knobelrunde an 2 Tagen mit Erfolg. Sterne und Aufstiege: 13 Münzen am Anfang.
-  const proWoche = 5 /* Tagesmitbringsel */ + 1 /* Wochenziel */ + 4 /* Knobel: 2 Münzen an 2 Tagen */
+  const proWoche = 5 /* Tagesmitbringsel */ + 4 /* Knobel: 2 Münzen an 2 Tagen */
   const wochen = (89 - 13) / proWoche
   assert.ok(wochen > 6 && wochen < 11, `Wochen bis alles gekauft: ${wochen}`)
 })

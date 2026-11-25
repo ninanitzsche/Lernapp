@@ -1,0 +1,63 @@
+import assert from 'node:assert/strict'
+import { existsSync, readFileSync } from 'node:fs'
+import test from 'node:test'
+
+const cssUrl = new URL('../index.css', import.meta.url)
+const css = readFileSync(cssUrl, 'utf8')
+const viteConfig = readFileSync(new URL('../../vite.config.ts', import.meta.url), 'utf8')
+
+test('Design-Tokens sind innerhalb der Root-Ebene eindeutig und werden verwendet', () => {
+  const rootBlocks = [...css.matchAll(/:root\s*\{([^}]*)\}/g)]
+  const declarations = rootBlocks.flatMap(([, block]) => [...block.matchAll(/(--[\w-]+)\s*:/g)].map(([, name]) => name))
+  const duplicates = declarations.filter((name, index) => declarations.indexOf(name) !== index)
+  assert.deepEqual([...new Set(duplicates)], [], 'Ein Design-Token darf nicht mehrfach in :root deklariert werden')
+
+  const managed = declarations.filter((name) => name.startsWith('--color-detail-') || name.startsWith('--effect-detail-') || name.startsWith('--space-'))
+  const unusedManaged = managed.filter((name) => !css.includes('var(' + name + ')'))
+  assert.deepEqual(unusedManaged, [], 'Jedes neu migrierte Farb-, Effekt- und Abstandstoken muss tatsächlich verwendet werden')
+})
+
+test('Alle CSS-Variablen sind definiert oder explizit inline gesetzt', () => {
+  const declared = new Set([...css.matchAll(/(--[\w-]+)\s*:/g)].map(([, name]) => name))
+  const referenced = new Set([...css.matchAll(/var\((--[\w-]+)/g)].map(([, name]) => name))
+  const inlineOnly = new Set(['--x', '--dreh'])
+  const missing = [...referenced].filter((name) => !declared.has(name) && !inlineOnly.has(name))
+  assert.deepEqual(missing, [], 'Jede CSS-Variable muss definiert sein')
+})
+
+test('Die freigegebenen Schriften liegen lokal als WOFF2 vor', () => {
+  const files = [
+    'AtkinsonHyperlegibleNext-Latin-400.woff2',
+    'AtkinsonHyperlegibleNext-LatinExt-400.woff2',
+    'AtkinsonHyperlegibleNext-Latin-700.woff2',
+    'AtkinsonHyperlegibleNext-LatinExt-700.woff2',
+    'Nunito-Latin-Variable.woff2',
+    'Nunito-LatinExt-Variable.woff2',
+  ]
+  for (const file of files) {
+    const url = new URL('../../public/fonts/' + file, import.meta.url)
+    assert.equal(existsSync(url), true, file + ' fehlt')
+    assert.equal(readFileSync(url).subarray(0, 4).toString('ascii'), 'wOF2', file + ' ist keine gültige WOFF2-Datei')
+    assert.ok(css.includes(file), file + ' wird nicht im Stylesheet referenziert')
+  }
+})
+
+test('Bedienbarkeit, reduzierte Bewegung und Deployment-Pfade sind zentral abgesichert', () => {
+  assert.match(css, /--touch-target:\s*48px/)
+  assert.match(css, /:focus-visible/)
+  assert.match(css, /prefers-reduced-motion:\s*reduce/)
+  assert.match(css, /touch-action:\s*manipulation/)
+  assert.match(viteConfig, /base:\s*['"]\.\/['"]/)
+})
+
+
+
+test('Screen-Farben und Layoutabstände verwenden zentrale Tokens', () => {
+  const screenCss = css.replace(/:root\s*\{[^}]*\}/g, '')
+  const hardcodedColors = [...screenCss.matchAll(/#[0-9a-fA-F]{3,8}\b|rgba?\([^)]*\)/g)].map(([value]) => value)
+  assert.deepEqual(hardcodedColors, [], 'Farben und Effekte außerhalb der Token-Definitionen müssen Tokens verwenden')
+
+  const spacingDeclarations = [...screenCss.matchAll(/(?:^|[;{]\s*)(?:padding(?:-(?:top|right|bottom|left|inline|block))?|margin(?:-(?:top|right|bottom|left|inline|block))?|gap|row-gap|column-gap|border-spacing)\s*:\s*([^;}]+)/gm)]
+  const hardcodedSpacing = spacingDeclarations.flatMap(([, value]) => [...value.matchAll(/-?\d+(?:\.\d+)?px/g)].map(([literal]) => literal))
+  assert.deepEqual(hardcodedSpacing, [], 'Layoutabstände müssen über Abstandstokens oder relative Einheiten definiert sein')
+})

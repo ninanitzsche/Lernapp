@@ -2,15 +2,20 @@
 
 > **Zweck:** Diese Datei beschreibt den aktuell im Repository erkennbaren Funktionsumfang. Sie soll als praktische Übersicht für Produktentwicklung und Pflege dienen.
 >
-> **Stand:** 22.11.2026  
-> **Grundlage:** Quellcode- und Dokumentationsprüfung. Nicht jede Funktion wurde in einem echten Browserdurchlauf oder auf einem Endgerät manuell getestet.
+> **Stand:** 25.11.2026  
+> **Grundlage:** Quellcode- und Dokumentationsprüfung sowie automatisierte Tests. Nicht jede Funktion wurde in einem echten Browserdurchlauf oder auf einem Endgerät manuell getestet.
 
 ## Status-Legende
 
-- **Implementiert** – im aktuellen Quellcode vorhanden.
-- **Teilweise** – Grundfunktion vorhanden, aber mit erkennbaren Einschränkungen.
-- **Offen** – im geprüften Stand nicht vorhanden oder noch zu ergänzen.
-- **Prüfen** – aus dem Quellcode allein nicht abschließend beurteilbar bzw. sollte praktisch getestet werden.
+Es gelten die Statusbegriffe aus [docs/README.md](docs/README.md), Regel 7.
+
+- **Entworfen** – Spezifikation liegt vor, noch nicht im Code.
+- **Implementiert** – im aktuellen Quellcode vorhanden. Wo die praktische Prüfung noch fehlt, steht das ausdrücklich dabei.
+- **Verifiziert** – die relevante Prüfung wurde tatsächlich ausgeführt und belegt.
+- **Offen** – im geprüften Stand nicht oder nur teilweise vorhanden. Teilweise Umsetzungen werden als "Offen (teilweise implementiert)" geführt.
+- **Blockiert** – abhängig von einer Entscheidung oder Voraussetzung.
+
+Begriffe wie Schwierigkeit, Lernstand, Kompetenzstern und Entwicklungsstufe sind in [docs/REWARD_SYSTEM.md](docs/REWARD_SYSTEM.md) definiert.
 
 ---
 
@@ -36,7 +41,7 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 ### Aufgabensteuerung und Lernanpassung
 
 - **Implementiert:** Aufgaben werden algorithmisch bzw. zufallsbasiert erzeugt.
-- **Implementiert:** Pro Aufgabentyp gibt es vier dokumentierte Schwierigkeits-/Kompetenzstufen (0–3).
+- **Implementiert:** Pro Aufgabentyp gibt es einen Lernstand von 0 bis 3 (vier dokumentierte Kompetenzstufen).
 - **Implementiert:** Die Aufgabenauswahl gewichtet schwächere Kompetenzen stärker (ungefähr 60 % schwach, 30 % mittel, 10 % stark).
 - **Implementiert:** Im gemischten Modus werden die Themenbereiche berücksichtigt.
 - **Implementiert:** Es gibt einen gemischten Modus und einen themenspezifischen Modus.
@@ -50,13 +55,13 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 - **Implementiert:** Es gibt einen Aufgabenbestand mit mehr als 100 Buchaufgaben.
 - **Implementiert:** Die Aufgaben beziehen sich auf die im Code hinterlegten Buchseiten 14–15, 16–17 und 20–21.
 - **Implementiert:** Buchaufgaben können mit generierten Aufgaben kombiniert werden.
-- **Teilweise:** Für Buch S. 16, Aufgabe 3, und S. 17, Aufgabe 7, sind laut Projektstand nur ähnliche Aufgaben vorhanden.
+- **Offen (teilweise implementiert):** Für Buch S. 16, Aufgabe 3, und S. 17, Aufgabe 7, sind laut Projektstand nur ähnliche Aufgaben vorhanden.
 - **Offen:** Material aus Arbeitsheft S. 8, 9 und 11 ist im geprüften Aufgabenbestand nicht abgedeckt.
 - **Hinweis:** Buch- und Seitenangaben sollten bei Änderungen am Aufgabenbestand mit dem tatsächlich verwendeten Schulbuch abgeglichen werden.
 
 ### Abgrenzung der Lerninhalte
 
-- **Teilweise:** Plus- und Minusoperationen kommen vereinzelt innerhalb anderer Aufgabentypen vor.
+- **Offen (teilweise implementiert):** Plus- und Minusoperationen kommen vereinzelt innerhalb anderer Aufgabentypen vor.
 - **Offen:** Eigene, systematische Lernmodule für Addition und Subtraktion sind im geprüften Stand nicht vorhanden.
 - **Offen:** Ein systematischer Zahlenraum über 100 hinaus ist nicht vorhanden.
 
@@ -65,12 +70,12 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 ## 2. Schlange und Spielwelt
 
 - **Implementiert:** Die Schlange hat einen Namen, der geändert werden kann.
-- **Implementiert:** Es gibt fünf Wachstumsstufen mit Futter-Schwellen bei 0, 60, 150, 300 und 500 Futter.
+- **Implementiert:** Es gibt fünf Entwicklungsstufen mit Futter-Schwellen bei 0, 30, 90, 200 und 350 Futter (maßgeblich: `src/logic/config.ts`, `STAGES`).
 - **Implementiert:** Richtig beantwortete Aufgaben bringen Futter; dadurch wächst die Schlange.
 - **Implementiert:** Fortschrittsanzeige, Gesichtsausdrücke und unterschiedliche Stimmungen.
 - **Implementiert:** Die Schlange reagiert auf Antippen.
 - **Implementiert:** Es gibt wechselnde Sprechblasen und Animationen.
-- **Implementiert:** Fütterungsanimation und Konfetti beim Stufenaufstieg.
+- **Implementiert:** Fütterungsanimation und Konfetti beim Aufstieg in die nächste Entwicklungsstufe.
 - **Implementiert:** Bei längerer Inaktivität verändert sich die Stimmung (hungrig nach etwa 24 Stunden, schlafend nach etwa 48 Stunden).
 - **Implementiert:** Richtige und falsche Antworten lösen unterschiedliche Reaktionen aus. Fehler werden spielerisch und ohne Beschämung kommentiert.
 - **Implementiert:** Lob wird variiert und nicht nach jeder richtigen Antwort abgespielt.
@@ -94,14 +99,20 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 
 ## 4. Belohnungen und Motivation
 
-- **Implementiert:** Drei Themenbereiche mit jeweils bis zu drei Sternen.
-- **Implementiert:** Eine beim ersten Versuch richtige Antwort bringt 2 Futter, eine beim zweiten Versuch richtige Antwort 1 Futter; bei nicht gelöster Aufgabe gibt es kein Futter.
-- **Implementiert:** Der Abschluss einer Runde bringt zusätzlich 5 Futter.
+- **Implementiert (25.11.2026):** Drei Lernfelder (Zehner und Einer, Zahlbilder, Zahlenstrahl) mit je fünf Kompetenzsternen. Die Sterne werden nacheinander verdient, aus selbstständig gelösten Aufgaben (erster Versuch richtig) über mehrere Aufgabenarten und mehrere Runden. Es gibt keine Mindestzahl an Spieltagen. Die Kriterien stehen als Startwerte in `CONFIG.kompetenz` und sind fachlich noch nicht freigegeben.
+- **Implementiert:** Die Themenkarte zeigt das nächste Ziel mit einer Fortschrittsanzeige aus den gespeicherten Nachweisen und dem Hinweis, was noch fehlt (keine Prozentzahlen).
+- **Implementiert:** Abschluss eines Lernfeldes (fünf Sterne): einmaliger Meilenstein mit Feier, Eintrag im Wissensalbum und Pokal im Terrarium. Das Lernfeld bleibt normal spielbar, ohne erneute Sterne oder Auszeichnung. Die Pokal- und Albumgrafik ist ein Platzhalter (`src/ui/pokal.ts`) bis zur freigegebenen Illustration.
+- **Implementiert:** Terrarium als Sammlung: Pokale stehen automatisch im Terrarium und lassen sich wie gekaufte Dinge verschieben. Das Wissensalbum bleibt unabhängig von der Platzierung vollständig.
+- **Implementiert:** Relikte: freiwillige Expertenaufgaben (fünf kniffelige Aufgaben je Aufgabentyp, vier Treffer im ersten Versuch nötig), erst sichtbar nach dem ersten Lernfeld-Abschluss. Beim ersten Erfolg gibt es Münzen, danach keine mehr. Relikte ändern weder Sterne noch Lernstand, Verlauf oder Futter.
+- **Implementiert:** Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiterhin zum Kompetenznachweis, wenn sie im ersten Versuch richtig gelöst wird, bringt aber nur das Futter eines zweiten Versuchs (leicht und mittel 1 statt 2, knifflig 3 statt 5). Münzen werden nicht gemindert. Maßgeblich ist `docs/REWARD_SYSTEM.md`.
+- **Implementiert:** Futter je Aufgabe hängt von der Schwierigkeit ab: leichte und mittlere Aufgaben (Schwierigkeit 1 und 2) bringen 2 Futter im ersten bzw. 1 im zweiten Versuch; knifflige (Schwierigkeit 3) bringen 5 bzw. 3. Nicht gelöste Aufgaben bringen kein Futter.
+- **Implementiert:** Eine vollständig abgeschlossene normale Runde bringt zusätzlich 5 Futter, eine Knobelrunde 10 Futter. Drei richtige Antworten hintereinander im ersten Versuch bringen einmal pro Runde zusätzlich 1 Futter.
 - **Implementiert:** Es gibt eine Begrenzung auf drei futterbringende Runden pro Tag. Weitere Lernrunden bleiben möglich und aktualisieren weiterhin den Lernstand.
-- **Implementiert:** Wochenziel: an drei unterschiedlichen Tagen lernen; dafür gibt es einen Bonus.
-- **Implementiert:** Münzen können unter anderem durch den ersten Tagesdurchlauf, Stufenaufstiege, Sterne, das Wochenziel und den Knobelmodus verdient werden.
-- **Implementiert:** Für den Knobelbonus gilt eine Mindestleistung von 7 aus 10 Aufgaben beim ersten Versuch; der Bonus ist auf einmal pro Tag begrenzt.
-- **Implementiert:** Bereits erreichte Sterne bleiben erhalten, auch wenn sich der Kompetenzstand später verändert.
+- **Entfernt (25.11.2026):** Wochenziel und Belohnungen für reine Rundenzahl. Es gibt keinen Wochenziel- oder bloßen Rundenzahlbonus. Davon getrennt bleibt das ausdrücklich gewollte Tagesmitbringsel: eine Münze für die erste abgeschlossene Runde eines Kalendertages, unabhängig vom Antwortergebnis. Schon verdiente Münzen und gespeicherte Meilensteine bleiben erhalten.
+- **Implementiert:** Münzen kommen aus Kompetenzsternen (eine je Stern), Entwicklungsstufen (eine je überschrittener Entwicklungsschwelle), dem Tagesmitbringsel, Knobelerfolgen und Relikt-Erstabschlüssen.
+- **Implementiert:** Eine starke Knobelrunde (mindestens 7 von 10 Aufgaben im ersten Versuch richtig) bringt 2 Münzen, höchstens einmal pro Tag. Die erste starke Knobelrunde bringt zusätzlich einmalig 1 Münze als Meilenstein. Kumulative knifflige Ersttreffer lösen weitere einmalige Meilensteine bei 10, 25 und 50 Treffern aus (1, 2 bzw. 3 Münzen).
+- **Implementiert:** Ein erstmals erfolgreich abgeschlossenes Relikt bringt 2 Münzen; Wiederholungen desselben Relikts bringen keine weiteren Münzen.
+- **Implementiert:** Bereits erreichte Sterne bleiben erhalten, auch wenn sich der Kompetenzstand später verändert. Altstände behalten ihre bisherigen Sterne (0 bis 3); weitere Sterne brauchen neue Nachweise.
 - **Implementiert:** Es gibt keinen Verlust von Wachstum bei Lernpausen und keine aufeinander aufbauende Streak-Pflicht.
 
 ---
@@ -117,7 +128,7 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 - **Implementiert:** Runde pausieren und fortsetzen.
 - **Implementiert:** Einführungsablauf mit drei Schritten; kann übersprungen und später erneut geöffnet werden.
 - **Implementiert:** Die Schlange erklärt den grundlegenden Spielablauf.
-- **Prüfen:** Tastaturbedienbarkeit und Screenreader-Unterstützung sollten insbesondere für Drag-and-drop im Terrarium und alle interaktiven Aufgaben systematisch getestet werden.
+- **Implementiert, Verifizierung offen:** Tastaturbedienbarkeit und Screenreader-Unterstützung sollten insbesondere für Drag-and-drop im Terrarium und alle interaktiven Aufgaben systematisch getestet werden.
 
 ---
 
@@ -166,20 +177,12 @@ Daraus folgt: Eine installierbare PWA mit verlässlichem Offline-Caching sollte 
 
 ### Pause und Fortsetzen einer laufenden Aufgabe
 
-**Bekannter Prüf-/Korrekturpunkt:** Der gespeicherte Rundenstand enthält im geprüften Code nicht den vollständigen Versuchszustand (`versuch`). Wird eine Runde nach einem ersten Fehlversuch mit eingeblendetem Hinweis pausiert und später fortgesetzt, kann dieser Versuchszustand verloren gehen. Dadurch kann die Aufgabe erneut wie ein erster Versuch behandelt werden.
-
-Betroffene Stellen:
-- `src/ui/Round.tsx`
-- `src/logic/runde.ts`
-
-**Empfehlung:** Versuchszähler und den für die Wiederaufnahme erforderlichen Aufgaben-/Feedbackzustand in den gespeicherten Rundenstand aufnehmen und mit Tests absichern.
+**Behoben (25.11.2026):** Der gespeicherte Rundenstand (`RundenStand.versuch`) enthält jetzt den Versuchszähler. Wird eine Runde nach einem ersten Fehlversuch pausiert und später fortgesetzt, läuft die Aufgabe mit dem zweiten Versuch und dem Tipp weiter. Altstände ohne Feld starten wie bisher beim ersten Versuch. Abgesichert durch Tests in `src/logic/runde.test.ts`; die praktische Prüfung im Browser steht noch aus.
 
 ### Dokumentation
 
-- **Prüfen / Aktualisieren:** `docs/spec.md` enthält Aussagen, die nicht mehr dem aktuellen Implementierungsstand entsprechen (unter anderem Shop, Sounds, Terrarium und Einführung).
-- **Prüfen / Aktualisieren:** `docs/bewertung-ux-und-spieldesign.md` enthält ebenfalls überholte Annahmen zu bereits implementierten Abläufen.
-- **Prüfen:** Die README nennt 95 automatisierte Tests, während ein anderes Dokument 85 nennt. Die tatsächliche Anzahl und der aktuelle Testlauf müssen durch Ausführen der Tests verifiziert werden.
-- **Prüfen:** Build und Tests wurden im Rahmen dieser Bestandsaufnahme nicht ausgeführt.
+- **Erledigt:** Der Einstieg und die Zuständigkeiten stehen in `docs/README.md`. Maßgeblich sind `docs/REWARD_SYSTEM.md` für Produktregeln, `docs/specs/2026-11-22-feedback-runde-1/requirements.md` für testbare Anforderungen, `design.md` für UX, `docs/DESIGN_SYSTEM.md` für die visuelle Sprache und `docs/ROADMAP_DESIGN.md` für den Arbeitsstand. Historische Aufgabenpläne sind keine aktuelle To-do-Liste.
+- **Tests und Build:** Keine feste Testanzahl in der Dokumentation pflegen. Der aktuelle, reproduzierbare Nachweis für `npm ci`, `npm test` und `npm run build` ist der verlinkte GitHub-Actions-Lauf in `docs/ROADMAP_DESIGN.md`. Der Build führt über `npm run build` auch `tsc -b` aus.
 
 ### Repository-Größe
 
@@ -191,13 +194,12 @@ Im geprüften Repository liegen neben den optimierten App-Grafiken weitere älte
 
 Priorisiert nach Zuverlässigkeit und Pflegeaufwand – nicht als Liste vermeintlich fehlender Basisfunktionen:
 
-1. **Hoch:** Pause-/Fortsetzen-Zustand inklusive Versuchszähler zuverlässig speichern und testen.
-2. **Hoch:** Automatisierte Tests und Produktionsbuild ausführen; Testanzahl in README und Dokumentation vereinheitlichen.
-3. **Hoch:** `docs/spec.md` und UX-Dokumentation an den tatsächlichen Funktionsumfang anpassen.
-4. **Mittel:** Aufgabenabdeckung des konkreten Schulbuchs vervollständigen und Seiten-/Aufgabenreferenzen prüfen.
-5. **Mittel:** Bedienbarkeit, Barrierefreiheit und Drag-and-drop auf echten Geräten testen.
-6. **Nach Bedarf:** Weitere Lerninhalte (z. B. Addition/Subtraktion oder ein größerer Zahlenraum) erst anhand des Lernziels und der Zielgruppe planen.
-7. **Nach Bedarf:** PWA/Offline-Caching ergänzen, falls die App zuverlässig ohne Internet und installierbar genutzt werden soll.
+1. **Hoch:** Pause/Fortsetzen mit Versuchszähler praktisch im Browser prüfen.
+2. **Hoch:** Manuelle Sichtprüfung auf dem Smartphone nach jedem Screen; der automatisierte Produktionsbuild ist über GitHub Actions bereits verifiziert.
+3. **Mittel:** Aufgabenabdeckung des konkreten Schulbuchs vervollständigen und Seiten-/Aufgabenreferenzen prüfen.
+4. **Mittel:** Bedienbarkeit, Barrierefreiheit und Drag-and-drop auf echten Geräten testen.
+5. **Nach Bedarf:** Weitere Lerninhalte (z. B. Addition/Subtraktion oder ein größerer Zahlenraum) erst anhand des Lernziels und der Zielgruppe planen.
+6. **Nach Bedarf:** PWA/Offline-Caching ergänzen, falls die App zuverlässig ohne Internet und installierbar genutzt werden soll.
 
 ---
 
@@ -206,9 +208,13 @@ Priorisiert nach Zuverlässigkeit und Pflegeaufwand – nicht als Liste vermeint
 Bei jeder größeren Änderung:
 
 1. Neue Funktion hier ergänzen.
-2. Status auf **Implementiert**, **Teilweise**, **Offen** oder **Prüfen** setzen.
+2. Status auf **Entworfen**, **Implementiert**, **Verifiziert**, **Offen** oder **Blockiert** setzen.
 3. Bei Änderungen an Lernlogik auch die Aufgabentabelle und Belohnungsregeln aktualisieren.
 4. Bekannte Einschränkungen nicht als implementierte Funktionen darstellen.
 5. Aussagen zu Tests nur dann als erledigt markieren, wenn Tests tatsächlich ausgeführt wurden.
 
 **Diese Datei ist eine Funktionsübersicht, keine Garantie für vollständige manuelle Qualitätssicherung.**
+
+**Maßgebliche Quelle:** [docs/REWARD_SYSTEM.md](docs/REWARD_SYSTEM.md).
+Diese Datei beschreibt den Implementierungsstand. Bei Abweichungen
+sind die verbindlichen Produktregeln in REWARD_SYSTEM.md maßgeblich.

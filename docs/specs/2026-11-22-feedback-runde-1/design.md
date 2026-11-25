@@ -1,15 +1,15 @@
 # Design: Feedback-Runde 1
 
-Stand: 2026-11-22. Gehört zu `requirements.md` (Anforderungen R1 bis R6, N1 bis N9) und `tasks.md`.
+Stand: 2026-11-24. Gehört zu `requirements.md` (Anforderungen R1 bis R7, N1 bis N9) und `tasks.md`.
 
 ## 1. Gestaltungsziele aus UX-Sicht
 
-1. Das Kind spürt in jeder Minute, dass etwas passiert (Futter, Halbzeit, Serie), und in jeder Woche, dass es vorankommt (Meilensteine).
+1. Das Kind spürt beim Üben, dass etwas passiert (Futter, Halbzeit, Serie) und erkennt bedeutsame Lernfortschritte (Meilensteine) – ohne Nutzungs- oder Zeitdruck.
 2. Das Kind sieht, wie schwer eine Aufgabe ist, ohne ein Wort lesen zu müssen.
 3. Das Kind fühlt sich nie dumm: Es beginnt mit Erfolg, Schweres ist ein Angebot und kein Test.
 4. Eltern bekommen in unter einer Minute ein ehrliches Bild, ohne dass es im Kinderbereich Druck erzeugt.
 
-Das visuelle System bleibt das bestehende "beleuchtete Terrarium" (`docs/spec.md` Abschnitt 17). Neu sind nur Bausteine, die das Feedback braucht. Es gibt keine neue Schrift und keine neuen Webfonts.
+Das visuelle System bleibt das bestehende "beleuchtete Terrarium" gemäß `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Neu sind nur Bausteine, die das Feedback braucht. Schriften: Atkinson Hyperlegible Next und Nunito, lokal als WOFF2 eingebunden (`docs/DESIGN_SYSTEM.md`, Abschnitt 6). Es gibt keine externen Font-Requests.
 
 ## 2. Designplan nach dem Design-Skill
 
@@ -20,27 +20,33 @@ Der erste Entwurf hat drei Dinge getan, die für jede Lern-App gelten würden. D
 | Erster Entwurf | Warum er zu austauschbar war | Ersatz |
 |---|---|---|
 | Stufen als Sterne (1 bis 3) | Sterne zeigen schon das Können je Thema. Zwei Sternsysteme verwirren, und Sterne sind bei jeder App dasselbe. | **Schuppen.** Eine Schlange hat Schuppen. Schwierigkeit = 1 bis 3 Sechsecke, die sich wie ein Schuppenband füllen. Sterne bleiben Können, Schuppen sind Anforderung. |
-| Meilenstein = Popup "Level up! Glückwunsch!" mit Konfetti | Das ist die Standardfeier jeder App und sagt nichts über die Schlange. | **Häutung.** Wachsende Schlangen häuten sich. Jeder Meilenstein lässt eine "alte Haut" zurück, die als Karte ins Album "Meine Häute" kommt, mit Rückblick. Sammeln statt Verschwinden. |
+| Meilenstein = Popup "Level up! Glückwunsch!" mit Konfetti | Das ist die Standardfeier jeder App und sagt nichts über die Schlange. | **Häutung.** Wachsende Schlangen häuten sich. Die Häutung bleibt die schlangenspezifische Feier für die Entwicklung der Schlange. Der Abschluss eines Lernfeldes erhält davon getrennt einen thematischen Eintrag im Wissensalbum. |
 | Eltern: Ampel mit grün, gelb, rot und Balkendiagrammen | Rot am Kind wirkt wie ein Urteil, und ein Diagramm ohne Aussage hilft nicht beim Handeln. | **Sätze zuerst.** Oben ein Satz "Das hilft jetzt". Je Typ ein Schuppenband (ein bis drei gefüllte Schuppen = höchste sichere Stufe) plus ein Wort. Farbe nur als Zusatz, Wort und Symbol tragen die Aussage. |
 
 Nach dem Austausch bleibt die Frage der Prüfung "Würde ein Designer das für jedes Kinderprodukt zeichnen?" nur noch für Konfetti und Rundungen mit Ja. Beides ist hier bewusst vorhanden, weil Kinder darauf reagieren, und gehört zum bestehenden Stil.
 
-### 2.2 Farben (bestehende Token, nur Rollen kommen dazu)
+### 2.2 Farben
 
-| Name | Hex | Rolle neu |
+Die Markenpalette steht ausschließlich in `docs/DESIGN_SYSTEM.md` (Abschnitt 3). Dieses Dokument definiert keine eigene Palette. Die Rollen der Feedback-Runde ordnen sich so zu:
+
+| Rolle | Farbe laut `DESIGN_SYSTEM.md` | Hinweis |
 |---|---|---|
-| Moos `--nacht` | `#0f2f26` | Grund aller Kinderansichten |
-| Papier `--papier` | `#fff8e6` | Halbzeit-Karte, Häutungskarte, Album, Elternbereich |
-| Lime `--lime` | `#9bd93c` | Schuppe Stufe 1 (leicht), "sicher" |
-| Amber `--amber` | `#ffb92e` | Schuppe Stufe 2 (mittel), Münzen |
-| Lila `--lila` | `#6b4bd1` | Schuppe Stufe 3 (knifflig), Knobelrunde |
-| Gedämpft `--gedaempft-papier` | `#4b5d54` | Nebentext auf Papier |
+| Grund der Kinderansichten | Deep Forest `#064D30` | ersetzt den früheren Entwurfswert `--nacht` `#0f2f26` |
+| Halbzeit-Karte, Häutungskarte, Album, Elternbereich | Warm Cream `#FFF4DE` | ersetzt den früheren Entwurfswert `--papier` `#fff8e6` |
+| Marken- und Magieakzent | Toxic Lime `#9DFF00` | nicht für Schwierigkeit verwenden |
+| Schuppe Stufe 1 (leicht), "sicher" | Task Light Lime `#9bd93c` | semantische Schwierigkeitsfarbe |
+| Schuppe Stufe 2 (mittel) | Task Medium Amber `#ffb92e` | semantische Schwierigkeitsfarbe, nicht die Münzfarbe |
+| Schuppe Stufe 3 (knifflig), Knobelrunde | Task Difficult Violet `#6b4bd1` | semantische Schwierigkeitsfarbe; auf dunklem Grund die hellere Variante `#b9a4ff` (Token `--color-task-difficult-on-dark`), weil `#6b4bd1` dort nur 1,68:1 erreicht |
+| Münzen und Belohnungen | Warm Gold `#FFD329` | laut `DESIGN_SYSTEM.md` |
+| Nebentext auf Creme | `#4B5D54` (im Code `--color-muted-on-light`) | im Code als Token vorhanden, in der Palettentabelle von `DESIGN_SYSTEM.md` nicht aufgeführt; Aufnahme dort ist zu klären |
 
-Leere Schuppen sind Umriss ohne Füllung, so unterscheiden sich 1, 2 und 3 auch ohne Farbwahrnehmung (Anforderung R1.2). Kontrastpaare werden vor der Abnahme nachgerechnet (Text auf Papier und auf Lime, Amber, Lila mindestens 4,5:1).
+Entscheidung des Projektinhabers (25.11.2026): `DESIGN_SYSTEM.md` ist die maßgebliche Referenz. Die drei Task-Farben dienen ausschließlich der Aufgabenschwierigkeit.
+
+Leere Schuppen sind Umriss ohne Füllung, so unterscheiden sich 1, 2 und 3 auch ohne Farbwahrnehmung (Anforderung R1.2). Kontrastpaare werden vor der Abnahme nachgerechnet (Text auf Creme und auf Lime, Amber, Lila mindestens 4,5:1).
 
 ### 2.3 Schrift
 
-Unverändert: systemeigene runde Schrift, Gewicht 800, keine Webfonts (N8). Maßstab: Meilensteintitel `clamp(1.8rem, 6dvh, 2.6rem)`, Rückblickzeilen 1.15rem, Elterntext 1rem mit Zeilenhöhe 1.5 und Zeilenlänge unter 70 Zeichen. Alle Texte in Satzschreibung, keine Großbuchstaben-Etiketten.
+Schrift gemäß `docs/DESIGN_SYSTEM.md`: Atkinson Hyperlegible Next (Aufgaben, Zahlen, Fließtext) und Nunito 800 (Überschriften), lokal eingebunden (N8). Maßstab: Meilensteintitel `clamp(1.8rem, 6dvh, 2.6rem)`, Rückblickzeilen 1.15rem, Elterntext 1rem mit Zeilenhöhe 1.5 und Zeilenlänge unter 70 Zeichen. Alle Texte in Satzschreibung, keine Großbuchstaben-Etiketten.
 
 ### 2.4 Layout und Ausrichtung
 
@@ -98,24 +104,39 @@ Eine Sprechblase der Schlange über der Aufgabe, drei Sekunden, mit Konfetti. Si
 ```
   +-------------------------------+
   |        [ Schlange schlüpft ]  |
-  |   Häutung Nr. 4               |
-  |   "10 Runden geschafft!"      |
-  |   Du hast 87 Aufgaben gelöst  |
-  |   an 6 Tagen.                 |
-  |   Die meisten gleich richtig  |
-  |   bei Zahlenstrahl.           |
-  |   🪙 +1 Münze                 |
+  |   Häutung Nr. 4                |
+  |   "Ich bin wieder gewachsen!"  |
+  |   Ein neuer Entwicklungsschritt|
+  |   🪙 +1 Münze                  |
   |        [ Weiter ]             |
   +-------------------------------+
 ```
 
-Höchstens drei Rückblickzeilen (R5.3). Die Karte wandert danach ins Album.
+Die Häutung feiert die Entwicklung der Schlange. Sie ist vom Wissensalbum für gemeisterte Lernfelder getrennt; reine Nutzungsdauer oder Übungstage sind kein Ziel.
 
-### 3.5 Album "Meine Häute"
+### 3.5 Wissensalbum
 
-Ein Raster aus Papierkarten (je Meilenstein ein Symbol, Titel, Datum). Antippen zeigt den Rückblick von damals. Erreichbar über einen kleinen Knopf auf der Startseite neben "Shop".
+Das Wissensalbum sammelt die abgeschlossenen Lernfelder. Jeder Abschluss erhält einen eigenen Eintrag mit einer besonders schönen, thematisch gestalteten Illustration der Schlange und den fünf verdienten Sternen. Das Album ist die dauerhafte Sammlung der Lernerfolge; seine Einträge bleiben erhalten, unabhängig davon, welche Auszeichnungen gerade im Terrarium platziert sind.
 
-### 3.6 Elternbereich (neuer oberer Teil)
+### 3.6 Abschluss eines Lernfeldes
+
+Der Abschluss ist ein eigener Moment und wird nicht mit der Häutung für Schlangenwachstum verwechselt:
+
+```
+  +--------------------------------+
+  |       [ besondere Schlange ]   |
+  |   Zahlenstrahl gemeistert!     |
+  |   ★ ★ ★ ★ ★                   |
+  |   Dein Themenbild ist im       |
+  |   Wissensalbum.                |
+  |   [ Zahlen-Kompass erhalten ]  |
+  |          [ Weiter ]            |
+  +--------------------------------+
+```
+
+Das Themenbild zeigt die Schlange in einer eigens gestalteten Szene passend zum Lernfeld. Der Pokal/Orden ist ein eigener Gegenstand für die frei gestaltbare Terrarium-Sammlung und zugleich der Schlüssel zu den passenden Relikten.
+
+### 3.7 Elternbereich (neuer oberer Teil)
 
 ```
   Bereich für Erwachsene
@@ -133,56 +154,16 @@ Ein Raster aus Papierkarten (je Meilenstein ein Symbol, Titel, Datum). Antippen 
   Aufgabentypen
   Zahlwörter und Zahlen   ⬡⬡⬢ mittel   fast sicher   wird besser
   ...
-  Runden der letzten vier Wochen:  3 | 5 | 2 | 6
   Meilensteine: 10 Runden (14.12.), Kleinkind (03.12.) ...
 ```
 
 Das bisherige Transparenzpapier-Table bleibt erhalten (darunter), weil es das Lernziel zuordnet.
 
-## 4. Spielwerte (alle in `src/logic/config.ts`, Startwerte)
+## 4. Verbindliche Spielwerte
 
-### 4.1 Futter je Stufe
+Die Produktregeln und sämtliche freigegebenen Startwerte für Futter, Tageslimit, Wachstumsschwellen, Serienbonus, Knobelbelohnungen und Münzen stehen zentral in [docs/REWARD_SYSTEM.md](../../REWARD_SYSTEM.md). Dieses Design-Dokument beschreibt die visuelle Darstellung und Interaktion. Es ist keine zweite Quelle für abweichende Spielwerte.
 
-| Stufe | richtig im 1. Versuch | richtig im 2. Versuch | falsch |
-|---|---|---|---|
-| 1 leicht | 2 | 1 | 0 |
-| 2 mittel | 2 | 1 | 0 |
-| 3 knifflig | 5 | 3 | 0 |
-
-Stufe 1 und 2 zahlen bewusst gleich viel wie heute: Das Kind verliert nichts, und leichte Aufgaben sind kein "Betrug". Knifflig zahlt zweieinhalbmal so viel (R4.1). Der Rundenbonus ist 5 in der normalen Runde und 10 in der Knobelrunde (R4.2). Serie: +1 Futter einmal pro Runde (R3.5, R3.6).
-
-Beispielrechnung (Mittel über viele Runden, gleich richtig, Tageslimit dreimal): normale Runde 10 Aufgaben mit 10 mal 2 = 20 plus Bonus 5 = 25 (wie bisher). Knobelrunde: 2 Aufwärmaufgaben zu 2 plus 8 kniffelige zu 5 = 44 plus Bonus 10 = 54, rund zweimal so viel wie eine normale. Bei nur 7 von 10 gleich richtig sinkt sie auf etwa 35 bis 40, bleibt aber über der normalen Runde.
-
-### 4.2 Schwellen der Entwicklung
-
-| Stufe | Name | bisher | neu |
-|---|---|---|---|
-| 1 | Baby | 0 | 0 |
-| 2 | Kleinkind | 60 | 30 |
-| 3 | Kind | 150 | 90 |
-| 4 | Teenager | 300 | 200 |
-| 5 | Erwachsen | 500 | 350 |
-
-Bei etwa 25 Futter pro Runde: Kleinkind in der zweiten Runde des ersten Tages (R3.2), Kind nach etwa vier Runden, Teenager nach etwa acht, Erwachsen nach etwa 14 Runden. Eine Schlange, die schon höher war, bleibt höher (Schwellen sinken nur).
-
-### 4.3 Sonstige neue Werte
-
-```
-leichtRunden: 3               // so lange nur Stufe 1 (R2.1)
-rampeNormal: [1,1,1,1,2,2,2,2,2,2]
-rampeKnobel: [2,2,3,3,3,3,3,3,3,3]
-halbzeitNach: 5
-serieAb: 3, serieFutter: 1
-rundenBonus: { normal: 5, knobel: 10 }
-knobelMuenzen: 2
-meilensteinRunden: { 10: 1, 25: 2, 50: 3, 100: 5 }   // Münzen
-knobelErfolg: { ersteStarkeRunde: 1, treffer: { 10: 1, 25: 2, 50: 3 } }   // Münzen; Treffer = kniffelige Aufgaben gleich richtig, insgesamt
-ampel: { fenster: 10, minVersuche: 5, sicherQuote: 0.8, sicherMinMittel: 3, uebenQuote: 0.5, uebenFalschMax: 0.2 }
-```
-
-Die Münzwerte der Knobelerfolge entsprechen der Tabelle in `requirements.md` Abschnitt 8 (erste starke Knobelrunde 1, dann 10, 25, 50 Treffer mit 1, 2, 3 Münzen). Das ergibt höchstens 7 Münzen. "Starke Knobelrunde" heißt wie bisher mindestens 7 von 10 im ersten Versuch.
-
-Anmerkung zur Wirtschaft: Die Meilensteine bringen auf lange Sicht höchstens 11 Münzen (Runden) und 7 (Knobelerfolge). Der Shop hat Dinge zu 1 bis 3 Münzen. Das sind spürbare, aber keine inflationären Zugaben. Nach dem Praxistest prüfen, ob der Shop leer gekauft wird.
+Bei Widersprüchen gilt `REWARD_SYSTEM.md`. Eine Abweichung in `src/logic/config.ts` wird zuerst gemeldet; nach der Entscheidung des Projektinhabers wird die unterlegene Seite angeglichen (siehe `REWARD_SYSTEM.md`, Abschnitt 1.6).
 
 ## 5. Leichte Varianten der Aufgabentypen (R2.10)
 
@@ -205,6 +186,8 @@ Die genauen Texte und Hinweise jeder leichten Variante werden beim Bauen an die 
 
 ## 6. Datenmodell (additiv, Version bleibt 1)
 
+> **Hinweis (25.11.2026):** Dieser Abschnitt ist der Entwurfsstand vom 24.11.2026. Die Meilensteinarten `thema` und `knobel` sowie das Feld `rueckblick.tage` sind überholt. Der Lernfeld-Abschluss und das Relikt fehlen. Maßgeblich ist der aktuelle Code in `src/logic/` (insbesondere `meilensteine.ts`) und `docs/REWARD_SYSTEM.md`, Abschnitt 9. Dieser Abschnitt wird bei der nächsten fachlichen Änderung am Datenmodell an den Code angeglichen.
+
 Neue optionale Felder in `GameState`. Fehlende Felder erhalten beim Laden Standardwerte (N7).
 
 ```ts
@@ -224,8 +207,8 @@ interface Rueckblick {
 }
 
 interface Meilenstein {
-  id: string              // 'entwicklung-2', 'runden-10', 'stern-A-2', 'knobel-10', 'woche-2026-11-16' ...
-  art: 'entwicklung' | 'stern' | 'runden' | 'woche' | 'knobel'
+  id: string              // 'entwicklung-2', 'stern-A-2', 'thema-multiplikation', 'knobel-10' ...
+  art: 'entwicklung' | 'stern' | 'thema' | 'knobel'
   datum: string           // JJJJ-MM-TT
   rueckblick: Rueckblick
   muenzen: number         // Münzen, die dieser Meilenstein gebracht hat
@@ -246,7 +229,7 @@ Neue reine Module, jeweils mit Test zuerst:
 - `stufen.ts`: `rampeFuer(knobel, position)`, `stufeFuerAufgabe(...)`, `hoechsteStufe(lernstand, abgeschlosseneRunden)`, `lernstandNach(level, outcome, stufe)` (Regeln R2.6 und R2.7). `rundenbau.ts` baut die zehn Aufgaben einer Runde.
 - `belohnung.ts`: `futterFuer(outcome, stufe)`, `serieErkannt(antworten)`, `halbzeitErreicht(index, bereitsGezeigt)`.
 - `meilensteine.ts`: `pruefeMeilensteine(vorher: GameState, nachher: GameState, now)` gibt neue Meilensteine mit Rückblick und Münzen zurück. `nachtragen(state)` für Altstände ohne Feier (R5.7).
-- `lernstand.ts` (Elternbereich): `typEinschaetzung(verlauf)`, `trend(verlauf)`, `themaBereitschaft(...)`, `empfehlung(...)`, `rundenProWoche(rounds, now, wochen)`.
+- `lernstand.ts` (Elternbereich): `typEinschaetzung(verlauf)`, `trend(verlauf)`, `themaBereitschaft(...)`, `empfehlung(...)`, 
 
 Geänderte Module: `config.ts` (Werte), `tasks.ts` (Stufe in `Task`, Generatoren nehmen eine Stufe statt `schwer`, `generateTask(type, rng, stufeOderSchwer)` bleibt rückwärtskompatibel), `game.ts` (`finishRound` nutzt Stufen und ruft die Meilensteine auf, `parseState` und `initialState` kennen die neuen Felder), `runde.ts` (Wiederholungen mit Stufe, Parser mit Standardstufe 2), `shop.ts` (unverändert).
 
@@ -262,7 +245,7 @@ Die Serie wird in der Runde (UI) erkannt und als `serienFutter` in die `RoundAns
 | `src/ui/Treppe.tsx` (neu) | Fortschrittsleiste mit Stufenhöhen |
 | `src/ui/Halbzeit.tsx` (neu) | Zwischenstopp-Karte |
 | `src/ui/Haeutung.tsx` (neu) | Feierkarte mit Rückblick, nacheinander mehrere |
-| `src/ui/Album.tsx` (neu) | "Meine Häute" |
+| `src/ui/Album.tsx` (neu) | Wissensalbum für gemeisterte Lernfelder |
 | `src/ui/Round.tsx` | Rampe, Schuppen, Treppe, Halbzeit, Serie |
 | `src/App.tsx` | Ansicht `album`, Häutungen nach dem Ergebnis, Themenkarte mit Stufe |
 | `src/ui/Parent.tsx` | Neuer oberer Teil (Empfehlung, Bereitschaft, Typenliste, Verlauf) |
@@ -288,6 +271,54 @@ Tipps für zu Hause je Typ (für "Das hilft jetzt", beim Bauen einmal fachlich g
 
 ## 11. Offene Punkte
 
-1. Die Münzmenge für Meilensteine und die Schwellen sind Startwerte. Nach einer Woche mit dem Kind prüfen (siehe `requirements.md` Abschnitt 11, Punkte 1 und 5).
-2. Das Symbol der Schuppe und die Häutungs-Animation brauchen eine eigene Zeichnung (SVG, im Code gezeichnet). Falls später eigene Bilder entstehen, bleibt die Schnittstelle gleich.
-3. Der Vite-Build und die visuelle Prüfung laufen nur auf Ninas Mac (siehe Projektnotiz). Layout für kleine Höhen (N3) muss dort geprüft werden.
+1. **Umgesetzt als Startwert, fachlich nicht freigegeben: konkrete Kompetenzdefinition je Stern** (siehe `src/logic/config.ts` (konfigurierbare Startwerte), den fachlichen Status dokumentiert `docs/REWARD_SYSTEM.md`). Festgelegt sind fünf aufeinanderfolgende Sterne pro Lernfeld und ein ausgewogener Kompetenznachweis. Welche konkreten Teilkompetenzen und Nachweiskriterien die einzelnen Sterne eines Lernfeldes repräsentieren, wird noch mit der Stakeholderin abgestimmt. Bis dahin keine Schwellen oder fachlichen Bewertungsregeln erfinden.
+2. **Vorläufig umgesetzt: Testbereitschaft und Ampel.** Der Projektinhaber hat am 25.11.2026 entschieden, die bestehenden Werte (`CONFIG.ampel`, `lernstand.ts`) zunächst beizubehalten und agil nachzuschärfen. Sie bleiben Startwerte und sind keine fachlich freigegebene Produktregel; im Elternbereich steht weiterhin der Hinweis "Schätzung, kein Testergebnis".
+3. Die konkreten Münzwerte und Wachstumsschwellen sind Startwerte und können nach Praxiserfahrung angepasst werden.
+4. Das Symbol der Schuppe und die Häutung-Animation brauchen eine eigene Zeichnung. Falls später eigene Bilder entstehen, bleibt die Schnittstelle gleich.
+5. Der Vite-Build und die visuelle Prüfung laufen nur auf dem Mac der Projektinhaberin. Layout für kleine Höhen (N3) muss dort geprüft werden.
+
+## 12. Verbindliche Entscheidungen aus dem Stakeholder-Interview
+
+Diese Entscheidungen dokumentieren das Stakeholder-Interview. Die konsolidierte und maßgebliche Produktquelle ist inzwischen `docs/REWARD_SYSTEM.md`; dieser Abschnitt bleibt als Interview-Nachweis erhalten und darf ihr nicht widersprechen. Er beschreibt gewünschtes Produktverhalten, nicht die technische Umsetzung der Aufgabenlogik.
+
+### 12.1 Sterne und Kompetenz
+
+- Sterne stehen für **nachgewiesene Kompetenz**, nicht für Fleiß, Zeit oder bloßes Ausprobieren.
+- Jedes Lernfeld hat **fünf Sterne**.
+- Die Sterne werden zwingend in Reihenfolge verdient. Ein höherer Stern setzt alle vorherigen Sterne voraus.
+- Anspruchsvollere Aufgaben dürfen jederzeit ausprobiert werden. Sie überspringen jedoch keinen Stern.
+- Ein ausgewogener Kompetenznachweis ist gewünscht: Das Kind soll eine Fähigkeit zuverlässig bei unterschiedlichen Aufgabenstellungen und über mehrere Übungsrunden hinweg zeigen. Es ist keine Mindestanzahl an Spieltagen vorgesehen.
+- Fehler während des Lernens nehmen bereits verdiente Sterne nicht weg.
+- Die genaue Zuordnung der fünf Sterne zu Teilkompetenzen und die fachlichen Nachweiskriterien je Lernfeld bleiben offen, bis sie mit der Stakeholderin abgestimmt sind.
+
+### 12.2 Hilfe und Belohnung
+
+- Ein **Denkimpuls** ist ausdrücklich erwünscht. Die Aufgabe darf weiterhin zum Kompetenznachweis beitragen, wenn sie im ersten Versuch richtig gelöst wird. Sie bringt dann nur das Futter eines zweiten Versuchs (leicht und mittel 1 statt 2, knifflig 3 statt 5). Münzen werden dadurch nicht gemindert. Maßgeblich ist `docs/REWARD_SYSTEM.md` Abschnitt 2.2.
+- Die bestehenden Funktionen „Hilfe anzeigen“ und „bei falscher Antwort die richtige Lösung anzeigen“ bleiben erhalten.
+- Eine angezeigte Lösung ist kein selbstständiger Kompetenznachweis. Das Kind kann die Kompetenz später bei einer vergleichbaren Aufgabe selbstständig zeigen.
+- Die vorhandene Aufgaben-, Wiederholungs-, Hilfs- und Auswertungslogik bleibt in der Verantwortung von Claude Code. Dieses Interview gibt keine Erlaubnis, sie neu zu erfinden oder unabhängig von der bestehenden Implementierung zu verändern. UX-Anforderungen werden als gewünschtes Verhalten formuliert; technische Umsetzung und fachliche Details prüft Claude Code anhand des Repositories.
+
+### 12.3 Lernfortschritt sichtbar machen
+
+- Die Fortschrittsdarstellung kombiniert **Schlange und Wissensalbum**.
+- Das Kind sieht klar, welche Kompetenz als Nächstes ansteht, ergänzt durch eine sichtbare Fortschrittsanzeige.
+- Fortschrittsanzeigen müssen auf tatsächlich verfügbaren Lerninformationen beruhen. Keine scheinpräzisen Prozentwerte oder Fortschrittsstände erfinden.
+- Die Schlange macht Entwicklung emotional sichtbar; das Wissensalbum bewahrt die Lernerfolge dauerhaft.
+
+### 12.4 Abschluss eines Lernfeldes und Terrarium
+
+- Ein Lernfeld ist ein konkreter Lernbereich wie Zahlenstrahl oder Zahlenbilder. Es hat fünf eigene Kompetenzsterne.
+- Ein neues übergeordnetes Themengebiet (z. B. Multiplikation) wird als eigenes Lernfeld eingeführt und nicht bloß als weitere Schwierigkeitsstufe eines bestehenden Lernfeldes behandelt.
+- Nach fünf verdienten Sternen gilt ein Lernfeld als gemeistert und wird sichtbar als abgeschlossen gekennzeichnet.
+- Für den Abschluss erhält das Kind einen eigenen Eintrag im Wissensalbum mit einer besonders schönen Illustration der Schlange passend zum Thema sowie einen thematisch passenden Pokal oder Orden.
+- Das Terrarium ist eine **frei gestaltbare Sammlung**: Das Kind entscheidet, wo es Pokale, Orden und Dekorationen platziert. Auszeichnungen können verschoben werden; die vollständige Sammlung bleibt unabhängig von der aktuellen Platzierung erhalten.
+- Ein gemeistertes Lernfeld bleibt jederzeit normal spielbar. Es gibt dort keine erneuten Sterne oder dieselbe Abschlussauszeichnung. Die App darf neue, noch nicht gemeisterte Lernfelder als nächste Möglichkeit sichtbar machen.
+
+### 12.5 Relikte – kleiner freiwilliger Expertenbereich
+
+- Relikte sind ein **Randfeature**, kein eigener großer Spielmodus und keine Pflicht.
+- Der Bereich wird erst sichtbar, wenn mindestens ein Lernfeld abgeschlossen wurde.
+- Der Pokal des abgeschlossenen Lernfeldes ist der Türöffner und öffnet die dazugehörigen Relikte.
+- Relikte greifen bekannte Inhalte bzw. Aufgaben auf und bieten anspruchsvollere Varianten, um bereits Gelerntes auf Expertenniveau zu festigen. Die bestehende Aufgabenlogik bleibt dabei maßgeblich.
+- Für Relikt-Herausforderungen gibt es Terrariummünzen.
+- Relikte vergeben ausdrücklich keine Sterne, Pokale, Medaillen oder Kompetenz-Auszeichnungen. Sie verändern den regulären Lernfortschritt nicht.

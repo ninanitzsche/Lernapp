@@ -43,12 +43,12 @@ test('Tageslimit gilt auch für Knobelrunden', () => {
   assert.equal(r.knobelFutter, 0)
 })
 
-test('Lernstand: leichte Aufgaben allein bringen keine zweiten und dritten Sterne', () => {
+test('Kompetenzsterne: leichte Aufgaben allein bringen höchstens zwei von fünf Sternen', () => {
   const s = initialState('S')
   let st = s
   for (let i = 0; i < 6; i++) st = finishRound(st, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'first' as const, stufe: 1 as Stufe })), tag(i)).state
-  assert.ok(Object.values(st.skill).every((l) => l === 1))
-  assert.deepEqual(st.sterneErreicht, { A: 1, B: 1, C: 1 })
+  assert.ok(Object.entries(st.skill).filter(([t]) => t[0] !== 'D').every(([, l]) => l === 1), 'Lernstand steigt durch leichte Aufgaben höchstens auf 1')
+  assert.deepEqual(st.sterneErreicht, { A: 2, B: 2, C: 2, D: 0 })
 })
 
 test('Falsch bei kniffligen Aufgaben senkt den Lernstand nicht', () => {
@@ -57,29 +57,15 @@ test('Falsch bei kniffligen Aufgaben senkt den Lernstand nicht', () => {
   assert.equal(r.state.skill.A1, 2)
 })
 
-test('Meilenstein Runden: genau bei 10, nur einmal, mit Münzen', () => {
-  let s = initialState('S')
-  for (let i = 0; i < 9; i++) {
-    s = finishRound(s, runde(0), tag(i)).state
-    assert.ok(!s.meilensteine.some((m) => m.id === 'runden-10'))
-  }
-  const r = finishRound(s, runde(0), tag(9))
-  const m = r.meilensteine.find((x) => x.id === 'runden-10')
-  assert.ok(m)
-  assert.equal(m.muenzen, CONFIG.meilensteinRunden[10])
-  assert.equal(m.rueckblick.runden, 10)
-  assert.equal(m.rueckblick.tage, 10)
-  const danach = finishRound(r.state, runde(0), tag(10))
-  assert.ok(!danach.meilensteine.some((x) => x.id === 'runden-10'))
-  assert.equal(r.state.meilensteine.filter((x) => x.id === 'runden-10').length, 1)
-})
-
-test('Meilenstein-Münzen für Runden landen im Münzkonto', () => {
+test('Reine Rundenzahl löst keinen Meilenstein und keine Belohnung aus', () => {
   let s = initialState('S')
   for (let i = 0; i < 9; i++) s = finishRound(s, runde(0), tag(i)).state
   const vorher = kontostand(s)
   const r = finishRound(s, runde(0), tag(9))
-  const erwartet = 1 /* Tagesmitbringsel */ + CONFIG.meilensteinRunden[10] + (r.weeklyBonus > 0 ? 1 : 0) + r.neueSterne + (r.leveledUp ? r.stageAfter - r.stageBefore : 0)
+  assert.ok(!r.meilensteine.some((m) => m.art === 'runden' || m.art === 'woche'))
+  assert.ok(!r.state.meilensteine.some((m) => m.art === 'runden' || m.art === 'woche'))
+  // Nur Tagesmitbringsel, Sterne und Aufstieg zählen
+  const erwartet = 1 + r.neueSterne + (r.leveledUp ? r.stageAfter - r.stageBefore : 0)
   assert.equal(kontostand(r.state) - vorher, erwartet)
 })
 
@@ -91,16 +77,16 @@ test('Entwicklung ist ein Meilenstein, Münze wie bisher (nicht doppelt)', () =>
   assert.equal(r.neueBonusMuenzen, 2) // Aufstieg + Tagesmitbringsel, keine zusätzliche Meilenstein-Münze
 })
 
-test('Mehrere Meilensteine einer Runde kommen in der Reihenfolge Entwicklung, Runden, Stern, Knobel, Woche', () => {
+test('Mehrere Meilensteine einer Runde kommen in der Reihenfolge Entwicklung, Stern, Knobel', () => {
   const vorher = { ...initialState('S'), totalFood: 10 }
   vorher.rounds = { '2026-11-01': 9 }
   const nachher: GameState = {
-    ...vorher, totalFood: 40, rounds: { '2026-11-01': 10 }, sterneErreicht: { A: 1, B: 0, C: 0 }, weeklyBonusWeeks: ['2026-11-23'],
+    ...vorher, totalFood: 40, rounds: { '2026-11-01': 10 }, sterneErreicht: { A: 1, B: 0, C: 0, D: 0 },
     statistik: { bearbeitet: 10, geloest: 10, ersteTreffer: 10, knobelTreffer: 10 },
   }
   const liste = pruefeMeilensteine(vorher, nachher, '2026-11-23', true)
-  assert.deepEqual(liste.map((m) => m.art), ['entwicklung', 'runden', 'stern', 'knobel', 'knobel', 'woche'])
-  assert.equal(zusatzMuenzen(liste), CONFIG.meilensteinRunden[10] + CONFIG.ersteKnobelMuenze + CONFIG.knobelTreffer[10])
+  assert.deepEqual(liste.map((m) => m.art), ['entwicklung', 'stern', 'knobel', 'knobel'])
+  assert.equal(zusatzMuenzen(liste), CONFIG.ersteKnobelMuenze + CONFIG.knobelTreffer[10])
 })
 
 test('Knobelerfolg: 10 kniffelige Treffer insgesamt lösen den Meilenstein aus', () => {
@@ -120,7 +106,7 @@ test('Rückblick wird aus gespeicherten Daten berechnet', () => {
 })
 
 test('Altstand ohne neue Felder lädt, Meilensteine werden ohne Münzen nachgetragen, Kontostand bleibt', () => {
-  const basis = { ...initialState('Alt'), totalFood: 120, rounds: { '2026-11-01': 12 }, sterneErreicht: { A: 2, B: 0, C: 0 }, bonusMuenzen: 3, weeklyBonusWeeks: ['2026-10-26'] }
+  const basis = { ...initialState('Alt'), totalFood: 120, rounds: { '2026-11-01': 12 }, sterneErreicht: { A: 2, B: 0, C: 0, D: 0 }, bonusMuenzen: 3 }
   const alt = JSON.parse(serializeState(basis))
   delete alt.verlauf; delete alt.statistik; delete alt.meilensteine
   const neu = parseState(JSON.stringify(alt))
@@ -128,13 +114,14 @@ test('Altstand ohne neue Felder lädt, Meilensteine werden ohne Münzen nachgetr
   assert.deepEqual(neu.statistik, { bearbeitet: 0, geloest: 0, ersteTreffer: 0, knobelTreffer: 0 })
   assert.ok(Object.values(neu.verlauf).every((v) => v.length === 0))
   const ids = neu.meilensteine.map((m) => m.id)
-  assert.ok(ids.includes('entwicklung-2') && ids.includes('entwicklung-3') && ids.includes('runden-10') && ids.includes('stern-A-2') && ids.includes('woche-2026-10-26'))
+  assert.ok(ids.includes('entwicklung-2') && ids.includes('entwicklung-3') && ids.includes('stern-A-2'))
+  assert.ok(!ids.some((id) => id.startsWith('runden-') || id.startsWith('woche-')), 'keine Rundenzahl- oder Wochenziel-Meilensteine mehr')
   assert.ok(neu.meilensteine.every((m) => m.muenzen === 0))
   assert.equal(verdiente(neu), verdiente(basis))
   assert.equal(neu.bonusMuenzen, 3)
   // Nach dem Laden wird nichts nachgefeiert
   const r = finishRound(neu, runde(0), new Date(2026, 10, 24))
-  assert.ok(!r.meilensteine.some((m) => ['runden-10', 'entwicklung-2', 'entwicklung-3', 'stern-A-1', 'stern-A-2'].includes(m.id)))
+  assert.ok(!r.meilensteine.some((m) => ['entwicklung-2', 'entwicklung-3', 'stern-A-1', 'stern-A-2'].includes(m.id)))
   assert.deepEqual(nachtragen(neu, '2026-11-22').map((m) => m.id).sort(), ids.slice().sort())
 })
 
@@ -151,9 +138,23 @@ test('Speichern und Laden: Verlauf, Statistik und Meilensteine bleiben gleich, V
 
 test('Meilensteine gehen bei sinkendem Lernstand nicht verloren', () => {
   let s = initialState('S')
-  s = finishRound(s, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'first' as const, stufe: 2 as Stufe })), MO).state
+  for (const i of [0, 1]) s = finishRound(s, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'first' as const, stufe: 2 as Stufe })), tag(i)).state
   const sterne = s.meilensteine.filter((m) => m.art === 'stern').length
   assert.ok(sterne > 0)
-  s = finishRound(s, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'failed' as const, stufe: 2 as Stufe })), tag(1)).state
+  s = finishRound(s, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'failed' as const, stufe: 2 as Stufe })), tag(2)).state
   assert.equal(s.meilensteine.filter((m) => m.art === 'stern').length, sterne)
+})
+
+test('Schon gespeicherte Runden- und Wochenziel-Meilensteine gehen beim Laden nicht verloren, ein altes Wochenziel-Feld wird ignoriert', () => {
+  const rb = { runden: 10, tage: 4, aufgaben: 80, quote: 0.5, staerkstesThema: null }
+  const alt = JSON.parse(serializeState(initialState('Alt')))
+  alt.meilensteine = [
+    { id: 'runden-10', art: 'runden', datum: '2026-11-10', rueckblick: rb, muenzen: 1 },
+    { id: 'woche-2026-11-09', art: 'woche', datum: '2026-11-12', rueckblick: rb, muenzen: 1 },
+  ]
+  alt.weeklyBonusWeeks = ['2026-11-09']
+  const neu = parseState(JSON.stringify(alt))
+  assert.ok(neu)
+  assert.deepEqual(neu.meilensteine.map((m) => m.id), ['runden-10', 'woche-2026-11-09'])
+  assert.equal('weeklyBonusWeeks' in neu, false)
 })

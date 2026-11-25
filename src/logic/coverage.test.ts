@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { TRANSPARENZPAPIER } from './coverage.ts'
-import { TASK_TYPES, taskFromSeed } from './tasks.ts'
+import { MIX_TOPICS, TASK_TYPES, TOPIC_OF, taskFromSeed } from './tasks.ts'
 
 test('Das Transparenzpapier hat 9 Lernziele in 3 Themen', () => {
   assert.equal(TRANSPARENZPAPIER.length, 9)
@@ -20,5 +20,6 @@ test('Jedes Lernziel des Transparenzpapiers wird von mindestens einem Aufgabenty
 
 test('Jeder Aufgabentyp gehört zu einem Lernziel (keine Aufgaben außerhalb des Tests)', () => {
   const abgedeckt = new Set(TRANSPARENZPAPIER.flatMap((p) => p.types))
-  for (const t of TASK_TYPES) assert.ok(abgedeckt.has(t), `${t} ist keinem Lernziel zugeordnet`)
+  // Das Transparenzpapier gilt für den Zahlenraum-Test; Raum und Form (D) ist ein eigenes Lernfeld ohne Transparenzpapier.
+  for (const t of TASK_TYPES.filter((x) => MIX_TOPICS.includes(TOPIC_OF[x]))) assert.ok(abgedeckt.has(t), `${t} ist keinem Lernziel zugeordnet`)
 })

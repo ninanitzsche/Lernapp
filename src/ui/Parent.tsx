@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { TOPIC_NAMES, TOPICS, TASK_TYPES, TYPE_NAMES } from '../logic/tasks.ts'
 import { TRANSPARENZPAPIER } from '../logic/coverage.ts'
-import { parseState, serializeState, topicStars } from '../logic/game.ts'
+import { parseState, serializeState } from '../logic/game.ts'
+import { MAX_STERNE } from '../logic/kompetenz.ts'
 import type { GameState } from '../logic/game.ts'
 import { createRng, int } from '../logic/rng.ts'
 import { merkeSicherung } from '../storage.ts'
@@ -9,7 +10,7 @@ import { Info } from './Info.tsx'
 import { Schuppen } from './Schuppen.tsx'
 import { titelVon } from '../logic/rueckblick.ts'
 import {
-  BEREITSCHAFT_TEXT, EINSCHAETZUNG_TEXT, TREND_TEXT, empfehlung, erreichteStufe, rundenProWoche, tageBisTest, themaBereitschaft, trend, typEinschaetzung,
+  BEREITSCHAFT_TEXT, EINSCHAETZUNG_TEXT, TREND_TEXT, empfehlung, erreichteStufe, tageBisTest, themaBereitschaft, trend, typEinschaetzung,
 } from '../logic/lernstand.ts'
 import type { Bereitschaft, Einschaetzung } from '../logic/lernstand.ts'
 
@@ -74,7 +75,6 @@ export function Parent({ state, onChange, onReset, onClose }: Props) {
   const jetzt = new Date()
   const tageBis = tageBisTest(state.testDate, jetzt)
   const rat = empfehlung(state.verlauf, state.name)
-  const wochen = rundenProWoche(state.rounds, jetzt, 4)
 
   return (
     <main className="eltern">
@@ -120,9 +120,6 @@ export function Parent({ state, onChange, onReset, onClose }: Props) {
       </table>
       <p className="klein-text">Grundlage sind die letzten zehn Versuche je Typ, mindestens fünf sind nötig. Für "sicher" müssen mindestens 8 von 10 gleich richtig sein und mindestens 3 davon auf mittlerer oder kniffliger Stufe.</p>
 
-      <h2>Runden in den letzten vier Wochen</h2>
-      <p>Diese Woche: {wochen[3]} | letzte Woche: {wochen[2]} | davor: {wochen[1]} und {wochen[0]}</p>
-
       <h2>Meilensteine</h2>
       {state.meilensteine.length === 0 ? <p>Noch keine.</p> : (
         <ul className="meilensteine">
@@ -143,7 +140,7 @@ export function Parent({ state, onChange, onReset, onClose }: Props) {
         </tbody>
       </table>
       <p>
-        {TOPICS.map((t) => `${TOPIC_NAMES[t]}: ${topicStars(state.skill, t)} von 3 Sternen`).join(' | ')}
+        {TOPICS.map((t) => `${TOPIC_NAMES[t]}: ${state.sterneErreicht[t]} von ${MAX_STERNE} Sternen`).join(' | ')}
       </p>
       <p>Abgeschlossene Runden insgesamt: {Object.values(state.rounds).reduce((s, n) => s + n, 0)} | Futter gesamt: {state.totalFood}</p>
 

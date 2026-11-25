@@ -4,8 +4,6 @@ export const CONFIG = {
   roundBonus: 5,
   foodRoundsPerDay: 3,
   maxRepeatsPerRound: 3,
-  weeklyGoalDays: 3,
-  weeklyBonus: 20,
   hungryAfterHours: 24,
   sleepAfterHours: 48,
   skillMax: 3,
@@ -28,12 +26,28 @@ export const CONFIG = {
   /** So viele richtige im ersten Versuch hintereinander lösen den Serien-Jubel aus. */
   serieAb: 3,
   serieFutter: 1,
-  /** Münzen für abgeschlossene Runden insgesamt. */
-  meilensteinRunden: { 10: 1, 25: 2, 50: 3, 100: 5 } as Record<number, number>,
   /** Münzen für kniffelige Aufgaben, die insgesamt gleich im ersten Versuch stimmten. */
   knobelTreffer: { 10: 1, 25: 2, 50: 3 } as Record<number, number>,
   /** Münze für die erste starke Knobelrunde. */
   ersteKnobelMuenze: 1,
+  /**
+   * Kompetenzsterne je Lernfeld (Startwerte, noch nicht fachlich freigegeben). Stern n setzt Stern n minus 1 voraus.
+   * Nachweis = Aufgabe im ersten Versuch richtig, mindestens auf `stufe`. `typen`: so viele Aufgabentypen des Lernfeldes ('alle' = jeder),
+   * `treffer`: so viele Nachweise insgesamt, `runden`: aus so vielen verschiedenen Runden.
+   */
+  kompetenz: [
+    { stufe: 1, typen: 2, treffer: 4, runden: 2 },
+    { stufe: 1, typen: 'alle', treffer: 6, runden: 3 },
+    { stufe: 2, typen: 2, treffer: 5, runden: 3 },
+    { stufe: 2, typen: 'alle', treffer: 8, runden: 4 },
+    { stufe: 2, typen: 'alle', treffer: 14, runden: 6 },
+  ] as readonly { stufe: 1 | 2 | 3; typen: number | 'alle'; treffer: number; runden: number }[],
+  /** So viele Nachweise je Lernfeld bleiben gespeichert (die ältesten fallen weg). */
+  nachweisMax: 80,
+  /** Relikte: Aufgaben je Relikt, nötige Treffer im ersten Versuch, Münzen beim ersten Erfolg. */
+  reliktAufgaben: 5,
+  reliktMinTreffer: 4,
+  reliktMuenzen: 2,
   /** Einschätzung im Elternbereich */
   ampel: { fenster: 10, minVersuche: 5, sicherQuote: 0.8, sicherMinMittel: 3, uebenQuote: 0.5, uebenFalschMax: 0.2 },
 } as const

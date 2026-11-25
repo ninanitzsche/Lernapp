@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { TOPICS, TOPIC_NAMES } from './logic/tasks.ts'
 import type { Topic } from './logic/tasks.ts'
 import { CONFIG } from './logic/config.ts'
-import { dayKey, daysPracticedInWeek, finishRound, initialState, topicStars } from './logic/game.ts'
+import { dayKey, finishRound, initialState } from './logic/game.ts'
 import type { GameState, RoundAnswer, RoundSummary } from './logic/game.ts'
 import { bitteUmDauerhaftenSpeicher, ladeRunde, letzteSicherung, loadState, loescheRunde, saveState, sicherungFaellig } from './storage.ts'
 import type { RundenStand } from './logic/runde.ts'
@@ -15,7 +15,10 @@ import { spruch } from './ui/reaktion.ts'
 import { Round } from './ui/Round.tsx'
 import { Parent } from './ui/Parent.tsx'
 import { Haeutung } from './ui/Haeutung.tsx'
-import { Album } from './ui/Album.tsx'
+import { Album, Wissensalbum } from './ui/Album.tsx'
+import { Reliktbereich } from './ui/Relikt.tsx'
+import { reliktBereichSichtbar } from './logic/relikte.ts'
+import { MAX_STERNE, fehltText, fortschritt } from './logic/kompetenz.ts'
 import { Schuppen } from './ui/Schuppen.tsx'
 import { hoechsteStufe } from './logic/stufen.ts'
 import { TASK_TYPES, TOPIC_OF } from './logic/tasks.ts'
@@ -23,7 +26,7 @@ import type { Stufe } from './logic/tasks.ts'
 import { Muenzen, Shop } from './ui/Shop.tsx'
 import { kontostand } from './logic/shop.ts'
 
-type View = 'home' | 'round' | 'result' | 'haeutung' | 'parent' | 'shop' | 'themen' | 'album'
+type View = 'home' | 'round' | 'result' | 'haeutung' | 'parent' | 'shop' | 'themen' | 'album' | 'relikte'
 
 /**
  * Start-Gruß: Das Logo zeigt sich beim Öffnen kurz, ein Tipp überspringt es. Neue Spieler sehen es nicht,
@@ -124,11 +127,11 @@ function AppInhalt() {
   }
   if (view === 'haeutung' && summary) return <Haeutung state={state} neu={summary.meilensteine} onFertig={() => setView('home')} />
   if (view === 'album') return <AlbumAnsicht state={state} onClose={() => setView('home')} />
+  if (view === 'relikte' && reliktBereichSichtbar(state)) return <Reliktbereich state={state} onChange={setState} onClose={() => setView('home')} />
   if (view === 'shop') return <ShopAnsicht state={state} onChange={setState} onClose={() => setView('home')} />
   if (view === 'themen') return <Themen state={state} pausiert={pause !== null} onStart={starten} onClose={() => setView('home')} />
 
   const heuteRunden = state.rounds[dayKey(now)] ?? 0
-  const tage = daysPracticedInWeek(state.rounds, now)
   const gesamtRunden = Object.values(state.rounds).reduce((s, n) => s + n, 0)
   const sichern = sicherungFaellig(gesamtRunden, letzteSicherung(), now)
   return (
@@ -146,18 +149,15 @@ function AppInhalt() {
       <div className="zeile">
         <button className="knopf klein" type="button" onClick={() => setView('themen')}>Themen und Buch</button>
         <button className="knopf klein" type="button" onClick={() => setView('album')}>
-          <span aria-hidden="true">🐍</span>&nbsp;Meine Häute{state.meilensteine.length > 0 && <>&nbsp;<span className="album-zahl">{state.meilensteine.length}</span></>}
+          <span aria-hidden="true">🐍</span>&nbsp;Album{state.meilensteine.length > 0 && <>&nbsp;<span className="album-zahl">{state.meilensteine.length}</span></>}
         </button>
         <button className="knopf klein" type="button" onClick={() => setView('shop')}>
           <span aria-hidden="true">🛍️</span>&nbsp;Shop&nbsp;<Muenzen n={kontostand(state)} />
         </button>
+        {reliktBereichSichtbar(state) && (
+          <button className="knopf klein" type="button" onClick={() => setView('relikte')}><span aria-hidden="true">🗝️</span>&nbsp;Relikte</button>
+        )}
       </div>
-      <p className="woche">
-        Woche: {tage} von {CONFIG.weeklyGoalDays} Tagen
-        <span className="wochenpunkte">
-          {Array.from({ length: CONFIG.weeklyGoalDays }, (_, i) => <span key={i} className={i < tage ? 'wpunkt an' : 'wpunkt'} />)}
-        </span>
-      </p>
       <div className="zeile">
         <button className="link" type="button" onClick={() => setIntro(true)}>Wie geht das?</button>
         <button className="link" type="button" onClick={() => setView('parent')}>
@@ -186,9 +186,27 @@ function themenStufe(state: GameState, t: Topic): Stufe {
 function AlbumAnsicht({ state, onClose }: { state: GameState; onClose: () => void }) {
   return (
     <main className="start">
-      <Seitenkopf titel="Meine Häute" onClose={onClose} />
+      <Seitenkopf titel="Album" onClose={onClose} />
+      <Wissensalbum state={state} />
+      <h3>Meine Häute</h3>
       <Album state={state} />
     </main>
+  )
+}
+
+/** Nächste Kompetenz und echter Fortschritt aus den gespeicherten Nachweisen, ohne erfundene Prozentwerte. */
+function NaechstesZiel({ state, topic }: { state: GameState; topic: Topic }) {
+  const f = fortschritt(state.sterneErreicht[topic], state.nachweise[topic], topic)
+  if (!f) return <span className="thema-ziel">Gemeistert! Der Pokal steht im Terrarium.</span>
+  const fehlt = fehltText(f)
+  return (
+    <span className="thema-ziel">
+      <span>Nächstes Ziel: {f.ziel}</span>
+      <span className="fortschritt" role="progressbar" aria-label="Fortschritt zum nächsten Stern" aria-valuemin={0} aria-valuemax={1} aria-valuenow={f.anteil} aria-valuetext={fehlt || 'Fast geschafft'}>
+        <span className="fortschritt-fuellung" style={{ width: `${Math.round(f.anteil * 100)}%` }} />
+      </span>
+      {fehlt && <span className="klein-text-links">{fehlt}</span>}
+    </span>
   )
 }
 
@@ -209,9 +227,12 @@ function Themen({ state, pausiert, onStart, onClose }: { state: GameState; pausi
             initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.08 * i }}
           >
             <button className="thema-karte" type="button" onClick={() => onStart(t, 'mix')}>
-              <span className="thema-name">{TOPIC_NAMES[t]}<Schuppen stufe={themenStufe(state, t)} klein /></span>
-              <span className="sterne" aria-label={`${topicStars(state.skill, t)} von 3 Sternen`}>
-                {[1, 2, 3].map((n) => <span key={n} className={n <= topicStars(state.skill, t) ? 'stern an' : 'stern'} />)}
+              <span className="thema-links">
+                <span className="thema-name">{TOPIC_NAMES[t]}<Schuppen stufe={themenStufe(state, t)} klein /></span>
+                <NaechstesZiel state={state} topic={t} />
+              </span>
+              <span className="sterne" aria-label={`${state.sterneErreicht[t]} von ${MAX_STERNE} Sternen`}>
+                {Array.from({ length: MAX_STERNE }, (_, i) => i + 1).map((n) => <span key={n} className={n <= state.sterneErreicht[t] ? 'stern an' : 'stern'} />)}
               </span>
             </button>
           </motion.div>
@@ -220,7 +241,8 @@ function Themen({ state, pausiert, onStart, onClose }: { state: GameState; pausi
       <Info titel="Was bedeuten Schuppen, Knobelrunde und Sterne?">
         Schuppen zeigen, wie knifflig eine Aufgabe ist: eine ist leicht, zwei sind mittel, drei sind knifflig. Knifflige Aufgaben geben viel mehr Futter.
         Schaffst du in der Knobelrunde 7 von 10 gleich richtig, gibt es zwei Extra-Münzen.
-        Jeder Stern zeigt, wie fit du in einem Thema bist, und bringt eine Münze.
+        Jedes Thema hat fünf Sterne. Du verdienst sie nacheinander, wenn du Aufgaben in mehreren Runden gleich beim ersten Mal richtig löst.
+        Jeder Stern bringt eine Münze. Hast du alle fünf, bekommst du einen Pokal für dein Terrarium.
       </Info>
     </main>
   )
@@ -259,7 +281,7 @@ function Willkommen({ onStart }: { onStart: (name: string) => void }) {
 }
 
 function Ergebnis({ state, summary, onDone }: { state: GameState; summary: RoundSummary; onDone: () => void }) {
-  const gesamt = summary.foodGained + summary.bonusFood + summary.weeklyBonus
+  const gesamt = summary.foodGained + summary.bonusFood
   const muenzen = summary.neueSterne + summary.neueBonusMuenzen
   const [mitbringsel] = useState(() => spruch('mitbringsel'))
   useEffect(() => (summary.tagesMuenze ? muenzRegen() : undefined), [summary.tagesMuenze])
@@ -293,7 +315,7 @@ function Ergebnis({ state, summary, onDone }: { state: GameState; summary: Round
           {summary.knobelFutter > 0 && <span className="chip">davon knifflig: +{summary.knobelFutter}</span>}
           {summary.serienFutter > 0 && <span className="chip">+{summary.serienFutter} Serie</span>}
           {summary.bonusFood > 0 && <span className="chip">+{summary.bonusFood} Rundenbonus</span>}
-          {summary.weeklyBonus > 0 && <span className="chip">+{summary.weeklyBonus} Wochenziel</span>}
+          {summary.denkimpulsFutter > 0 && <span className="chip">Denkimpuls: {summary.denkimpulsFutter} Futter weniger</span>}
         </p>
       )}
       <button className="knopf gross hauptknopf" type="button" onClick={onDone}>{summary.meilensteine.length > 0 ? 'Weiter' : 'Fertig'}</button>
