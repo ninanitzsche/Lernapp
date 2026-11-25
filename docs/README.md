@@ -13,10 +13,11 @@ Diese Seite ist der Einstieg in alle Projektdokumente. Sie sagt, **wo eine Infor
 | Visuelles Grundsystem | [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) | Farben, Typografie, Formen, Komponenten und allgemeine Art Direction |
 | Langfristige Fachwelten | [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md) | Leitidee für eigenständige Tier- und Themenwelten je Schulfach |
 | Produktvision | [product-vision.md](./product-vision.md) | Langfristige Produktidee und fachübergreifende Architekturleitplanken |
+| Mathe Klasse 2 und Lernfeld Geometrie (Entwurf) | [MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md](./MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md) | Lehrplan-Themenliste Stufe B und gemeinsames Architektur- und Umsetzungskonzept für das Lernfeld D; Entwurf, noch nicht freigegeben |
 | Phasen und nächste Schritte | [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md) | Phasenstatus und Prioritäten |
 | Implementierte Funktionen | [../FEATURES.md](../FEATURES.md) | Kompakte Bestandsübersicht; keine neue Produktregel |
 | Zusammenarbeit | [AI_COLLABORATION_SPEC.md](./AI_COLLABORATION_SPEC.md) | Rollen, Arbeitsablauf und Konfliktlösung |
-| Historischer Ausgangsstand | [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md) | Archivierter Snapshot von Phase 0; keine aktuelle Vorgabe |
+| Archiv (obsolet) | [archive/PHASE0_INVENTAR.md](./archive/PHASE0_INVENTAR.md) | Obsoleter Snapshot von Phase 0; keine Vorgabe und keine Quelle für den aktuellen Stand |
 
 ## Phase 2 – Nico und Assets
 
@@ -44,7 +45,7 @@ Die früher getrennten Bestandsanalysen, Bildvergleiche, Konzeptnotizen und das 
 ## Aufräumgang – iterativer Stand
 
 - [x] Tagesmitbringsel als gewollte Regel dokumentiert.
-- [x] Denkimpuls-Münzabzug anhand von `src/logic/game.ts` geklärt und dokumentiert.
+- [x] Denkimpuls auf Futterminderung statt Münzabzug umgestellt (Code, Tests und Doku, 25.11.2026).
 - [x] Widersprüchliche Aussagen in Belohnungsregeln, Funktionsübersicht und Feedback-Anforderungen korrigiert.
 - [x] Veralteten README-Verweis und fest eingetragene Testanzahl entfernt.
 - [x] Einstieg und Zuständigkeiten dieser Dokumentation angelegt.
@@ -52,7 +53,11 @@ Die früher getrennten Bestandsanalysen, Bildvergleiche, Konzeptnotizen und das 
 - [x] Phase-2-Dokumente auf vier primäre Quellen konsolidieren; relevante Referenzen und Entscheidungen übernommen, Git-Historie bleibt erhalten.
 - [x] Aufgabenlisten und Roadmap mit tatsächlichem Implementierungsstand abgeglichen; manuelle Prüfungen bleiben separat offen.
 - [x] Alle internen Markdown-Links prüfen und tote Verweise entfernen (keine defekten Links gefunden).
-- [x] Abschließenden Dokumentations-Review und CI-Prüfung durchführen (178 Tests bestanden; TypeScript-Prüfung und Produktionsbuild erfolgreich, GitHub Actions Lauf 146).
+- [x] Abschließenden Dokumentations-Review und CI-Prüfung durchführen (Tests, TypeScript-Prüfung und Produktionsbuild erfolgreich, GitHub Actions Lauf 146; Testanzahl bewusst nicht festgeschrieben).
+- [x] Abweichungsregel vereinheitlicht: melden, Projektinhaber entscheidet, unterlegene Seite wird angeglichen (25.11.2026).
+- [x] Farbpalette vereinheitlicht: `DESIGN_SYSTEM.md` ist die einzige Markenpalette; Schwierigkeitsfarben als eigene Tokens (25.11.2026).
+- [x] Statusbegriffe in `FEATURES.md` und Roadmap auf das Vokabular aus Regel 7 umgestellt; Begriffe Schwierigkeit, Lernstand, Kompetenzstern und Entwicklungsstufe in `REWARD_SYSTEM.md` definiert (25.11.2026).
+- [x] `PHASE0_INVENTAR.md` als obsolet gekennzeichnet und nach `docs/archive/` verschoben; Verweise angepasst (25.11.2026).
 
 ## Technische Quellen
 
