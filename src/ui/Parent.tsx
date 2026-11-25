@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { TOPIC_NAMES, TOPICS, TASK_TYPES, TYPE_NAMES } from '../logic/tasks.ts'
 import { TRANSPARENZPAPIER } from '../logic/coverage.ts'
-import { parseState, serializeState, topicStars } from '../logic/game.ts'
+import { parseState, serializeState } from '../logic/game.ts'
+import { MAX_STERNE } from '../logic/kompetenz.ts'
 import type { GameState } from '../logic/game.ts'
 import { createRng, int } from '../logic/rng.ts'
 import { merkeSicherung } from '../storage.ts'
@@ -139,7 +140,7 @@ export function Parent({ state, onChange, onReset, onClose }: Props) {
         </tbody>
       </table>
       <p>
-        {TOPICS.map((t) => `${TOPIC_NAMES[t]}: ${topicStars(state.skill, t)} von 3 Sternen`).join(' | ')}
+        {TOPICS.map((t) => `${TOPIC_NAMES[t]}: ${state.sterneErreicht[t]} von ${MAX_STERNE} Sternen`).join(' | ')}
       </p>
       <p>Abgeschlossene Runden insgesamt: {Object.values(state.rounds).reduce((s, n) => s + n, 0)} | Futter gesamt: {state.totalFood}</p>
 

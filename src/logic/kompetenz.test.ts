@@ -91,3 +91,14 @@ test('Gespeicherte Nachweise werden geprüft, Fremdes fällt weg', () => {
   assert.deepEqual(ok, { A: [{ r: 2, t: 'A1', s: 2 }], B: [], C: [] })
   assert.deepEqual(parseNachweise(null), leereNachweise())
 })
+
+test('Was noch fehlt, wird in Worten genannt', async () => {
+  const { fehltText } = await import('./kompetenz.ts')
+  const f = fortschritt(0, nw('A', 2, 1, 1), 'A')
+  assert.ok(f)
+  assert.equal(fehltText(f), 'Noch 2 Treffer, 1 weitere Runde')
+  const leer = fortschritt(0, [], 'A')
+  assert.ok(leer)
+  assert.equal(fehltText(leer), 'Noch 4 Treffer, 2 weitere Aufgabenarten, 2 weitere Runden')
+  assert.equal(fehltText({ stern: 1, ziel: '', anteil: 1, fehlt: { typen: 0, treffer: 0, runden: 0 } }), '')
+})

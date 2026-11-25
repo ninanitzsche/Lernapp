@@ -2,6 +2,7 @@ import { CONFIG, STAGES } from './config.ts'
 import { TASK_TYPES, TOPIC_OF, TOPICS } from './tasks.ts'
 import type { Stufe, TaskType, Topic } from './tasks.ts'
 import { futterFuer } from './belohnung.ts'
+import { istPokal } from './shop.ts'
 import { lernstandNach } from './stufen.ts'
 import { MAX_STERNE, leereNachweise, nachweiseNach, parseNachweise, sterneNach } from './kompetenz.ts'
 import type { Nachweise } from './kompetenz.ts'
@@ -366,7 +367,7 @@ export function parseState(text: string): GameState | null {
   if (typeof r.positionen === 'object' && r.positionen !== null) {
     for (const [id, p] of Object.entries(r.positionen as Record<string, unknown>)) {
       const q = p as { x?: unknown; y?: unknown } | null
-      if (q && typeof q.x === 'number' && typeof q.y === 'number' && Number.isFinite(q.x) && Number.isFinite(q.y) && state.gekauft.includes(id)) {
+      if (q && typeof q.x === 'number' && typeof q.y === 'number' && Number.isFinite(q.x) && Number.isFinite(q.y) && (state.gekauft.includes(id) || istPokal(id))) {
         state.positionen[id] = { x: Math.min(100, Math.max(0, q.x)), y: Math.min(100, Math.max(0, q.y)) }
       }
     }

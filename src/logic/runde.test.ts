@@ -21,7 +21,7 @@ function stand(index: number, antworten: RoundAnswer[]): RundenStand {
 test('Speichern und Laden ergibt denselben Rundenstand', () => {
   const s = stand(2, [antwort('first'), antwort('second')])
   const neu = parseRunde(serializeRunde(s), 'Nele')
-  assert.deepEqual(neu, { ...s, topic: undefined, halbzeitGezeigt: false, versuch: 1 })
+  assert.deepEqual(neu, { ...s, topic: undefined, halbzeitGezeigt: false, versuch: 1, denkimpuls: false })
 })
 
 test('Rundenstand eines anderen Spielers oder kaputte Daten werden abgelehnt', () => {
@@ -88,4 +88,10 @@ test('Rundenstand ohne Versuchszähler (Altstand) oder mit ungültigem Wert star
   assert.equal(alt?.versuch, 1)
   const kaputt = parseRunde(JSON.stringify({ ...stand(1, [antwort('first')]), versuch: 7 }), 'Nele')
   assert.equal(kaputt?.versuch, 1)
+})
+
+test('Ein schon genutzter Denkimpuls bleibt über Pause und Weitermachen erhalten', () => {
+  const geladen = parseRunde(serializeRunde({ ...stand(1, [antwort('first')]), denkimpuls: true }), 'Nele')
+  assert.equal(geladen?.denkimpuls, true)
+  assert.equal(parseRunde(serializeRunde(stand(1, [antwort('first')])), 'Nele')?.denkimpuls, false)
 })

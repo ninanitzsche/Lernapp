@@ -61,6 +61,7 @@ export function Haeutung({ state, neu, onFertig }: Props) {
         <h2 id="haut-titel">{karte.titel}</h2>
         {karte.liste.length > 0 && <ul className="haut-liste">{karte.liste.map((t) => <li key={t}>{t}</li>)}</ul>}
         {karte.zeilen.length > 0 && <ul className="haut-zeilen">{karte.zeilen.map((z) => <li key={z}>{z}</li>)}</ul>}
+        {karte.art === 'lernfeld' && <p className="haut-zeilen">Dein Pokal steht jetzt im Terrarium und dein Eintrag im Wissensalbum. Neue Relikte warten auf dich.</p>}
         {karte.muenzen > 0 && <p className="haut-muenzen"><span aria-hidden="true">🪙</span> +{karte.muenzen} {karte.muenzen === 1 ? 'Münze' : 'Münzen'}</p>}
       </motion.section>
       <p className="haut-spruch" role="status">{text}</p>

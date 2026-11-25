@@ -902,3 +902,18 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
   color: var(--badge-gold-text);
   font-weight: 800;
 }
+
+/* Lernfelder: nächstes Ziel mit echtem Fortschritt, Wissensalbum, Relikte, Denkimpuls */
+.thema-links { display: flex; flex-direction: column; gap: var(--space-1); align-items: flex-start; text-align: left; min-width: 0; }
+.thema-ziel { display: flex; flex-direction: column; gap: var(--space-0-5); font-size: var(--type-body); font-weight: 700; color: var(--gedaempft-papier); }
+.fortschritt { display: block; width: 100%; max-width: 14rem; height: var(--space-2); border-radius: 999px; background: var(--color-detail-0a1f19); overflow: hidden; }
+.fortschritt-fuellung { display: block; height: 100%; border-radius: 999px; background: var(--lime); }
+.klein-text-links { font-size: var(--type-body); font-weight: 700; }
+.wissensalbum { width: 100%; }
+.album-karte.wissen { cursor: default; }
+.album-karte.wissen.fertig { background: var(--surface-card-raised); border-color: var(--color-warm-gold); }
+.album-pokal { width: 3rem; height: auto; flex: none; }
+.relikt-feld { width: 100%; }
+.relikte { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.relikt-knopf { width: 100%; justify-content: flex-start; }
+.denkimpuls { align-self: center; }

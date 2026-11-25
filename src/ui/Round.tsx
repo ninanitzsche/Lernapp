@@ -45,6 +45,8 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
   const [aufgaben, setAufgaben] = useState<Task[]>(() => fortsetzen?.aufgaben ?? baueAufgaben({ skill: state.skill, abgeschlosseneRunden: abgeschlosseneRunden, topic, quelle, knobel: schwer, seed }))
   const [index, setIndex] = useState(fortsetzen?.index ?? 0)
   const [versuch, setVersuch] = useState<1 | 2>(fortsetzen?.versuch ?? 1)
+  // Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiter, die Runde bringt eine Münze weniger.
+  const [denkimpuls, setDenkimpuls] = useState(fortsetzen?.denkimpuls ?? false)
   const [antworten, setAntworten] = useState<RoundAnswer[]>(fortsetzen?.antworten ?? [])
   const [ergebnis, setErgebnis] = useState<Outcome | null>(null)
   const [wiederholungenGeplant, setWiederholungenGeplant] = useState(fortsetzen?.wiederholungenGeplant ?? false)
@@ -89,7 +91,7 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
   function abgeben(response: Response) {
     if (checkAnswer(task, response)) {
       const outcome: Outcome = versuch === 1 ? 'first' : 'second'
-      const antwort: RoundAnswer = { type: task.type, outcome, isRepeat: istWiederholung, prompt: task.prompt, stufe: task.stufe }
+      const antwort: RoundAnswer = { type: task.type, outcome, isRepeat: istWiederholung, prompt: task.prompt, stufe: task.stufe, ...(denkimpuls ? { denkimpuls: true } : {}) }
       // Drei im ersten Versuch hintereinander: Serien-Jubel mit Zusatzfutter, einmal pro Runde
       const serie = serieErkannt([...antworten, antwort])
       if (serie) { antwort.serieBonus = true; konfetti() }
@@ -102,15 +104,15 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
       setZaehlerFalsch(zaehlerFalsch + 1)
       reagiere('bah', spruch('falsch'), task.hint)
     } else {
-      setAntworten([...antworten, { type: task.type, outcome: 'failed', isRepeat: istWiederholung, prompt: task.prompt, stufe: task.stufe }])
+      setAntworten([...antworten, { type: task.type, outcome: 'failed', isRepeat: istWiederholung, prompt: task.prompt, stufe: task.stufe, ...(denkimpuls ? { denkimpuls: true } : {}) }])
       setSerieDa(false)
       setErgebnis('failed')
       reagiere('bah', spruch('daneben'))
     }
   }
 
-  function stand(f: { aufgaben: Task[]; index: number; wiederholungenGeplant: boolean }, halbzeitSchonGezeigt = halbzeitGezeigt, aktuellerVersuch: 1 | 2 = 1): RundenStand {
-    return { version: 1, name: state.name, topic, quelle, schwer, seed, aufgaben: f.aufgaben, index: f.index, antworten, wiederholungenGeplant: f.wiederholungenGeplant, halbzeitGezeigt: halbzeitSchonGezeigt, versuch: aktuellerVersuch }
+  function stand(f: { aufgaben: Task[]; index: number; wiederholungenGeplant: boolean }, halbzeitSchonGezeigt = halbzeitGezeigt, aktuellerVersuch: 1 | 2 = 1, aktuellerImpuls = false): RundenStand {
+    return { version: 1, name: state.name, topic, quelle, schwer, seed, aufgaben: f.aufgaben, index: f.index, antworten, wiederholungenGeplant: f.wiederholungenGeplant, halbzeitGezeigt: halbzeitSchonGezeigt, versuch: aktuellerVersuch, denkimpuls: aktuellerImpuls }
   }
 
   function weiter() {
@@ -118,6 +120,7 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
     setErgebnis(null)
     setReaktion(null)
     setVersuch(1)
+    setDenkimpuls(false)
     setSerieDa(false)
     // Halbzeit: nach der fünften Aufgabe einmal pro Runde, auch nach einer Pause
     const zeigeHalbzeit = schritt !== null && halbzeitErreicht(antworten.filter((a) => !a.isRepeat).length, halbzeitGezeigt)
@@ -138,14 +141,14 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
   function pausieren() {
     stoppe()
     // Noch nichts beantwortet und noch kein Fehlversuch: es gibt nichts zu merken.
-    if (ergebnis === null && antworten.length === 0 && versuch === 1) {
+    if (ergebnis === null && antworten.length === 0 && versuch === 1 && !denkimpuls) {
       loescheRunde()
       onPause()
       return
     }
     if (ergebnis === null) {
       // Der Versuchszähler wird mitgespeichert, damit nach einem Fehlversuch der zweite Versuch (mit Tipp) weiterläuft.
-      speichereRunde(stand({ aufgaben, index, wiederholungenGeplant }, halbzeitGezeigt, versuch))
+      speichereRunde(stand({ aufgaben, index, wiederholungenGeplant }, halbzeitGezeigt, versuch, denkimpuls))
       onPause()
       return
     }
@@ -229,6 +232,12 @@ export function Round({ state, topic, quelle, schwer = false, fortsetzen, onFini
           <button className="knopf gross" type="button" onClick={weiter} autoFocus>Weiter</button>
         </motion.div>
       )}
+      {ergebnis === null && versuch === 1 && !denkimpuls && (
+        <button className="knopf klein denkimpuls" type="button" onClick={() => { setDenkimpuls(true); sprich(`Denkimpuls: ${task.hint}`) }}>
+          <span aria-hidden="true">💡</span> Denkimpuls (eine Münze weniger)
+        </button>
+      )}
+      {ergebnis === null && denkimpuls && <p className="hinweis" role="status"><span className="gluehbirne" aria-hidden="true">💡</span> Denkimpuls: {task.hint}</p>}
       {ergebnis === null && richtigerTipp && <p className="ermutigung">Fast! Versuche es noch einmal.</p>}
       <p className="sr-only" aria-live="polite">{reaktion?.text}</p>
       <AnimatePresence>

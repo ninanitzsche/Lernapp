@@ -90,6 +90,15 @@ export function fortschritt(bisher: number, liste: Nachweis[], topic: Topic): Fo
   }
 }
 
+/** Was zum nächsten Stern noch fehlt, in Worten für Kinder. Leer, wenn nichts fehlt. */
+export function fehltText(f: Fortschritt): string {
+  const teile: string[] = []
+  if (f.fehlt.treffer > 0) teile.push(`${f.fehlt.treffer} Treffer`)
+  if (f.fehlt.typen > 0) teile.push(`${f.fehlt.typen} ${f.fehlt.typen === 1 ? 'weitere Aufgabenart' : 'weitere Aufgabenarten'}`)
+  if (f.fehlt.runden > 0) teile.push(`${f.fehlt.runden} ${f.fehlt.runden === 1 ? 'weitere Runde' : 'weitere Runden'}`)
+  return teile.length === 0 ? '' : `Noch ${teile.join(', ')}`
+}
+
 /** Liest gespeicherte Nachweise. Kaputte Einträge fallen weg. */
 export function parseNachweise(raw: unknown): Nachweise {
   const ergebnis = leereNachweise()
