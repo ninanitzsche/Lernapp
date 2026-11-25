@@ -190,7 +190,7 @@ Im geprüften Repository liegen neben den optimierten App-Grafiken weitere älte
 Priorisiert nach Zuverlässigkeit und Pflegeaufwand – nicht als Liste vermeintlich fehlender Basisfunktionen:
 
 1. **Hoch:** Pause/Fortsetzen mit Versuchszähler praktisch im Browser prüfen.
-2. **Hoch:** Produktionsbuild und Sichtprüfung am Smartphone nach jedem Screen.
+2. **Hoch:** Manuelle Sichtprüfung auf dem Smartphone nach jedem Screen; der automatisierte Produktionsbuild ist über GitHub Actions bereits verifiziert.
 3. **Mittel:** Aufgabenabdeckung des konkreten Schulbuchs vervollständigen und Seiten-/Aufgabenreferenzen prüfen.
 4. **Mittel:** Bedienbarkeit, Barrierefreiheit und Drag-and-drop auf echten Geräten testen.
 5. **Nach Bedarf:** Weitere Lerninhalte (z. B. Addition/Subtraktion oder ein größerer Zahlenraum) erst anhand des Lernziels und der Zielgruppe planen.
