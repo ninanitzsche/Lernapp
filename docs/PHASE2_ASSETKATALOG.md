@@ -26,6 +26,19 @@
 | Erwachsen/legendär neutral | Logo + `adult-standard.webp` | 1 | Bestand / zu überarbeiten | App-Pose an Logo-Identität annähern |
 | Emotionen | Emotionsmatrix | 35 | Zu produzieren | 7 Zustände aus 5 freigegebenen Basen ableiten |
 
+### 1.1 Laufzeit- und Freigabestatus der Charakterdateien
+
+Die tatsächliche Laufzeitzuordnung wurde in `src/ui/Snake.tsx` geprüft:
+
+- Die App lädt Charakterbilder aus `public/images/snake/app/{stage}-{expression}.webp`.
+- Bildbasierte Gesichtsausdrücke werden aktuell nur für `baby`, `smallChild` und `child` verwendet.
+- Für `teen` liegen zusätzliche Dateien im Repository, sie werden von der aktuellen Laufzeitlogik nicht als Gesichtsausdrücke aktiviert. Sie bleiben bis zur visuellen Prüfung Referenzmaterial.
+- Für `adult` ist im App-Ordner nur `adult-standard.webp` vorhanden. Dieses Bild ist laut `PHASE2_NICO_REFERENZ.md` nicht die kanonische Endform; das unveränderte Logo definiert die Identität der höchsten Stufe.
+- Die Emotionsmatrix beschreibt sieben Zielzustände je Entwicklungsstufe. Das Ziel von 35 Zustandsdarstellungen bedeutet nicht, dass 35 neue Bilder ungeprüft oder unabhängig voneinander erzeugt werden sollen. Zuerst werden fünf neutrale Basen freigegeben; anschließend werden benötigte Emotionen daraus konsistent abgeleitet.
+- Die vorhandenen Dateien in `public/images/snake/app/` bleiben unangetastet, bis Ersatzdateien freigegeben und sämtliche Laufzeitreferenzen geprüft sind.
+
+Der jüngste Bestandsbereinigungs-Commit hat unreferenzierte Rohdateien und Altordner entfernt. Die oben genannten App-WebP-Dateien sowie `public/images/logo.webp` sind im aktuellen Branch weiterhin vorhanden. Das ist eine Dateibaum-/Codeprüfung, keine erneute visuelle Bildabnahme.
+
 ## 2. Terrarium und Welt
 
 | Assetgruppe | Bestand | Zielumfang | Status | Nächster Schritt |
