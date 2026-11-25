@@ -11,7 +11,7 @@ Dieses Dokument bündelt die gemeinsam festgelegten Produktregeln. Es verhindert
 2. Jede Belohnung hat genau eine verständliche Funktion. Systeme dürfen einander nicht ersetzen.
 3. Keine Strafe, kein Verlust und kein Zeitdruck. Fehler oder Pausen nehmen niemals Futter, Münzen, Sterne, Meilensteine oder gekaufte Gegenstände weg.
 4. Freiwillige schwierigere Aufgaben sind erlaubt. Sie dürfen aber den regulären Kompetenzfortschritt nicht umgehen.
-5. Belohnungen honorieren Lernen und besondere Leistungen, nicht bloße Nutzungsmenge, tägliches Einloggen oder eine bestimmte Spielhäufigkeit.
+5. Belohnungen honorieren Lernen und besondere Leistungen, nicht bloße Nutzungsmenge, tägliches Einloggen oder eine bestimmte Spielhäufigkeit. Die ausdrücklich gewollte Tagesmitbringsel-Münze für die erste abgeschlossene Runde eines Tages ist eine begrenzte Ausnahme – keine Login- oder Streak-Prämie.
 6. Alle Zahlenwerte sind zentral in `src/logic/config.ts` zu pflegen. Die fachlich freigegebenen Sollwerte stehen in Abschnitt 2 dieses Dokuments. Bei Abweichungen ist dieses Dokument maßgeblich; die Implementierung muss angepasst werden.
 
 ## 2. Futter und Wachstum
@@ -100,10 +100,11 @@ Nico hat fünf Entwicklungsstufen:
 - Der Shop führt Gegenstände mit Preisen von **1 bis 3 Münzen**.
 - Gekaufte Gegenstände bleiben dauerhaft im Besitz. Platzieren, Verschieben oder Entfernen aus der sichtbaren Szene löscht den Besitz nicht.
 - Ein erreichter Stern bringt nach der bestehenden Regel **eine Münze**.
-- Ein neuer Entwicklungsstufen-Aufstieg bringt nach der bestehenden Wachstumsbelohnung **eine Münze**.
+- Jede neu überschrittene Entwicklungsstufenschwelle bringt nach der bestehenden Wachstumsbelohnung **eine Münze**. Werden in einer Runde mehrere Schwellen überschritten, zählt jede neu erreichte Stufe.
 - **Denkimpuls:** Für jeden in einer Runde tatsächlich genutzten Denkimpuls wird eine Münze vom Bonusmünzen-Pool dieser Runde abgezogen. Es gibt keine Münze pro Aufgabe; deshalb wird keine einzelne Aufgabenmünze berechnet. Der Abzug ist auf die in dieser Runde entstandenen Bonusmünzen begrenzt. Er kann also Tagesmitbringsel, Stufenaufstiegs-, Knobel- oder Meilenstein-Bonusmünzen reduzieren. Bereits vorhandene Münzen und Kompetenzstern-Münzen bleiben unangetastet; der Kontostand sinkt nie. Ein falscher Versuch allein kostet keine Münze. Die Aufgabe darf mit Denkimpuls weiterhin zum Kompetenznachweis beitragen.
 - Eine starke Knobelrunde (mindestens 7 von 10 Aufgaben im ersten Versuch richtig) bringt **2 Zusatzmünzen**, höchstens einmal pro Tag.
-- Für die erste starke Knobelrunde ist zusätzlich der dokumentierte einmalige Knobel-Meilenstein vorgesehen; weitere Knobel-Meilensteine richten sich nach den kumulierten kniffligen Aufgaben, die im ersten Versuch richtig gelöst wurden: 10 Treffer = 1 Münze, 25 Treffer = 2 Münzen, 50 Treffer = 3 Münzen.
+- Die **erste starke Knobelrunde überhaupt** bringt zusätzlich einmalig **1 Münze** als Knobel-Meilenstein. Damit kann die erste starke Knobelrunde insgesamt 3 Münzen aus diesen beiden Quellen bringen (vor einem möglichen Denkimpuls-Abzug).
+- Weitere einmalige Knobel-Meilensteine richten sich nach kumulierten kniffligen Aufgaben, die im ersten Versuch richtig gelöst wurden: 10 Treffer = 1 Münze, 25 Treffer = 2 Münzen, 50 Treffer = 3 Münzen. Diese Meilensteine sind von der täglichen Knobelrunden-Belohnung getrennt.
 - Ein Relikt-Erfolg bringt beim ersten erfolgreichen Abschluss **2 Terrariummünzen**. Die fünf Aufgaben sind knifflige Varianten desselben Aufgabentyps; mindestens vier müssen im ersten Versuch richtig gelöst werden. Pro Relikt gibt es die Münzen nur einmal. Die konkreten Startwerte liegen in `CONFIG.reliktAufgaben`, `CONFIG.reliktMinTreffer` und `CONFIG.reliktMuenzen`.
 - Die erste abgeschlossene Runde eines Kalendertages bringt **eine Tagesmitbringsel-Münze**. Weitere Runden desselben Tages bringen diese Münze nicht erneut. Die Münze wird auch vergeben, wenn das tägliche Futterlimit bereits erreicht ist. Das ist eine ausdrücklich gewollte Tagesbelohnung, keine Login-Prämie.
 - Es gibt keine Münzbelohnung für reine Rundenzahl, Wochenziele, bloßes Einloggen oder Nutzungsdauer.
@@ -179,6 +180,6 @@ Die folgenden Punkte beschreiben den geprüften Stand des Branches und verhinder
 - Wochenziele und Belohnungen für reine Rundenzahl sind entfernt.
 - Das Tagesmitbringsel ist aktiv und ausdrücklich gewollt: eine Münze für die erste abgeschlossene Runde des Tages.
 - Der Denkimpuls reduziert den Bonusmünzen-Pool der Runde um eine Münze je genutztem Impuls, begrenzt auf die in dieser Runde entstandenen Bonusmünzen. Es gibt keine Münzen je Aufgabe.
-- Die Werte für Futter, Knobelbonus, Tageslimit und Wachstum liegen zentral in `src/logic/config.ts`; die Berechnung der Münzboni erfolgt in `src/logic/game.ts`.
+- Die Zahlenwerte liegen zentral in `src/logic/config.ts`. Rundenabschluss und Bonuspool werden in `src/logic/game.ts` berechnet; Knobel-/Lernfeld-Meilensteine in `src/logic/meilensteine.ts`, Relikt-Erstbelohnungen in `src/logic/relikte.ts` und Kompetenznachweise/Sterne in `src/logic/kompetenz.ts`.
 
 Bei einer späteren Prüfung ist zwischen **gewollter Produktregel**, **tatsächlichem Implementierungsstand** und **historischem Prüfbericht** zu unterscheiden. Eine Codeabweichung wird nicht stillschweigend als neue Produktentscheidung interpretiert. Für die hier ausdrücklich festgelegten Regeln gilt die aktuelle Freigabe des Projektinhabers.
