@@ -43,12 +43,12 @@ test('Tageslimit gilt auch für Knobelrunden', () => {
   assert.equal(r.knobelFutter, 0)
 })
 
-test('Lernstand: leichte Aufgaben allein bringen keine zweiten und dritten Sterne', () => {
+test('Kompetenzsterne: leichte Aufgaben allein bringen höchstens zwei von fünf Sternen', () => {
   const s = initialState('S')
   let st = s
   for (let i = 0; i < 6; i++) st = finishRound(st, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'first' as const, stufe: 1 as Stufe })), tag(i)).state
-  assert.ok(Object.values(st.skill).every((l) => l === 1))
-  assert.deepEqual(st.sterneErreicht, { A: 1, B: 1, C: 1 })
+  assert.ok(Object.values(st.skill).every((l) => l === 1), 'Lernstand steigt durch leichte Aufgaben höchstens auf 1')
+  assert.deepEqual(st.sterneErreicht, { A: 2, B: 2, C: 2 })
 })
 
 test('Falsch bei kniffligen Aufgaben senkt den Lernstand nicht', () => {
@@ -138,10 +138,10 @@ test('Speichern und Laden: Verlauf, Statistik und Meilensteine bleiben gleich, V
 
 test('Meilensteine gehen bei sinkendem Lernstand nicht verloren', () => {
   let s = initialState('S')
-  s = finishRound(s, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'first' as const, stufe: 2 as Stufe })), MO).state
+  for (const i of [0, 1]) s = finishRound(s, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'first' as const, stufe: 2 as Stufe })), tag(i)).state
   const sterne = s.meilensteine.filter((m) => m.art === 'stern').length
   assert.ok(sterne > 0)
-  s = finishRound(s, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'failed' as const, stufe: 2 as Stufe })), tag(1)).state
+  s = finishRound(s, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'failed' as const, stufe: 2 as Stufe })), tag(2)).state
   assert.equal(s.meilensteine.filter((m) => m.art === 'stern').length, sterne)
 })
 

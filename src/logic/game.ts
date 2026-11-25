@@ -3,6 +3,8 @@ import { TASK_TYPES, TOPIC_OF, TOPICS } from './tasks.ts'
 import type { Stufe, TaskType, Topic } from './tasks.ts'
 import { futterFuer } from './belohnung.ts'
 import { lernstandNach } from './stufen.ts'
+import { MAX_STERNE, leereNachweise, nachweiseNach, parseNachweise, sterneNach } from './kompetenz.ts'
+import type { Nachweise } from './kompetenz.ts'
 import { nachtragen, parseMeilensteine, pruefeMeilensteine, zusatzMuenzen } from './meilensteine.ts'
 import type { Meilenstein } from './meilensteine.ts'
 import { int, pick } from './rng.ts'
@@ -22,6 +24,8 @@ export interface RoundAnswer {
   stufe?: Stufe
   /** Diese Antwort hat den Serien-Jubel ausgelöst (drei hintereinander im ersten Versuch). Bringt einmal pro Runde Zusatzfutter. */
   serieBonus?: boolean
+  /** Das Kind hat vor der Antwort einen Denkimpuls genutzt: die Aufgabe zählt zum Nachweis, die Runde bringt eine Münze weniger. */
+  denkimpuls?: boolean
 }
 
 /** Ein Versuch im Verlauf eines Aufgabentyps. */
@@ -47,7 +51,7 @@ export interface GameState {
   rounds: Record<string, number>
   skill: Record<TaskType, number>
   testDate: string | null
-  /** Höchste je erreichte Sternzahl pro Thema. Jeder Stern ist eine Münze für den Shop und geht nie verloren. */
+  /** Höchste je erreichte Sternzahl pro Lernfeld (0 bis 5). Jeder Stern ist eine Münze für den Shop und geht nie verloren. */
   sterneErreicht: Record<Topic, number>
   /** Zusätzliche Münzen: Stufenaufstieg, Tagesmitbringsel und Knobelerfolge. */
   bonusMuenzen: number
@@ -60,6 +64,10 @@ export interface GameState {
   /** Die letzten zehn Versuche je Aufgabentyp, für die Einschätzung im Elternbereich. */
   verlauf: Record<TaskType, Versuch[]>
   statistik: Statistik
+  /** Selbstständig gelöste Aufgaben je Lernfeld (Grundlage der Kompetenzsterne), die letzten 80. */
+  nachweise: Nachweise
+  /** IDs der Relikte, die schon einmal erfolgreich abgeschlossen wurden (Münzen gibt es nur beim ersten Mal). */
+  reliktErfolge: string[]
   /** Erreichte Meilensteine mit Datum und Rückblick. Gehen nie verloren. */
   meilensteine: Meilenstein[]
 }
@@ -75,7 +83,7 @@ export function leererVerlauf(): Record<TaskType, Versuch[]> {
 export function initialState(name: string): GameState {
   const skill = {} as Record<TaskType, number>
   for (const t of TASK_TYPES) skill[t] = 0
-  return { version: 1, name, totalFood: 0, lastFedAt: null, rounds: {}, skill, testDate: null, sterneErreicht: { A: 0, B: 0, C: 0 }, bonusMuenzen: 0, knobelTage: [], gekauft: [], positionen: {}, verlauf: leererVerlauf(), statistik: { bearbeitet: 0, geloest: 0, ersteTreffer: 0, knobelTreffer: 0 }, meilensteine: [] }
+  return { version: 1, name, totalFood: 0, lastFedAt: null, rounds: {}, skill, testDate: null, sterneErreicht: { A: 0, B: 0, C: 0 }, bonusMuenzen: 0, knobelTage: [], gekauft: [], positionen: {}, verlauf: leererVerlauf(), statistik: { bearbeitet: 0, geloest: 0, ersteTreffer: 0, knobelTreffer: 0 }, meilensteine: [], nachweise: leereNachweise(), reliktErfolge: [] }
 }
 
 // ---------- Futter und Stufen ----------
@@ -128,7 +136,7 @@ const TYPES_OF_TOPIC: Record<Topic, TaskType[]> = {
   C: TASK_TYPES.filter((t) => TOPIC_OF[t] === 'C'),
 }
 
-/** 0 bis 3 Sterne je Thema. */
+/** Altstände ohne gespeicherte Sterne: 0 bis 3 Sterne je Thema aus dem Lernstand. Neue Sterne laufen über `kompetenz.ts`. */
 export function topicStars(skill: Record<TaskType, number>, topic: Topic): 0 | 1 | 2 | 3 {
   const levels = TYPES_OF_TOPIC[topic].map((t) => skill[t])
   if (levels.every((l) => l >= 3)) return 3
@@ -209,6 +217,8 @@ export interface RoundSummary {
   serienFutter: number
   /** Neue Meilensteine dieser Runde, in Feier-Reihenfolge */
   meilensteine: Meilenstein[]
+  /** Münzen, die der Denkimpuls in dieser Runde gekostet hat (bereits in `neueBonusMuenzen` abgezogen) */
+  denkimpulsAbzug: number
 }
 
 export function finishRound(state: GameState, answers: RoundAnswer[], now: Date, knobel = false): RoundSummary {
@@ -241,10 +251,13 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
 
   const rounds = { ...state.rounds, [heute]: roundsToday + 1 }
 
+  // Kompetenzsterne: Nachweise sammeln, dann der Reihe nach vergeben (nie weniger als bisher).
+  const rundenBisher = Object.values(state.rounds).reduce((s, n) => s + n, 0)
+  const nachweise = nachweiseNach(state.nachweise ?? leereNachweise(), answers, rundenBisher + 1)
   const sterneErreicht: Record<Topic, number> = { A: state.sterneErreicht?.A ?? 0, B: state.sterneErreicht?.B ?? 0, C: state.sterneErreicht?.C ?? 0 }
   let neueSterne = 0
   for (const t of TOPICS) {
-    const jetzt = topicStars(skill, t)
+    const jetzt = sterneNach(sterneErreicht[t], nachweise[t], t)
     if (jetzt > sterneErreicht[t]) { neueSterne += jetzt - sterneErreicht[t]; sterneErreicht[t] = jetzt }
   }
 
@@ -268,11 +281,16 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
 
   const nachher: GameState = {
     ...state, totalFood, lastFedAt: now.toISOString(), rounds, skill, sterneErreicht, knobelTage: knobelTage.slice(-60),
-    gekauft: state.gekauft ?? [], positionen: state.positionen ?? {}, verlauf, statistik,
+    gekauft: state.gekauft ?? [], positionen: state.positionen ?? {}, verlauf, statistik, nachweise,
   }
   const meilensteine = pruefeMeilensteine(state, nachher, heute, knobelMuenze)
-  const neueBonusMuenzen =
+  const bonusRoh =
     Math.max(0, stageAfter - stageBefore) + (knobelMuenze ? CONFIG.knobelMuenzen : 0) + (tagesMuenze ? 1 : 0) + zusatzMuenzen(meilensteine)
+  // Denkimpuls: eine Münze weniger je genutztem Impuls, höchstens so viele, wie die Runde an Bonusmünzen gebracht hat.
+  // Sterne (nachgewiesene Kompetenz) und schon verdientes Geld bleiben unberührt, der Kontostand sinkt nie.
+  const denkimpulse = answers.filter((a) => a.denkimpuls).length
+  const denkimpulsAbzug = Math.min(denkimpulse, bonusRoh)
+  const neueBonusMuenzen = bonusRoh - denkimpulsAbzug
 
   return {
     state: { ...nachher, bonusMuenzen: (state.bonusMuenzen ?? 0) + neueBonusMuenzen, meilensteine: [...state.meilensteine, ...meilensteine] },
@@ -290,6 +308,7 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
     knobelFutter: satt ? 0 : knobelFutter,
     serienFutter: satt ? 0 : serienFutter,
     meilensteine,
+    denkimpulsAbzug,
   }
 }
 
@@ -328,10 +347,12 @@ export function parseState(text: string): GameState | null {
     }
   }
   // Alte Spielstände haben noch keine Münzen: die schon erreichten Sterne zählen rückwirkend.
-  const se = typeof r.sterneErreicht === 'object' && r.sterneErreicht !== null ? (r.sterneErreicht as Record<string, unknown>) : {}
+  const seVorhanden = typeof r.sterneErreicht === 'object' && r.sterneErreicht !== null
+  const se = seVorhanden ? (r.sterneErreicht as Record<string, unknown>) : {}
   for (const t of TOPICS) {
-    const gespeichert = typeof se[t] === 'number' ? Math.min(3, Math.max(0, Math.floor(se[t] as number))) : 0
-    state.sterneErreicht[t] = Math.max(gespeichert, topicStars(state.skill, t))
+    const gespeichert = typeof se[t] === 'number' ? Math.min(MAX_STERNE, Math.max(0, Math.floor(se[t] as number))) : 0
+    // Nur ganz alte Stände ohne gespeicherte Sterne bekommen sie rückwirkend aus dem Lernstand.
+    state.sterneErreicht[t] = seVorhanden ? gespeichert : topicStars(state.skill, t)
   }
   if (typeof r.bonusMuenzen === 'number' && Number.isFinite(r.bonusMuenzen) && r.bonusMuenzen > 0) {
     state.bonusMuenzen = Math.floor(r.bonusMuenzen)
@@ -367,6 +388,8 @@ export function parseState(text: string): GameState | null {
     const zahl = (k: string) => (typeof st[k] === 'number' && Number.isFinite(st[k]) && (st[k] as number) >= 0 ? Math.floor(st[k] as number) : 0)
     state.statistik = { bearbeitet: zahl('bearbeitet'), geloest: zahl('geloest'), ersteTreffer: zahl('ersteTreffer'), knobelTreffer: zahl('knobelTreffer') }
   }
+  state.nachweise = parseNachweise(r.nachweise)
+  if (Array.isArray(r.reliktErfolge)) state.reliktErfolge = r.reliktErfolge.filter((id, i, a): id is string => typeof id === 'string' && a.indexOf(id) === i)
   state.testDate = typeof r.testDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(r.testDate) ? r.testDate : null
   // Meilensteine: Altstände ohne dieses Feld bekommen das schon Erreichte ohne Feier und ohne Münzen eingetragen.
   state.meilensteine = Array.isArray(r.meilensteine) ? parseMeilensteine(r.meilensteine) : nachtragen(state, dayKey(new Date()))

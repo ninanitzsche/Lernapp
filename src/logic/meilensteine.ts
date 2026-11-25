@@ -4,13 +4,15 @@ import { CONFIG, STAGES } from './config.ts'
 import { TOPICS, TOPIC_OF, TASK_TYPES } from './tasks.ts'
 import type { Topic } from './tasks.ts'
 import type { GameState } from './game.ts'
+import { MAX_STERNE } from './kompetenz.ts'
 
 /**
  * 'runden' und 'woche' werden nicht mehr vergeben (keine Belohnung für reine Rundenzahl oder Wochenziele).
  * Sie bleiben als Art erhalten, damit schon gespeicherte Meilensteine nie verloren gehen.
  */
-export type MeilensteinArt = 'entwicklung' | 'stern' | 'runden' | 'woche' | 'knobel'
-export const ART_REIHENFOLGE: MeilensteinArt[] = ['entwicklung', 'runden', 'stern', 'knobel', 'woche']
+export type MeilensteinArt = 'entwicklung' | 'stern' | 'lernfeld' | 'knobel' | 'relikt' | 'runden' | 'woche'
+/** Reihenfolge der Feier in einer Runde: Der Abschluss eines Lernfeldes geht den nachgeordneten Hinweisen vor. */
+export const ART_REIHENFOLGE: MeilensteinArt[] = ['entwicklung', 'runden', 'stern', 'lernfeld', 'knobel', 'relikt', 'woche']
 
 export interface Rueckblick {
   /** Abgeschlossene Runden insgesamt */
@@ -25,7 +27,7 @@ export interface Rueckblick {
 }
 
 export interface Meilenstein {
-  /** zum Beispiel 'entwicklung-2', 'stern-A-2', 'knobel-erste', 'knobel-10' (Altstände: 'runden-10', 'woche-2026-11-23') */
+  /** zum Beispiel 'entwicklung-2', 'stern-A-2', 'lernfeld-A', 'knobel-erste', 'knobel-10', 'relikt-C1' (Altstände: 'runden-10', 'woche-2026-11-23') */
   id: string
   art: MeilensteinArt
   /** JJJJ-MM-TT */
@@ -78,6 +80,11 @@ export function pruefeMeilensteine(vorher: GameState, nachher: GameState, datum:
     for (let n = (vorher.sterneErreicht[t] ?? 0) + 1; n <= nachher.sterneErreicht[t]; n++) add(`stern-${t}-${n}`, 'stern', 1)
   }
 
+  // Abschluss eines Lernfeldes: fünf Sterne. Pokal und Albumeintrag gehören dazu, Münzen gibt es schon je Stern.
+  for (const t of TOPICS) {
+    if ((vorher.sterneErreicht[t] ?? 0) < MAX_STERNE && nachher.sterneErreicht[t] >= MAX_STERNE) add(`lernfeld-${t}`, 'lernfeld', 0)
+  }
+
   if (knobelStark) add('knobel-erste', 'knobel', CONFIG.ersteKnobelMuenze)
   for (const [grenze, muenzen] of Object.entries(CONFIG.knobelTreffer)) {
     const n = Number(grenze)
@@ -99,7 +106,9 @@ export function nachtragen(state: GameState, datum: string): Meilenstein[] {
   const add = (id: string, art: MeilensteinArt) => liste.push({ id, art, datum, rueckblick: rb, muenzen: 0 })
   for (let s = 2; s <= stufeVon(state.totalFood); s++) add(`entwicklung-${s}`, 'entwicklung')
   for (const t of TOPICS) for (let n = 1; n <= state.sterneErreicht[t]; n++) add(`stern-${t}-${n}`, 'stern')
+  for (const t of TOPICS) if (state.sterneErreicht[t] >= MAX_STERNE) add(`lernfeld-${t}`, 'lernfeld')
   if (state.knobelTage.length > 0) add('knobel-erste', 'knobel')
+  for (const id of state.reliktErfolge) add(`relikt-${id}`, 'relikt')
   return sortiere(liste)
 }
 

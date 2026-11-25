@@ -10,7 +10,7 @@ import { klang } from './klang.ts'
 import { sprich } from './stimme.ts'
 
 export const ART_SYMBOL: Record<MeilensteinArt | 'mehrere', string> = {
-  entwicklung: '🐍', runden: '🏁', stern: '⭐', knobel: '🧠', woche: '📅', mehrere: '🎉',
+  entwicklung: '🐍', runden: '🏁', stern: '⭐', lernfeld: '🏆', knobel: '🧠', relikt: '🗝️', woche: '📅', mehrere: '🎉',
 }
 
 interface Props {

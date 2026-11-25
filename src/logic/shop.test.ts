@@ -36,11 +36,11 @@ test('Sinkt der Lernstand, bleiben die Münzen erhalten', () => {
 
 test('Neue Sterne werden in der Runde gezählt', () => {
   const s = initialState('S')
-  const skill = { ...s.skill }
-  for (const k of Object.keys(skill) as (keyof typeof skill)[]) skill[k] = 2
-  skill.A1 = 1
-  const r = finishRound({ ...s, skill }, [{ type: 'A1', outcome: 'first' }], MO)
-  assert.ok(r.neueSterne >= 3)
+  // Drei selbstständige Treffer aus zwei früheren Runden, die Runde bringt den vierten und schließt Stern 1 ab.
+  const nachweise = { A: [{ r: 1, t: 'A1' as const, s: 2 as const }, { r: 1, t: 'A2' as const, s: 2 as const }, { r: 2, t: 'A1' as const, s: 2 as const }], B: [], C: [] }
+  const r = finishRound({ ...s, nachweise }, [{ type: 'A2', outcome: 'first' }], MO)
+  assert.equal(r.neueSterne, 1)
+  assert.equal(r.state.sterneErreicht.A, 1)
   assert.equal(verdiente(r.state), r.neueSterne + 1) // +1: Tagesmitbringsel der ersten Runde
 })
 
