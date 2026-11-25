@@ -67,7 +67,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 ## Phase 2 – Charaktere und Assets
 
-**Status: IN ARBEIT.** Asset-Inventar und Produktions-/Freigabeablauf sind in [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) dokumentiert. Ein erster visueller Referenzentwurf für Terrarium, Spielobjekte und Belohnung wurde erstellt und in [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md) festgehalten. Er ist noch nicht freigegeben; die Prüfung zusammen mit einer kanonischen Nico-Referenz steht aus.
+**Status: IN ARBEIT.** Asset-Inventar und Produktions-/Freigabeablauf sind in [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) dokumentiert. Frühe Konzepttafeln für Terrarium, Spielobjekte und Belohnung sind als historische Exploration im [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) zusammengefasst. Die verbindliche Richtung wird schlangenspezifisch mit der Nico-Referenz weiterentwickelt; Konzepttafeln sind keine Produktionsassets.
 
 **Ziel:** Nico und die Spielwelt konsistent und wiederverwendbar gestalten.
 
