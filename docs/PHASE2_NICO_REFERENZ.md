@@ -1,9 +1,8 @@
 # Nico – kanonische Charakterreferenz
 
  > **Status:** Arbeitsgrundlage nach direktem Bildvergleich; finale Bildfreigabe weiterhin offen.
-> **Bildvergleich:** [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md)
 > **Gültig für:** Phase 2 · Luminous Fantasy Adventure
-> **Verbindliche Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [PHASE2_BESTANDSANALYSE.md](./PHASE2_BESTANDSANALYSE.md)
+ > **Verbindliche Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md)
 
 ## 1. Zweck und Grundsatz
 
@@ -26,6 +25,35 @@ Bis zur Freigabe gelten folgende Dateien als bevorzugte Bestandsreferenzen:
 | Erwachsen / legendär | `public/images/logo.webp` als Form- und Identitätsreferenz; `public/images/snake/app/adult-standard.webp` nur als Bestandsmaterial | Überarbeiten / abgleichen | Das App-Bild weicht in Kopf, Augen und Silhouette vom Logo ab. Es darf nicht ohne Abgleich als finale höchste Stufe festgeschrieben werden. |
 
 Die Pfade sind Referenzen, keine Aufforderung, Dateien umzubenennen, zu verschieben oder zu löschen. Die historischen Quellenordner bleiben unangetastet.
+
+### Bildreferenzen – aktueller App-Bestand und Logo
+
+Die folgenden Bilder sind Vergleichsreferenzen, keine Freigabe der endgültigen Phase-2-Assets.
+
+**Logo – Identität der erwachsenen/legendären Form**
+
+![Nicos bestehendes Logo](../public/images/logo.webp)
+
+**Baby**
+
+![Nico Baby](../public/images/snake/app/baby-standard.webp)
+
+**Kleinkind**
+
+![Nico Kleinkind](../public/images/snake/app/smallChild-standard.webp)
+
+**Kind**
+
+![Nico Kind](../public/images/snake/app/child-standard.webp)
+
+**Teenager**
+
+![Nico Teenager](../public/images/snake/app/teen-standard.webp)
+
+**Erwachsen – derzeitiges App-Bild**
+
+![Nico Erwachsen](../public/images/snake/app/adult-standard.webp)
+
 
 ## 3. Gemeinsame Identitätsmerkmale
 
@@ -59,12 +87,12 @@ Der aktuelle Code in `src/ui/Snake.tsx` nutzt Gesichtsausdrucksdateien nur für 
 
 ## 6. Ergebnis des direkten Bildvergleichs
 
-Der direkte Vergleich der fünf Standardbilder und des Logos ist in [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md) mit den Bildquellen dokumentiert. Daraus folgen diese verbindlichen Arbeitsentscheidungen:
+Der direkte Vergleich der fünf Standardbilder und des Logos ist in diesem Dokument mit den Bildquellen dokumentiert. Daraus folgen diese verbindlichen Arbeitsentscheidungen:
 
 - Baby und Kleinkind bleiben unverändert die stilistische Basis.
 - Beim Kind werden Augenfarbe/Iris und Augenpartie als wichtigste Kontinuitätskorrektur behandelt; Körperstreckung und lebendiger Ausdruck bleiben grundsätzlich erhalten.
 - Beim Teenager bleiben Standardpose und schlanke Silhouette erhalten; Augenform und Schnauze werden im Übergang zum Kind geprüft.
-- Das bisherige Erwachsenenbild ist keine finale kanonische Referenz. Das Logo definiert die erwachsene Identität, aber die App benötigt daraus eine eigenständige, freundliche Begleiterpose ohne Logo-Schriftzug und fest integrierte Logo-Dekoration.
+- Das bisherige Erwachsenenbild ist keine finale kanonische Referenz. Das Logo definiert die erwachsene Identität. Die App benötigt daraus eine eigenständige, souveräne und kraftvolle Begleiterpose – eindrucksvoll und potenziell gefährlich wirkend, nicht verniedlicht, aber klar als Nicos vertraute Figur erkennbar. Logo-Schriftzug und fest integrierte Logo-Dekoration werden nicht kopiert.
 - Die vorhandenen Teenager-Ausdrucksvarianten werden nicht aktiviert: Herzen, Sterne, „Zzz“ und Futterobjekt sind teilweise in die Bilder eingebrannt. Sie bleiben als Bestand unangetastet.
 
 ## 7. Priorisierte Korrekturen vor Serienproduktion
