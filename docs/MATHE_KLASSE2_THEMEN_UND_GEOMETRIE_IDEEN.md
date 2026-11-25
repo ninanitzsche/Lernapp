@@ -214,6 +214,8 @@ Aufgabentypen werden mit ihrem Lehrplanbezug geführt, in einer statischen Datei
 | 4 | Sterne, Abschluss, Pokal, Album und Elternbereich für D prüfen | Sternkriterien für D entscheidet Nina (Abschnitt 7). Pokal- und Album-Illustration kommt vom Creative Director. |
 | 5 | Visuelle Integration, Sichtprüfung Smartphone, später Tablet und Desktop (Phase 5) | Nutzerprüfung auf dem Mac |
 
+**Umsetzungsstand (25.11.2026, Branch `matheaufgaben`).** Schritt 1: **Implementiert**, Tests grün, Produktionsbuild und Sichtprüfung offen. Schritt 2 und 3 in einem ersten Wurf: **Implementiert**, Typprüfung und Tests grün, Produktionsbuild und Sichtprüfung auf dem Mac **Offen**. Nina hat die Umsetzung vor dem Buchabgleich (U9) ausdrücklich angewiesen. Die Inhalte sind deshalb **vorläufig** und allein am Rahmenlehrplan Stufe B ausgerichtet. Umgesetzt sind fünf Aufgabentypen: D1 Formen erkennen (RF-6), D2 Ecken und Seiten zählen (RF-7), D3 Körper erkennen (RF-5), D4 Flächen, Ecken und Kanten von Würfel und Quader (RF-11) und D5 Lage beschreiben (RF-10). Der Eingabetyp `figuren` und die SVG-Figuren sind Platzhalter im Sinne von Abschnitt 6 Punkt 10. Das Lernfeld ist nur über die Themenkarte erreichbar (`imMix: false`). Nicht umgesetzt: Symmetrie, Spiegeln, Verschieben, Drehen, Würfelbauten, Rasterzeichnen, geometrische Muster, Stufe-C-Inhalte, Lehrplan-Datei, Pokal- und Albumillustration. Nach dem Buchabgleich werden die Typen bestätigt oder geändert.
+
 Dieses Dokument ist der angeforderte Zwischenstand "nur Architektur und Umsetzungskonzept". Schritt 1 beginnt erst nach der Git-Entscheidung und ausdrücklicher Freigabe.
 
 ### 5.8 Git-Lage

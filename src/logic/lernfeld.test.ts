@@ -76,11 +76,11 @@ test('Tipp, zweiter Versuch und gezeigte Lösung zählen nicht als Nachweis', ()
 })
 
 test('Altstand: gespeicherte Sterne bleiben, weitere brauchen neue Nachweise', () => {
-  const basis = { ...initialState('Alt'), sterneErreicht: { A: 3, B: 0, C: 0 } }
+  const basis = { ...initialState('Alt'), sterneErreicht: { A: 3, B: 0, C: 0, D: 0 } }
   const geladen = parseState(serializeState(basis))
   assert.ok(geladen)
   assert.equal(geladen.sterneErreicht.A, 3)
-  assert.deepEqual(geladen.nachweise, { A: [], B: [], C: [] })
+  assert.deepEqual(geladen.nachweise, { A: [], B: [], C: [], D: [] })
   const r = finishRound(geladen, feldRunde('A'), tag(0))
   assert.equal(r.state.sterneErreicht.A, 3, 'eine einzelne Runde bringt keinen vierten Stern')
   assert.equal(r.neueSterne, 0)

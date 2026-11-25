@@ -88,7 +88,7 @@ test('Fortschritt zum nächsten Stern beruht auf gespeicherten Nachweisen', () =
 
 test('Gespeicherte Nachweise werden geprüft, Fremdes fällt weg', () => {
   const ok = parseNachweise({ A: [{ r: 2, t: 'A1', s: 2 }, { r: 'x', t: 'A1', s: 2 }, { r: 1, t: 'B1', s: 2 }, { r: 1, t: 'A2', s: 7 }], B: 'kaputt' })
-  assert.deepEqual(ok, { A: [{ r: 2, t: 'A1', s: 2 }], B: [], C: [] })
+  assert.deepEqual(ok, { A: [{ r: 2, t: 'A1', s: 2 }], B: [], C: [], D: [] })
   assert.deepEqual(parseNachweise(null), leereNachweise())
 })
 

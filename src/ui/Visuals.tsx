@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Task, Visual } from '../logic/tasks.ts'
+import { FigurenReihe } from './Figuren.tsx'
 
 const BLAU = '#3b82c4'
 const ROT = '#e04848'
@@ -119,6 +120,7 @@ export function VisualView({ visual }: { visual: Visual }) {
     )
   }
   if (visual.kind === 'stellentafel') return <Stellentafel tens={visual.tens} ones={visual.ones} />
+  if (visual.kind === 'figuren') return <FigurenReihe items={visual.items} />
   return <Zahlenstrahl {...visual} />
 }
 
@@ -132,6 +134,8 @@ export function LoesungsBild({ task }: { task: Task }) {
     inhalt = <div className="zahlbilder"><Zahlbild tens={i.tens} ones={i.ones} /></div>
   } else if (i.kind === 'pair' && task.type === 'A2') {
     inhalt = <Stellentafel tens={i.answer[0]} ones={i.answer[1]} />
+  } else if (i.kind === 'figuren') {
+    inhalt = <FigurenReihe items={[i.karten[i.answer]]} />
   } else if (task.visual) {
     inhalt = <VisualView visual={task.visual} />
   }

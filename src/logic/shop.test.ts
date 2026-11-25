@@ -18,7 +18,7 @@ test('Ohne Sterne gibt es keine Münzen und nichts zu kaufen', () => {
 })
 
 test('Ein Stern ist eine Münze, Kaufen zieht den Preis ab', () => {
-  const s: GameState = { ...initialState('S'), sterneErreicht: { A: 2, B: 1, C: 0 } }
+  const s: GameState = { ...initialState('S'), sterneErreicht: { A: 2, B: 1, C: 0, D: 0 } }
   assert.equal(verdiente(s), 3)
   const k = kaufen(s, 'felshoehle')
   assert.ok(k)
@@ -27,7 +27,7 @@ test('Ein Stern ist eine Münze, Kaufen zieht den Preis ab', () => {
 })
 
 test('Sinkt der Lernstand, bleiben die Münzen erhalten', () => {
-  const s: GameState = { ...initialState('S'), sterneErreicht: { A: 3, B: 0, C: 0 } }
+  const s: GameState = { ...initialState('S'), sterneErreicht: { A: 3, B: 0, C: 0, D: 0 } }
   const antworten: RoundAnswer[] = [{ type: 'A1', outcome: 'failed' }]
   const r = finishRound(s, antworten, MO)
   assert.equal(r.state.sterneErreicht.A, 3)
@@ -37,7 +37,7 @@ test('Sinkt der Lernstand, bleiben die Münzen erhalten', () => {
 test('Neue Sterne werden in der Runde gezählt', () => {
   const s = initialState('S')
   // Drei selbstständige Treffer aus zwei früheren Runden, die Runde bringt den vierten und schließt Stern 1 ab.
-  const nachweise = { A: [{ r: 1, t: 'A1' as const, s: 2 as const }, { r: 1, t: 'A2' as const, s: 2 as const }, { r: 2, t: 'A1' as const, s: 2 as const }], B: [], C: [] }
+  const nachweise = { A: [{ r: 1, t: 'A1' as const, s: 2 as const }, { r: 1, t: 'A2' as const, s: 2 as const }, { r: 2, t: 'A1' as const, s: 2 as const }], B: [], C: [], D: [] }
   const r = finishRound({ ...s, nachweise }, [{ type: 'A2', outcome: 'first' }], MO)
   assert.equal(r.neueSterne, 1)
   assert.equal(r.state.sterneErreicht.A, 1)
@@ -47,7 +47,7 @@ test('Neue Sterne werden in der Runde gezählt', () => {
 test('Alte Spielstände ohne Münzen bekommen ihre Sterne rückwirkend', () => {
   const s = initialState('S')
   const skill = { ...s.skill }
-  for (const k of Object.keys(skill) as (keyof typeof skill)[]) skill[k] = 3
+  for (const k of Object.keys(skill) as (keyof typeof skill)[]) if (k[0] !== 'D') skill[k] = 3
   const alt = JSON.parse(serializeState({ ...s, skill }))
   delete alt.sterneErreicht
   delete alt.gekauft

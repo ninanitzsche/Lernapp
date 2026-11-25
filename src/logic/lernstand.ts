@@ -66,6 +66,11 @@ export const TIPPS: Record<TaskType, string> = {
   C2: 'Zeigt auf einen Strich eines selbst gezeichneten Zahlenstrahls und lasst die Zahl ablesen.',
   C3: 'Fragt nach den Nachbarn: Welche Hausnummer kommt vor und nach der 17?',
   C4: 'Sucht an Hausnummern und Seitenzahlen den Zehner davor und den Zehner danach.',
+  D1: 'Sucht zu Hause runde, dreieckige und viereckige Dinge, zum Beispiel Teller, Dachgiebel und Fenster, und lasst sie benennen.',
+  D2: 'Zeigt auf ein Blatt Papier oder ein Fenster und zählt gemeinsam Ecken und Seiten.',
+  D3: 'Findet Dinge, die Kugel, Würfel oder Quader sind: Ball, Spielwürfel, Schuhkarton.',
+  D4: 'Nehmt einen Schuhkarton und zählt gemeinsam Flächen, Ecken und Kanten.',
+  D5: 'Stellt drei bis fünf Dinge in eine Reihe und fragt: Was steht links vom Ball? Was steht zwischen Becher und Buch?',
 }
 
 export interface Empfehlung {

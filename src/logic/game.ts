@@ -139,6 +139,7 @@ const MIX_TYPES: TaskType[] = TASK_TYPES.filter((t) => MIX_TOPICS.includes(TOPIC
 /** Altstände ohne gespeicherte Sterne: 0 bis 3 Sterne je Thema aus dem Lernstand. Neue Sterne laufen über `kompetenz.ts`. */
 export function topicStars(skill: Record<TaskType, number>, topic: Topic): 0 | 1 | 2 | 3 {
   const levels = TYPES_OF_TOPIC[topic].map((t) => skill[t])
+  if (levels.length === 0) return 0 // ein Lernfeld ohne Aufgabentypen hat keine Sterne
   if (levels.every((l) => l >= 3)) return 3
   if (levels.every((l) => l >= 2)) return 2
   if (levels.filter((l) => l >= 1).length * 2 >= levels.length) return 1

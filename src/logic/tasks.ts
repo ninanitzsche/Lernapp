@@ -1,4 +1,5 @@
 import { createRng, int, pick, shuffle } from './rng.ts'
+import { genD1, genD2, genD3, genD4, genD5 } from './raumform.ts'
 import type { Rng } from './rng.ts'
 import { vorgaenger, nachfolger, nachbarzehner } from './nachbarn.ts'
 import {
@@ -13,6 +14,8 @@ export const LERNFELDER = [
   { id: 'A', name: 'Zehner und Einer', imMix: true },
   { id: 'B', name: 'Zahlbilder', imMix: true },
   { id: 'C', name: 'Zahlenstrahl', imMix: true },
+  // Raum und Form: nur über die Themenkarte, nicht in Mix-, Knobel- und Buchrunden (docs/MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md, 5.2).
+  { id: 'D', name: 'Raum und Form', imMix: false },
 ] as const
 export type Topic = (typeof LERNFELDER)[number]['id']
 
@@ -29,11 +32,12 @@ export function istTopic(x: unknown): x is Topic {
 /** Schwierigkeit: 1 leicht, 2 mittel (das bisherige Normal), 3 knifflig (die bisherige Knobelrunde). */
 export type Stufe = 1 | 2 | 3
 export const STUFEN_NAMEN: Record<Stufe, string> = { 1: 'leicht', 2: 'mittel', 3: 'knifflig' }
-export const TASK_TYPES = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'] as const
+export const TASK_TYPES = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4', 'D5'] as const
 export type TaskType = (typeof TASK_TYPES)[number]
 
 export const TOPIC_OF: Record<TaskType, Topic> = {
   A1: 'A', A2: 'A', A3: 'A', B1: 'B', B2: 'B', B3: 'B', C1: 'C', C2: 'C', C3: 'C', C4: 'C',
+  D1: 'D', D2: 'D', D3: 'D', D4: 'D', D5: 'D',
 }
 export const TOPICS: Topic[] = LERNFELDER.map((f) => f.id)
 /** Lernfelder, aus denen gemischte Runden, Knobelrunden und der Buchmodus Aufgaben ziehen. */
@@ -50,12 +54,23 @@ export const TYPE_NAMES: Record<TaskType, string> = {
   C2: 'Zahl ablesen',
   C3: 'Vorgänger und Nachfolger',
   C4: 'Nachbarzehner',
+  D1: 'Formen erkennen',
+  D2: 'Ecken und Seiten zählen',
+  D3: 'Körper erkennen',
+  D4: 'Flächen, Ecken und Kanten',
+  D5: 'Lage beschreiben',
 }
+
+/** Ebene Figuren und Körper für Raum und Form. Gezeichnet werden sie in `ui/Figuren.tsx`. */
+export type FigurId = 'dreieck' | 'quadrat' | 'rechteck' | 'viereck' | 'kreis' | 'kugel' | 'wuerfel' | 'quader'
+/** `variante` wählt eine andere Lage oder Proportion derselben Figur (Standard 0). */
+export interface FigurRef { figur: FigurId; variante?: number }
 
 export type Visual =
   | { kind: 'zahlbilder'; items: { tens: number; ones: number }[] }
   | { kind: 'strahl'; from: number; to: number; tickStep: number; labelStep: number; marker?: number }
   | { kind: 'stellentafel'; tens: number | null; ones: number | null }
+  | { kind: 'figuren'; items: FigurRef[] }
 
 export type Input =
   | { kind: 'number'; answer: number }
@@ -65,6 +80,8 @@ export type Input =
   | { kind: 'build'; tens: number; ones: number }
   | { kind: 'line'; from: number; to: number; tickStep: number; labelStep: number; snap: number; answer: number; tolerance: number }
   | { kind: 'cards'; pool: string[]; answer: string[] }
+  /** Große Figurenkarten. Die Antwort ist der Index der gewählten Karte. `label` ist der Text für Screenreader. */
+  | { kind: 'figuren'; karten: (FigurRef & { label: string })[]; answer: number }
 
 export interface Task {
   type: TaskType
@@ -439,6 +456,7 @@ function genC4(rng: Rng, stufe: Stufe = 2): Task {
 
 const GENERATORS: Record<TaskType, (rng: Rng, stufe?: Stufe) => Task> = {
   A1: genA1, A2: genA2, A3: genA3, B1: genB1, B2: genB2, B3: genB3, C1: genC1, C2: genC2, C3: genC3, C4: genC4,
+  D1: genD1, D2: genD2, D3: genD3, D4: genD4, D5: genD5,
 }
 
 /** `true` und `false` bleiben für ältere Aufrufe gültig: true ist Stufe 3, false ist Stufe 2. */
@@ -473,6 +491,7 @@ export function correctResponse(task: Task): Response {
     case 'build': return [i.tens, i.ones]
     case 'line': return i.answer
     case 'cards': return [...i.answer]
+    case 'figuren': return i.answer
   }
 }
 
@@ -485,6 +504,7 @@ export function checkAnswer(task: Task, response: Response): boolean {
   switch (i.kind) {
     case 'number':
     case 'choice':
+    case 'figuren':
       return typeof response === 'number' && response === i.answer
     case 'line':
       return typeof response === 'number' && Math.abs(response - i.answer) <= i.tolerance

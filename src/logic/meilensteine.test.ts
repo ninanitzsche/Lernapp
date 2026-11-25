@@ -47,8 +47,8 @@ test('Kompetenzsterne: leichte Aufgaben allein bringen höchstens zwei von fünf
   const s = initialState('S')
   let st = s
   for (let i = 0; i < 6; i++) st = finishRound(st, ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'C4'].map((t) => ({ type: t as 'A1', outcome: 'first' as const, stufe: 1 as Stufe })), tag(i)).state
-  assert.ok(Object.values(st.skill).every((l) => l === 1), 'Lernstand steigt durch leichte Aufgaben höchstens auf 1')
-  assert.deepEqual(st.sterneErreicht, { A: 2, B: 2, C: 2 })
+  assert.ok(Object.entries(st.skill).filter(([t]) => t[0] !== 'D').every(([, l]) => l === 1), 'Lernstand steigt durch leichte Aufgaben höchstens auf 1')
+  assert.deepEqual(st.sterneErreicht, { A: 2, B: 2, C: 2, D: 0 })
 })
 
 test('Falsch bei kniffligen Aufgaben senkt den Lernstand nicht', () => {
@@ -81,7 +81,7 @@ test('Mehrere Meilensteine einer Runde kommen in der Reihenfolge Entwicklung, St
   const vorher = { ...initialState('S'), totalFood: 10 }
   vorher.rounds = { '2026-11-01': 9 }
   const nachher: GameState = {
-    ...vorher, totalFood: 40, rounds: { '2026-11-01': 10 }, sterneErreicht: { A: 1, B: 0, C: 0 },
+    ...vorher, totalFood: 40, rounds: { '2026-11-01': 10 }, sterneErreicht: { A: 1, B: 0, C: 0, D: 0 },
     statistik: { bearbeitet: 10, geloest: 10, ersteTreffer: 10, knobelTreffer: 10 },
   }
   const liste = pruefeMeilensteine(vorher, nachher, '2026-11-23', true)
@@ -106,7 +106,7 @@ test('Rückblick wird aus gespeicherten Daten berechnet', () => {
 })
 
 test('Altstand ohne neue Felder lädt, Meilensteine werden ohne Münzen nachgetragen, Kontostand bleibt', () => {
-  const basis = { ...initialState('Alt'), totalFood: 120, rounds: { '2026-11-01': 12 }, sterneErreicht: { A: 2, B: 0, C: 0 }, bonusMuenzen: 3 }
+  const basis = { ...initialState('Alt'), totalFood: 120, rounds: { '2026-11-01': 12 }, sterneErreicht: { A: 2, B: 0, C: 0, D: 0 }, bonusMuenzen: 3 }
   const alt = JSON.parse(serializeState(basis))
   delete alt.verlauf; delete alt.statistik; delete alt.meilensteine
   const neu = parseState(JSON.stringify(alt))

@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { BOOK_TASKS, BOOK_SOURCES, bookTaskFor, bookTypes, taskKey } from './bookTasks.ts'
-import { TASK_TYPES, checkAnswer, correctResponse } from './tasks.ts'
+import { MIX_TOPICS, TASK_TYPES, TOPIC_OF, checkAnswer, correctResponse } from './tasks.ts'
 import { BUCHAUFGABEN_LT_TRANSPARENZPAPIER } from './coverage.ts'
 import { createRng } from './rng.ts'
 
@@ -23,7 +23,8 @@ test('Jede Buchaufgabe ist gültig und ihre richtige Antwort wird akzeptiert', (
 })
 
 test('Alle Aufgabentypen haben Buchaufgaben', () => {
-  assert.deepEqual([...bookTypes()].sort(), [...TASK_TYPES].sort())
+  // Lehrwerk-Aufgaben gibt es nur für die Lernfelder im Mix (Zahlenraum bis 100); Raum und Form hat bis zum Buchabgleich (U9) keine.
+  assert.deepEqual([...bookTypes()].sort(), TASK_TYPES.filter((t) => MIX_TOPICS.includes(TOPIC_OF[t])).sort())
 })
 
 test('Alle Buchstellen sind belegt', () => {

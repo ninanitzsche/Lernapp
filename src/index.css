@@ -926,3 +926,16 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
 .relikte { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
 .relikt-knopf { width: 100%; justify-content: flex-start; }
 .denkimpuls { align-self: center; }
+
+/* Raum und Form: Figuren und Körper (Kontur trägt die Form, flache Töne, keine Verläufe) */
+.figur { height: clamp(80px, 17dvh, 140px); width: auto; }
+.figur .fig-flaeche, .figur .fig-hell, .figur .fig-mittel, .figur .fig-dunkel { stroke: var(--color-deep-forest); stroke-width: 4; stroke-linejoin: round; }
+.figur .fig-flaeche, .figur .fig-hell { fill: var(--color-detail-d5e6dc); }
+.figur .fig-mittel { fill: var(--color-detail-8fb7a1); }
+.figur .fig-dunkel { fill: var(--color-detail-6c8a7c); }
+.figuren { display: flex; gap: var(--space-8); justify-content: center; align-items: center; flex-wrap: wrap; background: var(--papier); padding: var(--space-3-5) var(--space-5); border-radius: 20px; }
+.figurenkarten { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: var(--space-3-5); width: 100%; }
+.figurenkarte { position: relative; min-height: calc(var(--touch-target) * 2); padding: var(--space-3); display: flex; align-items: center; justify-content: center; background: var(--papier); border: 3px solid var(--papier-kante); border-radius: var(--radius-card); transition: var(--transition-press); }
+.figurenkarte:active { transform: translateY(2px); }
+.figurenkarte.gewaehlt { border-width: 6px; border-color: var(--color-deep-forest); }
+.figurenkarte .haken { position: absolute; top: var(--space-1); right: var(--space-2); min-width: var(--space-6); font-weight: 700; color: var(--color-deep-forest); }
