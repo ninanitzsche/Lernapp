@@ -9,7 +9,7 @@ Diese Seite ist der Einstieg in alle Projektdokumente. Sie sagt, **wo eine Infor
 | Produkt- und Belohnungsregeln | [REWARD_SYSTEM.md](./REWARD_SYSTEM.md) | Verbindliche Spielregeln für Futter, Wachstum, Sterne, Münzen, Pokale, Relikte, Meilensteine, Album und Terrarium |
 | Testbare Anforderungen | [requirements.md](./specs/2026-11-22-feedback-runde-1/requirements.md) | Prüffähige Muss-Anforderungen; darf Produktregeln nicht neu interpretieren |
 | Screen- und Interaktionsverhalten | [design.md](./specs/2026-11-22-feedback-runde-1/design.md) | UX, Ansichten und Zustände; keine zweite Quelle für Belohnungslogik |
-| Umsetzungsaufgaben aus Feedback-Runde 1 | [tasks.md](./specs/2026-11-22-feedback-runde-1/tasks.md) | Ursprüngliche Aufgabenliste; Status muss mit dem aktuellen Code abgeglichen werden |
+| Feedback-Runde 1 | [requirements.md](./specs/2026-11-22-feedback-runde-1/requirements.md), [design.md](./specs/2026-11-22-feedback-runde-1/design.md), [tasks.md](./specs/2026-11-22-feedback-runde-1/tasks.md) | Anforderungen, UX-Vorgaben und historischer Aufgabenplan mit aktuellem Statusüberblick |
 | Visuelles Grundsystem | [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) | Farben, Typografie, Formen, Komponenten und allgemeine Art Direction |
 | Langfristige Fachwelten | [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md) | Leitidee für eigenständige Tier- und Themenwelten je Schulfach |
 | Produktvision | [product-vision.md](./product-vision.md) | Langfristige Produktidee und fachübergreifende Architekturleitplanken |
@@ -45,14 +45,14 @@ Die früher getrennten Bestandsanalysen, Bildvergleiche, Konzeptnotizen und das 
 
 - [x] Tagesmitbringsel als gewollte Regel dokumentiert.
 - [x] Denkimpuls-Münzabzug anhand von `src/logic/game.ts` geklärt und dokumentiert.
-- [x] Widersprüchliche Aussagen im zentralen Belohnungsdokument und im Lernfelder-/Reliktplan korrigiert.
+- [x] Widersprüchliche Aussagen in Belohnungsregeln, Funktionsübersicht und Feedback-Anforderungen korrigiert.
 - [x] Veralteten README-Verweis und fest eingetragene Testanzahl entfernt.
 - [x] Einstieg und Zuständigkeiten dieser Dokumentation angelegt.
-- [ ] Alle Dokumente auf widersprüchliche, überholte oder doppelte Regeln prüfen.
+- [x] Alle aktiven Dokumente auf widersprüchliche, überholte oder doppelte Regeln geprüft; historische Ausgangsbefunde und Aufgabenpläne eindeutig gekennzeichnet.
 - [x] Phase-2-Dokumente auf vier primäre Quellen konsolidieren; relevante Referenzen und Entscheidungen übernommen, Git-Historie bleibt erhalten.
-- [ ] Aufgabenlisten und Roadmap mit tatsächlichem Implementierungsstand abgleichen.
+- [x] Aufgabenlisten und Roadmap mit tatsächlichem Implementierungsstand abgeglichen; manuelle Prüfungen bleiben separat offen.
 - [x] Alle internen Markdown-Links prüfen und tote Verweise entfernen (keine defekten Links gefunden).
-- [x] Abschließenden Dokumentations-Review und CI-Prüfung durchführen (GitHub Actions: Tests und Build erfolgreich).
+- [ ] Abschließenden Dokumentations-Review und CI-Prüfung nach den letzten Korrekturen durchführen.
 
 ## Technische Quellen
 
