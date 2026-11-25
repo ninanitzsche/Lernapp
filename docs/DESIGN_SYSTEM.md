@@ -45,6 +45,9 @@ Diese vier Elemente bilden eine gemeinsame Bild- und Formensprache. Sie sind kei
 | Deep Forest | `#064D30` | Spielwelt und dunkle Panels |
 | Warm Gold | `#FFD329` | Hauptaktionen, Sterne und Belohnungen |
 | Amber Orange | `#FF9D16` | sekundäre Belohnungsakzente |
+| Task Light Lime | `#9bd93c` | Schuppenband: leicht (Stufe 1) |
+| Task Medium Amber | `#ffb92e` | Schuppenband: mittel (Stufe 2) |
+| Task Difficult Violet | `#6b4bd1` | Schuppenband: knifflig (Stufe 3), Knobelrunde |
 | Midnight Blue | `#071D35` | Tiefe und dunkle Konturen |
 | Warm Cream | `#FFF4DE` | Aufgaben, Dialoge und lesbare Inhaltsflächen |
 
@@ -53,6 +56,7 @@ Diese vier Elemente bilden eine gemeinsame Bild- und Formensprache. Sie sind kei
 - Creme bündelt Inhalte und sorgt für Lesbarkeit.
 - Gold kennzeichnet wichtige Aktionen und Belohnungen.
 - Giftgrün bleibt ein gezielter Akzent für Fortschritt, Magie und besondere Momente.
+- Die drei Task-Farben Lime, Amber und Lila sind semantische Schwierigkeitsfarben ausschließlich für das Schuppenband. Sie ersetzen weder die Markenpalette noch die Gold-/Münzfarbe. Die genaue Bedeutung steht in `REWARD_SYSTEM.md`.
 - Nicht jede Komponente erhält Glow, Verlauf oder starken Schatten.
 - Kontrast und Bedeutung sind wichtiger als dekorative Effekte.
 
