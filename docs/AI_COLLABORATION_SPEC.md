@@ -20,11 +20,11 @@ Der Projektinhaber entscheidet abschließend über Umfang, Prioritäten, Design 
 - `docs/REWARD_SYSTEM.md` ist die maßgebliche Produktquelle für Futter, Wachstum, Schuppen, Sterne, Münzen, Pokale/Orden, Relikte, Meilensteine, Wissensalbum und Terrarium. `FEATURES.md` ist nur eine Statusübersicht; historische Inventare und der aktuelle Code dürfen keine abweichenden Regeln begründen.
 - `docs/specs/2026-11-22-feedback-runde-1/requirements.md` formuliert die dazugehörigen testbaren Muss-Anforderungen.
 - `FEATURES.md` ist eine knappe Statusübersicht, keine zweite Spezifikation.
-- `docs/PHASE0_INVENTAR.md` ist ein historischer Snapshot und keine aktuelle Arbeitsanweisung.
+- `docs/archive/PHASE0_INVENTAR.md` ist obsolet und archiviert. Es ist keine Quelle für aktuelles Verhalten, Regeln oder Design.
 
-Vor jeder relevanten Arbeit dient `docs/README.md` als Index. Gelesen werden die verbindlichen Kurzregeln in `CLAUDE.md`, dieser Zusammenarbeitsvertrag, die aktuelle Roadmap und die für den Auftrag maßgeblichen Fach-/Designquellen. `FEATURES.md` wird zur Bestandssicherung herangezogen. `PHASE0_INVENTAR.md` ist ein historischer Snapshot und wird nur gelesen, wenn die ursprüngliche Ausgangslage relevant ist.
+Vor jeder relevanten Arbeit dient `docs/README.md` als Index. Gelesen werden die verbindlichen Kurzregeln in `CLAUDE.md`, dieser Zusammenarbeitsvertrag, die aktuelle Roadmap und die für den Auftrag maßgeblichen Fach-/Designquellen. `FEATURES.md` wird zur Bestandssicherung herangezogen. `docs/archive/PHASE0_INVENTAR.md` ist obsolet und wird nicht gelesen.
 
-Bei Konflikten gilt folgende Reihenfolge: aktuelle ausdrückliche Anweisung des Projektinhabers, freigegebene Produkt- und Designentscheidungen, danach die tatsächliche Implementierung als Beleg für den Ist-Zustand, zuletzt Annahmen. Code beschreibt nicht automatisch das gewünschte Soll. Bei einer ausdrücklich vom Projektinhaber bestätigten bestehenden Implementierung (aktuell: Tagesmitbringsel und Denkimpuls-Münzabzug) wird diese als Produktregel dokumentiert. Andere Widersprüche werden nicht stillschweigend entschieden.
+Bei Konflikten gilt folgende Reihenfolge: aktuelle ausdrückliche Anweisung des Projektinhabers, freigegebene Produkt- und Designentscheidungen, danach die tatsächliche Implementierung als Beleg für den Ist-Zustand, zuletzt Annahmen. Code beschreibt nicht automatisch das gewünschte Soll. Bei einer ausdrücklich vom Projektinhaber bestätigten bestehenden Implementierung (aktuell: Tagesmitbringsel) wird diese als Produktregel dokumentiert. Andere Widersprüche werden nicht stillschweigend entschieden.
 
 ## 3. Produktschutz
 

@@ -30,7 +30,7 @@ Das Feedback "Belohnung zu spät" ist nur zum Teil richtig, und das ändert die 
 
 | Begriff | Bedeutung |
 |---|---|
-| Stufe | Schwierigkeit einer Aufgabe: 1 leicht, 2 mittel, 3 knifflig. Bisherige "normale" Aufgaben sind Stufe 2, bisherige Knobelaufgaben Stufe 3. |
+| Stufe | Schwierigkeit einer Aufgabe (im Code `Stufe`): 1 leicht, 2 mittel, 3 knifflig. Bisherige "normale" Aufgaben sind Stufe 2, bisherige Knobelaufgaben Stufe 3. In diesem Dokument bedeutet "Stufe" immer die Schwierigkeit. Lernstand, Kompetenzstern und Entwicklungsstufe sind in `docs/REWARD_SYSTEM.md` (Begriffe) definiert. |
 | Rampe | Reihenfolge der Stufen innerhalb einer Runde (leicht zuerst). |
 | Halbzeit | Zwischenstopp nach Aufgabe 5 der Runde. |
 | Serie | Drei Aufgaben nacheinander im ersten Versuch richtig, nur innerhalb einer Runde. |
@@ -105,7 +105,7 @@ Die erste abgeschlossene Runde eines Tages bringt eine Tagesmitbringsel-Münze. 
 
 ## 9. Anforderungen: Elternbereich (Feedback 4)
 
-**Teilweise geklärt:** Die Bedeutung und Reihenfolge der fünf Kompetenzsterne sowie der ausgewogene Nachweis sind in `docs/REWARD_SYSTEM.md` festgelegt. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sowie die Testbereitschaft werden noch im Interview geklärt. Die derzeitigen Prozentwerte und Ableitungen in diesem Abschnitt sind Diskussionsstand, keine freigegebene Produktregel. Bis zur Freigabe dürfen diese Regeln nicht als verbindliche Logik implementiert werden.
+**Teilweise geklärt, vorläufig umgesetzt:** Die Bedeutung und Reihenfolge der fünf Kompetenzsterne sowie der ausgewogene Nachweis sind in `docs/REWARD_SYSTEM.md` festgelegt. Die konkreten Nachweiskriterien je Stern (`CONFIG.kompetenz`), die Ampel (`CONFIG.ampel`) und die Testbereitschaft sind als Startwerte implementiert, aber fachlich nicht freigegeben. Sie gelten als vorläufig und sind keine freigegebene Produktregel; Änderungen sind über die Konfiguration möglich. Die Prozentwerte in diesem Abschnitt sind Diskussionsstand.
 
 - **R6.1** THE Elternbereich SHALL je Aufgabentyp eine Einschätzung zeigen: "sicher", "fast sicher", "noch üben" oder "noch zu wenig Daten". Die Einschätzung SHALL als Text und Symbol angezeigt werden, nicht nur als Farbe.
 - **R6.2** THE Einschätzung SHALL auf den letzten zehn Versuchen je Typ beruhen. Für ein Urteil SHALL es mindestens fünf Versuche geben, sonst "noch zu wenig Daten".
@@ -124,7 +124,7 @@ Die erste abgeschlossene Runde eines Tages bringt eine Tagesmitbringsel-Münze. 
 - **R7.1** EACH Lernfeld SHALL genau fünf Kompetenzsterne haben. Sterne stehen für nachgewiesene Kompetenz, nicht für Zeit, Fleiß oder bloße Aufgabenmenge.
 - **R7.2** THE App SHALL die fünf Sterne eines Lernfeldes in fester Reihenfolge vergeben. Ein höherer Stern setzt alle vorherigen Sterne voraus. Anspruchsvollere Aufgaben dürfen trotzdem jederzeit ausprobiert werden und überspringen keinen Stern.
 - **R7.3** THE Kompetenznachweis SHALL ausgewogen sein: unterschiedliche Aufgabenstellungen und mehrere Übungsrunden sind einzubeziehen. Eine Mindestzahl von Spieltagen SHALL NICHT erforderlich sein. Die konkreten Kriterien je Lernfeld bleiben bis zur fachlichen Freigabe offen.
-- **R7.4** WHEN ein Kind einen Denkimpuls nutzt, THE Aufgabe SHALL weiterhin zum Kompetenznachweis beitragen dürfen. Pro genutztem Denkimpuls wird eine Münze vom Bonusmünzen-Pool dieser Runde abgezogen, höchstens bis zu den in dieser Runde entstandenen Bonusmünzen. Es gibt keine Münzbelohnung je Aufgabe; daher wird keine einzelne Aufgabenmünze abgezogen. Bereits vorhandene Münzen und Sternmünzen bleiben unberührt. Ein falscher Versuch ohne Denkimpuls kostet keine Münze. Maßgeblich ist `docs/REWARD_SYSTEM.md` Abschnitt 5.
+- **R7.4** WHEN ein Kind einen Denkimpuls nutzt, THE Aufgabe SHALL weiterhin zum Kompetenznachweis beitragen dürfen. Für diese Aufgabe SHALL das Futter dem eines zweiten Versuchs entsprechen (leicht und mittel 1 statt 2, knifflig 3 statt 5). Münzen SHALL durch den Denkimpuls nicht gemindert werden. Maßgeblich ist `docs/REWARD_SYSTEM.md` Abschnitt 2.2.
 - **R7.5** THE App SHALL die bestehenden Funktionen „Hilfe anzeigen“ und „bei falscher Antwort richtige Lösung anzeigen“ beibehalten. Eine angezeigte Lösung SHALL nicht als selbstständiger Kompetenznachweis zählen; spätere selbstständige Leistung kann den Nachweis erbringen.
 - **R7.6** THE Kinderansicht SHALL zeigen, welche Kompetenz als Nächstes ansteht, und dies mit einer Fortschrittsanzeige ergänzen. Die Anzeige SHALL auf tatsächlich verfügbaren Lerninformationen beruhen und keine unbelegten Prozentwerte vortäuschen.
 - **R7.7** WHEN alle fünf Sterne eines Lernfeldes verdient sind, THE App SHALL einen thematischen Eintrag im Wissensalbum mit einer besonderen Schlangenillustration und einen passenden Pokal/Orden freischalten.
@@ -137,7 +137,7 @@ Die erste abgeschlossene Runde eines Tages bringt eine Tagesmitbringsel-Münze. 
 
 ## 11. Nicht-funktionale Anforderungen
 
-- **N1** Keine Strafe, kein Verlust, kein Zeitdruck. Fehler beenden nur Serien, senken nie Futter, Münzen, Sterne oder Meilensteine. Ein Denkimpuls reduziert ausschließlich den Bonusmünzen-Pool der aktuellen Runde um eine Münze je genutztem Impuls; der Abzug ist auf die in dieser Runde entstandenen Bonusmünzen begrenzt.
+- **N1** Keine Strafe, kein Verlust, kein Zeitdruck. Fehler beenden nur Serien, senken nie Futter, Münzen, Sterne oder Meilensteine. Ein Denkimpuls senkt ausschließlich das Futter dieser einen Aufgabe auf den Wert eines zweiten Versuchs; er nimmt nie Münzen, Sterne oder bereits erhaltenes Futter weg.
 - **N2** Ton: Die Schlange spricht lustig, nie fies, nie "ey". Neue Texte (Halbzeit, Serie, Häutung) sind in mehreren Varianten vorhanden. Siehe `feedback_schlange_ton`.
 - **N3** Jede Kinderansicht passt ohne Scrollen in `100dvh`, auch die neuen (Halbzeit, Häutung, Album).
 - **N4** Zugänglichkeit: Kontrast mindestens 4,5:1, Zielgrößen mindestens 48 px, sichtbarer Tastaturfokus, `prefers-reduced-motion` respektiert, Stufen nicht nur über Farbe, Feiern ohne Pflicht zum Schnellklicken.

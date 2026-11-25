@@ -25,18 +25,24 @@ Der erste Entwurf hat drei Dinge getan, die für jede Lern-App gelten würden. D
 
 Nach dem Austausch bleibt die Frage der Prüfung "Würde ein Designer das für jedes Kinderprodukt zeichnen?" nur noch für Konfetti und Rundungen mit Ja. Beides ist hier bewusst vorhanden, weil Kinder darauf reagieren, und gehört zum bestehenden Stil.
 
-### 2.2 Farben (bestehende Token, nur Rollen kommen dazu)
+### 2.2 Farben
 
-| Name | Hex | Rolle neu |
+Die Markenpalette steht ausschließlich in `docs/DESIGN_SYSTEM.md` (Abschnitt 3). Dieses Dokument definiert keine eigene Palette. Die Rollen der Feedback-Runde ordnen sich so zu:
+
+| Rolle | Farbe laut `DESIGN_SYSTEM.md` | Hinweis |
 |---|---|---|
-| Moos `--nacht` | `#0f2f26` | Grund aller Kinderansichten |
-| Papier `--papier` | `#fff8e6` | Halbzeit-Karte, Häutungskarte, Album, Elternbereich |
-| Lime `--lime` | `#9bd93c` | Schuppe Stufe 1 (leicht), "sicher" |
-| Amber `--amber` | `#ffb92e` | Schuppe Stufe 2 (mittel), Münzen |
-| Lila `--lila` | `#6b4bd1` | Schuppe Stufe 3 (knifflig), Knobelrunde |
-| Gedämpft `--gedaempft-papier` | `#4b5d54` | Nebentext auf Papier |
+| Grund der Kinderansichten | Deep Forest `#064D30` | ersetzt den früheren Entwurfswert `--nacht` `#0f2f26` |
+| Halbzeit-Karte, Häutungskarte, Album, Elternbereich | Warm Cream `#FFF4DE` | ersetzt den früheren Entwurfswert `--papier` `#fff8e6` |
+| Marken- und Magieakzent | Toxic Lime `#9DFF00` | nicht für Schwierigkeit verwenden |
+| Schuppe Stufe 1 (leicht), "sicher" | Task Light Lime `#9bd93c` | semantische Schwierigkeitsfarbe |
+| Schuppe Stufe 2 (mittel) | Task Medium Amber `#ffb92e` | semantische Schwierigkeitsfarbe, nicht die Münzfarbe |
+| Schuppe Stufe 3 (knifflig), Knobelrunde | Task Difficult Violet `#6b4bd1` | semantische Schwierigkeitsfarbe; auf dunklem Grund die hellere Variante `#b9a4ff` (Token `--color-task-difficult-on-dark`), weil `#6b4bd1` dort nur 1,68:1 erreicht |
+| Münzen und Belohnungen | Warm Gold `#FFD329` | laut `DESIGN_SYSTEM.md` |
+| Nebentext auf Creme | `#4B5D54` (im Code `--color-muted-on-light`) | im Code als Token vorhanden, in der Palettentabelle von `DESIGN_SYSTEM.md` nicht aufgeführt; Aufnahme dort ist zu klären |
 
-Leere Schuppen sind Umriss ohne Füllung, so unterscheiden sich 1, 2 und 3 auch ohne Farbwahrnehmung (Anforderung R1.2). Kontrastpaare werden vor der Abnahme nachgerechnet (Text auf Papier und auf Lime, Amber, Lila mindestens 4,5:1).
+Entscheidung des Projektinhabers (25.11.2026): `DESIGN_SYSTEM.md` ist die maßgebliche Referenz. Die drei Task-Farben dienen ausschließlich der Aufgabenschwierigkeit.
+
+Leere Schuppen sind Umriss ohne Füllung, so unterscheiden sich 1, 2 und 3 auch ohne Farbwahrnehmung (Anforderung R1.2). Kontrastpaare werden vor der Abnahme nachgerechnet (Text auf Creme und auf Lime, Amber, Lila mindestens 4,5:1).
 
 ### 2.3 Schrift
 
@@ -157,7 +163,7 @@ Das bisherige Transparenzpapier-Table bleibt erhalten (darunter), weil es das Le
 
 Die Produktregeln und sämtliche freigegebenen Startwerte für Futter, Tageslimit, Wachstumsschwellen, Serienbonus, Knobelbelohnungen und Münzen stehen zentral in [docs/REWARD_SYSTEM.md](../../REWARD_SYSTEM.md). Dieses Design-Dokument beschreibt die visuelle Darstellung und Interaktion. Es ist keine zweite Quelle für abweichende Spielwerte.
 
-Bei Widersprüchen gilt `REWARD_SYSTEM.md`; technische Werte in `src/logic/config.ts` sind daran anzupassen.
+Bei Widersprüchen gilt `REWARD_SYSTEM.md`. Eine Abweichung in `src/logic/config.ts` wird zuerst gemeldet; nach der Entscheidung des Projektinhabers wird die unterlegene Seite angeglichen (siehe `REWARD_SYSTEM.md`, Abschnitt 1.6).
 
 ## 5. Leichte Varianten der Aufgabentypen (R2.10)
 
@@ -179,6 +185,8 @@ Leitregel: kleinere Zahlen, keine Zehnergrenzen-Fallen, keine Terme, eine Denkha
 Die genauen Texte und Hinweise jeder leichten Variante werden beim Bauen an die bestehenden Generatoren angelehnt. Die Schreibweise der Zahlwörter bleibt unverändert und durch die bestehenden Tests abgesichert.
 
 ## 6. Datenmodell (additiv, Version bleibt 1)
+
+> **Hinweis (25.11.2026):** Dieser Abschnitt ist der Entwurfsstand vom 24.11.2026. Die Meilensteinarten `thema` und `knobel` sowie das Feld `rueckblick.tage` sind überholt. Der Lernfeld-Abschluss und das Relikt fehlen. Maßgeblich ist der aktuelle Code in `src/logic/` (insbesondere `meilensteine.ts`) und `docs/REWARD_SYSTEM.md`, Abschnitt 9. Dieser Abschnitt wird bei der nächsten fachlichen Änderung am Datenmodell an den Code angeglichen.
 
 Neue optionale Felder in `GameState`. Fehlende Felder erhalten beim Laden Standardwerte (N7).
 
@@ -285,7 +293,7 @@ Diese Entscheidungen dokumentieren das Stakeholder-Interview. Die konsolidierte 
 
 ### 12.2 Hilfe und Belohnung
 
-- Ein **Denkimpuls** ist ausdrücklich erwünscht. Die Aufgabe darf weiterhin zum Kompetenznachweis beitragen, wenn sie im ersten Versuch richtig gelöst wird. Pro genutztem Impuls wird eine Münze vom Bonusmünzen-Pool der Runde abgezogen, höchstens bis zu den in dieser Runde entstandenen Bonusmünzen. Es gibt keine Münzen je Aufgabe; vorhandene Münzen und Sternmünzen bleiben unberührt. Maßgeblich ist `docs/REWARD_SYSTEM.md` Abschnitt 5.
+- Ein **Denkimpuls** ist ausdrücklich erwünscht. Die Aufgabe darf weiterhin zum Kompetenznachweis beitragen, wenn sie im ersten Versuch richtig gelöst wird. Sie bringt dann nur das Futter eines zweiten Versuchs (leicht und mittel 1 statt 2, knifflig 3 statt 5). Münzen werden dadurch nicht gemindert. Maßgeblich ist `docs/REWARD_SYSTEM.md` Abschnitt 2.2.
 - Die bestehenden Funktionen „Hilfe anzeigen“ und „bei falscher Antwort die richtige Lösung anzeigen“ bleiben erhalten.
 - Eine angezeigte Lösung ist kein selbstständiger Kompetenznachweis. Das Kind kann die Kompetenz später bei einer vergleichbaren Aufgabe selbstständig zeigen.
 - Die vorhandene Aufgaben-, Wiederholungs-, Hilfs- und Auswertungslogik bleibt in der Verantwortung von Claude Code. Dieses Interview gibt keine Erlaubnis, sie neu zu erfinden oder unabhängig von der bestehenden Implementierung zu verändern. UX-Anforderungen werden als gewünschtes Verhalten formuliert; technische Umsetzung und fachliche Details prüft Claude Code anhand des Repositories.

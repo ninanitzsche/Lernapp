@@ -12,7 +12,20 @@ Dieses Dokument bündelt die gemeinsam festgelegten Produktregeln. Es verhindert
 3. Keine Strafe, kein Verlust und kein Zeitdruck. Fehler oder Pausen nehmen niemals Futter, Münzen, Sterne, Meilensteine oder gekaufte Gegenstände weg.
 4. Freiwillige schwierigere Aufgaben sind erlaubt. Sie dürfen aber den regulären Kompetenzfortschritt nicht umgehen.
 5. Belohnungen honorieren Lernen und besondere Leistungen, nicht bloße Nutzungsmenge, tägliches Einloggen oder eine bestimmte Spielhäufigkeit. Die ausdrücklich gewollte Tagesmitbringsel-Münze für die erste abgeschlossene Runde eines Tages ist eine begrenzte Ausnahme – keine Login- oder Streak-Prämie.
-6. Alle Zahlenwerte sind zentral in `src/logic/config.ts` zu pflegen. Die fachlich freigegebenen Sollwerte stehen in Abschnitt 2 dieses Dokuments. Bei Abweichungen ist dieses Dokument maßgeblich; die Implementierung muss angepasst werden.
+6. Alle Zahlenwerte sind zentral in `src/logic/config.ts` zu pflegen. Die Werte in diesem Dokument (Futter, Wachstumsschwellen, Münzen) sind Startwerte für den Praxistest und noch nicht fachlich abschließend freigegeben. Es gibt genau eine Wahrheit: Weichen Code und Dokument voneinander ab, wird die Abweichung zuerst gemeldet. Der Projektinhaber entscheidet, welche Seite gilt. Danach wird die andere Seite angeglichen, sodass keine Abweichung offen bleibt. Bis zur Entscheidung wird weder Code noch Dokument stillschweigend geändert.
+
+### Begriffe (eindeutige Verwendung)
+
+Das Wort "Stufe" steht in Texten nie allein, weil es sonst vier verschiedene Dinge meint:
+
+| Begriff | Bedeutung | Wertebereich |
+|---|---|---|
+| Schwierigkeit | leicht, mittel oder knifflig einer einzelnen Aufgabe (im Code `Stufe`) | 1 bis 3 |
+| Lernstand | Können je Aufgabentyp (Elternbereich, Rampe) | 0 bis 3 |
+| Kompetenzstern | nachgewiesenes Können je Lernfeld | 1 bis 5 |
+| Entwicklungsstufe | Wachstum von Nico (Baby bis Erwachsen/legendär) | 1 bis 5 |
+
+In Kinder-Texten stehen nur "leicht", "mittel" und "knifflig". Die übrigen Dokumente verwenden diese Begriffe.
 
 ## 2. Futter und Wachstum
 
@@ -28,9 +41,11 @@ Dieses Dokument bündelt die gemeinsam festgelegten Produktregeln. Es verhindert
 
 | Aufgabenschwierigkeit | Im 1. Versuch richtig | Im 2. Versuch richtig | Nicht gelöst |
 |---|---:|---:|---:|
-| Leicht (Stufe 1) | 2 | 1 | 0 |
-| Mittel (Stufe 2) | 2 | 1 | 0 |
-| Knifflig (Stufe 3) | 5 | 3 | 0 |
+| Leicht (Schwierigkeit 1) | 2 | 1 | 0 |
+| Mittel (Schwierigkeit 2) | 2 | 1 | 0 |
+| Knifflig (Schwierigkeit 3) | 5 | 3 | 0 |
+
+**Denkimpuls (Hilfe):** Nutzt das Kind vor der Antwort den Denkimpuls, bringt die Aufgabe nur das Futter eines zweiten Versuchs (leicht und mittel 1, knifflig 3), auch wenn sie sofort richtig gelöst wird. Wurde die Aufgabe ohnehin erst im zweiten Versuch gelöst, gibt es nicht noch weniger. Die Aufgabe darf weiterhin zum Kompetenznachweis beitragen. Münzen sind davon nicht betroffen.
 
 Knifflige Aufgaben werden deutlich höher vergütet. Sie ersetzen aber nicht das Grundlagenüben: Sterne und die reguläre Freischaltung von Kompetenz beruhen weiterhin auf mittleren Aufgaben.
 
@@ -56,7 +71,7 @@ Knifflige Aufgaben werden deutlich höher vergütet. Sie ersetzen aber nicht das
 
 Nico hat fünf Entwicklungsstufen:
 
-| Stufe | Entwicklungsname | Erforderliches Gesamtfutter |
+| Entwicklungsstufe | Entwicklungsname | Erforderliches Gesamtfutter |
 |---|---|---:|
 | 1 | Baby | 0 |
 | 2 | Kleinkind | 30 |
@@ -65,8 +80,8 @@ Nico hat fünf Entwicklungsstufen:
 | 5 | Erwachsen / legendär | 350 |
 
 - Wachstum ist dauerhaft. Futter und erreichte Entwicklungsstufen werden bei Pausen nicht zurückgesetzt.
-- Sinkende Schwellen dürfen bestehende Schlangen niemals auf eine niedrigere Stufe zurücksetzen.
-- Wenn ein alter Spielstand durch eine niedrigere Schwelle rechnerisch bereits eine höhere Stufe erreicht, wird diese übernommen, aber nicht nachträglich als neue Feier mit Münzen ausgezahlt.
+- Sinkende Schwellen dürfen bestehende Schlangen niemals auf eine niedrigere Entwicklungsstufe zurücksetzen.
+- Wenn ein alter Spielstand durch eine niedrigere Schwelle rechnerisch bereits eine höhere Entwicklungsstufe erreicht, wird diese übernommen, aber nicht nachträglich als neue Feier mit Münzen ausgezahlt.
 - Wachstum wird schlangenspezifisch als Häutung gefeiert. Die Häutung ist nicht dasselbe wie der Abschluss eines Lernfeldes.
 
 ## 3. Schuppen – Schwierigkeit, nicht Belohnung
@@ -90,7 +105,7 @@ Nico hat fünf Entwicklungsstufen:
 - Ein Denkimpuls darf weiterhin zum Kompetenznachweis beitragen.
 - Eine angezeigte Lösung ist kein selbstständiger Kompetenznachweis. Eine spätere selbstständige Lösung kann ihn erbringen.
 - Fehler oder ein später sinkender Kompetenzstand nehmen bereits verdiente Sterne nicht weg.
-- Die konkreten Teilkompetenzen und Nachweiskriterien jedes einzelnen Sterns werden fachlich je Lernfeld festgelegt. Solange sie nicht freigegeben sind, dürfen keine Schwellen oder Bewertungsregeln erfunden werden.
+- Die konkreten Teilkompetenzen und Nachweiskriterien jedes einzelnen Sterns werden fachlich je Lernfeld festgelegt. Solange sie nicht freigegeben sind, dürfen keine Schwellen oder Bewertungsregeln erfunden werden. **Dokumentierte Ausnahme (Entscheidung des Projektinhabers, 25.11.2026):** Die vorhandenen Startwerte in `CONFIG.kompetenz` bleiben vorläufig bestehen, bis die fachliche Freigabe vorliegt. Sie sind keine freigegebene Produktregel, werden wie die Ampel im Praxistest nachgeschärft und dürfen nicht stillschweigend geändert werden.
 - Die Grundlage des regulären Kompetenzfortschritts bleiben mittlere Aufgaben. Knobelaufgaben geben mehr Futter, ersetzen aber keine Grundlagen.
 
 ## 5. Münzen – Terrarium-Währung
@@ -100,13 +115,13 @@ Nico hat fünf Entwicklungsstufen:
 - Der Shop führt Gegenstände mit Preisen von **1 bis 3 Münzen**.
 - Gekaufte Gegenstände bleiben dauerhaft im Besitz. Platzieren, Verschieben oder Entfernen aus der sichtbaren Szene löscht den Besitz nicht.
 - Ein erreichter Stern bringt nach der bestehenden Regel **eine Münze**.
-- Jede neu überschrittene Entwicklungsstufenschwelle bringt nach der bestehenden Wachstumsbelohnung **eine Münze**. Werden in einer Runde mehrere Schwellen überschritten, zählt jede neu erreichte Stufe.
-- **Denkimpuls:** Für jeden in einer Runde tatsächlich genutzten Denkimpuls wird eine Münze vom Bonusmünzen-Pool dieser Runde abgezogen. Es gibt keine Münze pro Aufgabe; deshalb wird keine einzelne Aufgabenmünze berechnet. Der Abzug ist auf die in dieser Runde entstandenen Bonusmünzen begrenzt. Er kann also Tagesmitbringsel, Stufenaufstiegs-, Knobel- oder Meilenstein-Bonusmünzen reduzieren. Bereits vorhandene Münzen und Kompetenzstern-Münzen bleiben unangetastet; der Kontostand sinkt nie. Ein falscher Versuch allein kostet keine Münze. Die Aufgabe darf mit Denkimpuls weiterhin zum Kompetenznachweis beitragen.
+- Jede neu überschrittene Entwicklungsstufenschwelle bringt nach der bestehenden Wachstumsbelohnung **eine Münze**. Werden in einer Runde mehrere Schwellen überschritten, zählt jede neu erreichte Entwicklungsstufe.
+- **Denkimpuls und Münzen:** Ein Denkimpuls mindert keine Münzen. Münzen werden nie je Aufgabe vergeben, sondern erst am Ende eines abgeschlossenen Aufgabenbündels (Runde) oder bei einem Meilenstein. Die Wirkung des Denkimpulses auf das Futter steht in Abschnitt 2.2.
 - Eine starke Knobelrunde (mindestens 7 von 10 Aufgaben im ersten Versuch richtig) bringt **2 Zusatzmünzen**, höchstens einmal pro Tag.
-- Die **erste starke Knobelrunde überhaupt** bringt zusätzlich einmalig **1 Münze** als Knobel-Meilenstein. Damit kann die erste starke Knobelrunde insgesamt 3 Münzen aus diesen beiden Quellen bringen (vor einem möglichen Denkimpuls-Abzug).
+- Die **erste starke Knobelrunde überhaupt** bringt zusätzlich einmalig **1 Münze** als Knobel-Meilenstein. Damit kann die erste starke Knobelrunde insgesamt 3 Münzen aus diesen beiden Quellen bringen.
 - Weitere einmalige Knobel-Meilensteine richten sich nach kumulierten kniffligen Aufgaben, die im ersten Versuch richtig gelöst wurden: 10 Treffer = 1 Münze, 25 Treffer = 2 Münzen, 50 Treffer = 3 Münzen. Diese Meilensteine sind von der täglichen Knobelrunden-Belohnung getrennt.
 - Ein Relikt-Erfolg bringt beim ersten erfolgreichen Abschluss **2 Terrariummünzen**. Die fünf Aufgaben sind knifflige Varianten desselben Aufgabentyps; mindestens vier müssen im ersten Versuch richtig gelöst werden. Pro Relikt gibt es die Münzen nur einmal. Die konkreten Startwerte liegen in `CONFIG.reliktAufgaben`, `CONFIG.reliktMinTreffer` und `CONFIG.reliktMuenzen`.
-- Die erste abgeschlossene Runde eines Kalendertages bringt **eine Tagesmitbringsel-Münze**. Weitere Runden desselben Tages bringen diese Münze nicht erneut. Sie wird unabhängig davon vergeben, ob die Antworten der Runde richtig waren. Das ist eine ausdrücklich gewollte Belohnung für die erste abgeschlossene Lernrunde des Tages, keine Login-Prämie.
+- Die erste abgeschlossene Runde eines Kalendertages bringt **eine Tagesmitbringsel-Münze**. Weitere Runden desselben Tages bringen diese Münze nicht erneut. Eine Runde ist abgeschlossen, wenn das ganze Aufgabenbündel beantwortet ist; die Münze kommt am Ende dieser Runde. Sie wird unabhängig davon vergeben, ob die Antworten der Runde richtig waren. Das ist eine ausdrücklich gewollte Belohnung für die erste abgeschlossene Lernrunde des Tages, keine Login-Prämie.
 - Es gibt keine Münzbelohnung für reine Rundenzahl, Wochenziele, bloßes Einloggen oder Nutzungsdauer.
 - Fehler, Pausen und spätere Veränderungen des Lernstands ziehen keine Münzen ab.
 
@@ -166,9 +181,9 @@ Nico hat fünf Entwicklungsstufen:
 - **Produktregeln und Bedeutung:** dieses Dokument (`docs/REWARD_SYSTEM.md`).
 - **Testbare Muss-Anforderungen:** `docs/specs/2026-11-22-feedback-runde-1/requirements.md`. Sie konkretisiert diese Produktregeln; bei einem Widerspruch gilt dieses Dokument und die Anforderung muss korrigiert werden.
 - **UX-Darstellung und Screens:** `docs/specs/2026-11-22-feedback-runde-1/design.md`. Dieses Dokument beschreibt die Darstellung, nicht eine abweichende Produktlogik.
-- **Implementierung:** `src/logic/config.ts` und `src/logic/`. Code ist auf die freigegebenen Regeln auszurichten und wird nicht durch alte Werte zur Produktquelle.
+- **Implementierung:** `src/logic/config.ts` und `src/logic/`. Code und Dokument dürfen nicht dauerhaft voneinander abweichen. Eine erkannte Abweichung wird gemeldet, der Projektinhaber entscheidet, danach wird die unterlegene Seite angeglichen.
 - **Funktionsübersicht:** `FEATURES.md` fasst den Status zusammen und verweist hierher; sie definiert keine abweichenden Belohnungsregeln.
-- **Historische Bestandsaufnahme:** `docs/PHASE0_INVENTAR.md` dokumentiert einen früheren Stand. Zahlen und Beobachtungen daraus sind keine aktuellen Vorgaben.
+- **Archiv (obsolet):** `docs/archive/PHASE0_INVENTAR.md` dokumentiert einen früheren Stand. Zahlen und Beobachtungen daraus sind keine Vorgaben.
 
 Vor Änderungen an Futter, Wachstum, Sternen, Münzen, Schuppen, Pokalen/Orden, Relikten, Meilensteinen, Album oder Terrarium ist dieses Dokument zu lesen und bei Bedarf zuerst zu aktualisieren.
 
@@ -179,9 +194,9 @@ Die folgenden Punkte beschreiben den geprüften Stand des Branches und verhinder
 - Die aktive Sternlogik vergibt **fünf Kompetenzsterne je Lernfeld**. Die ältere Funktion `topicStars()` mit 0–3 Sternen bleibt ausschließlich als Migrations-Fallback für sehr alte Spielstände ohne gespeicherte Sternwerte erhalten.
 - Wochenziele und Belohnungen für reine Rundenzahl sind entfernt.
 - Das Tagesmitbringsel ist aktiv und ausdrücklich gewollt: eine Münze für die erste abgeschlossene Runde des Tages.
-- Der Denkimpuls reduziert den Bonusmünzen-Pool der Runde um eine Münze je genutztem Impuls, begrenzt auf die in dieser Runde entstandenen Bonusmünzen. Es gibt keine Münzen je Aufgabe.
+- Der Denkimpuls senkt das Futter der Aufgabe auf den Wert eines zweiten Versuchs (leicht und mittel 1 statt 2, knifflig 3 statt 5) und mindert keine Münzen. Münzen entstehen nur am Rundenende oder bei Meilensteinen.
 - Eine starke Knobelrunde bringt laut `CONFIG.knobelMuenzen` zwei Münzen pro Tag; die erste starke Knobelrunde überhaupt bringt zusätzlich `CONFIG.ersteKnobelMuenze` (eine Münze). Kumulative Knobel-Meilensteine verwenden `CONFIG.knobelTreffer`.
 - Ein Relikt-Erstabschluss bringt `CONFIG.reliktMuenzen` (zwei Münzen); spätere Abschlüsse desselben Relikts bringen nichts.
 - Die Zahlenwerte liegen zentral in `src/logic/config.ts`. Rundenabschluss und Bonuspool werden in `src/logic/game.ts` berechnet; Knobel-/Lernfeld-Meilensteine in `src/logic/meilensteine.ts`, Relikt-Erstbelohnungen in `src/logic/relikte.ts` und Kompetenznachweise/Sterne in `src/logic/kompetenz.ts`.
 
-Bei einer späteren Prüfung ist zwischen **gewollter Produktregel**, **tatsächlichem Implementierungsstand** und **historischem Prüfbericht** zu unterscheiden. Eine Codeabweichung wird nicht stillschweigend als neue Produktentscheidung interpretiert. Für die hier ausdrücklich festgelegten Regeln gilt die aktuelle Freigabe des Projektinhabers.
+Bei einer späteren Prüfung ist zwischen **gewollter Produktregel**, **tatsächlichem Implementierungsstand** und **historischem Prüfbericht** zu unterscheiden. Eine Codeabweichung wird nicht stillschweigend als neue Produktentscheidung interpretiert. Sie wird gemeldet, vom Projektinhaber entschieden und anschließend durch Anpassung der unterlegenen Seite geschlossen. Für die hier ausdrücklich festgelegten Regeln gilt die aktuelle Freigabe des Projektinhabers.

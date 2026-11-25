@@ -3,7 +3,7 @@
 > **Projekt:** Nico's Snake App  
 > **Branch:** `design/luminous-fantasy-adventure`  
 > **Designreferenz:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
-> **Ausgangslage:** [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md)  
+> **Archiv (obsolet):** [PHASE0_INVENTAR.md](./archive/PHASE0_INVENTAR.md)  
 > **Phase-2-Arbeitsplan:** [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md)  
 > **Bestehende Funktionen:** [FEATURES.md](../FEATURES.md)
 
@@ -19,10 +19,12 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 ## Status-Legende
 
-- [x] Erledigt und belegt
-- [ ] Offen
-- **In Arbeit** – wird gerade umgesetzt
-- **Blockiert** – benötigt eine Entscheidung oder Voraussetzung
+Es gelten die Statusbegriffe aus [README.md](./README.md): **Entworfen**, **Implementiert**, **Verifiziert**, **Offen**, **Blockiert**.
+
+- [x] Verifiziert: erledigt und belegt.
+- [ ] Offen, oder nur implementiert und noch nicht verifiziert. Der genaue Stand steht im Text der Zeile.
+- **Offen (begonnen)** – wird gerade umgesetzt.
+- **Blockiert** – benötigt eine Entscheidung oder Voraussetzung.
 
 ## Phase 0 – Projektgrundlage
 
@@ -45,7 +47,9 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 **Ziel:** Wiederverwendbare visuelle Regeln und Komponenten schaffen.
 
-- [ ] Semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens definieren. Stand: implementiert, nicht vollständig verifiziert. Die Kernpalette ist semantisch benannt. Viele migrierte Werte heißen aber nur nach ihrem Wert (z. B. `--color-detail-6c8a7c`, `--effect-detail-rgba-255-185-46-7`) und sind keine semantischen Tokens. Das Namensschema birgt ein Kollisionsrisiko (Alpha .7 und .07 enden beide auf `-7`).
+**Status: Implementiert, vom Projektinhaber abgenommen (25.11.2026), mit bekannten Einschränkungen.** Siehe Abnahme am Ende dieser Phase.
+
+- [ ] Semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens definieren. Stand: implementiert. Vom Projektinhaber vorerst akzeptiert (25.11.2026), nicht technisch bereinigt; bleibt als bekannte Einschränkung offen. Die Kernpalette ist semantisch benannt. Viele migrierte Werte heißen aber nur nach ihrem Wert (z. B. `--color-detail-6c8a7c`, `--effect-detail-rgba-255-185-46-7`) und sind keine semantischen Tokens. Das Namensschema birgt ein Kollisionsrisiko (Alpha .7 und .07 enden beide auf `-7`).
 - [x] Die zentralen Legacy-Variablen auf die freigegebenen semantischen Tokens abbilden.
 - [x] Fest eingetragene Farb- und Effektwerte in den Screens zentralisieren; Abstände auf das Tokenraster migrieren und automatisiert gegen Rückfälle absichern.
 - [x] Atkinson Hyperlegible Next 400/700 und Nunito variabel lokal als WOFF2 für Latin und Latin Extended einbinden.
@@ -53,21 +57,23 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Button-Zustände für Default, Pressed, Disabled und Focus zentral vereinheitlichen.
 - [x] Gemeinsame Oberflächenregeln auf Karten, Panels, Dialoge, Info-Flächen, Badges und Fortschrittsanzeigen anwenden.
 - [x] Abstandstokens in den zentralen Layouts und Komponenten verwenden.
-- [ ] Mobile-first CSS-Regeln, 48-px-Touch-Ziele und schmale Viewports absichern. Stand: implementiert, nicht vollständig verifiziert. `.knopf.preis`, `.knopf.vorlesen-klein` und `.info summary` wurden von 44 px auf `--touch-target` (48 px) angehoben. Der Test prüft nur, dass das Token existiert, nicht die Größe aller Elemente. Reale Touch-Prüfung steht aus.
+- [x] Mobile-first CSS-Regeln, 48-px-Touch-Ziele und schmale Viewports absichern. Stand: implementiert; vom Projektinhaber als in Ordnung gemeldet (25.11.2026), keine unabhängige technische Messung. `.knopf.preis`, `.knopf.vorlesen-klein` und `.info summary` wurden von 44 px auf `--touch-target` (48 px) angehoben. Der automatisierte Test prüft nur, dass das Token existiert, nicht die Größe aller Elemente. Die praktische Touch-Prüfung hat der Projektinhaber als in Ordnung gemeldet.
 - [x] Globale Reduced-motion-Absicherung ergänzen.
 - [x] Automatisierte Design-System-Regressionstests für Token-Referenzen, lokale Fonts und Bedienregeln ergänzen.
 - [x] Code- und automatisierte Design-System-Abnahme abschließen (GitHub Actions: Tests, TypeScript-Prüfung und Produktionsbuild erfolgreich; Vercel Preview `READY`).
-- [ ] Manuelle Sichtprüfung der tatsächlichen Glyphen, Aufgabenansichten und Komponenten auf Smartphone, Tablet und Desktop durchführen (bewusst in die übergreifende Qualitätssicherung in Phase 5 verschoben).
+- [ ] Schwierigkeitsfarben als eigene Tokens (`--color-task-light`, `--color-task-medium`, `--color-task-difficult`, dazu `--color-task-difficult-on-dark` für dunkle Flächen) anlegen und im Schuppenband verwenden. Stand (25.11.2026): implementiert; Tests und TypeScript-Prüfung erfolgreich, Kontrast berechnet (`#6b4bd1` auf Deep Forest nur 1,68:1, deshalb die hellere Variante `#b9a4ff` mit 4,65:1). Nicht visuell verifiziert nach der Umstellung. `--lime`, `--amber` und `--lila` blieben unverändert.
+- [ ] Leere Schuppen auf Creme (Themenkarte) mit dunklem Umriss lesbar machen. Stand (25.11.2026): implementiert, nicht visuell verifiziert.
+- [ ] Manuelle Sichtprüfung der tatsächlichen Glyphen, Aufgabenansichten und Komponenten auf Smartphone, Tablet und Desktop durchführen. Smartphone: vom Projektinhaber gemeldet (25.11.2026), nicht von Claude unabhängig geprüft. Tablet und Desktop: offen, bewusst in die übergreifende Qualitätssicherung in Phase 5 verschoben.
 
 **Umsetzung (Code):** Die bestehenden TSX-Komponenten und ihre Spiel-/Lernlogik bleiben unangetastet. Die Stylesheet-Ebene nutzt nun die zuvor definierten Abstands-, Typografie-, Oberflächen- und Zustands-Tokens auch in den vorhandenen Komponenten. Zusätzlich wurden 74 bisher direkt eingetragene Farb-/Effektwerte in zentrale Farb- und Effekt-Tokens überführt sowie 185 Abstandsangaben auf das Abstandsraster migriert. Die Token-Definitionen bleiben in `:root` zentral wartbar. Info-Flächen und Münz-Chips sind in dieselbe Oberflächenfamilie integriert. Die Dialoge, Karten, Antwortflächen, Buttons und Fortschrittsanzeigen teilen zentrale Material- und Bedienregeln. Die Font-Dateien werden weiterhin lokal geladen; Vite verwendet jetzt relative Asset-Pfade, damit Fonts und weitere öffentliche Assets auch bei Deployments unter einem Projekt-Unterpfad erreichbar bleiben.
 
 **Automatisierte Prüfung:** Ein neuer Test prüft eindeutige Root-Tokens, auflösbare CSS-Variablen, Vorhandensein und WOFF2-Signaturen aller sechs lokalen Schriftdateien sowie Fokus-, Touch- und Reduced-motion-Regeln. Ein zusätzlicher Regressionstest verhindert neue fest eingetragene Farben außerhalb der Token-Definitionen und neue Pixel-Einzelwerte in Abstandsdeklarationen. Der Test ergänzt die bestehenden Spieltests. Der GitHub-Actions-Lauf nach diesem Commit ist der Nachweis für Tests und Produktionsbuild; eine tatsächliche Browser-/Viewport-Sichtprüfung wird dadurch nicht ersetzt.
 
-**Abnahme Phase 1: ABGESCHLOSSEN (Code und automatisierte Prüfung).** Die wichtigsten UI-Bausteine folgen einem konsistenten Token- und Komponentensystem, lokale Assets funktionieren auch unter Projekt-Unterpfaden und Bedienregeln sind automatisiert abgesichert. Die manuelle Browser-/Viewport-Sichtprüfung ist keine offene Implementierungsarbeit der Phase 1 mehr, sondern bleibt als geräteübergreifender Qualitätssicherungs-Check in Phase 5 verbindlich. Damit wird keine manuelle Sichtprüfung als bereits erfolgt behauptet.
+**Status Phase 1: Implementiert, vom Projektinhaber abgenommen (25.11.2026), mit bekannten Einschränkungen.** Code und automatisierte Prüfung (Tests, TypeScript-Prüfung, Produktionsbuild) sind belegt, die Tokens, Komponenten und lokalen Assets funktionieren auch unter Projekt-Unterpfaden. Der Projektinhaber hat gemeldet (nicht von Claude unabhängig geprüft): lokaler Produktionsbuild auf dem Mac erfolgreich, Smartphone-Sichtprüfung und Touch-Bedienung in Ordnung. Bekannte Einschränkungen: Viele Tokens sind nur nach ihrem Wert benannt (Kollisionsrisiko, vom Projektinhaber vorerst akzeptiert), und die Sichtprüfung auf Tablet und Desktop steht noch aus (Phase 5). Die Abnahme der Schwierigkeitsfarben und der leeren Schuppen auf Creme nach der Umstellung vom 25.11.2026 ist ebenfalls offen.
 
 ## Phase 2 – Charaktere und Assets
 
-**Status: IN ARBEIT.** Asset-Inventar und Produktions-/Freigabeablauf sind in [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) dokumentiert. Frühe Konzepttafeln für Terrarium, Spielobjekte und Belohnung sind als historische Exploration im [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) zusammengefasst. Die verbindliche Richtung wird schlangenspezifisch mit der Nico-Referenz weiterentwickelt; Konzepttafeln sind keine Produktionsassets.
+**Status: Offen (begonnen).** Asset-Inventar und Produktions-/Freigabeablauf sind in [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) dokumentiert. Frühe Konzepttafeln für Terrarium, Spielobjekte und Belohnung sind als historische Exploration im [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) zusammengefasst. Die verbindliche Richtung wird schlangenspezifisch mit der Nico-Referenz weiterentwickelt; Konzepttafeln sind keine Produktionsassets.
 
 **Ziel:** Nico und die Spielwelt konsistent und wiederverwendbar gestalten.
 
@@ -128,7 +134,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Finale Screenshots dokumentieren.
 - [x] Roadmap und Funktionsübersicht nach dem Dokumentationsaudit aktualisieren (25.11.2026).
 
-**Prüfhinweis (25.11.2026):** Für Commit `b3d714d1341ae9d3a2ea3d680c6a7d41407bcca4` sind `npm ci`, `npm test` und `npm run build` im [GitHub-Actions-Lauf 146 erfolgreich](https://github.com/ninanitzsche/Lernapp/actions/runs/45606084804). Dabei bestanden **178 Tests**; TypeScript-Prüfung und Produktionsbuild liefen ebenfalls erfolgreich. Der CI-Nachweis ersetzt keine manuelle Browser-/Viewport-Sichtprüfung. Smartphone-, Tablet- und Desktop-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen bleiben offen.
+**Prüfhinweis (25.11.2026):** Für Commit `b3d714d1341ae9d3a2ea3d680c6a7d41407bcca4` sind `npm ci`, `npm test` und `npm run build` im [GitHub-Actions-Lauf 146 erfolgreich](https://github.com/ninanitzsche/Lernapp/actions/runs/45606084804). Tests, TypeScript-Prüfung und Produktionsbuild liefen erfolgreich; die Testanzahl wird hier bewusst nicht festgeschrieben. Der CI-Nachweis ersetzt keine manuelle Browser-/Viewport-Sichtprüfung. Smartphone-, Tablet- und Desktop-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen bleiben offen.
 
 **Abnahmekriterium:** Die App ist visuell konsistent, auf dem Smartphone gut bedienbar, auf größeren Geräten responsiv und ohne bekannte Regressionen.
 

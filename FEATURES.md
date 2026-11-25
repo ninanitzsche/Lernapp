@@ -7,10 +7,15 @@
 
 ## Status-Legende
 
-- **Implementiert** – im aktuellen Quellcode vorhanden.
-- **Teilweise** – Grundfunktion vorhanden, aber mit erkennbaren Einschränkungen.
-- **Offen** – im geprüften Stand nicht vorhanden oder noch zu ergänzen.
-- **Prüfen** – aus dem Quellcode allein nicht abschließend beurteilbar bzw. sollte praktisch getestet werden.
+Es gelten die Statusbegriffe aus [docs/README.md](docs/README.md), Regel 7.
+
+- **Entworfen** – Spezifikation liegt vor, noch nicht im Code.
+- **Implementiert** – im aktuellen Quellcode vorhanden. Wo die praktische Prüfung noch fehlt, steht das ausdrücklich dabei.
+- **Verifiziert** – die relevante Prüfung wurde tatsächlich ausgeführt und belegt.
+- **Offen** – im geprüften Stand nicht oder nur teilweise vorhanden. Teilweise Umsetzungen werden als "Offen (teilweise implementiert)" geführt.
+- **Blockiert** – abhängig von einer Entscheidung oder Voraussetzung.
+
+Begriffe wie Schwierigkeit, Lernstand, Kompetenzstern und Entwicklungsstufe sind in [docs/REWARD_SYSTEM.md](docs/REWARD_SYSTEM.md) definiert.
 
 ---
 
@@ -36,7 +41,7 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 ### Aufgabensteuerung und Lernanpassung
 
 - **Implementiert:** Aufgaben werden algorithmisch bzw. zufallsbasiert erzeugt.
-- **Implementiert:** Pro Aufgabentyp gibt es vier dokumentierte Schwierigkeits-/Kompetenzstufen (0–3).
+- **Implementiert:** Pro Aufgabentyp gibt es einen Lernstand von 0 bis 3 (vier dokumentierte Kompetenzstufen).
 - **Implementiert:** Die Aufgabenauswahl gewichtet schwächere Kompetenzen stärker (ungefähr 60 % schwach, 30 % mittel, 10 % stark).
 - **Implementiert:** Im gemischten Modus werden die Themenbereiche berücksichtigt.
 - **Implementiert:** Es gibt einen gemischten Modus und einen themenspezifischen Modus.
@@ -50,13 +55,13 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 - **Implementiert:** Es gibt einen Aufgabenbestand mit mehr als 100 Buchaufgaben.
 - **Implementiert:** Die Aufgaben beziehen sich auf die im Code hinterlegten Buchseiten 14–15, 16–17 und 20–21.
 - **Implementiert:** Buchaufgaben können mit generierten Aufgaben kombiniert werden.
-- **Teilweise:** Für Buch S. 16, Aufgabe 3, und S. 17, Aufgabe 7, sind laut Projektstand nur ähnliche Aufgaben vorhanden.
+- **Offen (teilweise implementiert):** Für Buch S. 16, Aufgabe 3, und S. 17, Aufgabe 7, sind laut Projektstand nur ähnliche Aufgaben vorhanden.
 - **Offen:** Material aus Arbeitsheft S. 8, 9 und 11 ist im geprüften Aufgabenbestand nicht abgedeckt.
 - **Hinweis:** Buch- und Seitenangaben sollten bei Änderungen am Aufgabenbestand mit dem tatsächlich verwendeten Schulbuch abgeglichen werden.
 
 ### Abgrenzung der Lerninhalte
 
-- **Teilweise:** Plus- und Minusoperationen kommen vereinzelt innerhalb anderer Aufgabentypen vor.
+- **Offen (teilweise implementiert):** Plus- und Minusoperationen kommen vereinzelt innerhalb anderer Aufgabentypen vor.
 - **Offen:** Eigene, systematische Lernmodule für Addition und Subtraktion sind im geprüften Stand nicht vorhanden.
 - **Offen:** Ein systematischer Zahlenraum über 100 hinaus ist nicht vorhanden.
 
@@ -65,12 +70,12 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 ## 2. Schlange und Spielwelt
 
 - **Implementiert:** Die Schlange hat einen Namen, der geändert werden kann.
-- **Implementiert:** Es gibt fünf Wachstumsstufen mit Futter-Schwellen bei 0, 30, 90, 200 und 350 Futter (maßgeblich: `src/logic/config.ts`, `STAGES`).
+- **Implementiert:** Es gibt fünf Entwicklungsstufen mit Futter-Schwellen bei 0, 30, 90, 200 und 350 Futter (maßgeblich: `src/logic/config.ts`, `STAGES`).
 - **Implementiert:** Richtig beantwortete Aufgaben bringen Futter; dadurch wächst die Schlange.
 - **Implementiert:** Fortschrittsanzeige, Gesichtsausdrücke und unterschiedliche Stimmungen.
 - **Implementiert:** Die Schlange reagiert auf Antippen.
 - **Implementiert:** Es gibt wechselnde Sprechblasen und Animationen.
-- **Implementiert:** Fütterungsanimation und Konfetti beim Stufenaufstieg.
+- **Implementiert:** Fütterungsanimation und Konfetti beim Aufstieg in die nächste Entwicklungsstufe.
 - **Implementiert:** Bei längerer Inaktivität verändert sich die Stimmung (hungrig nach etwa 24 Stunden, schlafend nach etwa 48 Stunden).
 - **Implementiert:** Richtige und falsche Antworten lösen unterschiedliche Reaktionen aus. Fehler werden spielerisch und ohne Beschämung kommentiert.
 - **Implementiert:** Lob wird variiert und nicht nach jeder richtigen Antwort abgespielt.
@@ -99,12 +104,12 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 - **Implementiert:** Abschluss eines Lernfeldes (fünf Sterne): einmaliger Meilenstein mit Feier, Eintrag im Wissensalbum und Pokal im Terrarium. Das Lernfeld bleibt normal spielbar, ohne erneute Sterne oder Auszeichnung. Die Pokal- und Albumgrafik ist ein Platzhalter (`src/ui/pokal.ts`) bis zur freigegebenen Illustration.
 - **Implementiert:** Terrarium als Sammlung: Pokale stehen automatisch im Terrarium und lassen sich wie gekaufte Dinge verschieben. Das Wissensalbum bleibt unabhängig von der Platzierung vollständig.
 - **Implementiert:** Relikte: freiwillige Expertenaufgaben (fünf kniffelige Aufgaben je Aufgabentyp, vier Treffer im ersten Versuch nötig), erst sichtbar nach dem ersten Lernfeld-Abschluss. Beim ersten Erfolg gibt es Münzen, danach keine mehr. Relikte ändern weder Sterne noch Lernstand, Verlauf oder Futter.
-- **Implementiert:** Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiterhin zum Kompetenznachweis, wenn sie im ersten Versuch richtig gelöst wird. Pro genutztem Impuls wird eine Münze vom Bonusmünzen-Pool dieser Runde abgezogen, höchstens bis dieser Pool aufgebraucht ist. Bereits vorhandene Münzen und Sternmünzen bleiben unberührt. Ein falscher Versuch allein kostet keine Münze. Diese Regel ist vom Projektinhaber bestätigt und in `docs/REWARD_SYSTEM.md` verbindlich beschrieben.
-- **Implementiert:** Futter je Aufgabe hängt von der Schwierigkeit ab: Stufe 1 und 2 bringen 2 Futter im ersten bzw. 1 im zweiten Versuch; Stufe 3 bringt 5 bzw. 3. Nicht gelöste Aufgaben bringen kein Futter.
+- **Implementiert:** Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiterhin zum Kompetenznachweis, wenn sie im ersten Versuch richtig gelöst wird, bringt aber nur das Futter eines zweiten Versuchs (leicht und mittel 1 statt 2, knifflig 3 statt 5). Münzen werden nicht gemindert. Maßgeblich ist `docs/REWARD_SYSTEM.md`.
+- **Implementiert:** Futter je Aufgabe hängt von der Schwierigkeit ab: leichte und mittlere Aufgaben (Schwierigkeit 1 und 2) bringen 2 Futter im ersten bzw. 1 im zweiten Versuch; knifflige (Schwierigkeit 3) bringen 5 bzw. 3. Nicht gelöste Aufgaben bringen kein Futter.
 - **Implementiert:** Eine vollständig abgeschlossene normale Runde bringt zusätzlich 5 Futter, eine Knobelrunde 10 Futter. Drei richtige Antworten hintereinander im ersten Versuch bringen einmal pro Runde zusätzlich 1 Futter.
 - **Implementiert:** Es gibt eine Begrenzung auf drei futterbringende Runden pro Tag. Weitere Lernrunden bleiben möglich und aktualisieren weiterhin den Lernstand.
 - **Entfernt (25.11.2026):** Wochenziel und Belohnungen für reine Rundenzahl. Es gibt keinen Wochenziel- oder bloßen Rundenzahlbonus. Davon getrennt bleibt das ausdrücklich gewollte Tagesmitbringsel: eine Münze für die erste abgeschlossene Runde eines Kalendertages, unabhängig vom Antwortergebnis. Schon verdiente Münzen und gespeicherte Meilensteine bleiben erhalten.
-- **Implementiert:** Münzen kommen aus Kompetenzsternen (eine je Stern), Entwicklungsstufen (eine je überschrittener Stufenschwelle), dem Tagesmitbringsel, Knobelerfolgen und Relikt-Erstabschlüssen.
+- **Implementiert:** Münzen kommen aus Kompetenzsternen (eine je Stern), Entwicklungsstufen (eine je überschrittener Entwicklungsschwelle), dem Tagesmitbringsel, Knobelerfolgen und Relikt-Erstabschlüssen.
 - **Implementiert:** Eine starke Knobelrunde (mindestens 7 von 10 Aufgaben im ersten Versuch richtig) bringt 2 Münzen, höchstens einmal pro Tag. Die erste starke Knobelrunde bringt zusätzlich einmalig 1 Münze als Meilenstein. Kumulative knifflige Ersttreffer lösen weitere einmalige Meilensteine bei 10, 25 und 50 Treffern aus (1, 2 bzw. 3 Münzen).
 - **Implementiert:** Ein erstmals erfolgreich abgeschlossenes Relikt bringt 2 Münzen; Wiederholungen desselben Relikts bringen keine weiteren Münzen.
 - **Implementiert:** Bereits erreichte Sterne bleiben erhalten, auch wenn sich der Kompetenzstand später verändert. Altstände behalten ihre bisherigen Sterne (0 bis 3); weitere Sterne brauchen neue Nachweise.
@@ -123,7 +128,7 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 - **Implementiert:** Runde pausieren und fortsetzen.
 - **Implementiert:** Einführungsablauf mit drei Schritten; kann übersprungen und später erneut geöffnet werden.
 - **Implementiert:** Die Schlange erklärt den grundlegenden Spielablauf.
-- **Prüfen:** Tastaturbedienbarkeit und Screenreader-Unterstützung sollten insbesondere für Drag-and-drop im Terrarium und alle interaktiven Aufgaben systematisch getestet werden.
+- **Implementiert, Verifizierung offen:** Tastaturbedienbarkeit und Screenreader-Unterstützung sollten insbesondere für Drag-and-drop im Terrarium und alle interaktiven Aufgaben systematisch getestet werden.
 
 ---
 
@@ -203,7 +208,7 @@ Priorisiert nach Zuverlässigkeit und Pflegeaufwand – nicht als Liste vermeint
 Bei jeder größeren Änderung:
 
 1. Neue Funktion hier ergänzen.
-2. Status auf **Implementiert**, **Teilweise**, **Offen** oder **Prüfen** setzen.
+2. Status auf **Entworfen**, **Implementiert**, **Verifiziert**, **Offen** oder **Blockiert** setzen.
 3. Bei Änderungen an Lernlogik auch die Aufgabentabelle und Belohnungsregeln aktualisieren.
 4. Bekannte Einschränkungen nicht als implementierte Funktionen darstellen.
 5. Aussagen zu Tests nur dann als erledigt markieren, wenn Tests tatsächlich ausgeführt wurden.

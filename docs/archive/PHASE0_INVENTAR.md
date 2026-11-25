@@ -1,6 +1,6 @@
 # Projektinventar – Ausgangslage
 
-> **Historische Bestandsaufnahme.** Dieses Dokument hält den damaligen technischen Zustand fest und ist keine aktuelle Produktvorgabe. Insbesondere die hier notierten alten Futter-Schwellen und Schriftangaben sind überholt. Verbindliche aktuelle Belohnungs- und Wachstumsregeln stehen in [REWARD_SYSTEM.md](./REWARD_SYSTEM.md); aktuelle Typografie und Art Direction stehen in [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md).
+> **OBSOLET. Archiviert am 25.11.2026.** Dieses Dokument hält den technischen Zustand vom 24.11.2026 fest und ist keine Produkt-, Design- oder Arbeitsvorgabe mehr. Die hier notierten Futter-Schwellen, Farben und Schriftangaben sind überholt. Maßgeblich sind [REWARD_SYSTEM.md](../REWARD_SYSTEM.md) für Belohnungs- und Wachstumsregeln und [DESIGN_SYSTEM.md](../DESIGN_SYSTEM.md) für Typografie, Farben und Art Direction. Die Git-Historie bleibt erhalten.
 
 > **Stand:** 24.11.2026  
 > **Branch:** `design/luminous-fantasy-adventure`  

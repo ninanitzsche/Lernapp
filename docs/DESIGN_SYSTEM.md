@@ -1,8 +1,8 @@
 # Design System – Luminous Fantasy Adventure
 
 > **Produkt:** Nico's Snake App  
-> **Status:** Visuelle Richtung und Designentscheidungen freigegeben. Phase 1 (Designsystem und UI-Grundlagen) ist auf Code-Ebene abgeschlossen und automatisiert geprüft. Die manuelle Browser-/Viewport-Sichtprüfung ist als übergreifende Qualitätssicherung in Phase 5 offen; die vollständige Vereinheitlichung aller Screens gehört zu Phase 3.  
-> **Arbeitsstand:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md) · **Ausgangslage:** [PHASE0_INVENTAR.md](./PHASE0_INVENTAR.md)
+> **Status:** Visuelle Richtung und Designentscheidungen freigegeben. Phase 1 (Designsystem und UI-Grundlagen) ist implementiert, automatisiert geprüft und vom Projektinhaber abgenommen (25.11.2026), mit bekannten Einschränkungen: Token-Benennung (vorerst akzeptiert) und Tablet/Desktop-Sichtprüfung (Phase 5), siehe Roadmap. Die vollständige Vereinheitlichung aller Screens gehört zu Phase 3.  
+> **Arbeitsstand:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md) · **Archiv (obsolet):** [PHASE0_INVENTAR.md](./archive/PHASE0_INVENTAR.md)
 
 Dieses Dokument enthält ausschließlich die aktuell gültige visuelle Referenz.
 
@@ -45,9 +45,10 @@ Diese vier Elemente bilden eine gemeinsame Bild- und Formensprache. Sie sind kei
 | Deep Forest | `#064D30` | Spielwelt und dunkle Panels |
 | Warm Gold | `#FFD329` | Hauptaktionen, Sterne und Belohnungen |
 | Amber Orange | `#FF9D16` | sekundäre Belohnungsakzente |
-| Task Light Lime | `#9bd93c` | Schuppenband: leicht (Stufe 1) |
-| Task Medium Amber | `#ffb92e` | Schuppenband: mittel (Stufe 2) |
-| Task Difficult Violet | `#6b4bd1` | Schuppenband: knifflig (Stufe 3), Knobelrunde |
+| Task Light Lime | `#9bd93c` | Schuppenband: leicht (Schwierigkeit 1), Token `--color-task-light` |
+| Task Medium Amber | `#ffb92e` | Schuppenband: mittel (Schwierigkeit 2), Token `--color-task-medium` |
+| Task Difficult Violet | `#6b4bd1` | Schuppenband: knifflig (Schwierigkeit 3), Knobelrunde, Token `--color-task-difficult` |
+| Task Difficult Violet auf dunklem Grund | `#b9a4ff` | Variante von knifflig für Deep-Forest-Flächen, Token `--color-task-difficult-on-dark`. `#6b4bd1` erreicht dort nur 1,68:1, die Variante 4,65:1. Auf Creme gilt `#6b4bd1` (5,42:1). |
 | Midnight Blue | `#071D35` | Tiefe und dunkle Konturen |
 | Warm Cream | `#FFF4DE` | Aufgaben, Dialoge und lesbare Inhaltsflächen |
 
