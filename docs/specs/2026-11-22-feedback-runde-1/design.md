@@ -301,8 +301,8 @@ Tipps für zu Hause je Typ (für "Das hilft jetzt", beim Bauen einmal fachlich g
 
 ## 11. Offene Punkte
 
-1. **Noch offen: konkrete Kompetenzdefinition je Stern.** Festgelegt sind fünf aufeinanderfolgende Sterne pro Lernfeld und ein ausgewogener Kompetenznachweis. Welche konkreten Teilkompetenzen und Nachweiskriterien die einzelnen Sterne eines Lernfeldes repräsentieren, wird noch mit der Stakeholderin abgestimmt. Bis dahin keine Schwellen oder fachlichen Bewertungsregeln erfinden.
-2. **Noch offen: Testbereitschaft.** Die Kriterien und Berechnung der Testbereitschaft im Elternbereich sind noch nicht freigegeben. Keine bestehenden Diskussionswerte als Produktregel implementieren.
+1. **Umgesetzt als Startwert, fachlich nicht freigegeben: konkrete Kompetenzdefinition je Stern** (siehe `docs/PLAN_LERNFELDER_RELIKTE.md`, `CONFIG.kompetenz`). Festgelegt sind fünf aufeinanderfolgende Sterne pro Lernfeld und ein ausgewogener Kompetenznachweis. Welche konkreten Teilkompetenzen und Nachweiskriterien die einzelnen Sterne eines Lernfeldes repräsentieren, wird noch mit der Stakeholderin abgestimmt. Bis dahin keine Schwellen oder fachlichen Bewertungsregeln erfinden.
+2. **Vorläufig umgesetzt: Testbereitschaft und Ampel.** Der Projektinhaber hat am 25.11.2026 entschieden, die bestehenden Werte (`CONFIG.ampel`, `lernstand.ts`) zunächst beizubehalten und agil nachzuschärfen. Sie bleiben Startwerte und sind keine fachlich freigegebene Produktregel; im Elternbereich steht weiterhin der Hinweis "Schätzung, kein Testergebnis".
 3. Die konkreten Münzwerte und Wachstumsschwellen sind Startwerte und können nach Praxiserfahrung angepasst werden.
 4. Das Symbol der Schuppe und die Häutung-Animation brauchen eine eigene Zeichnung. Falls später eigene Bilder entstehen, bleibt die Schnittstelle gleich.
 5. Der Vite-Build und die visuelle Prüfung laufen nur auf dem Mac der Projektinhaberin. Layout für kleine Höhen (N3) muss dort geprüft werden.

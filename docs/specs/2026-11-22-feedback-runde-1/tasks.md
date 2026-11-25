@@ -80,6 +80,10 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 - Prüfen: kein Reliktzugang vor Lernfeld-Abschluss; korrekte Zuordnung Pokal zu Relikt; Pokale frei platzierbar; Inventar bleibt vollständig; Reliktaufgaben verändern weder Sterne noch regulären Lernstand.
 - Anforderungen: R7.8 bis R7.12
 
+## Nachtrag 25.11.2026: Umsetzungsstand der Interview-Anforderungen
+
+Siehe `docs/PLAN_LERNFELDER_RELIKTE.md`. Umgesetzt (Logik mit Tests, Oberfläche ohne Browserprüfung): fünf Kompetenzsterne je Lernfeld als Startwerte (T7 Teil Sterne), Lernfeld-Abschluss mit Wissensalbum und Pokal (T10), Terrarium-Sammlung mit Pokalen und Relikte (T13), Denkimpuls (R7.4). Entfernt: Wochenziel, Rundenzahl-Belohnungen und die Auswertung der Nutzungsfrequenz im Elternbereich (R6.8). Offen: fachliche Freigabe der Sternkriterien, Testbereitschaft (Startwerte aus dem Diskussionsstand bleiben vorläufig bestehen), Elternbereich T11 (Umbau auf Sätze zuerst) und alle Sichtprüfungen.
+
 ## Phase C: Abschluss
 
 ### T12 Prüfung und Doku

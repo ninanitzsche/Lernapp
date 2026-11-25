@@ -7,7 +7,7 @@ Keine KI zur Laufzeit, kein Login, keine Cloud: Der Stand liegt nur im Browser (
 
 ```
 npm install      # holt auch motion und canvas-confetti (Animationen)
-npm test        # 147 Tests: Zahlwörter, Aufgaben, Stufen, Spielregeln, Meilensteine, Lernstand, Abdeckung des Transparenzpapiers
+npm test        # 174 Tests: Zahlwörter, Aufgaben, Stufen, Spielregeln, Meilensteine, Kompetenzsterne, Relikte, Lernstand, Abdeckung des Transparenzpapiers
 npm run dev     # lokal öffnen
 npm run build   # Produktionsversion in dist/
 ```

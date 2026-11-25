@@ -94,14 +94,19 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 
 ## 4. Belohnungen und Motivation
 
-- **Implementiert:** Drei Themenbereiche mit jeweils bis zu drei Sternen.
+- **Implementiert (25.11.2026):** Drei Lernfelder (Zehner und Einer, Zahlbilder, Zahlenstrahl) mit je fünf Kompetenzsternen. Die Sterne werden nacheinander verdient, aus selbstständig gelösten Aufgaben (erster Versuch richtig) über mehrere Aufgabenarten und mehrere Runden. Es gibt keine Mindestzahl an Spieltagen. Die Kriterien stehen als Startwerte in `CONFIG.kompetenz` und sind fachlich noch nicht freigegeben.
+- **Implementiert:** Die Themenkarte zeigt das nächste Ziel mit einer Fortschrittsanzeige aus den gespeicherten Nachweisen und dem Hinweis, was noch fehlt (keine Prozentzahlen).
+- **Implementiert:** Abschluss eines Lernfeldes (fünf Sterne): einmaliger Meilenstein mit Feier, Eintrag im Wissensalbum und Pokal im Terrarium. Das Lernfeld bleibt normal spielbar, ohne erneute Sterne oder Auszeichnung. Die Pokal- und Albumgrafik ist ein Platzhalter (`src/ui/pokal.ts`) bis zur freigegebenen Illustration.
+- **Implementiert:** Terrarium als Sammlung: Pokale stehen automatisch im Terrarium und lassen sich wie gekaufte Dinge verschieben. Das Wissensalbum bleibt unabhängig von der Platzierung vollständig.
+- **Implementiert:** Relikte: freiwillige Expertenaufgaben (fünf kniffelige Aufgaben je Aufgabentyp, vier Treffer im ersten Versuch nötig), erst sichtbar nach dem ersten Lernfeld-Abschluss. Beim ersten Erfolg gibt es Münzen, danach keine mehr. Relikte ändern weder Sterne noch Lernstand, Verlauf oder Futter.
+- **Implementiert:** Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiter zum Kompetenznachweis, die Runde bringt eine Münze weniger (höchstens bis die Bonusmünzen der Runde aufgebraucht sind, Sterne bleiben unberührt). Diese Auslegung ist noch zu bestätigen.
 - **Implementiert:** Eine beim ersten Versuch richtige Antwort bringt 2 Futter, eine beim zweiten Versuch richtige Antwort 1 Futter; bei nicht gelöster Aufgabe gibt es kein Futter.
 - **Implementiert:** Der Abschluss einer Runde bringt zusätzlich 5 Futter.
 - **Implementiert:** Es gibt eine Begrenzung auf drei futterbringende Runden pro Tag. Weitere Lernrunden bleiben möglich und aktualisieren weiterhin den Lernstand.
 - **Entfernt (25.11.2026):** Wochenziel und Belohnungen für reine Rundenzahl. Es gibt keinen Bonus für Übungstage oder Rundenzahl. Schon verdiente Münzen und gespeicherte Meilensteine bleiben erhalten.
 - **Implementiert:** Münzen können unter anderem durch den ersten Tagesdurchlauf, Stufenaufstiege, Sterne und den Knobelmodus verdient werden.
 - **Implementiert:** Für den Knobelbonus gilt eine Mindestleistung von 7 aus 10 Aufgaben beim ersten Versuch; der Bonus ist auf einmal pro Tag begrenzt.
-- **Implementiert:** Bereits erreichte Sterne bleiben erhalten, auch wenn sich der Kompetenzstand später verändert.
+- **Implementiert:** Bereits erreichte Sterne bleiben erhalten, auch wenn sich der Kompetenzstand später verändert. Altstände behalten ihre bisherigen Sterne (0 bis 3); weitere Sterne brauchen neue Nachweise.
 - **Implementiert:** Es gibt keinen Verlust von Wachstum bei Lernpausen und keine aufeinander aufbauende Streak-Pflicht.
 
 ---

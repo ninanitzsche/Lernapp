@@ -61,4 +61,10 @@ Stern n wird erst vergeben, wenn Stern n minus 1 verdient ist. Diese Zahlen sind
 
 ## 5. Umsetzungsstand
 
-Wird nach der Umsetzung mit tatsächlich ausgeführten Prüfungen ergänzt.
+**Implementiert (25.11.2026):** Arbeitspakete 1 bis 5 sind im Code vorhanden (`kompetenz.ts`, `relikte.ts`, Erweiterungen in `game.ts`, `meilensteine.ts`, `shop.ts`, Oberfläche in `App.tsx`, `Album.tsx`, `Relikt.tsx`, `Terrarium.tsx`, `Round.tsx`). Die Logik ist durch automatisierte Tests abgedeckt (Tests laufen, siehe README für die aktuelle Zahl).
+
+**Nicht verifiziert:** Die Oberfläche wurde nicht im Browser geprüft (kein Produktionsbuild und keine Viewport-Sichtprüfung in der Sandbox). Das gilt besonders für Themenkarte, Wissensalbum, Relikt-Ansicht, Pokale im Terrarium und den Denkimpuls-Knopf auf dem Smartphone im Hochformat.
+
+**Simulationsergebnis (Rechenmodell, keine Praxisdaten):** Bei gemischten Runden mit je 85 Prozent, 70 Prozent beziehungsweise 55 Prozent Treffern im ersten Versuch kommt der erste Stern nach etwa 2 bis 5 Runden. Alle fünf Sterne eines Lernfeldes liegen nach etwa 9 bis 17 Runden (85 und 70 Prozent) beziehungsweise 15 bis 26 Runden (55 Prozent) vor. Das ist möglicherweise schneller als gewünscht; die Kriterien lassen sich über `CONFIG.kompetenz` ohne Codeänderung verschärfen.
+
+**Offen (Entscheidung nötig):** fachliche Freigabe der Kriterien je Stern, Auslegung der Münzminderung beim Denkimpuls, freigegebene Grafiken für Pokal und Albumillustration.
