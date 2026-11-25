@@ -17,6 +17,9 @@ Der Projektinhaber entscheidet abschließend über Umfang, Prioritäten, Design 
 
 ## 2. Verbindliche Projektquellen
 
+- `docs/REWARD_SYSTEM.md` ist die maßgebliche Produktquelle für Futter, Wachstum, Schuppen, Sterne, Münzen, Pokale/Orden, Relikte, Meilensteine, Wissensalbum und Terrarium. `FEATURES.md` ist nur eine Statusübersicht; historische Inventare und der aktuelle Code dürfen keine abweichenden Regeln begründen.
+- `docs/specs/2026-11-22-feedback-runde-1/requirements.md` formuliert die dazugehörigen testbaren Muss-Anforderungen.
+
 Vor jeder relevanten Arbeit sind die jeweils passenden Dateien zu lesen:
 
 1. `CLAUDE.md` – verbindliche Kurzregeln und Einstieg.
