@@ -167,7 +167,7 @@ Beide Schriften sind freigegeben und lokal als WOFF2 unter `public/fonts/` einge
 - **Charaktere:** Nico in fünf Entwicklungsstufen, benötigte Posen und freigegebene Ausdrucksvarianten.
 - **Umgebungen:** Terrarium sowie passende Szenen und Hintergründe für Home und weitere Bereiche.
 - **Spielobjekte:** Pflanzen, Äste, Steine, Kristalle, Dekoration und Futter.
-- **Belohnungen und Effekte:** Münzen, Schuppen, besondere Freischaltungen, Partikel und Glow-Elemente.
+- **Belohnungen und Effekte:** Münzen, Pokale/Orden, Relikt-Freischaltungen, Partikel und Glow-Elemente. Das Schuppenband ist eine Schwierigkeitsanzeige für Aufgaben und keine Währung oder Sammelbelohnung (siehe `REWARD_SYSTEM.md`).
 
 ### Technische Regeln
 
