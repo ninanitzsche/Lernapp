@@ -14,6 +14,10 @@ npm run build   # Produktionsversion in dist/
 
 Voraussetzung: Node 22.6 oder neuer.
 
+## Dokumentation
+
+Der Einstieg in alle Projektdokumente und ihre Zuständigkeiten: [`docs/README.md`](docs/README.md).
+
 ## Aufbau
 
 - `src/logic/` reine Logik ohne React (Zahlwörter, Aufgabengeneratoren, Futter, Stufen, Stimmung, Lernstand)
