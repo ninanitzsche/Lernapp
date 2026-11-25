@@ -1,12 +1,6 @@
 # Claude Code Instructions – Nico's Snake App
 
-Before making changes, read:
-- `docs/AI_COLLABORATION_SPEC.md`
-- `docs/DESIGN_SYSTEM.md`
-- `docs/ROADMAP_DESIGN.md`
-- `docs/PHASE0_INVENTAR.md`
-- `FEATURES.md`
-- `docs/REWARD_SYSTEM.md`
+Before making changes, use `docs/README.md` as the documentation index and read `docs/AI_COLLABORATION_SPEC.md`, `docs/DESIGN_SYSTEM.md` and `docs/ROADMAP_DESIGN.md`. Also read the topic-specific source of truth before touching that area: `docs/REWARD_SYSTEM.md` for game/reward logic, the relevant feedback requirements/design for UX, and `FEATURES.md` to preserve existing behavior. `docs/PHASE0_INVENTAR.md` is a historical snapshot; consult it only when the original baseline matters, never as current implementation status.
 
 ## Mandatory rules
 - You are the technical lead and implementation owner. ChatGPT is the Creative Director / UX Lead; the project owner has final authority.
