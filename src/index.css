@@ -100,6 +100,12 @@
   --color-ink: #1C2B24;
   --color-muted-on-dark: #B8D6C5;
   --color-muted-on-light: #4B5D54;
+  /* Schwierigkeitsfarben (nur Schuppenband, siehe docs/DESIGN_SYSTEM.md). Keine Marken- oder Münzfarben. */
+  --color-task-light: #9bd93c;
+  --color-task-medium: #ffb92e;
+  --color-task-difficult: #6b4bd1;
+  /* Hellere Variante von knifflig für dunkle Flächen: #6b4bd1 hat auf Deep Forest nur 1,68:1. */
+  --color-task-difficult-on-dark: #b9a4ff;
   --surface-game: var(--color-deep-forest);
   --surface-content: var(--color-warm-cream);
   --surface-elevated: #FFFAEF;
@@ -476,7 +482,10 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 /* ---------- Feedback-Runde 1: Schuppen, Treppe, Halbzeit, Häutung, Album ---------- */
 
 /* Schuppen: Schwierigkeit. Anzahl gefüllter Sechsecke trägt die Aussage, Farbe ist Zugabe. */
-.schuppen { display: inline-flex; align-items: center; gap: var(--space-0-5); margin-left: var(--space-2); vertical-align: middle; }
+.schuppen { --schuppe-knifflig: var(--color-task-difficult-on-dark); display: inline-flex; align-items: center; gap: var(--space-0-5); margin-left: var(--space-2); vertical-align: middle; }
+.thema-karte .schuppen, .eltern .schuppen { --schuppe-knifflig: var(--color-task-difficult); }
+/* Leere Schuppen auf Creme: dunkler Umriss statt heller Schwierigkeitsfarbe (Lime und Amber haben auf Creme nur etwa 1,55:1). */
+.thema-karte .schuppe polygon[fill="none"] { stroke: var(--color-muted-on-light); }
 .schuppe { width: 20px; height: 22px; }
 .schuppen.klein .schuppe { width: 14px; height: 16px; }
 .schuppen-wort { margin-left: var(--space-1-5); font-weight: 800; color: var(--gedaempft); font-size: .9rem; }

@@ -1,8 +1,8 @@
 import { STUFEN_NAMEN } from '../logic/tasks.ts'
 import type { Stufe } from '../logic/tasks.ts'
 
-/** Farbe der Schuppen je Stufe (siehe docs/specs/2026-11-22-feedback-runde-1/design.md, 2.2). */
-const FARBE: Record<Stufe, string> = { 1: 'var(--lime)', 2: 'var(--amber)', 3: '#b9a4ff' }
+/** Farbe der Schuppen je Stufe: semantische Schwierigkeitsfarben aus docs/DESIGN_SYSTEM.md (knifflig je nach Hintergrund, siehe index.css). */
+const FARBE: Record<Stufe, string> = { 1: 'var(--color-task-light)', 2: 'var(--color-task-medium)', 3: 'var(--schuppe-knifflig)' }
 
 /** Eine Sechseck-Schuppe. Gefüllt oder nur als Umriss. */
 function Schuppe({ gefuellt, farbe }: { gefuellt: boolean; farbe: string }) {
