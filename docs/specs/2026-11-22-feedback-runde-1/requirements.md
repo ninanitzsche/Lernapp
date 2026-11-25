@@ -103,7 +103,7 @@ Es gibt keine Belohnung für reine Rundenzahl oder Wochenziele.
 
 ## 9. Anforderungen: Elternbereich (Feedback 4)
 
-**Teilweise geklärt:** Die Bedeutung und Reihenfolge der fünf Kompetenzsterne sowie der ausgewogene Nachweis sind in `design.md` Abschnitt 12 festgelegt. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sowie die Testbereitschaft werden noch im Interview geklärt. Die derzeitigen Prozentwerte und Ableitungen in diesem Abschnitt sind Diskussionsstand, keine freigegebene Produktregel. Bis zur Freigabe dürfen diese Regeln nicht als verbindliche Logik implementiert werden.
+**Teilweise geklärt:** Die Bedeutung und Reihenfolge der fünf Kompetenzsterne sowie der ausgewogene Nachweis sind in `docs/REWARD_SYSTEM.md` festgelegt. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sowie die Testbereitschaft werden noch im Interview geklärt. Die derzeitigen Prozentwerte und Ableitungen in diesem Abschnitt sind Diskussionsstand, keine freigegebene Produktregel. Bis zur Freigabe dürfen diese Regeln nicht als verbindliche Logik implementiert werden.
 
 - **R6.1** THE Elternbereich SHALL je Aufgabentyp eine Einschätzung zeigen: "sicher", "fast sicher", "noch üben" oder "noch zu wenig Daten". Die Einschätzung SHALL als Text und Symbol angezeigt werden, nicht nur als Farbe.
 - **R6.2** THE Einschätzung SHALL auf den letzten zehn Versuchen je Typ beruhen. Für ein Urteil SHALL es mindestens fünf Versuche geben, sonst "noch zu wenig Daten".
