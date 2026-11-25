@@ -270,7 +270,7 @@ export function finishRound(state: GameState, answers: RoundAnswer[], now: Date,
   const ersteVersuche = basisAntworten.filter((a) => a.outcome === 'first').length
   const knobelMuenze = knobel && vollstaendig && ersteVersuche >= CONFIG.knobelMinRichtig && !knobelTage.includes(heute)
   if (knobelMuenze) knobelTage.push(heute)
-  // Tagesmitbringsel: die erste Runde jedes Tages bringt eine Münze, auch wenn die Schlange schon satt wäre.
+  // Tagesmitbringsel: die erste abgeschlossene Runde jedes Tages bringt eine Münze; das Futterlimit greift erst ab der vierten Runde.
   const tagesMuenze = roundsToday === 0
 
   const statistik: Statistik = {
