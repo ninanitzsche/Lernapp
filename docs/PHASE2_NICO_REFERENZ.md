@@ -148,3 +148,70 @@ Die zweite Konzeptübersicht setzt das Feedback zur stärkeren Entwicklung um: D
 ## 11. Nicht Bestandteil dieses Schritts
 
 Keine Änderungen an Lernlogik, Entwicklungsgrenzen, Belohnungen, Shop, Speicherung, Navigation oder Laufzeitreaktionen. Keine Bereinigung historischer Dateien. Keine Serienproduktion weiterer Charakterbilder vor der visuellen Freigabe.
+
+## 12. Verbindliche visuelle Spezifikation – Review 25.11.2026
+
+Dieser Abschnitt fasst die bereits dokumentierten Bildvergleiche, die freigegebene Art Direction und die Produktionsentscheidungen zu einer eindeutigen Arbeitsgrundlage zusammen. Er ersetzt keine Bilddatei und ändert keine Laufzeitzuordnung.
+
+### 12.1 Vergleich der fünf Bestandsstufen
+
+| Stufe | Bewertung des dokumentierten Bestandsvergleichs | Entscheidung für die Produktion |
+|---|---|---|
+| Baby | Die kompakte, runde Form und die großen Augen vermitteln den gewünschten neugierigen Anfang. | `baby-standard.webp` bleibt die bevorzugte Arbeitsbasis. Nicht ohne konkreten Qualitätsgrund neu erfinden. |
+| Kleinkind | Die etwas längere Hals-/Körperform ist eine nachvollziehbare Weiterentwicklung; die Baby-Gesichtsidentität bleibt erkennbar. | `smallChild-standard.webp` bleibt die bevorzugte Arbeitsbasis. |
+| Kind | Die gestrecktere, aktivere Form funktioniert als nächster Entwicklungsschritt. Der dokumentierte Wechsel von grüner zu bernsteinfarbener Iris und die Augen-/Schnauzenpartie erzeugen jedoch einen Kontinuitätssprung. | `child-standard.webp` bleibt vorläufige Basis. Augen-/Irisfamilie und Kopf-/Schnauzenkontur müssen vor der Freigabe harmonisiert werden. |
+| Teenager | Die schlankere, längere Silhouette vermittelt Reife. Der Abstand zur Kind-Stufe und der Übergang zur erwachsenen Logo-Identität sind noch nicht ausreichend abgesichert. | `teen-standard.webp` bleibt vorläufige Basis. Altersproportionen und Augen-/Schnauzenfamilie gezielt prüfen. Die eingebetteten Ausdrucks-/Aktionsvarianten sind keine Produktionsvorlagen. |
+| Erwachsen / legendär | Das vorhandene App-Standardbild weicht laut dokumentiertem Vergleich in Kopf, Augen und Silhouette vom Original-Logo ab. | `adult-standard.webp` ist nicht freigegeben. Das unveränderte Logo ist die maßgebliche Identitätsreferenz; daraus wird eine eigenständige App-Begleiterpose entwickelt. |
+
+**Wichtig zur Beleglage:** Die obigen Einzelbefunde übernehmen den im bisherigen Referenzdokument festgehaltenen direkten Bildvergleich. In dieser Dokumentationsrevision konnten die binären Repository-Bilddateien nicht erneut als Bildmaterial geöffnet und unabhängig visuell geprüft werden. Es wird deshalb keine neue Sichtprüfung behauptet. Die finale Einzelbildfreigabe bleibt ein eigener Schritt.
+
+### 12.2 Verbindlicher Entwicklungsbogen
+
+| Stufe | Muss visuell sofort erkennbar sein | Darf sich entwickeln | Darf nicht passieren |
+|---|---|---|---|
+| Baby | klein, rund, kompakt, großer Kopf und große Augen; offen und staunend | weiche Schuppen, kurze Hals-/Körperform | erwachsene, bedrohliche Mimik |
+| Kleinkind | klar dieselbe Figur wie Baby, weiterhin kompakt | etwas längerer Hals und Körper, verspieltere Haltung | Wechsel von Augen-/Kopffamilie |
+| Kind | sichtbar gestreckter und aktiver; mutig, wissbegierig, stolz | reifere Augenpartie, längerer Körper | bloß eine vergrößerte Babyfigur |
+| Teenager | schlank, athletisch, wild und selbstbewusst | markantere Schuppen-/Kammkontur und reifere Gesichtspartie | nur eine größere Kind-Version oder ein anderer Kreaturentyp |
+| Erwachsen / legendär | imposant, majestätisch, souverän und gefährlich wirkend; nahe an der Logo-Identität | kräftiger Körper, markanter breiterer Kopf, dunklere Smaragd-/Goldschuppen und kontrollierte giftgrüne Magie | Verniedlichung, bösartiger Gegner-Look oder Drachenanatomie |
+
+### 12.3 Unveränderliche Identitätsregeln
+
+1. Nico ist in jeder Stufe eindeutig eine Schlange mit langem, zusammenhängendem Körper.
+2. Keine Beine, Flossen, Flügel oder fischartige Anatomie. Kammartige Konturen dürfen nur als Schuppenfortsätze lesbar sein.
+3. Kopf, Schnauze, Augenposition und Irisgestaltung gehören zu einer erkennbaren Familienähnlichkeit. Altersunterschiede sind erlaubt; ein Identitätswechsel nicht.
+4. Eine gemeinsame grüne Grundfarbwelt und erkennbare Schuppenmaterialität verbinden alle Stufen.
+5. Die Grundbeleuchtung bleibt warm und weich. Biolumineszentes Giftgrün nimmt mit der Reife zu, wird aber nicht zur flächigen Überstrahlung.
+6. Die späten Stufen dürfen wild, uralt und einschüchternd schön wirken. Nico bleibt ein souveräner Begleiter auf der Seite des Kindes, kein Monstergegner.
+7. Das Logo unter `public/images/logo.webp` bleibt unverändert. Es ist Identitäts- und Formreferenz der höchsten Stufe, keine zu kopierende App-Pose und kein Ersatz für ein separates Charakterasset.
+
+### 12.4 Abgleich mit Konzept A und der Spielwelt
+
+Konzept A ist eine frühe Stilsondierung für leuchtendes Waldterrarium, modulare Pflanzen-/Kristallobjekte und eine Edelstein-/Münzbelohnung. Es ist weder ein freigegebenes Produktionsasset noch eine eigenständige Nico-Referenz.
+
+Für die gemeinsame Bildsprache werden daraus nur die kompatiblen Richtungsmerkmale übernommen: räumliche Tiefe, hochwertige stilisierte 3D-Materialität, warme Lichtführung, gezielte biolumineszente Akzente und modulare Einzelobjekte. Die Formulierung „cute stylized realism“ ist für Teenager und Erwachsen/Legendär ausdrücklich nicht maßgeblich.
+
+Die Welt muss aus Nicos Lebensraum entstehen: moosige Wurzeln, geschützte Höhlen und Nester, Äste, Farne, Wasser, Kristalle, Häutung und passende Futter-/Sammelobjekte. Generische Fantasy-Requisiten mit nachträglich ergänzten Schlangenmotiven reichen nicht aus. Die Lernansicht bleibt hell, ruhig und kontrastreich; die reichhaltigste Inszenierung gehört ins Terrarium.
+
+### 12.5 Regeln für die fünf neutralen Produktionsreferenzen
+
+Die fünf neutralen Grundformen werden zuerst als fünf eigenständige Dateien produziert. Für einen fairen Vergleich gelten:
+
+- vergleichbare Kameraperspektive, Ausrichtung und Bildmaßstäbe; die konkrete Perspektive wird anhand der freigegebenen Bestandsreferenzen festgelegt und nicht aus einer Konzepttafel geraten;
+- vollständige, nicht ungewollt abgeschnittene Körperform mit ausreichend transparentem Rand;
+- einheitliche Lichtlogik, Materialqualität, Schuppenlesbarkeit und kontrollierte Highlights;
+- transparente Einzelassets ohne Schachbrett-Simulation;
+- keine Schrift, Alterslabels, Panels, Rahmen, UI, Herzen, Sterne, „Zzz“, Futter oder sonstige eingebrannte Requisiten;
+- jede Stufe einzeln und zusätzlich nebeneinander in gleicher Darstellungsgröße prüfen;
+- Originale und bisherige Laufzeitdateien nicht überschreiben; neue Kandidaten versioniert ablegen.
+
+Erst nach Freigabe der fünf neutralen Basen werden die sieben Emotionen abgeleitet. Die 35 Emotionsbilder werden nicht unabhängig voneinander neu entworfen.
+
+### 12.6 Creative-Direction-Entscheidung und Freigabestatus
+
+**Freigegeben ist die visuelle Spezifikation und der Entwicklungsbogen** aus diesem Dokument: Luminous Fantasy Adventure, schlangenspezifische Welt, dieselbe Nico-Identität über fünf klar unterscheidbare Altersstufen und eine erwachsene/legendäre Form nahe am unveränderten Logo.
+
+**Nicht als finale Produktionsassets freigegeben sind** die fünf aktuellen App-Standardbilder, die Teenager-Zusatzvarianten, Konzepttafeln oder das bisherige Erwachsenenbild. Baby und Kleinkind sind bevorzugte Arbeitsbasen; Kind und Teenager sind vorläufige Arbeitsbasen; die erwachsene App-Pose muss neu am Logo ausgerichtet werden.
+
+**Nächster Produktions-Gate:** Fünf neutrale Einzelreferenzen als zusammenhängende Charakterfamilie. Erst wenn die Bilddateien selbst gegen die Bestandsreferenzen und das Logo geprüft werden können, ist eine belastbare visuelle Assetfreigabe möglich. Bis dahin werden keine 35 Emotionsvarianten und keine großflächige Weltserie produziert.
+
