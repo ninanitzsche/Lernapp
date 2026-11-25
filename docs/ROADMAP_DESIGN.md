@@ -45,7 +45,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 
 **Ziel:** Wiederverwendbare visuelle Regeln und Komponenten schaffen.
 
-- [x] Semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens definieren.
+- [ ] Semantische Farb-, Flächen-, Schatten-, Radius-, Abstands- und Typografie-Tokens definieren. Stand: implementiert, nicht vollständig verifiziert. Die Kernpalette ist semantisch benannt. Viele migrierte Werte heißen aber nur nach ihrem Wert (z. B. `--color-detail-6c8a7c`, `--effect-detail-rgba-255-185-46-7`) und sind keine semantischen Tokens. Das Namensschema birgt ein Kollisionsrisiko (Alpha .7 und .07 enden beide auf `-7`).
 - [x] Die zentralen Legacy-Variablen auf die freigegebenen semantischen Tokens abbilden.
 - [x] Fest eingetragene Farb- und Effektwerte in den Screens zentralisieren; Abstände auf das Tokenraster migrieren und automatisiert gegen Rückfälle absichern.
 - [x] Atkinson Hyperlegible Next 400/700 und Nunito variabel lokal als WOFF2 für Latin und Latin Extended einbinden.
@@ -53,7 +53,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Button-Zustände für Default, Pressed, Disabled und Focus zentral vereinheitlichen.
 - [x] Gemeinsame Oberflächenregeln auf Karten, Panels, Dialoge, Info-Flächen, Badges und Fortschrittsanzeigen anwenden.
 - [x] Abstandstokens in den zentralen Layouts und Komponenten verwenden.
-- [x] Mobile-first CSS-Regeln, 48-px-Touch-Ziele und schmale Viewports absichern.
+- [ ] Mobile-first CSS-Regeln, 48-px-Touch-Ziele und schmale Viewports absichern. Stand: implementiert, nicht vollständig verifiziert. `.knopf.preis`, `.knopf.vorlesen-klein` und `.info summary` wurden von 44 px auf `--touch-target` (48 px) angehoben. Der Test prüft nur, dass das Token existiert, nicht die Größe aller Elemente. Reale Touch-Prüfung steht aus.
 - [x] Globale Reduced-motion-Absicherung ergänzen.
 - [x] Automatisierte Design-System-Regressionstests für Token-Referenzen, lokale Fonts und Bedienregeln ergänzen.
 - [x] Code- und automatisierte Design-System-Abnahme abschließen (GitHub Actions: Tests, TypeScript-Prüfung und Produktionsbuild erfolgreich; Vercel Preview `READY`).

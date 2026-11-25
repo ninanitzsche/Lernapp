@@ -390,7 +390,7 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 .shop-karte.gesperrt { opacity: .72; }
 .shop-karte img { width: 72px; height: 72px; object-fit: contain; }
 .shop-name { font-size: .8rem; line-height: 1.15; min-height: 2.3em; font-weight: 700; }
-.knopf.preis { min-height: 44px; padding: var(--space-1-5) var(--space-3-5); background: var(--amber); box-shadow: 0 4px 0 var(--amber-kante); }
+.knopf.preis { min-height: var(--touch-target); padding: var(--space-1-5) var(--space-3-5); background: var(--amber); box-shadow: 0 4px 0 var(--amber-kante); }
 .knopf.preis:disabled { background: var(--color-detail-d9ceb0); color: var(--color-detail-5c564a); box-shadow: 0 4px 0 var(--color-detail-b3aa8e); }
 @keyframes plopp { 0% { scale: .2; opacity: 0; } 60% { scale: 1.15; opacity: 1; } 100% { scale: 1; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .deko, .muenzfeier, .hinweis, .gluehbirne, .rueckmeldung { animation: none !important; } .knopf, .thema-karte, .balken-fuellung { transition: none; } }
@@ -446,7 +446,7 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 
 /* Erklärtexte zum Aufklappen */
 .info { width: 100%; max-width: 34em; }
-.info summary { display: flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 44px; cursor: pointer; list-style: none; color: var(--color-detail-ffd877); font-weight: 700; }
+.info summary { display: flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: var(--touch-target); cursor: pointer; list-style: none; color: var(--color-detail-ffd877); font-weight: 700; }
 .info summary::-webkit-details-marker { display: none; }
 .info summary::before { content: '?'; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--amber); color: var(--tinte); font-weight: 800; }
 .info[open] summary::before { content: '×'; }
@@ -510,7 +510,7 @@ svg.strahl:not(.strahl-eingabe) { background: var(--papier); border-radius: 20px
 .haut-liste { font-size: 1rem; color: var(--gedaempft-papier); }
 .haut-muenzen { margin: var(--space-0-5) 0 0; font-weight: 800; font-size: 1.3rem; }
 .haut-spruch { margin: 0; text-align: center; font-weight: 700; color: var(--gedaempft); max-width: 28em; }
-.knopf.vorlesen-klein { min-height: 44px; padding: var(--space-1) var(--space-3-5); }
+.knopf.vorlesen-klein { min-height: var(--touch-target); padding: var(--space-1) var(--space-3-5); }
 
 /* Album */
 .album { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-3); flex: 1 1 0; min-height: 0; overflow-y: auto; align-content: start; }
