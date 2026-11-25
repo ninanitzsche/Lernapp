@@ -1,5 +1,7 @@
 # Projektinventar – Ausgangslage
 
+> **Historische Bestandsaufnahme.** Dieses Dokument hält den damaligen technischen Zustand fest und ist keine aktuelle Produktvorgabe. Insbesondere die hier notierten alten Futter-Schwellen und Schriftangaben sind überholt. Verbindliche aktuelle Belohnungs- und Wachstumsregeln stehen in [REWARD_SYSTEM.md](./REWARD_SYSTEM.md); aktuelle Typografie und Art Direction stehen in [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md).
+
 > **Stand:** 24.11.2026  
 > **Branch:** `design/luminous-fantasy-adventure`  
 > **Zweck:** Faktenbasis für den visuellen Relaunch. Dieses Dokument beschreibt den geprüften Ausgangsstand, nicht die Roadmap.
@@ -90,7 +92,7 @@ Phase 0 ist abgeschlossen. Der lokale Produktionsbuild auf dem Mac und die Funkt
 
 - Die neue Farbpalette erfordert mehr als die Anpassung der vorhandenen CSS-Variablen, da viele feste Farbwerte direkt in Regeln stehen.
 - Der Build-Ordner `dist/` war im erfassten Stand 78 MB groß. Ein großer Anteil entfiel auf Bilder in `public/images/`, die Vite unverändert kopiert. Rohbilder nicht ohne Prüfung ihrer Verwendung löschen oder verschieben.
-- **Offener Funktionsdokumentations-Konflikt:** `FEATURES.md` nennt Futter-Schwellen 0/60/150/300/500; `src/logic/config.ts` enthält 0/30/90/200/350. Keine Werte im Rahmen der visuellen Arbeit ändern. Entscheidung des Projektinhabers erforderlich.
+- **Historischer, inzwischen fachlich geklärter Konflikt:** Die damaligen Schwellen 0/60/150/300/500 sind überholt. Verbindlich sind 0/30/90/200/350 Gesamtfutter gemäß `docs/REWARD_SYSTEM.md`. Dieses Inventar bleibt als historische Momentaufnahme unverändert; es ist keine Quelle für aktuelle Spielwerte.
 - Der gespeicherte Pausenzustand enthält laut Codeprüfung nicht den vollständigen Versuchszustand. Das kann nach einem ersten Fehlversuch beim Fortsetzen relevant sein. Dies ist ein separates Logikthema und bleibt außerhalb visueller Änderungen.
 - Zwei überholte Arbeitsdokumente (`docs/spec.md` und `docs/bewertung-ux-und-spieldesign.md`) wurden aus dem aktuellen Arbeitsstand entfernt. Ihre bisherigen Fassungen bleiben über die Git-Historie nachvollziehbar.
 
