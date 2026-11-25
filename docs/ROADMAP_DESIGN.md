@@ -75,6 +75,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erstellen.
 - [x] Zweite neutrale Nico-Konzeptiteration als bevorzugte Richtung bestätigt und mit der kanonischen Charakterreferenz dokumentiert; späte Stufen bleiben kraftvoll/legendär und schlangengerecht.
 - [x] Fünf Entwicklungsstufen als konsistente Charakterfamilie spezifizieren (visuelle Einzelasset-Freigabe und Produktion bleiben offen).
+ - [x] Verbindliche Nico-Visuelle-Spezifikation aus Bestandsvergleich, Entwicklungsbogen, Identitäts- und Produktionsregeln konsolidieren; Art-Direction-Freigabe gilt für die Spezifikation, nicht für einzelne Bilddateien.
 - [ ] Vollständiges Stil-Referenzpaket aus Nico, Terrarium, Einzelobjekten und Belohnungen final visuell freigeben.
 - [ ] Benötigte transparente Charakter-Assets und Posen festlegen.
 - [ ] Einzelne 3D-Spielgrafiken mit ChatGPT erstellen; Claude Code bindet die freigegebenen Assets technisch ein.
