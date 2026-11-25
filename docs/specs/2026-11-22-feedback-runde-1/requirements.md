@@ -1,6 +1,6 @@
 # Anforderungen: Feedback-Runde 1 (Belohnung, Stufen, Meilensteine, Elternblick)
 
-Stand: 2026-11-24. Die ursprüngliche Feedback-Runde ist implementiert; die in Abschnitt 10 ergänzten Interview-Anforderungen sind spezifiziert, aber noch nicht implementiert oder verifiziert.
+Stand: 2026-11-25. Die Anforderungen aus Feedback-Runde 1 und dem Stakeholder-Interview sind weitgehend implementiert. Automatisierte Logiktests sind vorhanden; manuelle Browser-/Viewport-Prüfungen bleiben teilweise offen. Den aktuellen Umsetzungsstand führen `FEATURES.md` und `docs/ROADMAP_DESIGN.md`.
 Verfahren: spec-driven in drei Dokumenten (Anforderungen, Design, Aufgaben), nach dem Muster Requirements, Design, Tasks mit Anforderungen im EARS-Format. Dieses Dokument sagt, WAS gelten muss. `design.md` sagt, WIE. `tasks.md` sagt, in welcher Reihenfolge gebaut und geprüft wird.
 Die verbindlichen visuellen Grundlagen stehen in `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Die Produktregeln für alle Belohnungs- und Fortschrittssysteme stehen zentral in `docs/REWARD_SYSTEM.md`; dieses Dokument formuliert dazu testbare Muss-Anforderungen. Bei Widersprüchen ist `REWARD_SYSTEM.md` maßgeblich. Es gibt keine separate `docs/spec.md` als Produktquelle.
 
@@ -89,7 +89,7 @@ Meilensteintypen und Auslöser:
 | Knobelerfolg | Erste starke Knobelrunde und definierte Treffer-Meilensteine | Bestehende Knobel-Münzbelohnung |
 | Relikt | Freiwillige Expertenaufgabe aus einem freigeschalteten Relikt erfolgreich abgeschlossen | Terrariummünzen; konkrete Höhe folgt der bestehenden Belohnungslogik |
 
-Es gibt keine Belohnung für reine Rundenzahl oder Wochenziele.
+Die erste abgeschlossene Runde eines Tages bringt eine Tagesmitbringsel-Münze. Es gibt keine Belohnung für reine Rundenzahl oder Wochenziele.
 
 - **R5.1** Jeder Meilenstein SHALL genau einmal ausgelöst und mit Datum und Rückblick gespeichert werden.
 - **R5.2** WHEN ein Lernfeld vollständig gemeistert wird, THE App SHALL den Abschluss als besonderen Lernmeilenstein darstellen und den thematischen Album-Eintrag sowie den passenden Pokal/Orden freischalten.
@@ -122,7 +122,7 @@ Es gibt keine Belohnung für reine Rundenzahl oder Wochenziele.
 - **R7.1** EACH Lernfeld SHALL genau fünf Kompetenzsterne haben. Sterne stehen für nachgewiesene Kompetenz, nicht für Zeit, Fleiß oder bloße Aufgabenmenge.
 - **R7.2** THE App SHALL die fünf Sterne eines Lernfeldes in fester Reihenfolge vergeben. Ein höherer Stern setzt alle vorherigen Sterne voraus. Anspruchsvollere Aufgaben dürfen trotzdem jederzeit ausprobiert werden und überspringen keinen Stern.
 - **R7.3** THE Kompetenznachweis SHALL ausgewogen sein: unterschiedliche Aufgabenstellungen und mehrere Übungsrunden sind einzubeziehen. Eine Mindestzahl von Spieltagen SHALL NICHT erforderlich sein. Die konkreten Kriterien je Lernfeld bleiben bis zur fachlichen Freigabe offen.
-- **R7.4** WHEN ein Kind einen Denkimpuls nutzt, THE Aufgabe SHALL weiterhin zum Kompetenznachweis beitragen dürfen. Für diese Aufgabe erhält das Kind eine Münze weniger für das Terrarium.
+- **R7.4** WHEN ein Kind einen Denkimpuls nutzt, THE Aufgabe SHALL weiterhin zum Kompetenznachweis beitragen dürfen. Pro genutztem Denkimpuls wird eine Münze vom Bonusmünzen-Pool dieser Runde abgezogen, höchstens bis zu den in dieser Runde entstandenen Bonusmünzen. Es gibt keine Münzbelohnung je Aufgabe; daher wird keine einzelne Aufgabenmünze abgezogen. Bereits vorhandene Münzen und Sternmünzen bleiben unberührt. Ein falscher Versuch ohne Denkimpuls kostet keine Münze. Maßgeblich ist `docs/REWARD_SYSTEM.md` Abschnitt 5.
 - **R7.5** THE App SHALL die bestehenden Funktionen „Hilfe anzeigen“ und „bei falscher Antwort richtige Lösung anzeigen“ beibehalten. Eine angezeigte Lösung SHALL nicht als selbstständiger Kompetenznachweis zählen; spätere selbstständige Leistung kann den Nachweis erbringen.
 - **R7.6** THE Kinderansicht SHALL zeigen, welche Kompetenz als Nächstes ansteht, und dies mit einer Fortschrittsanzeige ergänzen. Die Anzeige SHALL auf tatsächlich verfügbaren Lerninformationen beruhen und keine unbelegten Prozentwerte vortäuschen.
 - **R7.7** WHEN alle fünf Sterne eines Lernfeldes verdient sind, THE App SHALL einen thematischen Eintrag im Wissensalbum mit einer besonderen Schlangenillustration und einen passenden Pokal/Orden freischalten.
@@ -135,7 +135,7 @@ Es gibt keine Belohnung für reine Rundenzahl oder Wochenziele.
 
 ## 11. Nicht-funktionale Anforderungen
 
-- **N1** Keine Strafe, kein Verlust, kein Zeitdruck. Fehler beenden nur Serien, senken nie Futter, Münzen, Sterne oder Meilensteine. Ein Denkimpuls reduziert ausschließlich die Münzbelohnung der konkreten Aufgabe um eine Münze.
+- **N1** Keine Strafe, kein Verlust, kein Zeitdruck. Fehler beenden nur Serien, senken nie Futter, Münzen, Sterne oder Meilensteine. Ein Denkimpuls reduziert ausschließlich den Bonusmünzen-Pool der aktuellen Runde um eine Münze je genutztem Impuls; der Abzug ist auf die in dieser Runde entstandenen Bonusmünzen begrenzt.
 - **N2** Ton: Die Schlange spricht lustig, nie fies, nie "ey". Neue Texte (Halbzeit, Serie, Häutung) sind in mehreren Varianten vorhanden. Siehe `feedback_schlange_ton`.
 - **N3** Jede Kinderansicht passt ohne Scrollen in `100dvh`, auch die neuen (Halbzeit, Häutung, Album).
 - **N4** Zugänglichkeit: Kontrast mindestens 4,5:1, Zielgrößen mindestens 48 px, sichtbarer Tastaturfokus, `prefers-reduced-motion` respektiert, Stufen nicht nur über Farbe, Feiern ohne Pflicht zum Schnellklicken.
