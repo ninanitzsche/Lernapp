@@ -39,7 +39,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Smartphone-Hochformat vom Projektinhaber lokal geprüft und als funktionierend bestätigt.
 - [x] Lokaler Produktionsbuild auf dem Mac vom Projektinhaber erfolgreich ausgeführt und bestätigt.
 
-**Phase-0-Ergebnis: ABGESCHLOSSEN.** Projektinventar, Funktionsschutz, visuelle Ausgangssichtung und verbindliche Designentscheidungen liegen vor. Der Projektinhaber hat die Smartphone-Darstellung im Hochformat lokal geprüft und als funktionierend bestätigt sowie den erfolgreichen lokalen Produktionsbuild auf dem Mac gemeldet. Tests (144/144) und Typprüfung (`tsc -b`) waren zusätzlich in der Linux-Sandbox erfolgreich. Die mobile Prüfung und der lokale Build sind Nutzerbestätigungen, keine von ChatGPT unabhängig ausgeführten Tests.
+**Phase-0-Ergebnis: ABGESCHLOSSEN.** Projektinventar, Funktionsschutz, visuelle Ausgangssichtung und verbindliche Designentscheidungen liegen vor. Der Projektinhaber hat die Smartphone-Darstellung im Hochformat lokal geprüft und als funktionierend bestätigt sowie den erfolgreichen lokalen Produktionsbuild auf dem Mac gemeldet. Die damalige Testsuite und Typprüfung (`tsc -b`) waren zusätzlich in der Linux-Sandbox erfolgreich; die historische Testanzahl wird hier nicht fortgeschrieben. Die mobile Prüfung und der lokale Build sind Nutzerbestätigungen, keine von ChatGPT unabhängig ausgeführten Tests.
 
 ## Phase 1 – Designsystem und UI-Grundlagen
 
@@ -56,7 +56,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [x] Mobile-first CSS-Regeln, 48-px-Touch-Ziele und schmale Viewports absichern.
 - [x] Globale Reduced-motion-Absicherung ergänzen.
 - [x] Automatisierte Design-System-Regressionstests für Token-Referenzen, lokale Fonts und Bedienregeln ergänzen.
-- [x] Code- und automatisierte Design-System-Abnahme abschließen (149 Tests, TypeScript-Prüfung und Produktionsbuild erfolgreich; Vercel Preview `READY`).
+- [x] Code- und automatisierte Design-System-Abnahme abschließen (GitHub Actions: Tests, TypeScript-Prüfung und Produktionsbuild erfolgreich; Vercel Preview `READY`).
 - [ ] Manuelle Sichtprüfung der tatsächlichen Glyphen, Aufgabenansichten und Komponenten auf Smartphone, Tablet und Desktop durchführen (bewusst in die übergreifende Qualitätssicherung in Phase 5 verschoben).
 
 **Umsetzung (Code):** Die bestehenden TSX-Komponenten und ihre Spiel-/Lernlogik bleiben unangetastet. Die Stylesheet-Ebene nutzt nun die zuvor definierten Abstands-, Typografie-, Oberflächen- und Zustands-Tokens auch in den vorhandenen Komponenten. Zusätzlich wurden 74 bisher direkt eingetragene Farb-/Effektwerte in zentrale Farb- und Effekt-Tokens überführt sowie 185 Abstandsangaben auf das Abstandsraster migriert. Die Token-Definitionen bleiben in `:root` zentral wartbar. Info-Flächen und Münz-Chips sind in dieselbe Oberflächenfamilie integriert. Die Dialoge, Karten, Antwortflächen, Buttons und Fortschrittsanzeigen teilen zentrale Material- und Bedienregeln. Die Font-Dateien werden weiterhin lokal geladen; Vite verwendet jetzt relative Asset-Pfade, damit Fonts und weitere öffentliche Assets auch bei Deployments unter einem Projekt-Unterpfad erreichbar bleiben.
@@ -121,13 +121,13 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Tablet- und Desktop-Layouts prüfen.
 - [ ] Touch-Ziele und Drag-and-drop praktisch testen.
 - [ ] Kontrast, Lesbarkeit und Schriftgrößen kontrollieren.
-- [x] Tests und Typprüfung nach der vollständigen Phase-1-Migration auf dem aktuellen Branch-Commit ausführen (GitHub Actions: 149 Tests bestanden; TypeScript-Prüfung erfolgreich).
-- [x] Produktionsbuild nach der vollständigen Phase-1-Migration auf dem aktuellen Branch-Commit erfolgreich ausführen (GitHub Actions und Vercel Preview erfolgreich).
+- [x] Tests und Typprüfung nach der vollständigen Phase-1-Migration ausführen (GitHub Actions: Tests und TypeScript-Prüfung erfolgreich; aktueller Nachweis siehe Prüfhinweis unten).
+- [x] Produktionsbuild nach der vollständigen Phase-1-Migration erfolgreich ausführen (GitHub Actions und Vercel Preview erfolgreich; aktueller Nachweis siehe Prüfhinweis unten).
 - [ ] Bestehende Spielstände und Lernabläufe auf Regressionen prüfen.
 - [ ] Finale Screenshots dokumentieren.
 - [ ] Roadmap und Funktionsübersicht aktualisieren.
 
-**Aktueller Prüfhinweis (24.11.2026):** Für Commit `c350d5e2319085e2f2a939e1e0a27b127f9ac7b7` sind 149 automatisierte Tests, TypeScript-Prüfung und Produktionsbuild in GitHub Actions erfolgreich. Die zugehörige Vercel Preview steht auf `READY`. Die Browser-/Viewport-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen sind weiterhin offen. Ein Vercel-Sandbox-Desktop konnte wegen fehlender Berechtigung (403) nicht gestartet werden; daher wird keine manuelle Browserprüfung als erledigt markiert.
+**Prüfhinweis (25.11.2026):** Für den aktuellen Dokumentations-/Teststand auf Commit `8d8b1188928dce47854fd32dd7606001793ed182` sind `npm ci`, `npm test` und `npm run build` in [GitHub Actions erfolgreich](https://github.com/ninanitzsche/Lernapp/actions/runs/45601408232). Das bestätigt automatisierte Tests und Produktionsbuild, ersetzt aber keine manuelle Browser-/Viewport-Sichtprüfung. Smartphone-, Tablet- und Desktop-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen bleiben offen.
 
 **Abnahmekriterium:** Die App ist visuell konsistent, auf dem Smartphone gut bedienbar, auf größeren Geräten responsiv und ohne bekannte Regressionen.
 
