@@ -4,6 +4,21 @@ Historischer Umsetzungsplan vom 24.11.2026. Gehört zu `requirements.md` und `de
 
 Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneinander unabhängig. T7 nach T5 und T6. T8 zuletzt.
 
+## Aktueller Umsetzungsstand (25.11.2026)
+
+Diese Übersicht ist maßgeblich für den Status; die darunterstehenden T1–T13-Texte halten den ursprünglichen Arbeitsauftrag fest.
+
+| Aufgaben | Implementierungsstand | Verifikation / Rest |
+|---|---|---|
+| T1–T6 | Implementiert | Logik und zugehörige automatisierte Tests vorhanden; aktueller Gesamtlauf siehe Roadmap |
+| T7 | Implementiert | Sternlogik und Elternbereich vorhanden. Konkrete Kompetenzkriterien in `CONFIG.kompetenz` sind Startwerte und fachlich noch nicht freigegeben |
+| T8–T10 | Implementiert | Schuppen, Treppe, Halbzeit, Rundenfeedback, Häutung, Pokal-/Albumdarstellung vorhanden; manuelle Sichtprüfung offen |
+| T11 | Implementiert | Elternbereich mit „Das hilft jetzt“, Testbereitschaft, Typ-Einschätzung, Verlauf, Meilensteinen und Transparenzpapier vorhanden; manuelle Sichtprüfung offen |
+| T12 | Teilweise erledigt | Automatisierte Tests, TypeScript-Prüfung und Produktionsbuild über CI erfolgreich. Manuelle Geräte-, Lernablauf- und Regressionsprüfung offen |
+| T13 | Implementiert | Terrarium-Sammlung, Pokale und freigeschaltete Relikte vorhanden; manuelle Interaktionsprüfung offen |
+
+
+
 ## Phase A: Grundlagen (Logik, ohne Oberfläche)
 
 ### T1 Spielwerte und Typen
@@ -45,7 +60,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 ### T7 Lernstand für Eltern
 - Dateien: neu `src/logic/lernstand.ts` plus Test
 - Tun: Bereits freigegeben sind fünf Sterne je Lernfeld, die feste Reihenfolge und der ausgewogene Kompetenznachweis über unterschiedliche Aufgabenstellungen und mehrere Übungsrunden. Die konkreten Teilkompetenzen und Nachweiskriterien je Stern sind als konfigurierbare Startwerte in `src/logic/config.ts` umgesetzt, aber fachlich noch nicht freigegeben. Denkimpuls darf zum Kompetenznachweis beitragen; pro genutztem Impuls wird eine Münze vom Bonusmünzen-Pool der Runde abgezogen (begrenzt auf die in der Runde entstandenen Bonusmünzen), nicht von einer Aufgabenmünze. Die bestehende Hilfe-/Lösungsanzeige bleibt erhalten; eine angezeigte Lösung ist kein selbstständiger Nachweis.
-- Test zuerst: Tests erst ergänzen, wenn die konkreten fachlichen Kriterien und die Testbereitschaft freigegeben sind. Die Sternlogik ist implementiert. Die fachliche Freigabe der konfigurierten Kriterien und eine gesonderte Validierung der Testbereitschaft bleiben offen.
+- Tests: Automatisierte Tests für die vorhandene Sternlogik und die Nachweisberechnung sind implementiert. Sie prüfen die technische Regelumsetzung, nicht die pädagogische Angemessenheit der Kriterien. Die fachliche Freigabe der konfigurierten Kriterien und eine gesonderte Validierung der Testbereitschaft bleiben offen.
 - Anforderungen: R6.1 bis R6.6 (nach Interview), R6.8
 
 ## Phase B: Oberfläche (je Aufgabe Sichtprüfung auf dem Mac)
@@ -84,12 +99,12 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 
 Dieser Nachtrag ist der aktuelle Status gegenüber dem historischen Arbeitsplan. Die ursprünglichen Formulierungen unter T1–T13 bleiben als nachvollziehbare Aufgabenherkunft erhalten; sie dürfen nicht als offene Implementierungsaufträge gelesen werden.
 
-Der verbindliche Regelstand steht in `docs/REWARD_SYSTEM.md`, der aktuelle Funktionsstatus in `FEATURES.md`. Umgesetzt (Logik mit Tests, Oberfläche ohne Browserprüfung): fünf Kompetenzsterne je Lernfeld als Startwerte (T7 Teil Sterne), Lernfeld-Abschluss mit Wissensalbum und Pokal (T10), Terrarium-Sammlung mit Pokalen und Relikte (T13), Denkimpuls (R7.4). Entfernt: Wochenziel, Rundenzahl-Belohnungen und die Auswertung der Nutzungsfrequenz im Elternbereich (R6.8). Offen: fachliche Freigabe der Sternkriterien, Testbereitschaft (Startwerte aus dem Diskussionsstand bleiben vorläufig bestehen), Elternbereich T11 (Umbau auf Sätze zuerst) und alle Sichtprüfungen.
+Der verbindliche Regelstand steht in `docs/REWARD_SYSTEM.md`, der aktuelle Funktionsstatus in `FEATURES.md`. Umgesetzt: fünf Kompetenzsterne je Lernfeld als konfigurierbare Startwerte (T7; fachliche Freigabe offen), Lernfeld-Abschluss mit Wissensalbum und Pokal (T10), Elternbereich mit „Das hilft jetzt“ und Testbereitschaft (T11), Terrarium-Sammlung und Relikte (T13) sowie Denkimpuls (R7.4). Entfernt: Wochenziel, Belohnungen für reine Rundenzahl und Auswertung der Nutzungsfrequenz im Elternbereich. Offen: fachliche Freigabe der Sternkriterien und manuelle Sicht-/Interaktionsprüfungen. Die Testbereitschaft ist implementiert; ihre fachliche Validierung bleibt offen.
 
 ## Phase C: Abschluss
 
 ### T12 Prüfung und Doku
-- Tun: Rückverfolgbarkeitstabelle abhaken (Test oder M), README (Teststand, neue Ansichten), `config.ts` Kommentar, Sandbox-Grenzen benennen (kein Build, keine Sichtprüfung). Nina führt auf dem Mac `npm run build` und `npm run dev` aus und geht die manuellen Prüfpunkte M1 bis M5 mit dem Kind durch.
+- Historischer Auftrag: Rückverfolgbarkeit, README, Konfigurationskommentare, Sandbox-Grenzen und manuelle Prüfpunkte dokumentieren. Der CI-Build ist inzwischen erfolgreich nachgewiesen; die manuellen Prüfpunkte M1 bis M5 und die gemeinsame Sichtprüfung mit dem Kind bleiben offen. Diese Zeile ist keine Aufforderung, Build oder Sichtprüfung als erledigt zu behaupten.
 - Anforderungen: alle
 
 
