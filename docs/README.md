@@ -51,8 +51,8 @@ Die früher getrennten Bestandsanalysen, Bildvergleiche, Konzeptnotizen und das 
 - [ ] Alle Dokumente auf widersprüchliche, überholte oder doppelte Regeln prüfen.
 - [x] Phase-2-Dokumente auf vier primäre Quellen konsolidieren; relevante Referenzen und Entscheidungen übernommen, Git-Historie bleibt erhalten.
 - [ ] Aufgabenlisten und Roadmap mit tatsächlichem Implementierungsstand abgleichen.
-- [ ] Alle internen Markdown-Links prüfen und tote Verweise entfernen.
-- [ ] Abschließenden Dokumentations-Review und CI-Prüfung durchführen.
+- [x] Alle internen Markdown-Links prüfen und tote Verweise entfernen (keine defekten Links gefunden).
+- [x] Abschließenden Dokumentations-Review und CI-Prüfung durchführen (GitHub Actions: Tests und Build erfolgreich).
 
 ## Technische Quellen
 
