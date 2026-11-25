@@ -180,6 +180,8 @@ Die folgenden Punkte beschreiben den geprüften Stand des Branches und verhinder
 - Wochenziele und Belohnungen für reine Rundenzahl sind entfernt.
 - Das Tagesmitbringsel ist aktiv und ausdrücklich gewollt: eine Münze für die erste abgeschlossene Runde des Tages.
 - Der Denkimpuls reduziert den Bonusmünzen-Pool der Runde um eine Münze je genutztem Impuls, begrenzt auf die in dieser Runde entstandenen Bonusmünzen. Es gibt keine Münzen je Aufgabe.
+- Eine starke Knobelrunde bringt laut `CONFIG.knobelMuenzen` zwei Münzen pro Tag; die erste starke Knobelrunde überhaupt bringt zusätzlich `CONFIG.ersteKnobelMuenze` (eine Münze). Kumulative Knobel-Meilensteine verwenden `CONFIG.knobelTreffer`.
+- Ein Relikt-Erstabschluss bringt `CONFIG.reliktMuenzen` (zwei Münzen); spätere Abschlüsse desselben Relikts bringen nichts.
 - Die Zahlenwerte liegen zentral in `src/logic/config.ts`. Rundenabschluss und Bonuspool werden in `src/logic/game.ts` berechnet; Knobel-/Lernfeld-Meilensteine in `src/logic/meilensteine.ts`, Relikt-Erstbelohnungen in `src/logic/relikte.ts` und Kompetenznachweise/Sterne in `src/logic/kompetenz.ts`.
 
 Bei einer späteren Prüfung ist zwischen **gewollter Produktregel**, **tatsächlichem Implementierungsstand** und **historischem Prüfbericht** zu unterscheiden. Eine Codeabweichung wird nicht stillschweigend als neue Produktentscheidung interpretiert. Für die hier ausdrücklich festgelegten Regeln gilt die aktuelle Freigabe des Projektinhabers.
