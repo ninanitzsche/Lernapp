@@ -15,7 +15,8 @@
 - Abschluss: Eintrag im Wissensalbum mit besonderer Schlangenillustration und ein Pokal.
 - Terrarium: frei gestaltbare Sammlung. Pokale lassen sich platzieren und verschieben, die Sammlung bleibt vollständig.
 - Relikte: kleines freiwilliges Randfeature, erst nach dem ersten Lernfeld-Abschluss sichtbar. Der Pokal öffnet die passenden Relikte. Relikte bringen Terrariummünzen, aber keine Sterne, Pokale oder Medaillen und ändern den regulären Lernstand nicht.
-- Denkimpuls: erwünscht, die Aufgabe zählt weiter zum Kompetenznachweis, eine Münze weniger. Bestehende Hilfe und Lösungsanzeige bleiben. Eine angezeigte Lösung zählt nicht als selbstständiger Nachweis.
+- Denkimpuls: freiwilliger Hinweis vor der Antwort. Die Aufgabe zählt weiter zum Kompetenznachweis. Pro genutztem Impuls wird eine Münze vom Bonusmünzen-Pool dieser Runde abgezogen (höchstens bis zu den in der Runde entstandenen Bonusmünzen); es gibt keine Münze pro Aufgabe. Ein falscher Versuch allein kostet keine Münze. Bereits vorhandene Münzen und Sternmünzen bleiben unberührt. Bestehende Hilfe und Lösungsanzeige bleiben. Eine angezeigte Lösung zählt nicht als selbstständiger Nachweis.
+- Tagesmitbringsel: Die erste abgeschlossene Runde jedes Tages bringt eine Münze, auch wenn das tägliche Futterlimit bereits erreicht ist.
 - Keine Belohnung für reine Rundenzahl, kein Wochenziel (bereits entfernt).
 
 ## 2. Festlegungen der Umsetzung (Annahmen, per Konfiguration änderbar)
@@ -38,7 +39,7 @@ Stern n wird erst vergeben, wenn Stern n minus 1 verdient ist. Diese Zahlen sind
 
 **Altstände.** Schon gespeicherte Sterne (0 bis 3) bleiben bestehen. Weitere Sterne brauchen neue Nachweise nach dem Update.
 
-**Denkimpuls.** Ein optionaler Knopf vor der Antwort zeigt den vorhandenen Aufgabenhinweis. Die Münzminderung lässt sich nicht an eine einzelne Aufgabe binden, weil die App keine Münzen je Aufgabe vergibt. Umgesetzt wird: Pro genutztem Denkimpuls wird eine Münze der Runde abgezogen, höchstens bis die in dieser Runde verdienten Münzen aufgebraucht sind. Der Kontostand sinkt dadurch nie, bereits verdientes Geld bleibt unberührt. Diese Auslegung ist eine Produktentscheidung, die noch bestätigt werden muss.
+**Denkimpuls (Implementierung geprüft).** Ein optionaler Knopf vor der Antwort zeigt den vorhandenen Aufgabenhinweis. Es gibt keine Münzen je Aufgabe. Deshalb wird pro genutztem Denkimpuls eine Münze vom Bonusmünzen-Pool der Runde abgezogen, höchstens bis zu den in dieser Runde entstandenen Bonusmünzen. Der Kontostand sinkt dadurch nie; bereits vorhandene Münzen und Sternmünzen bleiben unberührt. Ein falscher Versuch allein löst keinen Abzug aus. Diese Regel entspricht dem bestehenden Code in `src/logic/game.ts` und ist die dokumentierte Regel.
 
 **Relikte.** Je Aufgabentyp eines abgeschlossenen Lernfeldes gibt es ein Relikt mit fünf kniffeligen Aufgaben dieses Typs. Bei mindestens vier Treffern im ersten Versuch erhält das Kind einmalig `CONFIG.reliktMuenzen` (Startwert 2) Terrariummünzen und einen Meilenstein. Wiederholen ist erlaubt, bringt aber keine weiteren Münzen. Relikt-Aufgaben ändern weder Lernstand, Verlauf, Statistik, Futter noch Sterne.
 
@@ -67,4 +68,4 @@ Stern n wird erst vergeben, wenn Stern n minus 1 verdient ist. Diese Zahlen sind
 
 **Simulationsergebnis (Rechenmodell, keine Praxisdaten):** Bei gemischten Runden mit je 85 Prozent, 70 Prozent beziehungsweise 55 Prozent Treffern im ersten Versuch kommt der erste Stern nach etwa 2 bis 5 Runden. Alle fünf Sterne eines Lernfeldes liegen nach etwa 9 bis 17 Runden (85 und 70 Prozent) beziehungsweise 15 bis 26 Runden (55 Prozent) vor. Das ist möglicherweise schneller als gewünscht; die Kriterien lassen sich über `CONFIG.kompetenz` ohne Codeänderung verschärfen.
 
-**Offen (Entscheidung nötig):** fachliche Freigabe der Kriterien je Stern, Auslegung der Münzminderung beim Denkimpuls, freigegebene Grafiken für Pokal und Albumillustration.
+**Offen:** fachliche Freigabe der Kriterien je Stern sowie freigegebene Grafiken für Pokal und Albumillustration. Die Münzregel des Denkimpulses ist durch Codeprüfung geklärt und in `docs/REWARD_SYSTEM.md` verbindlich dokumentiert.
