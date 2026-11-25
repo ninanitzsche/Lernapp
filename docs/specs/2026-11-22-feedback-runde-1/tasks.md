@@ -15,7 +15,7 @@ Abhängigkeiten: T1 vor allem. T2 bis T4 nacheinander. T5 und T6 danach, voneina
 ### T2 Stufen in den Aufgaben
 - Dateien: `src/logic/tasks.ts`, `src/logic/bookTasks.ts`, `src/logic/tasks.test.ts`, `src/logic/hard.test.ts`
 - Tun: `Task.stufe` einführen. Generatoren erhalten die Stufe (1, 2, 3). `generateTask(typ, rng, stufeOderSchwer)` bleibt rückwärtskompatibel (`false` gleich 2, `true` gleich 3). Leichte Varianten nach `design.md` Abschnitt 5. Buchaufgaben tragen Stufe 2.
-- Test zuerst: Für jeden Typ und jede Stufe 1000 Aufgaben mit Seeds: gültig, genau eine richtige Antwort, Zahlenbereich der Stufe eingehalten (Stufe 1: kleine Zahlen), Stufe an der Aufgabe gesetzt. Bestehende 95 Tests bleiben grün.
+- Test zuerst: Für jeden Typ und jede Stufe 1000 Aufgaben mit Seeds: gültig, genau eine richtige Antwort, Zahlenbereich der Stufe eingehalten (Stufe 1: kleine Zahlen), Stufe an der Aufgabe gesetzt. Alle bestehenden Tests bleiben grün.
 - Anforderungen: R1.1, R2.9, R2.10
 
 ### T3 Rampe, Freischaltung, Lernstand

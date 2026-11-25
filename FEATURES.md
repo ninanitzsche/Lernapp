@@ -2,8 +2,8 @@
 
 > **Zweck:** Diese Datei beschreibt den aktuell im Repository erkennbaren Funktionsumfang. Sie soll als praktische Übersicht für Produktentwicklung und Pflege dienen.
 >
-> **Stand:** 22.11.2026  
-> **Grundlage:** Quellcode- und Dokumentationsprüfung. Nicht jede Funktion wurde in einem echten Browserdurchlauf oder auf einem Endgerät manuell getestet.
+> **Stand:** 25.11.2026  
+> **Grundlage:** Quellcode- und Dokumentationsprüfung sowie automatisierte Tests. Nicht jede Funktion wurde in einem echten Browserdurchlauf oder auf einem Endgerät manuell getestet.
 
 ## Status-Legende
 
@@ -65,7 +65,7 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 ## 2. Schlange und Spielwelt
 
 - **Implementiert:** Die Schlange hat einen Namen, der geändert werden kann.
-- **Implementiert:** Es gibt fünf Wachstumsstufen mit Futter-Schwellen bei 0, 60, 150, 300 und 500 Futter.
+- **Implementiert:** Es gibt fünf Wachstumsstufen mit Futter-Schwellen bei 0, 30, 90, 200 und 350 Futter (maßgeblich: `src/logic/config.ts`, `STAGES`).
 - **Implementiert:** Richtig beantwortete Aufgaben bringen Futter; dadurch wächst die Schlange.
 - **Implementiert:** Fortschrittsanzeige, Gesichtsausdrücke und unterschiedliche Stimmungen.
 - **Implementiert:** Die Schlange reagiert auf Antippen.
@@ -98,8 +98,8 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 - **Implementiert:** Eine beim ersten Versuch richtige Antwort bringt 2 Futter, eine beim zweiten Versuch richtige Antwort 1 Futter; bei nicht gelöster Aufgabe gibt es kein Futter.
 - **Implementiert:** Der Abschluss einer Runde bringt zusätzlich 5 Futter.
 - **Implementiert:** Es gibt eine Begrenzung auf drei futterbringende Runden pro Tag. Weitere Lernrunden bleiben möglich und aktualisieren weiterhin den Lernstand.
-- **Implementiert:** Wochenziel: an drei unterschiedlichen Tagen lernen; dafür gibt es einen Bonus.
-- **Implementiert:** Münzen können unter anderem durch den ersten Tagesdurchlauf, Stufenaufstiege, Sterne, das Wochenziel und den Knobelmodus verdient werden.
+- **Entfernt (25.11.2026):** Wochenziel und Belohnungen für reine Rundenzahl. Es gibt keinen Bonus für Übungstage oder Rundenzahl. Schon verdiente Münzen und gespeicherte Meilensteine bleiben erhalten.
+- **Implementiert:** Münzen können unter anderem durch den ersten Tagesdurchlauf, Stufenaufstiege, Sterne und den Knobelmodus verdient werden.
 - **Implementiert:** Für den Knobelbonus gilt eine Mindestleistung von 7 aus 10 Aufgaben beim ersten Versuch; der Bonus ist auf einmal pro Tag begrenzt.
 - **Implementiert:** Bereits erreichte Sterne bleiben erhalten, auch wenn sich der Kompetenzstand später verändert.
 - **Implementiert:** Es gibt keinen Verlust von Wachstum bei Lernpausen und keine aufeinander aufbauende Streak-Pflicht.
@@ -166,20 +166,13 @@ Daraus folgt: Eine installierbare PWA mit verlässlichem Offline-Caching sollte 
 
 ### Pause und Fortsetzen einer laufenden Aufgabe
 
-**Bekannter Prüf-/Korrekturpunkt:** Der gespeicherte Rundenstand enthält im geprüften Code nicht den vollständigen Versuchszustand (`versuch`). Wird eine Runde nach einem ersten Fehlversuch mit eingeblendetem Hinweis pausiert und später fortgesetzt, kann dieser Versuchszustand verloren gehen. Dadurch kann die Aufgabe erneut wie ein erster Versuch behandelt werden.
-
-Betroffene Stellen:
-- `src/ui/Round.tsx`
-- `src/logic/runde.ts`
-
-**Empfehlung:** Versuchszähler und den für die Wiederaufnahme erforderlichen Aufgaben-/Feedbackzustand in den gespeicherten Rundenstand aufnehmen und mit Tests absichern.
+**Behoben (25.11.2026):** Der gespeicherte Rundenstand (`RundenStand.versuch`) enthält jetzt den Versuchszähler. Wird eine Runde nach einem ersten Fehlversuch pausiert und später fortgesetzt, läuft die Aufgabe mit dem zweiten Versuch und dem Tipp weiter. Altstände ohne Feld starten wie bisher beim ersten Versuch. Abgesichert durch Tests in `src/logic/runde.test.ts`; die praktische Prüfung im Browser steht noch aus.
 
 ### Dokumentation
 
-- **Prüfen / Aktualisieren:** `docs/spec.md` enthält Aussagen, die nicht mehr dem aktuellen Implementierungsstand entsprechen (unter anderem Shop, Sounds, Terrarium und Einführung).
-- **Prüfen / Aktualisieren:** `docs/bewertung-ux-und-spieldesign.md` enthält ebenfalls überholte Annahmen zu bereits implementierten Abläufen.
-- **Prüfen:** Die README nennt 95 automatisierte Tests, während ein anderes Dokument 85 nennt. Die tatsächliche Anzahl und der aktuelle Testlauf müssen durch Ausführen der Tests verifiziert werden.
-- **Prüfen:** Build und Tests wurden im Rahmen dieser Bestandsaufnahme nicht ausgeführt.
+- **Erledigt:** Die überholten Dokumente `docs/spec.md` und `docs/bewertung-ux-und-spieldesign.md` wurden entfernt (Git-Historie). Maßgeblich sind `docs/DESIGN_SYSTEM.md`, `docs/ROADMAP_DESIGN.md` und `docs/specs/2026-11-22-feedback-runde-1/`.
+- **Tests:** Die aktuelle Testanzahl steht in der README und wird nur aus einem tatsächlichen Testlauf übernommen.
+- **Prüfen:** Der Produktionsbuild läuft in der Sandbox nicht (plattformspezifische Binärdateien); Nachweis über GitHub Actions oder den lokalen Build.
 
 ### Repository-Größe
 
@@ -191,13 +184,12 @@ Im geprüften Repository liegen neben den optimierten App-Grafiken weitere älte
 
 Priorisiert nach Zuverlässigkeit und Pflegeaufwand – nicht als Liste vermeintlich fehlender Basisfunktionen:
 
-1. **Hoch:** Pause-/Fortsetzen-Zustand inklusive Versuchszähler zuverlässig speichern und testen.
-2. **Hoch:** Automatisierte Tests und Produktionsbuild ausführen; Testanzahl in README und Dokumentation vereinheitlichen.
-3. **Hoch:** `docs/spec.md` und UX-Dokumentation an den tatsächlichen Funktionsumfang anpassen.
-4. **Mittel:** Aufgabenabdeckung des konkreten Schulbuchs vervollständigen und Seiten-/Aufgabenreferenzen prüfen.
-5. **Mittel:** Bedienbarkeit, Barrierefreiheit und Drag-and-drop auf echten Geräten testen.
-6. **Nach Bedarf:** Weitere Lerninhalte (z. B. Addition/Subtraktion oder ein größerer Zahlenraum) erst anhand des Lernziels und der Zielgruppe planen.
-7. **Nach Bedarf:** PWA/Offline-Caching ergänzen, falls die App zuverlässig ohne Internet und installierbar genutzt werden soll.
+1. **Hoch:** Pause/Fortsetzen mit Versuchszähler praktisch im Browser prüfen.
+2. **Hoch:** Produktionsbuild und Sichtprüfung am Smartphone nach jedem Screen.
+3. **Mittel:** Aufgabenabdeckung des konkreten Schulbuchs vervollständigen und Seiten-/Aufgabenreferenzen prüfen.
+4. **Mittel:** Bedienbarkeit, Barrierefreiheit und Drag-and-drop auf echten Geräten testen.
+5. **Nach Bedarf:** Weitere Lerninhalte (z. B. Addition/Subtraktion oder ein größerer Zahlenraum) erst anhand des Lernziels und der Zielgruppe planen.
+6. **Nach Bedarf:** PWA/Offline-Caching ergänzen, falls die App zuverlässig ohne Internet und installierbar genutzt werden soll.
 
 ---
 

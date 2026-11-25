@@ -134,7 +134,7 @@ Phase 2 wird in abgeschlossenen, einzeln überprüfbaren Paketen bearbeitet. Ein
 - **Gate C:** Figuren und UI bleiben auf Mobilgeräten gut lesbar; Szene wirkt wie Nicos Welt, nicht wie generische Fantasy.
 
 ### Paket D – Objekte und Shop
-- Bestehende 45 Shop-Objekte gegen neue Art Direction prüfen; Wiederverwendung vor Neuproduktion.
+- Bestehende 44 Shop-Objekte gegen neue Art Direction prüfen; Wiederverwendung vor Neuproduktion.
 - Objektfamilien definieren: Pflanzen, Felsen/Kristalle, Äste/Nester, Futter, Dekoration und besondere Relikte.
 - Einheitliche Perspektive, Maßstab, Lichtquelle, Materialqualität und Schatten.
 - **Gate D:** ein zusammenhängendes Objektset mit transparenten Einzelassets und dokumentierter Verwendung.

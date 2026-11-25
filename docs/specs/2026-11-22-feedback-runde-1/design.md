@@ -9,7 +9,7 @@ Stand: 2026-11-24. Gehört zu `requirements.md` (Anforderungen R1 bis R7, N1 bis
 3. Das Kind fühlt sich nie dumm: Es beginnt mit Erfolg, Schweres ist ein Angebot und kein Test.
 4. Eltern bekommen in unter einer Minute ein ehrliches Bild, ohne dass es im Kinderbereich Druck erzeugt.
 
-Das visuelle System bleibt das bestehende "beleuchtete Terrarium" gemäß `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Neu sind nur Bausteine, die das Feedback braucht. Es gibt keine neue Schrift und keine neuen Webfonts.
+Das visuelle System bleibt das bestehende "beleuchtete Terrarium" gemäß `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Neu sind nur Bausteine, die das Feedback braucht. Schriften: Atkinson Hyperlegible Next und Nunito, lokal als WOFF2 eingebunden (`docs/DESIGN_SYSTEM.md`, Abschnitt 6). Es gibt keine externen Font-Requests.
 
 ## 2. Designplan nach dem Design-Skill
 
@@ -40,7 +40,7 @@ Leere Schuppen sind Umriss ohne Füllung, so unterscheiden sich 1, 2 und 3 auch 
 
 ### 2.3 Schrift
 
-Unverändert: systemeigene runde Schrift, Gewicht 800, keine Webfonts (N8). Maßstab: Meilensteintitel `clamp(1.8rem, 6dvh, 2.6rem)`, Rückblickzeilen 1.15rem, Elterntext 1rem mit Zeilenhöhe 1.5 und Zeilenlänge unter 70 Zeichen. Alle Texte in Satzschreibung, keine Großbuchstaben-Etiketten.
+Schrift gemäß `docs/DESIGN_SYSTEM.md`: Atkinson Hyperlegible Next (Aufgaben, Zahlen, Fließtext) und Nunito 800 (Überschriften), lokal eingebunden (N8). Maßstab: Meilensteintitel `clamp(1.8rem, 6dvh, 2.6rem)`, Rückblickzeilen 1.15rem, Elterntext 1rem mit Zeilenhöhe 1.5 und Zeilenlänge unter 70 Zeichen. Alle Texte in Satzschreibung, keine Großbuchstaben-Etiketten.
 
 ### 2.4 Layout und Ausrichtung
 

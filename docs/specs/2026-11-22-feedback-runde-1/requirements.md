@@ -142,7 +142,7 @@ Es gibt keine Belohnung für reine Rundenzahl oder Wochenziele.
 - **N5** Alle neuen Spielwerte stehen in `src/logic/config.ts`. Sie sind Startwerte für den Praxistest.
 - **N6** Reine Logik ohne React, Zeit wird injiziert, Zufall mit Seed. Neue Logik wird zuerst als Test geschrieben.
 - **N7** Altstände (Version 1, ohne neue Felder) laden ohne Datenverlust. Gekaufte Dinge, Sterne und Münzen bleiben unverändert. Das Kontostand-Saldo SHALL nach dem Update nie sinken.
-- **N8** Keine Webfonts, keine Drittanbieter-Aufrufe, keine KI zur Laufzeit.
+- **N8** Keine externen Font-Requests und keine Drittanbieter-Aufrufe, keine KI zur Laufzeit. Lokal ausgelieferte Schriften (WOFF2 unter `public/fonts/`) sind ausdrücklich erlaubt und gewünscht.
 - **N9** Eine laufende pausierte Runde (alter Rundenstand ohne Stufen) SHALL nach dem Update weiterlaufen. Fehlende Stufen gelten dort als Stufe 2.
 
 ## 12. Pädagogische Absicherung und Risiken

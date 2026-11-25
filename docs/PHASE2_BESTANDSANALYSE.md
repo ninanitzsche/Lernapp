@@ -74,7 +74,7 @@ Beide Hintergründe sind als funktionale Ausgangsbasis interessant, erfüllen di
 
 ## 5. Shop- und Terrariumobjekte
 
-Es existieren 45 produktiv referenzierte WebP-Objekte unter `public/images/snake/app/shop/`. Die Motive decken bereits viele sinnvolle Kategorien ab:
+Es existieren 45 WebP-Dateien unter `public/images/snake/app/shop/`: 44 Shop-Gegenstände laut Katalog und der Standardhintergrund `terrarium1.webp`. Die Motive decken bereits viele sinnvolle Kategorien ab:
 - Pflanzen: Monstera, Alocasia, Venusfliegenfallen, Zimmerpflanze.
 - Strukturen: Äste, Wurzeln, Ranken, Brücken, Höhlen, Stämme.
 - Wasser und Boden: Wasserfall, Brunnen, Wassernapf, Steinweg, Steinhaufen.
@@ -84,7 +84,7 @@ Es existieren 45 produktiv referenzierte WebP-Objekte unter `public/images/snake
 
 **Gestalterische Schwächen:** Viele Objekte sind weich, hell und malerisch illustriert. Materialität, Schatten, Perspektive und Detailgrad passen nicht immer zu Nicos plastischer 3D-Oberfläche. Kristalle und Pflanzen wirken teilweise pastellig statt biolumineszent. Einige Objekte brauchen mehr Eigenständigkeit und eine klarere Silhouette vor dunklem Terrariumhintergrund.
 
-**Empfehlung:** Motiv und Funktion zunächst behalten; je Objektgruppe entscheiden, ob eine gezielte Neuinterpretation nötig ist. Keine pauschale Neugenerierung aller 45 Motive.
+**Empfehlung:** Motiv und Funktion zunächst behalten; je Objektgruppe entscheiden, ob eine gezielte Neuinterpretation nötig ist. Keine pauschale Neugenerierung aller 44 Motive.
 
 ## 6. Historische Dateien und Dubletten
 
@@ -103,7 +103,7 @@ Das ist zunächst nur ein Inventarbefund. **Nichts löschen oder verschieben:** 
 | P0 | Kanonische Nico-Referenz je Stufe festlegen; erwachsene Form gegen Logo abgleichen | Vor weiterer Serienproduktion |
 | P1 | Teenager-Ausdrucksvarianten visuell prüfen und Nutzung im Code entscheiden | Bestehende Assets nutzen, falls passend |
 | P1 | Terrarium-Hintergrund als Luminous-Fantasy-Umgebung neu konzipieren | Gezielte Neuproduktion wahrscheinlich |
-| P1 | Stilprüfung der 45 Shop-Objekte; repräsentative Gruppe auswählen | Motive behalten, Stil selektiv vereinheitlichen |
+| P1 | Stilprüfung der 44 Shop-Objekte; repräsentative Gruppe auswählen | Motive behalten, Stil selektiv vereinheitlichen |
 | P2 | Fehlende Erwachsenen-Ausdrücke definieren | Erst nach Freigabe der Erwachsenenreferenz |
 | P2 | Pixelmaße, Alpha-Kanal, Beschnitt, Dateigröße und Zielauflösung technisch erfassen | Vor Integration neuer/überarbeiteter Assets |
 | P3 | Historische Dubletten/Quellordner dokumentieren und ggf. später bereinigen | Nur nach Referenzprüfung |
@@ -112,7 +112,7 @@ Das ist zunächst nur ein Inventarbefund. **Nichts löschen oder verschieben:** 
 
 Diese Bestandsanalyse ist eine visuelle und codebezogene Prüfung der wichtigsten produktiven Assets, keine vollständige technische Asset-QA. Noch offen sind:
 - automatisierte Erfassung von Breite/Höhe, Alpha-Kanal und Randtransparenz aller Dateien;
-- Sichtprüfung sämtlicher 45 Shop-Objekte (bisher repräsentative Stichprobe);
+- Sichtprüfung sämtlicher 44 Shop-Objekte (bisher repräsentative Stichprobe);
 - Sichtprüfung aller historischen Varianten und Screenshots;
 - Prüfung auf tatsächliche Darstellung in kleinen und großen Viewports.
 

@@ -29,7 +29,7 @@ Daher wurden diese Bilder nicht in `public/images` abgelegt und keine Laufzeitre
 
 1. Vier weitere neutrale Nico-Einzelassets für Kleinkind, Kind, Teenager und Erwachsen/Legendär erstellen; danach alle fünf visuell vergleichen und freigeben.
 2. Nach Freigabe die sieben Emotionen aus diesen Basen ableiten.
-3. Vorhandene Terrarium-Hintergründe und 45 Shop-Objekte vollständig visuell katalogisieren.
+3. Vorhandene Terrarium-Hintergründe und 44 Shop-Objekte vollständig visuell katalogisieren.
 4. Eine schlangenspezifische Terrarium-Szene mit separaten Layern und ruhigen UI-Flächen definieren.
 5. Fehlende Pflanzen-, Wurzel-, Kristall-, Nest- und Belohnungsobjekte ergänzen.
 6. Asset-Katalog vervollständigen und erst danach Integration/Viewport-Checks durchführen.

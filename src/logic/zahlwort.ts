@@ -1,4 +1,4 @@
-// Zahlwörter bis 100. Referenz: Liste von Nina (docs/spec.md, Abschnitt 5, Thema A).
+// Zahlwörter bis 100. Referenz: Zahlwortliste von Nina (Thema A, Zahlen verstehen).
 const EINER = ['null', 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun']
 const ZEHN_BIS_NEUNZEHN = [
   'zehn', 'elf', 'zwölf', 'dreizehn', 'vierzehn', 'fünfzehn', 'sechzehn', 'siebzehn', 'achtzehn', 'neunzehn',

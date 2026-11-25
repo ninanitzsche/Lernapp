@@ -39,7 +39,7 @@
 
 | Assetgruppe | Bestand | Zielumfang | Status | Nächster Schritt |
 |---|---|---:|---|---|
-| Shop-Objekte | 45 WebP in `snake/app`, 45 PNG-Quellen in `snake/Shop` | Bestand wiederverwenden | Bestand | Vollständige Sichtprüfung, Duplikate und Stilabweichungen markieren |
+| Shop-Objekte | 44 Gegenstände im Katalog (`src/logic/shop.ts`), 45 WebP in `snake/app/shop` (44 Gegenstände plus Standardhintergrund `terrarium1.webp`), 45 PNG-Quellen in `snake/Shop` | Bestand wiederverwenden | Bestand | Vollständige Sichtprüfung, Duplikate und Stilabweichungen markieren |
 | Pflanzen / Töpfe | Teil des Bestands | 4–6 | Bestand / zu prüfen | Perspektive und Material vereinheitlichen |
 | Kristalle / Steine | Teil des Bestands | 4–6 | Bestand / zu prüfen | Luminous-Fantasy-Material definieren |
 | Nester / Äste / Rückzugsorte | Bestand teilweise vorhanden | 3–5 | Bestand / zu prüfen | Schlangenspezifische Motive ergänzen |
