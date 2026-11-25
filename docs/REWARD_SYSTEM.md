@@ -101,11 +101,12 @@ Nico hat fünf Entwicklungsstufen:
 - Gekaufte Gegenstände bleiben dauerhaft im Besitz. Platzieren, Verschieben oder Entfernen aus der sichtbaren Szene löscht den Besitz nicht.
 - Ein erreichter Stern bringt nach der bestehenden Regel **eine Münze**.
 - Ein neuer Entwicklungsstufen-Aufstieg bringt nach der bestehenden Wachstumsbelohnung **eine Münze**.
-- Nutzt das Kind bei einer Aufgabe einen Denkimpuls, wird die Münzbelohnung für genau diese Aufgabe um **eine Münze** reduziert. Die Aufgabe darf weiterhin zum Kompetenznachweis beitragen.
+- **Denkimpuls:** Für jeden in einer Runde tatsächlich genutzten Denkimpuls wird eine Münze vom Bonusmünzen-Pool dieser Runde abgezogen. Es gibt keine Münze pro Aufgabe; deshalb wird keine einzelne Aufgabenmünze berechnet. Der Abzug ist auf die in dieser Runde entstandenen Bonusmünzen begrenzt. Er kann also Tagesmitbringsel, Stufenaufstiegs-, Knobel- oder Meilenstein-Bonusmünzen reduzieren. Bereits vorhandene Münzen und Kompetenzstern-Münzen bleiben unangetastet; der Kontostand sinkt nie. Ein falscher Versuch allein kostet keine Münze. Die Aufgabe darf mit Denkimpuls weiterhin zum Kompetenznachweis beitragen.
 - Eine starke Knobelrunde (mindestens 7 von 10 Aufgaben im ersten Versuch richtig) bringt **2 Zusatzmünzen**, höchstens einmal pro Tag.
 - Für die erste starke Knobelrunde ist zusätzlich der dokumentierte einmalige Knobel-Meilenstein vorgesehen; weitere Knobel-Meilensteine richten sich nach den kumulierten kniffligen Aufgaben, die im ersten Versuch richtig gelöst wurden: 10 Treffer = 1 Münze, 25 Treffer = 2 Münzen, 50 Treffer = 3 Münzen.
 - Erfolgreich abgeschlossene Relikt-Herausforderungen bringen Terrariummünzen. Die konkrete Höhe folgt der freigegebenen Belohnungslogik und darf nicht frei erfunden werden.
-- Es gibt keine Münzbelohnung für reine Rundenzahl, Wochenziele, tägliches Einloggen oder bloße Nutzungsdauer.
+- Die erste abgeschlossene Runde eines Kalendertages bringt **eine Tagesmitbringsel-Münze**. Weitere Runden desselben Tages bringen diese Münze nicht erneut. Die Münze wird auch vergeben, wenn das tägliche Futterlimit bereits erreicht ist. Das ist eine ausdrücklich gewollte Tagesbelohnung, keine Login-Prämie.
+- Es gibt keine Münzbelohnung für reine Rundenzahl, Wochenziele, bloßes Einloggen oder Nutzungsdauer.
 - Fehler, Pausen und spätere Veränderungen des Lernstands ziehen keine Münzen ab.
 
 ## 6. Pokale und Orden – Lernfeldabschluss
@@ -169,15 +170,14 @@ Nico hat fünf Entwicklungsstufen:
 
 Vor Änderungen an Futter, Wachstum, Sternen, Münzen, Schuppen, Pokalen/Orden, Relikten, Meilensteinen, Album oder Terrarium ist dieses Dokument zu lesen und bei Bedarf zuerst zu aktualisieren.
 
-## 12. Bekannte Abweichungen der aktuellen Implementierung (kein Soll-Verhalten)
+## 12. Abgleich mit der Implementierung
 
-Die Prüfung des Branches `design/luminous-fantasy-adventure` am 25.11.2026 hat folgende Abweichungen zwischen freigegebener Produktregel und vorhandenem Code gezeigt. Diese Punkte sind **technische Altlasten bzw. Umsetzungsbedarf**, keine alternativen Produktentscheidungen:
+Die folgenden Punkte beschreiben den geprüften Stand des Branches und verhindern, dass überholte Audits als Arbeitsauftrag missverstanden werden:
 
-1. `src/logic/game.ts` berechnet derzeit drei Sterne je übergeordnetem Thema (A/B/C). Freigegeben sind fünf Sterne je Lernfeld.
-2. `src/logic/config.ts` und `game.ts` enthalten ein Wochenziel und einen Wochenbonus. Wochenziele und deren Belohnung sind ausdrücklich ausgeschlossen.
-3. `config.ts` und `meilensteine.ts` vergeben Münzen für reine Rundenzahl-Meilensteine (10/25/50/100). Das ist ausdrücklich ausgeschlossen.
-4. `game.ts` vergibt eine Münze für die erste Runde eines Tages. Eine tägliche Anwesenheits-/Login-Belohnung ist nicht Teil des freigegebenen Belohnungssystems und darf nicht als Produktregel fortgeführt werden.
-5. Der aktuelle Code enthält weiterhin die alten Themen-/Stern-Datenmodelle. Die fünf Sterne je Lernfeld und die dazugehörigen Abschlussauszeichnungen sind daher nicht allein durch die Dokumentation als implementiert zu betrachten.
-6. Die Futterwerte, das Tageslimit und die Wachstumsschwellen in `config.ts` stimmen mit den hier festgehaltenen Startwerten überein.
+- Die aktive Sternlogik vergibt **fünf Kompetenzsterne je Lernfeld**. Die ältere Funktion `topicStars()` mit 0–3 Sternen bleibt ausschließlich als Migrations-Fallback für sehr alte Spielstände ohne gespeicherte Sternwerte erhalten.
+- Wochenziele und Belohnungen für reine Rundenzahl sind entfernt.
+- Das Tagesmitbringsel ist aktiv und ausdrücklich gewollt: eine Münze für die erste abgeschlossene Runde des Tages.
+- Der Denkimpuls reduziert den Bonusmünzen-Pool der Runde um eine Münze je genutztem Impuls, begrenzt auf die in dieser Runde entstandenen Bonusmünzen. Es gibt keine Münzen je Aufgabe.
+- Die Werte für Futter, Knobelbonus, Tageslimit und Wachstum liegen zentral in `src/logic/config.ts`; die Berechnung der Münzboni erfolgt in `src/logic/game.ts`.
 
-Diese Abweichungen sind bei der technischen Umsetzung separat zu beheben und durch Tests abzusichern. Bestehende Nutzerdaten und erworbene Gegenstände dürfen dabei nicht verloren gehen. Keine Datenmigration oder Belohnungsänderung darf stillschweigend erfolgen.
+Bei einer späteren Prüfung ist zwischen **gewollter Produktregel**, **tatsächlichem Implementierungsstand** und **historischem Prüfbericht** zu unterscheiden. Eine Codeabweichung wird nicht stillschweigend als neue Produktentscheidung interpretiert. Für die hier ausdrücklich festgelegten Regeln gilt die aktuelle Freigabe des Projektinhabers.
