@@ -5,9 +5,8 @@
 > **Verbindliche Art Direction:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)  
 > **Visuelle Weltenstrategie:** [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md)  
-> **Arbeitsprotokoll:** [PHASE2_ARBEITSPROTOKOLL.md](./PHASE2_ARBEITSPROTOKOLL.md)  
 > **Asset-Katalog:** [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md)  
-> **Status:** Phase 2 aktiv; Bestandsanalyse, kanonische Nico-Arbeitsreferenzen, direkter Bildvergleich und Produktions-Gates dokumentiert. Die visuelle Freigabe des Charakter-/Stilpakets ist noch offen. Siehe [PHASE2_REFERENZENTWURF_A.md](./PHASE2_REFERENZENTWURF_A.md), [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md), [PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md) und [PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md).
+> **Status:** Phase 2 aktiv. Produktionsumfang, Asset-Katalog, kanonische Nico-Referenz und Emotionsmatrix sind in den vier Primärdokumenten festgehalten. Die endgültige Freigabe der Charakter-Einzelassets und der Spielwelt steht noch aus. Siehe [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md), [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) und [PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md).
 
 ## 1. Ziel
 
@@ -43,6 +42,17 @@ Im Branch existiert bereits eine Bildbasis unter `public/images/`:
 
 Vorhandene Assets werden nicht pauschal ersetzt oder gelöscht. Insbesondere sind Dateinamen, Formate, Transparenz, tatsächliche Verwendung im Code und Bildqualität vor jeder Migration zu prüfen. Die vorhandenen Charaktere bilden den Ausgangspunkt; neue Motive müssen sich an ihnen und am Original-Logo orientieren, nicht eine unabhängige Schlange erfinden.
 
+### Bestandsbefund (Snapshot vom 24.11.2026)
+
+- Unter `public/images/` lagen 175 Bilddateien, davon 169 in `public/images/snake/`. Diese Zählung ist ein historischer Inventarwert, keine aktuelle Dateiprüfung.
+- `public/images/snake/app/` enthielt 21 Charakterbilder und 45 Shop-/Terrarium-WebP-Dateien; davon sind 44 Shop-Gegenstände und ein Standardhintergrund.
+- Fünf Standardstufen sind bereits vorhanden. Baby, Kleinkind, Kind und Teenager haben zusätzliche Varianten; die Erwachsenenstufe besitzt nur ein Standardbild.
+- Zwei Terrarium-Hintergründe sind vorhanden. Beide sind funktionale Ausgangsbasis, bilden die gewünschte schlangenspezifische Luminous-Fantasy-Welt aber noch nicht vollständig ab.
+- Die vorhandenen Shop-Motive sind breit genug, um Wiederverwendung vor Neuproduktion zu priorisieren. Materialität, Perspektive und Lichtführung sind selektiv zu vereinheitlichen; keine pauschale Neuerstellung aller 44 Gegenstände.
+- Historische Quellordner und Dubletten wurden identifiziert. Vor jeder Bereinigung müssen Code- und Dokumentationsreferenzen geprüft werden; bis dahin nichts löschen oder verschieben.
+
+
+
 ## 4. Stil-Referenzpaket – erster Freigabeschritt
 
 Vor einer größeren Asset-Serie wird ein kleines Referenzpaket erstellt und vom Projektinhaber visuell freigegeben. Es besteht aus vier Motivgruppen:
@@ -53,6 +63,10 @@ Vor einer größeren Asset-Serie wird ein kleines Referenzpaket erstellt und vom
 4. **Belohnung:** eine kleine Belohnungskomposition aus Schuppe/Münze/Glow als Referenz für Material, Wertigkeit und Effektstärke.
 
 Die Referenzen sind Konzept-/Asset-Vorlagen, keine fertigen Screens. Nach Freigabe werden benötigte Assets einzeln und mit produktionsgerechtem Zuschnitt erstellt.
+
+### Historische Konzeptexploration A
+
+Eine frühe Konzepttafel kombinierte ein leuchtendes Waldterrarium, modulare Pflanzen-/Kristallobjekte und eine Edelstein-/Münzbelohnung. Sie war eine Stilsondierung, keine Freigabe und kein verbindlicher Prompt für die spätere Produktion. Die damalige Formulierung „cute stylized realism“ ist für die späteren Nico-Stufen ausdrücklich nicht maßgeblich: Baby und Kleinkind dürfen niedlich sein; Teenager und Erwachsen/Legendär sollen deutlich wilder, kraftvoller und legendärer wirken. Die Spielwelt muss schlangenspezifisch sein und darf nicht bei generischer Fantasy mit Schlangenmotiven stehen bleiben.
 
 ## 5. Asset-Gruppen und Reihenfolge
 
@@ -94,13 +108,13 @@ Einzelne Assets gelten erst nach Prüfung von Transparenz, Zuschnitt, Auflösung
 
 ## 8. Offene Produktionsschritte
 
-- [x] Vorhandene Charakterdateien visuell direkt vergleichen und Bestandsanalyse dokumentieren ([PHASE2_BESTANDSANALYSE.md](./PHASE2_BESTANDSANALYSE.md)).
+- [x] Vorhandene Charakterdateien visuell direkt vergleichen und Bestandsanalyse dokumentieren (dieser Abschnitt „Bestandsbefund“).
 - [x] Kanonische Arbeitsreferenzen und Kontinuitätskriterien für alle fünf Nico-Stufen dokumentieren ([PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md)); die visuelle Endfreigabe bleibt offen.
-- [x] Alle fünf Standardstufen, das Logo und die Teenager-Ausdrucksvarianten direkt visuell vergleichen und Befunde dokumentieren ([PHASE2_NICO_BILDVERGLEICH.md](./PHASE2_NICO_BILDVERGLEICH.md)).
+- [x] Alle fünf Standardstufen, das Logo und die Teenager-Ausdrucksvarianten direkt visuell vergleichen und Befunde dokumentieren ([PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md)).
 - [x] Gemeinsame Charakteridentität und siebenstufige Emotionsbibliothek für alle fünf Entwicklungsstufen definieren ([PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md)).
 - [x] Erste visuelle Emotionskonzepte für alle fünf Stufen mit sieben Zuständen als Gesamtübersicht explorieren; die Grundrichtung wurde vom Projektinhaber positiv bestätigt. Die Übersicht bleibt Konzept, nicht Produktionsfreigabe.
-- [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (Referenzentwurf A; noch nicht freigegeben).
-- [ ] Referenzentwurf A gemeinsam mit kanonischer Nico-Referenz prüfen und visuell freigeben.
+- [x] Erste Art-Direction-Exploration für Terrarium, Spielobjekte und Belohnung erzeugen und dokumentieren (frühe Konzeptexploration; nicht freigegeben).
+- [ ] Schlangenspezifische Spielwelt und Nico-Referenz als zusammenhängendes Art-Direction-Paket weiterentwickeln und visuell freigeben.
 - [x] Zweite Nico-Konzeptiteration anhand des Feedbacks prüfen: erste Übersicht als bessere Basis bestätigt; späte Stufen müssen deutlich weniger niedlich und stärker majestätisch/gefährlich werden. Schlangen-Anatomie ohne Flossen, Beine oder Flügel verbindlich festgelegt.
 - [x] Zweite visuelle Konzeptübersicht der fünf neutralen Entwicklungsstufen erstellen und als bevorzugte aktuelle Richtung dokumentieren; Einzelassets und finale Freigabe bleiben offen.
 - [ ] Fünf neutrale Einzelreferenzen ausarbeiten: Baby süß, Kleinkind verspielt, Kind mutiger, Teenager wild/elegant, Erwachsen/legendär imposant und logo-nah. Konzentration freundlich-nachdenklich halten.
