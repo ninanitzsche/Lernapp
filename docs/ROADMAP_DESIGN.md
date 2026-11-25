@@ -127,7 +127,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Finale Screenshots dokumentieren.
 - [ ] Roadmap und Funktionsübersicht aktualisieren.
 
-**Prüfhinweis (25.11.2026):** Für den aktuellen Dokumentations-/Teststand auf Commit `8d8b1188928dce47854fd32dd7606001793ed182` sind `npm ci`, `npm test` und `npm run build` in [GitHub Actions erfolgreich](https://github.com/ninanitzsche/Lernapp/actions/runs/45601408232). Das bestätigt automatisierte Tests und Produktionsbuild, ersetzt aber keine manuelle Browser-/Viewport-Sichtprüfung. Smartphone-, Tablet- und Desktop-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen bleiben offen.
+**Prüfhinweis (25.11.2026):** Für den aktuellen Dokumentations-/Teststand auf Commit `8314dc5803b906bc846a4a4bed6db241b9f67ce3` sind `npm ci`, `npm test` und `npm run build` in [GitHub Actions erfolgreich](https://github.com/ninanitzsche/Lernapp/actions/runs/45602193916). Das bestätigt automatisierte Tests und Produktionsbuild, ersetzt aber keine manuelle Browser-/Viewport-Sichtprüfung. Smartphone-, Tablet- und Desktop-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen bleiben offen.
 
 **Abnahmekriterium:** Die App ist visuell konsistent, auf dem Smartphone gut bedienbar, auf größeren Geräten responsiv und ohne bekannte Regressionen.
 
