@@ -13,7 +13,7 @@ Diese Seite ist der Einstieg in alle Projektdokumente. Sie sagt, **wo eine Infor
 | Visuelles Grundsystem | [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) | Farben, Typografie, Formen, Komponenten und allgemeine Art Direction |
 | Langfristige Fachwelten | [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md) | Leitidee für eigenständige Tier- und Themenwelten je Schulfach |
 | Produktvision | [product-vision.md](./product-vision.md) | Langfristige Produktidee und fachübergreifende Architekturleitplanken |
-| Mathe Klasse 2 und Lernfeld Geometrie (Entwurf) | [MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md](./MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md) | Lehrplan-Themenliste Stufe B und gemeinsames Architektur- und Umsetzungskonzept für das Lernfeld D; Entwurf, noch nicht freigegeben |
+| Mathe Klasse 2 und Lernfeld Raum und Form (Entwurf) | [MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md](./MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md) | Lehrplan-Themenliste Stufe B (und C in Teilen), gemeinsames Architektur- und Umsetzungskonzept für das Lernfeld D und Zuordnung der Aufgabentypen zu Raum und Form (Abschnitt 9); Entwurf, noch nicht freigegeben |
 | Phasen und nächste Schritte | [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md) | Phasenstatus und Prioritäten |
 | Implementierte Funktionen | [../FEATURES.md](../FEATURES.md) | Kompakte Bestandsübersicht; keine neue Produktregel |
 | Zusammenarbeit | [AI_COLLABORATION_SPEC.md](./AI_COLLABORATION_SPEC.md) | Rollen, Arbeitsablauf und Konfliktlösung |
