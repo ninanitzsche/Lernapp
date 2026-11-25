@@ -128,7 +128,7 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - [ ] Finale Screenshots dokumentieren.
 - [x] Roadmap und Funktionsübersicht nach dem Dokumentationsaudit aktualisieren (25.11.2026).
 
-**Prüfhinweis (25.11.2026):** `npm ci`, `npm test` und `npm run build` sind im [GitHub-Actions-Lauf 128 erfolgreich](https://github.com/ninanitzsche/Lernapp/actions/runs/45602462375). Die danach folgenden Änderungen waren ausschließlich Dokumentationsbereinigungen; Spiellogik und Testcode wurden nicht verändert. Der CI-Nachweis bestätigt automatisierte Tests und Produktionsbuild, ersetzt aber keine manuelle Browser-/Viewport-Sichtprüfung. Smartphone-, Tablet- und Desktop-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen bleiben offen.
+**Prüfhinweis (25.11.2026):** Für Commit `b3d714d1341ae9d3a2ea3d680c6a7d41407bcca4` sind `npm ci`, `npm test` und `npm run build` im [GitHub-Actions-Lauf 146 erfolgreich](https://github.com/ninanitzsche/Lernapp/actions/runs/45606084804). Dabei bestanden **178 Tests**; TypeScript-Prüfung und Produktionsbuild liefen ebenfalls erfolgreich. Der CI-Nachweis ersetzt keine manuelle Browser-/Viewport-Sichtprüfung. Smartphone-, Tablet- und Desktop-Sichtprüfung sowie praktische Touch-, Drag-and-drop- und Lernablaufprüfungen bleiben offen.
 
 **Abnahmekriterium:** Die App ist visuell konsistent, auf dem Smartphone gut bedienbar, auf größeren Geräten responsiv und ohne bekannte Regressionen.
 
