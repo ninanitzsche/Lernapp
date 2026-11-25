@@ -75,6 +75,7 @@ Nico hat fünf Entwicklungsstufen:
 - Eine, zwei oder drei gefüllte Schuppen bedeuten leicht, mittel oder knifflig.
 - Leere Schuppen bleiben als Umriss sichtbar.
 - Die Bedeutung wird zusätzlich textlich und barrierearm vermittelt; Farbe allein reicht nicht.
+- Semantische Farben des Schuppenbands: leicht Lime `#9bd93c`, mittel Amber `#ffb92e`, knifflig Lila `#6b4bd1`. Diese Farben kennzeichnen ausschließlich die Aufgabenschwierigkeit.
 - Schuppen sind weder Sammelobjekte noch Währung und werden nicht verdient, ausgegeben oder als Wachstumspunkte gezählt.
 - Die echten Schuppen auf Nicos Körper sind Teil seines Charakterdesigns. Sie sind nicht mit dem Schuppenband der Aufgabenoberfläche gleichzusetzen.
 
