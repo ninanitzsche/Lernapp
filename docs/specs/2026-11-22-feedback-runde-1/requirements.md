@@ -2,7 +2,7 @@
 
 Stand: 2026-11-24. Die ursprüngliche Feedback-Runde ist implementiert; die in Abschnitt 10 ergänzten Interview-Anforderungen sind spezifiziert, aber noch nicht implementiert oder verifiziert.
 Verfahren: spec-driven in drei Dokumenten (Anforderungen, Design, Aufgaben), nach dem Muster Requirements, Design, Tasks mit Anforderungen im EARS-Format. Dieses Dokument sagt, WAS gelten muss. `design.md` sagt, WIE. `tasks.md` sagt, in welcher Reihenfolge gebaut und geprüft wird.
-Die verbindlichen visuellen Grundlagen stehen in `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Diese Feedback-Spezifikation ergänzt sie; sie verweist nicht auf ein separates `docs/spec.md`.
+Die verbindlichen visuellen Grundlagen stehen in `docs/DESIGN_SYSTEM.md` und `docs/VISUELLES_WELTENKONZEPT.md`. Die Produktregeln für alle Belohnungs- und Fortschrittssysteme stehen zentral in `docs/REWARD_SYSTEM.md`; dieses Dokument formuliert dazu testbare Muss-Anforderungen. Bei Widersprüchen ist `REWARD_SYSTEM.md` maßgeblich. Es gibt keine separate `docs/spec.md` als Produktquelle.
 
 ## 1. Auslöser (Feedback)
 
@@ -59,7 +59,7 @@ Das Feedback "Belohnung zu spät" ist nur zum Teil richtig, und das ändert die 
 
 ## 6. Anforderungen: Frühere Belohnung (Feedback 1)
 
-- **R3.1** THE Futter je Aufgabe SHALL von der Stufe abhängen (Tabelle in `design.md`, Abschnitt 4). Richtig im ersten Versuch bringt auf Stufe 1 und 2 mindestens so viel Futter wie bisher.
+- **R3.1** THE Futter je Aufgabe SHALL von der Stufe abhängen (Tabelle in `docs/REWARD_SYSTEM.md`, Abschnitt 2). Richtig im ersten Versuch bringt auf Stufe 1 und 2 mindestens so viel Futter wie bisher.
 - **R3.2** THE Wachstumsschwellen SHALL gesenkt werden, sodass die erste Entwicklung ("Kleinkind") bei normalem Üben in der zweiten Runde des ersten Tages eintritt. Schwellen sinken nur, damit steigt keine Schlange aus Altständen herunter.
 - **R3.3** WHEN Aufgabe 5 einer Runde beantwortet ist, THE App SHALL einen Halbzeit-Zwischenstopp zeigen: bisher gesammeltes Futter, wie weit es bis zur nächsten Entwicklung ist, ein Spruch der Schlange und der Knopf "Weiter" sowie "Pause".
 - **R3.4** WHEN Halbzeit erreicht ist, THE Halbzeit SHALL einmal pro Runde auftreten, auch nach Pause und Weitermachen, und SHALL bei Wiederholungsaufgaben nicht erneut erscheinen.
@@ -70,7 +70,7 @@ Das Feedback "Belohnung zu spät" ist nur zum Teil richtig, und das ändert die 
 
 ## 7. Anforderungen: Knobelaufgaben besser vergüten (Feedback 5)
 
-- **R4.1** THE Futter für kniffelige Aufgaben (Stufe 3) SHALL deutlich über dem der mittleren liegen (Tabelle in `design.md`).
+- **R4.1** THE Futter für kniffelige Aufgaben (Stufe 3) SHALL deutlich über dem der mittleren liegen (Tabelle in `docs/REWARD_SYSTEM.md`).
 - **R4.2** THE Rundenbonus der Knobelrunde SHALL höher sein als der der normalen Runde.
 - **R4.3** WHEN in einer Knobelrunde mindestens 7 von 10 Aufgaben im ersten Versuch richtig sind, THE App SHALL `knobelMuenzen` (Startwert 2) statt bisher 1 vergeben, höchstens einmal pro Tag.
 - **R4.4** THE Ergebnisbildschirm SHALL den Knobelanteil des Futters getrennt zeigen ("davon knifflig: +N"), damit der Unterschied spürbar ist.
