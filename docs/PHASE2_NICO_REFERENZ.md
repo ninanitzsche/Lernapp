@@ -1,8 +1,8 @@
 # Nico – kanonische Charakterreferenz
 
- > **Status:** Arbeitsgrundlage nach direktem Bildvergleich; finale Bildfreigabe weiterhin offen.
+> **Status:** Arbeitsgrundlage nach direktem Bildvergleich; finale Bildfreigabe weiterhin offen.
 > **Gültig für:** Phase 2 · Luminous Fantasy Adventure
- > **Verbindliche Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md)
+> **Verbindliche Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md)
 
 ## 1. Zweck und Grundsatz
 
@@ -127,7 +127,7 @@ Der direkte Vergleich der fünf Standardbilder und des Logos ist in diesem Dokum
 - [ ] Laufzeitvarianten und Code-Zuordnung nach visueller Freigabe bewusst entschieden.
 
 
-## 11. Zweite visuelle Konzeptiteration – neutrale Entwicklungsstufen
+## 10. Zweite visuelle Konzeptiteration – neutrale Entwicklungsstufen
 
 Die zweite Konzeptübersicht setzt das Feedback zur stärkeren Entwicklung um: Die frühen Stufen bleiben niedlich, Teenager und Erwachsen/Legendär werden deutlich schlanker, markanter und weniger kindlich. Die Übersicht zeigt Ganzkörper-Silhouetten und ergänzende Kopfansichten. Sie ist eine Stil- und Proportionsstudie, noch keine finale Assetfreigabe.
 
@@ -145,6 +145,6 @@ Die zweite Konzeptübersicht setzt das Feedback zur stärkeren Entwicklung um: D
 
 **Produktionsentscheidung:** Diese Übersicht ist die bevorzugte aktuelle Richtung für die fünf neutralen Grundformen. Die finale Freigabe erfolgt anhand von fünf separaten, freigestellten Einzelbildern in vergleichbarer Pose und Größe.
 
-## 10. Nicht Bestandteil dieses Schritts
+## 11. Nicht Bestandteil dieses Schritts
 
 Keine Änderungen an Lernlogik, Entwicklungsgrenzen, Belohnungen, Shop, Speicherung, Navigation oder Laufzeitreaktionen. Keine Bereinigung historischer Dateien. Keine Serienproduktion weiterer Charakterbilder vor der visuellen Freigabe.
