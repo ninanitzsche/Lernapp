@@ -64,47 +64,39 @@ Die App enthält drei Themenbereiche mit insgesamt zehn Aufgabentypen. Der Zahle
 
 ## 2. Schlange und Spielwelt
 
-- **Implementiert:** Die Schlange hat einen Namen, der geändert werden kann.
-- **Implementiert:** Es gibt fünf Wachstumsstufen mit Futter-Schwellen bei 0, 60, 150, 300 und 500 Futter.
-- **Implementiert:** Richtig beantwortete Aufgaben bringen Futter; dadurch wächst die Schlange.
-- **Implementiert:** Fortschrittsanzeige, Gesichtsausdrücke und unterschiedliche Stimmungen.
-- **Implementiert:** Die Schlange reagiert auf Antippen.
-- **Implementiert:** Es gibt wechselnde Sprechblasen und Animationen.
-- **Implementiert:** Fütterungsanimation und Konfetti beim Stufenaufstieg.
-- **Implementiert:** Bei längerer Inaktivität verändert sich die Stimmung (hungrig nach etwa 24 Stunden, schlafend nach etwa 48 Stunden).
-- **Implementiert:** Richtige und falsche Antworten lösen unterschiedliche Reaktionen aus. Fehler werden spielerisch und ohne Beschämung kommentiert.
-- **Implementiert:** Lob wird variiert und nicht nach jeder richtigen Antwort abgespielt.
+- Nico hat fünf Entwicklungsstufen: Baby (0), Kleinkind (30), Kind (90), Teenager (200) und Erwachsen/legendär (350 Gesamtfutter).
+- Richtig beantwortete Aufgaben bringen Futter; die Höhe richtet sich nach der Aufgabenschwierigkeit und dem Antwortversuch.
+- Eine vollständig abgeschlossene Runde bringt einen Rundenbonus; drei aufeinanderfolgende Erstantworten richtig bringen höchstens einmal pro Runde Serienfutter.
+- Höchstens drei Runden pro Tag bringen Futter. Weitere Lernrunden bleiben möglich und aktualisieren den Lernstand.
+- Wachstum geht nie zurück. Pausen kosten weder Futter noch Entwicklungsstufen.
+- Nicos Stimmung darf sich bei längerer Inaktivität kosmetisch verändern; daraus entstehen keine Abzüge.
+- Die Schlange hat einen Namen, der geändert werden kann.
+- Fütterungsanimation und Häutung machen die Entwicklung sichtbar.
 
----
+Die verbindlichen Einzelregeln und Werte stehen in [docs/REWARD_SYSTEM.md](docs/REWARD_SYSTEM.md).
 
 ## 3. Terrarium und Shop
 
-- **Implementiert:** Eigenes Terrarium als gestaltbare Umgebung.
-- **Implementiert:** Shop mit aktuell 44 Einrichtungsgegenständen.
-- **Implementiert:** Drei Preiskategorien (1, 2 oder 3 Münzen); die Summe aller im aktuellen Katalog aufgeführten Kaufpreise beträgt 89 Münzen.
-- **Implementiert:** Gegenstände wie Pflanzen, Äste, Steine, Kristalle und Hängematte.
-- **Implementiert:** Unterschiedliche Hintergründe.
-- **Implementiert:** Vorschau im Shop und Kaufreaktionen mit Sound.
-- **Implementiert:** Gekaufte Gegenstände bleiben erhalten und werden aus dem verfügbaren Shop-Angebot entfernt.
-- **Implementiert:** Gegenstände werden im Terrarium platziert und können per Drag-and-drop verschoben werden.
-- **Implementiert:** Positionen der Gegenstände werden gespeichert.
-- **Implementiert:** Die Darstellung unterstützt Vorder- und Hintergrundebenen, sodass Gegenstände vor oder hinter der Schlange liegen können.
+- Eigenes, frei gestaltbares Terrarium.
+- Shop-Gegenstände kosten 1 bis 3 Münzen.
+- Gekaufte Gegenstände bleiben dauerhaft im Besitz, können platziert und verschoben werden; die Sammlung bleibt vollständig.
+- Das Terrarium nimmt Dekorationen sowie freigeschaltete Pokale/Orden auf.
+- Relikte werden erst nach dem ersten Lernfeldabschluss sichtbar; der jeweilige Pokal öffnet die passenden freiwilligen Expertenaufgaben.
 
----
+Die verbindlichen Regeln stehen in [docs/REWARD_SYSTEM.md](docs/REWARD_SYSTEM.md).
 
 ## 4. Belohnungen und Motivation
 
-- **Implementiert:** Drei Themenbereiche mit jeweils bis zu drei Sternen.
-- **Implementiert:** Eine beim ersten Versuch richtige Antwort bringt 2 Futter, eine beim zweiten Versuch richtige Antwort 1 Futter; bei nicht gelöster Aufgabe gibt es kein Futter.
-- **Implementiert:** Der Abschluss einer Runde bringt zusätzlich 5 Futter.
-- **Implementiert:** Es gibt eine Begrenzung auf drei futterbringende Runden pro Tag. Weitere Lernrunden bleiben möglich und aktualisieren weiterhin den Lernstand.
-- **Implementiert:** Wochenziel: an drei unterschiedlichen Tagen lernen; dafür gibt es einen Bonus.
-- **Implementiert:** Münzen können unter anderem durch den ersten Tagesdurchlauf, Stufenaufstiege, Sterne, das Wochenziel und den Knobelmodus verdient werden.
-- **Implementiert:** Für den Knobelbonus gilt eine Mindestleistung von 7 aus 10 Aufgaben beim ersten Versuch; der Bonus ist auf einmal pro Tag begrenzt.
-- **Implementiert:** Bereits erreichte Sterne bleiben erhalten, auch wenn sich der Kompetenzstand später verändert.
-- **Implementiert:** Es gibt keinen Verlust von Wachstum bei Lernpausen und keine aufeinander aufbauende Streak-Pflicht.
+- **Futter** lässt Nico wachsen; es ist keine Währung und kein Kompetenznachweis.
+- **Schuppenband** zeigt die Aufgabenschwierigkeit (leicht, mittel, knifflig); Schuppen sind keine Sammelwährung.
+- **Sterne:** genau fünf pro Lernfeld, nacheinander und nur für nachgewiesene Kompetenz.
+- **Münzen:** Spielwährung für Shop und Terrarium; unter anderem eine Münze je verdientem Stern, eine je Entwicklungsaufstieg und definierte Knobel-/Reliktbelohnungen.
+- **Pokale/Orden:** eine thematische Abschlussauszeichnung je gemeistertem Lernfeld; zugleich Schlüssel zu den passenden Relikten.
+- **Relikte:** freiwillige Expertenvarianten bekannter Aufgaben; bringen Terrariummünzen, aber keine Sterne oder Kompetenz-Auszeichnungen.
+- **Wissensalbum:** dauerhafte Sammlung der abgeschlossenen Lernfelder mit fünf Sternen und Themenillustration.
+- Keine Wochenziele, keine Belohnung für reine Rundenzahl, keine Streak-Pflicht und kein Verlust bei Pausen oder Fehlern.
 
----
+**Maßgebliche Quelle:** [docs/REWARD_SYSTEM.md](docs/REWARD_SYSTEM.md). Diese Datei ist eine Statusübersicht und darf keine abweichenden Belohnungsregeln definieren.
 
 ## 5. Audio und Bedienung
 
