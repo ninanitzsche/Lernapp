@@ -15,13 +15,15 @@ Die verbindlichen visuellen Grundlagen stehen in `docs/DESIGN_SYSTEM.md` und `do
 
 Entscheidungen von Nina (2026-11-22): Belohnung sofort plus Zwischenstopp. Schwierigkeit als automatische Rampe, Stufe sichtbar. Meilensteine: Entwicklung der Schlange, neue Sterne und bedeutsame Lernfortschritte in einem eigenständigen neuen Themenfeld (z. B. Multiplikation) sowie Knobelerfolge. Kein Wochenziel und keine Belohnung für reine Rundenzahl. Elternbereich: Ampel je Aufgabentyp, Empfehlung "Das hilft jetzt", Testbereitschaft.
 
-## 2. Befund zum Ist-Stand (aus dem Quellcode)
+## 2. Historischer Ausgangsbefund (22.11.2026)
+
+Die folgenden Aussagen beschreiben den Stand vor Umsetzung der Feedback-Runde. Sie sind ausdrücklich kein aktueller Funktionsstatus; diesen führt `FEATURES.md`.
 
 Das Feedback "Belohnung zu spät" ist nur zum Teil richtig, und das ändert die Lösung:
 
-- Futter kommt schon nach jeder Antwort (Live-Balken, Mampf-Ton). Spät kommen die Dinge, die das Kind wirklich haben will: Münzen (erst am Rundenende, höchstens 1 pro Tag als Mitbringsel) und Wachstum (Kleinkind erst bei 60 Futter, das sind drei bis vier Runden an mehreren Tagen).
+- Futter kam bereits nach jeder Antwort (Live-Balken, Mampf-Ton). Spät kamen die Dinge, die das Kind wirklich haben will: Münzen und Wachstum. Die genannten damaligen Schwellen und Belohnungsstände sind historische Ausgangswerte und wurden inzwischen angepasst.
 - Deshalb reicht "mehr Futter pro Aufgabe" nicht. Es braucht frühere Wachstumsschwellen, Zwischenerfolge innerhalb der Runde und Meilensteine zwischen den Stufen.
-- Heute gibt es nur zwei Schwierigkeiten (normal, Knobel). Die Aufgabenrampe fehlt, und wer neu anfängt, bekommt gleich normale Aufgaben mit Zahlen bis 99.
+- Damals gab es nur zwei Schwierigkeiten (normal, Knobel). Die Aufgabenrampe fehlte, und neue Spielstände bekamen gleich normale Aufgaben mit Zahlen bis 99. Diese Lücke ist Gegenstand der Anforderungen in Abschnitt 5.
 - Der Lernstand je Aufgabentyp (0 bis 3) ist die einzige Information im Elternbereich. Es gibt keinen Verlauf und keine Trefferquote.
 
 ## 3. Begriffe
