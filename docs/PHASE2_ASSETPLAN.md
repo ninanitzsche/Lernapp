@@ -1,7 +1,7 @@
 # Phase 2 – Asset- und Charakterproduktion
 
 > **Projekt:** Nico's Snake App  
-> **Branch:** `design/luminous-fantasy-adventure`  
+> **Branch:** `design/phase2-visual-foundation`  
 > **Verbindliche Art Direction:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Roadmap:** [ROADMAP_DESIGN.md](./ROADMAP_DESIGN.md)  
 > **Visuelle Weltenstrategie:** [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md)  
