@@ -82,10 +82,14 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 - Kurzer Markenauftritt; kein dauerhaftes Navigationslayout.
 
 ### Home
+- Grundkonzept: **Mischung aus gemütlichem Zuhause und großer Abenteuerwelt** (Entscheidung vom 26.11.2026).
+- Die Startseite fühlt sich wie Nicos eigener, vertrauter Lebensraum an und öffnet sich zugleich sichtbar in eine fantastische Abenteuerwelt.
+- Schlangenspezifische Umgebung: z. B. Wurzeln, Höhlen, Äste, Moos, Farne, Wasser und Kristalle. Keine generische Fantasy-Bühne mit bloßen Schlangen-Icons.
 - Nicos aktuelle Entwicklungsstufe ist der emotionale Mittelpunkt.
-- Eine klar dominante Hauptaktion.
-- Lernfortschritt und weitere Bereiche sind sichtbar, aber nachgeordnet.
-- Genügend Ruhe und freie Fläche.
+- Eine klar dominante Hauptaktion zum Fortsetzen/Starten des Lernens.
+- Lernfortschritt und weitere Bereiche sind sichtbar, aber nachgeordnet und als Elemente der Welt gestaltet.
+- Genügend Ruhe und freie Fläche; die Spielwelt darf die Orientierung und Bedienbarkeit nicht überlagern.
+- Die konkrete Komposition, Navigation und Asset-Liste werden im schrittweisen Home-Interview festgelegt.
 
 ### Lernen
 - Lerninhalt hat immer Vorrang vor Dekoration.
