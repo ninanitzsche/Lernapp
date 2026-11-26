@@ -1,6 +1,6 @@
 # Nico – kanonische Charakterreferenz
 
-> **Status:** Arbeitsgrundlage nach direktem Bildvergleich; finale Bildfreigabe weiterhin offen.
+> **Status:** Zweite neutrale Nico-Konzeptiteration vom Projektinhaber freigegeben (26.11.2026); finale Freigabe der fünf separaten Produktionsbilder weiterhin offen.
 > **Gültig für:** Phase 2 · Luminous Fantasy Adventure
 > **Verbindliche Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [PHASE2_ASSETKATALOG.md](./PHASE2_ASSETKATALOG.md)
 
@@ -215,3 +215,10 @@ Erst nach Freigabe der fünf neutralen Basen werden die sieben Emotionen abgelei
 
 **Nächster Produktions-Gate:** Fünf neutrale Einzelreferenzen als zusammenhängende Charakterfamilie. Erst wenn die Bilddateien selbst gegen die Bestandsreferenzen und das Logo geprüft werden können, ist eine belastbare visuelle Assetfreigabe möglich. Bis dahin werden keine 35 Emotionsvarianten und keine großflächige Weltserie produziert.
 
+
+
+## 13. Freigabe der zweiten Nico-Konzeptiteration – 26.11.2026
+
+Der Projektinhaber hat die zweite neutrale Nico-Konzeptiteration ausdrücklich freigegeben. Damit ist diese Konzeptfassung die verbindliche visuelle Richtung für die fünf Entwicklungsstufen.
+
+Die Freigabe gilt für den dargestellten Entwicklungsbogen und die gestalterische Richtung. Sie ist **keine** pauschale Freigabe der bestehenden App-Bilddateien oder eines einzelnen Produktionskandidaten. Vor der Integration müssen die fünf Stufen weiterhin als separate, freigestellte Einzelassets vorliegen und anhand der Produktionsregeln dieses Dokuments geprüft werden. Insbesondere bleiben die Ausrichtung der erwachsenen/legendären Form am unveränderten Logo sowie die technische und visuelle Einzelbildabnahme erforderlich.
