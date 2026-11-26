@@ -1,7 +1,7 @@
 # Design-Roadmap – Luminous Fantasy Adventure
 
 > **Projekt:** Nico's Snake App  
-> **Branch:** `design/luminous-fantasy-adventure`  
+> **Arbeitsbranch:** `design/phase2-visual-foundation` (Phase-2-Arbeit ausschließlich hier; `main` bleibt unangetastet)  
 > **Designreferenz:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)  
 > **Archiv (obsolet):** [PHASE0_INVENTAR.md](./archive/PHASE0_INVENTAR.md)  
 > **Phase-2-Arbeitsplan:** [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md)  
@@ -152,6 +152,8 @@ Es gelten die Statusbegriffe aus [README.md](./README.md): **Entworfen**, **Impl
 | Geräte | Smartphone Hochformat zuerst; Tablet/Desktop responsiv |
 | Lernen | Helle, ruhige und kontrastreiche Aufgabenflächen |
 | Terrarium | Reichhaltigste Fantasy-Ansicht |
+| Home | Hybrid aus Nicos gemütlichem, schlangenspezifischem Zuhause und einer sich öffnenden Abenteuerwelt (26.11.2026) |
+| Git-Arbeitsweise | Phase-2-Änderungen ausschließlich auf `design/phase2-visual-foundation`; `main` bleibt unangetastet |
 | Bildproduktion | Einzelne, eigens erstellte 3D-Assets; keine generierten UI-Screenshots |
 | Zuständigkeit Assets | ChatGPT: Art Direction und Bildassets; Claude Code: technische Integration |
 | Funktionsumfang | Bestehende Funktionen und Mechaniken bleiben erhalten |
