@@ -91,7 +91,7 @@ Es gelten die Statusbegriffe aus [README.md](./README.md): **Entworfen**, **Impl
 - [ ] Vollständiges Stil-Referenzpaket aus Nico, Terrarium, Einzelobjekten und Belohnungen final visuell freigeben.
 - [ ] Benötigte transparente Charakter-Assets und Posen festlegen.
 - [ ] Einzelne 3D-Spielgrafiken mit ChatGPT erstellen; Claude Code bindet die freigegebenen Assets technisch ein.
-- [x] Home-Screen-Komposition Smartphone-first spezifizieren und umsetzen ([HOME_SCREEN_CONCEPT.md](./HOME_SCREEN_CONCEPT.md)); Hintergrundmotiv vom Projektinhaber abgenommen, React/CSS-Komposition mit dynamischem Nico, Kompetenzschildern und illustrierten Weltzugängen auf dem Phase-2-Branch implementiert. Finale 3D-Produktionsassets und manuelle Viewport-QA bleiben offen.
+- [x] Home-Screen-Komposition Smartphone-first spezifizieren und umsetzen ([HOME_SCREEN_CONCEPT.md](./HOME_SCREEN_CONCEPT.md)); React/CSS-Komposition mit dynamischem Nico, Kompetenzschildern und Weltzugängen teilweise implementiert. Das zuvor verwendete SVG-Hintergrundmotiv wurde am 26.11.2026 als unzureichend zurückgewiesen; eine generierte 3D-Waldszene liegt vor, ist aber noch nicht im Repo integriert. Finale 3D-Produktionsassets und manuelle Viewport-QA bleiben offen.
 - [ ] Hintergründe für Home, Lernansicht und Terrarium definieren.
 - [ ] Dekoration, Kristalle und Effekte als einzelne Assets organisieren.
 - [ ] Einheitliche Lichtführung, Perspektive, Materialien und Proportionen über alle Asset-Gruppen sichern.
