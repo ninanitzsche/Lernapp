@@ -1,6 +1,6 @@
 # Home-Screen-Konzept – Smartphone-first
 
-> **Status:** Hintergrundmotiv abgenommen; Home-Komposition und Material-Finish für Smartphone/Desktop implementiert; abschließende Browser-/Viewport-QA offen  
+> **Status:** Home-Komposition teilweise implementiert; bisheriges SVG-Hintergrundmotiv am 26.11.2026 ausdrücklich als unzureichend zurückgewiesen; neue generierte 3D-Waldszene erstellt, Integration und Browser-/Viewport-QA offen  
 > **Gültig für:** Phase 2 · Mathematik / Nico / Schlangenwelt  
 > **Arbeitsbranch:** `design/phase2-visual-foundation`  
 > **Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [REWARD_SYSTEM.md](./REWARD_SYSTEM.md)
@@ -111,16 +111,17 @@ Bestehende Charakterdateien und das Logo bleiben unangetastet. Die kanonische Id
 
 ## 7. Umsetzungsstand und offene Punkte vor Produktionsfreigabe
 
-Der gestaltete Smartphone-first-Home-Screen ist in `src/App.tsx` und `src/index.css` umgesetzt. `public/images/home/home-world.svg` liefert die vom Projektinhaber abgenommene, schlangenspezifische Wald-/Höhlenkulisse mit Wasserfall, Wurzeln, Kristallen und natürlicher Plattform. Nico bleibt ein separates dynamisches Charakterasset im vorhandenen Terrarium. Die Habitat-Umrandung wurde bewusst beibehalten, damit Nico nicht wie eine freigestellte Figur über dem Hintergrund schwebt. Die Startansicht verwendet eine persönliche Begrüßung mit dem Namen des Kindes und eine kompaktere Anordnung für kleine Smartphone-Displays.
+Der gestaltete Smartphone-first-Home-Screen ist in `src/App.tsx` und `src/index.css` umgesetzt. Das bisherige `public/images/home/home-world.svg` ist nur eine einfache Vektorillustration und wurde am 26.11.2026 ausdrücklich als unzureichend zurückgewiesen. Eine neue detailreiche 3D-Fantasiewaldszene wurde generiert (`a_lush_cinematic_high_detail_fantasy_forest_scen.png`, 941 × 1672 px); sie ist noch nicht in den Repository-Assetpfad übertragen und daher noch nicht in der App integriert. Nico bleibt ein separates dynamisches Charakterasset im vorhandenen Terrarium. Die Habitat-Umrandung wurde bewusst beibehalten, damit Nico nicht wie eine freigestellte Figur über dem Hintergrund schwebt. Die Startansicht verwendet eine persönliche Begrüßung mit dem Namen des Kindes und eine kompaktere Anordnung für kleine Smartphone-Displays.
 
 Lernschilder und fünf Kompetenzsterne sind echte React-Elemente; die Kompetenzfelder werden nach dem jeweils niedrigsten erreichten Stern sortiert, damit Bereiche mit weiterem Lernbedarf zuerst erscheinen. Sekundäre Navigation nutzt eigene inline-SVG-Illustrationen statt Emoji-Platzhaltern. Die vollständige Themenübersicht, Album, Shop und freigeschaltete Relikte behalten ihre vorhandenen Aktionen. Touch-Ziele, Fokuszustände und Reduced-Motion-Verhalten werden berücksichtigt.
 
-Die Priorisierung nutzt den vorhandenen Kompetenzstand; eine eigene Freischalt-/Verfügbarkeitsinformation pro Lernfeld existiert im aktuellen Datenmodell nicht. Deshalb werden derzeit alle vier im Code definierten Lernfelder angezeigt, nicht fälschlich als gesperrt markiert. Der Hintergrund ist eine leichte Vektorillustration als abgenommene erste Art-Direction, noch kein finales 3D-Produktionsasset. Nicos Charakterdateien wurden nicht verändert.
+Die Priorisierung nutzt den vorhandenen Kompetenzstand; eine eigene Freischalt-/Verfügbarkeitsinformation pro Lernfeld existiert im aktuellen Datenmodell nicht. Deshalb werden derzeit alle vier im Code definierten Lernfelder angezeigt, nicht fälschlich als gesperrt markiert. Der derzeit referenzierte Hintergrund ist noch die zurückgewiesene Vektorillustration. Die neue generierte 3D-Waldszene ist noch nicht integriert. Nicos Charakterdateien wurden nicht verändert.
 
-- [x] Die konkrete Hintergrundkomposition visuell abnehmen.
+- [x] Die bisherige SVG-Hintergrundkomposition wurde am 26.11.2026 als finale Bildwelt zurückgewiesen.
 - [ ] Nico-Platzierung mit den freigegebenen fünf Entwicklungsstufen prüfen; die endgültigen Einzelbilder sind noch nicht alle freigegeben.
 - [x] Lernschilder, Sternanzeige und sekundäre Weltobjekte als erste Stilrichtung implementieren; finale Detailabnahme bleibt offen.
-- [ ] Kontrast und Lesbarkeit der echten UI auf dem Hintergrund in Browser-Viewports prüfen.
+- [ ] Generierte 3D-Waldszene als optimiertes Bildasset in `public/images/home/` integrieren und SVG als Haupt-Hintergrund ablösen.
+- [ ] Kontrast und Lesbarkeit der echten UI auf dem neuen Hintergrund in Browser-Viewports prüfen.
 - [ ] Die Vektor-Hintergrundgrafik und Navigationsillustrationen im Asset-Katalog mit Format, Abmessungen und Status erfassen; anschließend ggf. finale Produktionsassets exportieren.
 - [ ] Den Home-Screen in Smartphone-, Tablet- und Desktop-Viewports praktisch prüfen; bestehende Navigation und Spiellogik unverändert erhalten.
 
