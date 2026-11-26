@@ -1,6 +1,6 @@
 # Home-Screen-Konzept – Smartphone-first
 
-> **Status:** Entworfen, noch nicht visuell freigegeben  
+> **Status:** UX-Spezifikation freigegeben; erster React/CSS-Prototyp implementiert, visuelle Abnahme und Produktionsassets weiterhin offen  
 > **Gültig für:** Phase 2 · Mathematik / Nico / Schlangenwelt  
 > **Arbeitsbranch:** `design/phase2-visual-foundation`  
 > **Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [REWARD_SYSTEM.md](./REWARD_SYSTEM.md)
@@ -109,14 +109,16 @@ Die Szene wird bewusst in getrennte, wiederverwendbare Teile zerlegt:
 
 Bestehende Charakterdateien und das Logo bleiben unangetastet. Die kanonische Identität und offenen Korrekturen stehen ausschließlich in [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md).
 
-## 7. Offene Punkte vor Produktionsfreigabe
+## 7. Umsetzungsstand und offene Punkte vor Produktionsfreigabe
+
+Der erste Smartphone-first-Prototyp ist in `src/App.tsx` und `src/index.css` umgesetzt. Er bildet die Inhaltsreihenfolge, echten Navigationsaktionen und die getrennten Kompetenzsterne ab. Die Gestaltung verwendet vorerst vorhandene Nico-/Terrarium-Assets und CSS-Flächen; sie ist ausdrücklich noch keine finale Luminous-Fantasy-Art-Direction. Die Weltobjekte sind aktuell typografisch/emoji-basierte Platzhalter und müssen durch freigegebene Einzelgrafiken ersetzt werden. Die Lernfeldreihenfolge folgt vorerst der zentralen Liste in `src/logic/tasks.ts`, weil es noch keine eigene individuelle Home-Priorisierung gibt.
 
 - [ ] Die konkrete Hintergrundkomposition visuell freigeben.
 - [ ] Nico-Platzierung mit den freigegebenen fünf Entwicklungsstufen prüfen; die endgültigen Einzelbilder sind noch nicht alle freigegeben.
 - [ ] Lernschilder, Sternanzeige und sekundäre Weltobjekte als Stilpaket abstimmen.
 - [ ] Kontrast und Lesbarkeit der echten UI auf dem Hintergrund im Smartphone-Viewport prüfen.
-- [ ] Erst danach einzelne Produktionsassets exportieren und im Asset-Katalog mit Maßen, Format, Transparenz, Dateigröße und Status erfassen.
-- [ ] Erst nach visueller Freigabe die Integration in `src/App.tsx` und Styles beginnen; bestehende Navigation und Spiellogik unverändert erhalten.
+- [ ] Einzelne Produktionsassets exportieren und im Asset-Katalog mit Maßen, Format, Transparenz, Dateigröße und Status erfassen.
+- [ ] Den Prototyp nach Asset-Freigabe visuell überarbeiten und in Smartphone-, Tablet- und Desktop-Viewports prüfen; bestehende Navigation und Spiellogik unverändert erhalten.
 
 ## 8. Abnahmekriterien
 
