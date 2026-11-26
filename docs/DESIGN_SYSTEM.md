@@ -104,6 +104,7 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 - Umfang der Lernfeld-Schilder auf Home: **kleine Auswahl auf der Startseite plus eigener Zugang „Alle Themen“ zur vollständigen Übersicht** (Auswahl C, 26.11.2026). Home bleibt dadurch ruhig und übersichtlich; die vollständige Themenübersicht kann unabhängig davon wachsen.
 - Auswahl der auf Home sichtbaren Lernfelder: **Themen, an denen das Kind gerade arbeitet bzw. die als Nächstes anstehen** (Auswahl B, 26.11.2026). Die konkrete Priorisierungs- und Auswahlregel richtet sich nach dem vorhandenen Lernstand und wird nicht durch eine feste, für alle Kinder gleiche Themenliste ersetzt.
 - Gestaltung der Lernfeld-Schilder: **Holzschilder mit magischen Details** (Auswahl C, 26.11.2026), z. B. leuchtende Symbole oder kleine Kristalle. Die Schilder gehören sichtbar zur natürlichen Umgebung und greifen zugleich die magische Bildsprache auf; Text und Kompetenzsterne müssen gut lesbar bleiben.
+- Darstellung der fünf Kompetenzsterne: **verdiente Kompetenzsterne in Gold, noch offene Sterne als dezente Umrisse** (Auswahl C, 26.11.2026). Die Anzeige bleibt klein und auf jedem Lernfeld-Schild eindeutig dem jeweiligen Lernfeld zugeordnet.
 - Die konkrete Komposition, Navigation und Asset-Liste werden im schrittweisen Home-Interview festgelegt.
 
 ### Lernen
