@@ -102,6 +102,7 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 - Die Home-Übersicht hält diese Anzeigen bewusst klein und übersichtlich. Keine zusätzliche globale Fortschrittsanzeige und kein einzelnes Welt-Element, das einen vermeintlichen Gesamtfortschritt aller Lernfelder darstellt.
 - Darstellung der Lernfelder auf Home: **als Schilder entlang eines Weges** (Auswahl A, 26.11.2026), z. B. mit den Bezeichnungen „Zahlenstrahl“ oder „Geometrie“. Direkt unter dem jeweiligen Schild kann der zugehörige Kompetenzfortschritt mit bis zu fünf Sternen kompakt angezeigt werden. Die Schilder müssen auch bei später hinzukommenden Lernfeldern erweiterbar und gut lesbar bleiben.
 - Umfang der Lernfeld-Schilder auf Home: **kleine Auswahl auf der Startseite plus eigener Zugang „Alle Themen“ zur vollständigen Übersicht** (Auswahl C, 26.11.2026). Home bleibt dadurch ruhig und übersichtlich; die vollständige Themenübersicht kann unabhängig davon wachsen.
+- Auswahl der auf Home sichtbaren Lernfelder: **Themen, an denen das Kind gerade arbeitet bzw. die als Nächstes anstehen** (Auswahl B, 26.11.2026). Die konkrete Priorisierungs- und Auswahlregel richtet sich nach dem vorhandenen Lernstand und wird nicht durch eine feste, für alle Kinder gleiche Themenliste ersetzt.
 - Die konkrete Komposition, Navigation und Asset-Liste werden im schrittweisen Home-Interview festgelegt.
 
 ### Lernen
