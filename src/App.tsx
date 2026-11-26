@@ -187,17 +187,17 @@ function AppInhalt() {
 
       <nav className="home-world-nav" aria-label="Weitere Bereiche">
         <button className="home-world-object topics" type="button" onClick={() => setView('themen')}>
-          <span className="home-object-art" aria-hidden="true">📚</span><span>Themen &amp; Buch</span>
+          <span className="home-object-art" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M7 10Q16 6 24 12Q32 6 41 10V37Q32 33 24 39Q16 33 7 37Z" fill="#e9c27f" stroke="#573a28" strokeWidth="3" strokeLinejoin="round"/><path d="M24 12V39M12 16Q18 14 21 17M12 23Q18 21 21 24M28 17Q34 14 37 16M28 24Q34 21 37 23" fill="none" stroke="#795333" strokeWidth="2" strokeLinecap="round"/></svg></span><span>Themen &amp; Buch</span>
         </button>
         <button className="home-world-object album" type="button" onClick={() => setView('album')}>
-          <span className="home-object-art" aria-hidden="true">📖</span><span>Album{state.meilensteine.length > 0 ? ` · ${state.meilensteine.length}` : ''}</span>
+          <span className="home-object-art" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M5 12Q15 8 24 15Q33 8 43 12V38Q33 34 24 41Q15 34 5 38Z" fill="#e9dfba" stroke="#6b4c31" strokeWidth="3" strokeLinejoin="round"/><path d="M24 15V41M11 18Q17 16 21 20M28 20Q34 16 39 18" fill="none" stroke="#a27b4f" strokeWidth="2"/><path d="M24 4L27 10L34 11L29 16L30 22L24 19L18 22L19 16L14 11L21 10Z" fill="#e5b83f" stroke="#815a29" strokeWidth="1.5"/></svg></span><span>Album{state.meilensteine.length > 0 ? ` · ${state.meilensteine.length}` : ''}</span>
         </button>
         <button className="home-world-object shop" type="button" onClick={() => setView('shop')}>
-          <span className="home-object-art" aria-hidden="true">🎁</span><span>Shop · <Muenzen n={kontostand(state)} /></span>
+          <span className="home-object-art" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M7 19H41V41H7Z" fill="#9b6036" stroke="#4d3425" strokeWidth="3" strokeLinejoin="round"/><path d="M5 14H43V22H5Z" fill="#d49a54" stroke="#4d3425" strokeWidth="3"/><path d="M20 14Q14 5 19 5Q24 5 24 14Q24 5 30 5Q35 6 28 14" fill="#d7a93e" stroke="#79532e" strokeWidth="2"/><path d="M21 22V40M27 22V40" stroke="#e4b66d" strokeWidth="3"/><circle cx="24" cy="31" r="3" fill="#f3d37a"/></svg></span><span>Shop · <Muenzen n={kontostand(state)} /></span>
         </button>
         {reliktBereichSichtbar(state) && (
           <button className="home-world-object relics" type="button" onClick={() => setView('relikte')}>
-            <span className="home-object-art" aria-hidden="true">💎</span><span>Relikte</span>
+            <span className="home-object-art" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 4L39 18L25 44L9 19Z" fill="#56d8ca" stroke="#155b58" strokeWidth="3" strokeLinejoin="round"/><path d="M24 4L25 44L9 19Z" fill="#b5fff0"/><path d="M24 4L39 18L9 19Z" fill="#a2fff1"/><path d="M9 19H39" stroke="#e0fff8" strokeWidth="2"/></svg></span><span>Relikte</span>
           </button>
         )}
       </nav>
