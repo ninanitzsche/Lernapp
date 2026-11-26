@@ -135,35 +135,76 @@ function AppInhalt() {
   const gesamtRunden = Object.values(state.rounds).reduce((s, n) => s + n, 0)
   const sichern = sicherungFaellig(gesamtRunden, letzteSicherung(), now)
   return (
-    <main className="start">
-      <img className="start-logo" src={`${import.meta.env.BASE_URL}images/logo.webp`} alt="Nico's Snake App" draggable={false} />
-      <Snake state={state} now={now} onChange={setState} />
-      {heuteRunden >= CONFIG.foodRoundsPerDay && (
-        <p className="satt">{state.name} ist satt. Üben geht trotzdem!</p>
-      )}
-      {pause ? (
-        <button className="knopf gross hauptknopf" type="button" onClick={weitermachen}>Weiter: Aufgabe {pause.index + 1} von {pause.aufgaben.length}</button>
-      ) : (
-        <button className="knopf gross hauptknopf" type="button" onClick={() => starten()}>Runde starten</button>
-      )}
-      <div className="zeile">
-        <button className="knopf klein" type="button" onClick={() => setView('themen')}>Themen und Buch</button>
-        <button className="knopf klein" type="button" onClick={() => setView('album')}>
-          <span aria-hidden="true">🐍</span>&nbsp;Album{state.meilensteine.length > 0 && <>&nbsp;<span className="album-zahl">{state.meilensteine.length}</span></>}
-        </button>
-        <button className="knopf klein" type="button" onClick={() => setView('shop')}>
-          <span aria-hidden="true">🛍️</span>&nbsp;Shop&nbsp;<Muenzen n={kontostand(state)} />
-        </button>
-        {reliktBereichSichtbar(state) && (
-          <button className="knopf klein" type="button" onClick={() => setView('relikte')}><span aria-hidden="true">🗝️</span>&nbsp;Relikte</button>
-        )}
-      </div>
-      <div className="zeile">
-        <button className="link" type="button" onClick={() => setIntro(true)}>Wie geht das?</button>
-        <button className="link" type="button" onClick={() => setView('parent')}>
+    <main className="start home-screen">
+      <header className="home-topline">
+        <span className="home-kicker">Dein Abenteuer beginnt hier</span>
+        <button className="home-parent-link" type="button" onClick={() => setView('parent')}>
           Für Erwachsene{sichern && <span className="hinweis-punkt" role="img" aria-label="Eine Sicherung ist fällig" />}
         </button>
-      </div>
+      </header>
+
+      <section className="home-hero" aria-label="Dein Zuhause">
+        <div className="home-world-glow" aria-hidden="true" />
+        <div className="home-hero-copy">
+          <span className="home-eyebrow">Willkommen zurück</span>
+          <h1>Schön, dass du da bist!</h1>
+        </div>
+        <div className="home-snake">
+          <Snake state={state} now={now} onChange={setState} />
+        </div>
+        {heuteRunden >= CONFIG.foodRoundsPerDay && (
+          <p className="satt">{state.name} ist satt. Üben geht trotzdem!</p>
+        )}
+        <div className="home-start-platform">
+          <button className="knopf gross hauptknopf home-start-button" type="button" onClick={pause ? weitermachen : () => starten()}>
+            {pause ? `Weiter: Aufgabe ${pause.index + 1} von ${pause.aufgaben.length}` : 'Runde starten'}
+          </button>
+        </div>
+      </section>
+
+      <section className="home-learning" aria-labelledby="home-learning-title">
+        <div className="home-section-heading">
+          <div>
+            <span className="home-eyebrow">Dein Lernpfad</span>
+            <h2 id="home-learning-title">Wähle ein Thema</h2>
+          </div>
+          <button className="home-all-topics" type="button" onClick={() => setView('themen')}>Alle Themen <span aria-hidden="true">→</span></button>
+        </div>
+        <div className="home-signs">
+          {TOPICS.map((t, i) => (
+            <button className="home-sign" type="button" key={t} onClick={() => starten(t, 'mix')} aria-label={`${TOPIC_NAMES[t]}, ${state.sterneErreicht[t]} von ${MAX_STERNE} Kompetenzsternen. Nächste Runde starten.`}>
+              <span className="home-sign-post" aria-hidden="true" />
+              <span className="home-sign-face">
+                <span className="home-sign-name">{TOPIC_NAMES[t]}</span>
+                <span className="home-sign-stars" aria-label={`${state.sterneErreicht[t]} von fünf Sternen`}>
+                  {Array.from({ length: MAX_STERNE }, (_, n) => <span key={n} className={n < state.sterneErreicht[t] ? 'home-star earned' : 'home-star'} aria-hidden="true">★</span>)}
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <nav className="home-world-nav" aria-label="Weitere Bereiche">
+        <button className="home-world-object topics" type="button" onClick={() => setView('themen')}>
+          <span className="home-object-art" aria-hidden="true">📚</span><span>Themen &amp; Buch</span>
+        </button>
+        <button className="home-world-object album" type="button" onClick={() => setView('album')}>
+          <span className="home-object-art" aria-hidden="true">📖</span><span>Album{state.meilensteine.length > 0 ? ` · ${state.meilensteine.length}` : ''}</span>
+        </button>
+        <button className="home-world-object shop" type="button" onClick={() => setView('shop')}>
+          <span className="home-object-art" aria-hidden="true">🎁</span><span>Shop · <Muenzen n={kontostand(state)} /></span>
+        </button>
+        {reliktBereichSichtbar(state) && (
+          <button className="home-world-object relics" type="button" onClick={() => setView('relikte')}>
+            <span className="home-object-art" aria-hidden="true">💎</span><span>Relikte</span>
+          </button>
+        )}
+      </nav>
+
+      <footer className="home-footer">
+        <button className="link" type="button" onClick={() => setIntro(true)}>Wie geht das?</button>
+      </footer>
     </main>
   )
 }
