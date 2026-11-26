@@ -1001,7 +1001,7 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
 /* Finalisierte Home-Art-Direction: Waldpfad als Hintergrundebene, UI bleibt HTML/React. */
 .home-screen {
   background-color:#103b30;
-  background-image:linear-gradient(180deg,rgba(8,38,30,.12),rgba(6,35,27,.56) 72%,rgba(5,30,24,.9)),url('/images/home/home-world.svg');
+  background-image:linear-gradient(180deg,rgba(8,38,30,.12),rgba(6,35,27,.56) 72%,rgba(5,30,24,.9)),url('/images/home/home-forest.avif');
   background-size:cover;
   background-position:center top;
   background-repeat:no-repeat;
@@ -1135,9 +1135,7 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
 /* Home – Bildwelt-Integration: die Spielwelt bleibt Hintergrund, alle Texte und
    Aktionen bleiben echte, dynamische App-Elemente. */
 .home-screen {
-  background-image:
-    linear-gradient(180deg,rgba(5,28,22,.12) 0%,rgba(5,30,24,.2) 38%,rgba(5,27,22,.76) 100%),
-    url('/images/home/home-world.svg');
+  background-image:linear-gradient(180deg,rgba(5,28,22,.20) 0%,rgba(5,30,24,.10) 28%,rgba(5,27,22,.72) 100%),url('/images/home/home-forest.avif');
   background-size:cover;
   background-position:center 38%;
 }
@@ -1338,4 +1336,34 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
 }
 @media (prefers-reduced-motion:reduce) {
   .home-world-object {transition:none}
+}
+
+
+/* Generated 3D forest background – keep every interactive element in the DOM. */
+.home-screen {
+  background-color:#0b3027;
+  background-image:
+    linear-gradient(180deg,rgba(4,26,21,.14) 0%,rgba(5,30,24,.04) 24%,rgba(5,27,22,.54) 68%,rgba(4,25,20,.94) 100%),
+    url('/images/home/home-forest.avif');
+  background-size:cover;
+  background-position:center 42%;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
+.home-hero {
+  background:linear-gradient(180deg,rgba(6,35,27,.08),rgba(6,35,27,.16));
+  border-color:rgba(255,230,174,.22);
+  box-shadow:inset 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0,0,0,.1);
+}
+.home-learning {
+  background:linear-gradient(180deg,rgba(8,42,32,.78),rgba(4,27,22,.92));
+  border-color:rgba(255,224,166,.4);
+  backdrop-filter:blur(7px);
+}
+.home-world-nav {
+  background:linear-gradient(180deg,rgba(9,43,33,.88),rgba(4,27,22,.96));
+  backdrop-filter:blur(8px);
+}
+@media (min-width:600px) {
+  .home-screen { background-position:center 44%; }
 }
