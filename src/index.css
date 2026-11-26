@@ -997,3 +997,63 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
 .home-footer .link { font-size:.82rem; padding:7px 12px; }
 @media (min-width:600px) { .home-screen { padding-inline:24px; gap:18px; } .home-hero { padding:22px 24px 18px; } .home-snake .terrarium { width:280px; } .home-signs { grid-template-columns:repeat(4,minmax(0,1fr)); } .home-world-nav { max-width:560px; width:100%; align-self:center; } }
 @media (max-width:370px) { .home-screen { padding-inline:10px; gap:10px; } .home-hero { padding:12px 8px; } .home-snake .terrarium { width:58vw; height:160px; } .home-world-object { font-size:.62rem; } .home-sign-name { font-size:.82rem; } }
+
+/* Finalisierte Home-Art-Direction: Waldpfad als Hintergrundebene, UI bleibt HTML/React. */
+.home-screen {
+  background-color:#103b30;
+  background-image:linear-gradient(180deg,rgba(8,38,30,.12),rgba(6,35,27,.56) 72%,rgba(5,30,24,.9)),url('/images/home/home-world.svg');
+  background-size:cover;
+  background-position:center top;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+  color:#fff4de;
+}
+.home-hero {
+  background:linear-gradient(180deg,rgba(9,43,33,.12),rgba(7,39,30,.22));
+  border-color:rgba(255,230,174,.18);
+  box-shadow:inset 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0,0,0,.12);
+}
+.home-hero-copy h1 { text-shadow:0 2px 8px rgba(0,0,0,.55); }
+.home-snake .terrarium {
+  background:rgba(9,43,33,.34);
+  border:3px solid rgba(255,229,174,.66);
+  box-shadow:inset 0 0 24px rgba(185,255,226,.13),0 0 0 5px rgba(7,37,29,.28),0 12px 28px rgba(0,0,0,.34),0 0 34px rgba(111,255,194,.16);
+  backdrop-filter:blur(2px);
+}
+.home-snake .terra-hintergrund { opacity:.2; }
+.home-snake .deko { filter:drop-shadow(0 3px 4px rgba(0,0,0,.32)); }
+.home-start-platform {
+  background:linear-gradient(180deg,rgba(147,92,47,.97),rgba(82,49,31,.98));
+  border:2px solid #e2b875;
+  box-shadow:inset 0 2px rgba(255,245,210,.26),0 7px 0 #39271d,0 12px 22px rgba(0,0,0,.3);
+}
+.home-start-button { box-shadow:0 3px 0 rgba(43,75,38,.85),0 5px 12px rgba(0,0,0,.2); }
+.home-learning { padding:12px 10px 10px; border-radius:24px; background:linear-gradient(180deg,rgba(9,43,32,.78),rgba(5,31,25,.86)); border:1px solid rgba(241,215,163,.22); box-shadow:0 10px 26px rgba(0,0,0,.18); backdrop-filter:blur(5px); }
+.home-sign-face {
+  background:linear-gradient(180deg,#bd8950 0%,#8d5b35 55%,#684329 100%);
+  border-color:#e3bd7a;
+  box-shadow:inset 0 2px rgba(255,244,208,.3),0 4px 0 #4d321d,0 8px 14px rgba(0,0,0,.3);
+}
+.home-sign-name { font-family:Georgia,serif; letter-spacing:.01em; }
+.home-world-nav {
+  background:linear-gradient(180deg,rgba(13,54,41,.88),rgba(5,34,27,.94));
+  border-color:rgba(235,202,143,.36);
+  box-shadow:0 10px 26px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.1);
+  backdrop-filter:blur(7px);
+}
+.home-world-object {
+  background:linear-gradient(180deg,rgba(255,237,197,.13),rgba(255,237,197,.045));
+  border-color:rgba(255,225,171,.25);
+  border-radius:16px;
+  min-height:82px;
+}
+.home-object-art { width:42px;height:42px;display:grid;place-items:center; }
+.home-object-art svg { width:100%;height:100%;overflow:visible;filter:drop-shadow(0 3px 3px rgba(0,0,0,.32)); }
+.home-world-object.topics { border-color:rgba(242,200,119,.48); }
+.home-world-object.shop { background:linear-gradient(180deg,rgba(207,151,73,.24),rgba(255,237,197,.06)); }
+.home-world-object.relics { background:linear-gradient(180deg,rgba(66,206,194,.2),rgba(255,237,197,.05)); }
+.home-footer .link { color:#ffe3a1;text-shadow:0 1px 3px #092d25; }
+@media (min-width:600px) {
+  .home-screen { background-position:center 42%; }
+  .home-hero { background:linear-gradient(180deg,rgba(9,43,33,.08),rgba(7,39,30,.18)); }
+}
