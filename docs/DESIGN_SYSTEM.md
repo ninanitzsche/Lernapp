@@ -89,6 +89,7 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 - Eine klar dominante Hauptaktion zum Fortsetzen/Starten des Lernens.
 - Lernfortschritt und weitere Bereiche sind sichtbar, aber nachgeordnet und als Elemente der Welt gestaltet.
 - Genügend Ruhe und freie Fläche; die Spielwelt darf die Orientierung und Bedienbarkeit nicht überlagern.
+- Räumlicher Aufbau: **Übergang zwischen Zuhause und Welt** (Auswahl 3, 26.11.2026): Im Vordergrund liegt Nicos geschützter, gemütlicher Platz; dahinter öffnet sich die größere Abenteuerlandschaft. Der Übergang soll visuell klar und einladend sein, nicht wie zwei getrennte Screens wirken.
 - Die konkrete Komposition, Navigation und Asset-Liste werden im schrittweisen Home-Interview festgelegt.
 
 ### Lernen
