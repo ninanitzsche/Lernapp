@@ -93,6 +93,7 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 - Nicos Position: **als kleiner Entdecker auf einer Wurzel oder einem Ast**, mit Blick in die sich öffnende Welt (Auswahl C, 26.11.2026). Seine Haltung soll Neugier und Aufbruch vermitteln; er bleibt dabei erkennbar im vertrauten Zuhause verankert.
 - Präsenz der Abenteuerwelt: **ausgewogen** (Auswahl B, 26.11.2026). Die Landschaft ist deutlich erkennbar und macht Lust aufs Entdecken, bleibt aber visuell hinter Nico und der zentralen Lernaktion.
 - Darstellung der Hauptaktion „Runde starten“: **deutlich erkennbarer Button auf einer natürlichen Plattform vor Nico** (Auswahl C, 26.11.2026). Die Aktion verbindet die Spielwelt mit einer jederzeit verständlichen, gut bedienbaren Oberfläche.
+- Weitere Bereiche (Themen, Album, Shop und Relikte): **Kombination aus wenigen Elementen in der Spielwelt und einer schmalen, klaren Navigation** (Auswahl C, 26.11.2026). Welt-Elemente dürfen Atmosphäre und Entdeckung unterstützen; die Navigation stellt sicher, dass alle Bereiche direkt auffindbar und bedienbar bleiben.
 - Die konkrete Komposition, Navigation und Asset-Liste werden im schrittweisen Home-Interview festgelegt.
 
 ### Lernen
