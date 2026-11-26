@@ -5,7 +5,7 @@
 > Regel: Ein Punkt wird erst auf erledigt gesetzt, wenn Code/Asset vorhanden und der jeweilige Nachweis erbracht ist. Ein grüner Build ersetzt keine visuelle Prüfung.
 
 ## 1. Bildwelt und Produktionsassets
-- [ ] Generierten, detailreichen 3D-Wald als echten Home-Hintergrund integrieren; zurückgewiesenes SVG nicht mehr als Hauptmotiv verwenden.
+- [x] Generierten, detailreichen 3D-Wald als echten Home-Hintergrund integrieren; zurückgewiesenes SVG nicht mehr als Hauptmotiv verwenden.
 - [ ] Bildausschnitt für Smartphone, Tablet und Desktop festlegen; Motiv darf nicht unvorteilhaft abgeschnitten werden.
 - [ ] Nico bleibt ein separates, transparentes Charakterasset und wird passend zur Laufzeit-Entwicklungsstufe geladen.
 - [ ] Nicos Habitat/Terrarium bleibt als geschützter Lebensraum erkennbar; er darf nicht wie eine losgelöste Figur über dem Bild schweben.
@@ -75,5 +75,6 @@
 - **Bereits vorhanden:** React-Home-Struktur, dynamisches Nico-Rendering, Start-/Fortsetzen-Aktion, vier Lernfeld-Schilder mit je fünf Kompetenzsternen, Themenübersicht, Album, Shop, bedingter Relikte-Zugang, Hilfslinks.
 - **Noch nicht belegt:** visuelle QA über Smartphone/Tablet/Desktop; finale Einzelassets für Lernschilder und sekundäre Weltobjekte.
 - **Zurückgewiesen:** bisheriges `public/images/home/home-world.svg` als finale Hintergrundgrafik.
-- **Neu generiert, noch nicht integriert:** detailreiche 3D-Waldszene `a_lush_cinematic_high_detail_fantasy_forest_scen.png` (941 × 1672 px).
+- **Integriert:** `public/images/home/home-forest.avif` (generierter 3D-Wald, AVIF, 512 px Breite; Hintergrundreferenz in `src/index.css`).
+- **Integriert:** detailreiche 3D-Waldszene `public/images/home/home-forest.avif`, optimiert als AVIF für den Hintergrund. Das hochauflösende Original bleibt außerhalb des Repositories.
 - **Wichtige Datenmodellgrenze:** pro Lernfeld existiert aktuell keine eigene Freischaltinformation; daher werden die vier definierten Themen nicht fälschlich als gesperrt markiert.
