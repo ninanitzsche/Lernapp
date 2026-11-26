@@ -171,7 +171,7 @@ function AppInhalt() {
           <button className="home-all-topics" type="button" onClick={() => setView('themen')}>Alle Themen <span aria-hidden="true">→</span></button>
         </div>
         <div className="home-signs">
-          {TOPICS.map((t, i) => (
+          {[...TOPICS].sort((a, b) => state.sterneErreicht[a] - state.sterneErreicht[b]).map((t) => (
             <button className="home-sign" type="button" key={t} onClick={() => starten(t, 'mix')} aria-label={`${TOPIC_NAMES[t]}, ${state.sterneErreicht[t]} von ${MAX_STERNE} Kompetenzsternen. Nächste Runde starten.`}>
               <span className="home-sign-post" aria-hidden="true" />
               <span className="home-sign-face">
