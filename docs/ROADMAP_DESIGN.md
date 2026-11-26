@@ -17,6 +17,12 @@ Die bestehende Lernapp erhält eine konsistente visuelle Identität im Stil **Lu
 - Sekundär: Tablet und Desktop responsiv unterstützen.
 - Alle neuen Layoutentscheidungen zuerst am schmalen Smartphone-Viewport prüfen.
 
+## Technische Priorität
+
+- Bei gleichwertigen Lösungswegen wird grundsätzlich zuerst die technisch einfachste, robuste und wartbare Umsetzung gewählt – projektweit und in allen Phasen.
+- Zusätzliche Komplexität (z. B. aufwendige Layoutlogik, Sonderfälle, Animationen oder neue Abhängigkeiten) wird nur eingeführt, wenn sie einen klaren, notwendigen Mehrwert bietet.
+- Die einfache Lösung muss weiterhin die festgelegten UX-, Design-, Zugänglichkeits- und Responsivitätsanforderungen erfüllen; technische Einfachheit ist kein Grund, diese zu unterschreiten.
+
 ## Status-Legende
 
 Es gelten die Statusbegriffe aus [README.md](./README.md): **Entworfen**, **Implementiert**, **Verifiziert**, **Offen**, **Blockiert**.
