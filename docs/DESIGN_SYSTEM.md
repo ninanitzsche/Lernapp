@@ -106,6 +106,7 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 - Gestaltung der Lernfeld-Schilder: **Holzschilder mit magischen Details** (Auswahl C, 26.11.2026), z. B. leuchtende Symbole oder kleine Kristalle. Die Schilder gehören sichtbar zur natürlichen Umgebung und greifen zugleich die magische Bildsprache auf; Text und Kompetenzsterne müssen gut lesbar bleiben.
 - Darstellung der fünf Kompetenzsterne: **verdiente Kompetenzsterne in Gold, noch offene Sterne als dezente Umrisse** (Auswahl C, 26.11.2026). Die Anzeige bleibt klein und auf jedem Lernfeld-Schild eindeutig dem jeweiligen Lernfeld zugeordnet.
 - Interaktion mit einem Lernfeld-Schild: **Tippen startet direkt die nächste passende Lernrunde** (Auswahl A, 26.11.2026). Der Einstieg bleibt dadurch unmittelbar und ohne zusätzliche Vorschau oder Zwischenseite; die Auswahl der passenden Runde folgt dem individuellen Lernstand.
+- Noch nicht freigeschaltete Lernfelder: **auf Home zunächst nicht anzeigen** (Auswahl C, 26.11.2026). Die Startseite zeigt nur aktuell relevante und verfügbare Lernfelder; es erscheinen dort keine ausgegrauten oder gesperrten Vorschau-Schilder.
 - Die konkrete Komposition, Navigation und Asset-Liste werden im schrittweisen Home-Interview festgelegt.
 
 ### Lernen
