@@ -17,23 +17,23 @@
 ## 2. Home-Hierarchie
 - [ ] Nico ist groß und zentral der emotionale Mittelpunkt.
 - [ ] Nico ruht neugierig und ruhig auf einer natürlichen, moosbewachsenen Plattform.
-- [ ] Der echte Button „Runde starten“ sitzt unmittelbar unter der Plattform.
-- [ ] Bei pausierter Runde bleibt der vorhandene dynamische Fortsetzen-Zustand erhalten.
+- [x] Der echte Button „Runde starten“ sitzt unmittelbar unter der Plattform.
+ - [x] Bei pausierter Runde bleibt der vorhandene dynamische Fortsetzen-Zustand erhalten.
 - [ ] Gemütlicher, heller Heimatbereich im Vordergrund; geheimnisvolle Abenteuerwelt öffnet sich dahinter.
 - [ ] Mittlere Naturdichte mit genügend ruhigen Flächen für lesbare UI.
-- [ ] Begrüßung „Bei {Kindername}“ / persönliche Ansprache bleibt erhalten.
+ - [x] Begrüßung „Bei {Kindername}“ / persönliche Ansprache bleibt erhalten.
 - [ ] Keine eingebrannten Texte, Sterne, Buttons oder Zustände im Hintergrundbild.
 
 ## 3. Lernpfad und Kompetenz
 - [ ] Home zeigt nur die kleine, individuell relevante Auswahl aktuell bearbeiteter/nächster Themen; vollständige Übersicht über „Alle Themen“.
 - [ ] Drei bis fünf Schilder gleichzeitig in kleinen Gruppen entlang eines Weges.
 - [ ] Lernschilder sind hochwertige Holzobjekte mit magischen Details; Titel bleiben dynamischer UI-Text.
-- [ ] Genau fünf Kompetenzsterne je Lernfeld, horizontal angeordnet.
-- [ ] Erreichte Sterne gold, nicht erreichte als dezente Umrisse.
-- [ ] Reihenfolge nach individueller Lernpriorität: Bereiche mit geringerem Kompetenzstand zuerst.
+ - [x] Genau fünf Kompetenzsterne je Lernfeld, horizontal angeordnet.
+ - [x] Erreichte Sterne gold, nicht erreichte als dezente Umrisse.
+ - [x] Reihenfolge nach individueller Lernpriorität: Bereiche mit geringerem Kompetenzstand zuerst.
 - [ ] Sterne messen nachgewiesene Kompetenz, nicht Anzahl der Übungsrunden.
 - [ ] Keine globale Home-Fortschrittsanzeige.
-- [ ] Tippen auf ein Schild startet unmittelbar die nächste passende Runde dieses Themas, ohne Vorschau.
+ - [x] Tippen auf ein Schild startet unmittelbar die nächste passende Runde dieses Themas, ohne Vorschau.
 - [ ] Gesperrte Themen werden nicht als graue Vorschau gezeigt. Solange das Datenmodell keine Freischaltung je Thema enthält, keine Sperrung erfinden.
 
 ## 4. Nico-Verhalten
@@ -45,20 +45,20 @@
 - [ ] Emotionsmatrix und bestehende Laufzeit-Zustände abgleichen; keine neue Emotion ohne dokumentierten Bedarf.
 
 ## 5. Weltzugänge und Navigation
-- [ ] „Alle Themen“ als gut erkennbarer Wegweiser/Portal-Zugang.
-- [ ] Album als Buch/Buchstation, öffnet das bestehende Album.
-- [ ] Shop als Truhe/Marktstand; Münzestand bleibt lesbar und dynamisch.
-- [ ] Relikte als Portal/Tür nur dann sichtbar, wenn `reliktBereichSichtbar(state)` wahr ist (nach Themenabschluss).
+ - [x] „Alle Themen“ als gut erkennbarer Wegweiser/Portal-Zugang.
+ - [x] Album als Buch/Buchstation, öffnet das bestehende Album.
+ - [x] Shop als Truhe/Marktstand; Münzestand bleibt lesbar und dynamisch.
+ - [x] Relikte als Portal/Tür nur dann sichtbar, wenn `reliktBereichSichtbar(state)` wahr ist (nach Themenabschluss).
 - [ ] Weltobjekte sind echte Buttons mit getrennten Interaktionsflächen; Dekoration sieht nicht fälschlich klickbar aus.
-- [ ] „Wie geht das?“ und „Für Erwachsene“ bleiben als ruhige, gut lesbare Hilfszugänge sichtbar.
+ - [x] „Wie geht das?“ und „Für Erwachsene“ bleiben als ruhige, gut lesbare Hilfszugänge sichtbar.
 - [ ] Sicherungshinweis bleibt am Erwachsenen-Zugang erkennbar.
 
 ## 6. Responsive, Accessibility und Technik
-- [ ] Smartphone-first; danach Tablet/Desktop mit derselben Informationsarchitektur.
+ - [x] Smartphone-first; danach Tablet/Desktop mit derselben Informationsarchitektur.
 - [ ] Kurze Smartphone-Displays ohne abgeschnittene Hauptaktion oder unzugängliche Navigation.
 - [ ] 48-px-Touch-Targets einhalten; keine wichtige Aktion nur per Hover.
 - [ ] Tastaturbedienung und sichtbare Fokuszustände prüfen.
-- [ ] `prefers-reduced-motion` respektieren; Ansicht ohne Animation vollständig verständlich.
+ - [x] `prefers-reduced-motion` respektieren; Ansicht ohne Animation vollständig verständlich.
 - [ ] Bestehende Lern-, Belohnungs-, Shop-, Terrarium- und Speicherlogik unverändert lassen.
 - [ ] Bildgrößen und Ladeverhalten prüfen.
 - [ ] Tests, TypeScript und Produktionsbuild erfolgreich.
@@ -72,7 +72,8 @@
 - [ ] Preview-Deployment und Branch-Status prüfen; keine nicht erfolgte Sichtprüfung behaupten.
 
 ## Aktueller Befund am 26.11.2026
-- **Bereits vorhanden:** React-Home-Struktur, dynamisches Nico-Rendering, Start-/Fortsetzen-Aktion, vier Lernfeld-Schilder mit je fünf Kompetenzsternen, Themenübersicht, Album, Shop, bedingter Relikte-Zugang, Hilfslinks.
+- **Bereits im Code vorhanden:** React-Home-Struktur, dynamisches Nico-Rendering, Start-/Fortsetzen-Aktion, vier Lernfeld-Schilder mit je fünf Kompetenzsternen, Themenübersicht, Album, Shop, bedingter Relikte-Zugang, Hilfslinks.
+- **Hintergrund integriert:** generierter 3D-Wald als AVIF in `public/images/home/home-forest.avif`; CSS referenziert das neue Bild statt des SVG.
 - **Noch nicht belegt:** visuelle QA über Smartphone/Tablet/Desktop; finale Einzelassets für Lernschilder und sekundäre Weltobjekte.
 - **Zurückgewiesen:** bisheriges `public/images/home/home-world.svg` als finale Hintergrundgrafik.
 - **Integriert:** `public/images/home/home-forest.avif` (generierter 3D-Wald, AVIF, 512 px Breite; Hintergrundreferenz in `src/index.css`).
