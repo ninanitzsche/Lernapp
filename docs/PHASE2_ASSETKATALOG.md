@@ -45,7 +45,7 @@ Der jüngste Bestandsbereinigungs-Commit hat unreferenzierte Rohdateien und Alto
 | Assetgruppe | Bestand | Zielumfang | Status | Nächster Schritt |
 |---|---|---:|---|---|
 | Terrarium-Hintergrund | `terrarium1.webp`, `terrarium2.webp` | 1–2 | Bestand / Stilabgleich offen | Luminous-Fantasy-Tiefe und UI-Ruheflächen prüfen |
-| Home-Hintergrund | `public/images/home/home-world.svg` (zurückgewiesen); generierte Waldszene `a_lush_cinematic_high_detail_fantasy_forest_scen.png` (941 × 1672 px, außerhalb des Repos) | 1 | Generiert, nicht integriert | Optimieren, nach `public/images/home/` übertragen und responsiv einsetzen; keine UI in das Bild rendern |
+| Home-Hintergrund | `public/images/home/home-forest.avif` (generiert aus `a_lush_cinematic_high_detail_fantasy_forest_scen.png`); `home-world.svg` historisch/zurückgewiesen | 1 | Integriert, visuelle QA offen | Bildausschnitt und Kontrast in Smartphone-, Tablet- und Desktop-Viewports prüfen; keine UI in das Bild rendern |
 | Modulare Naturbausteine | Wurzeln, Äste, Moos, Steine, Pflanzen | 8–12 | Zu prüfen / teilweise Bestand | Wiederverwendbare Vordergrund-/Hintergrundteile katalogisieren |
 | Magische Akzente | Kristalle, Glow-Pflanzen, Sporen | 5–8 | Zu produzieren / Bestand prüfen | Als separate Layer gestalten |
 | Lernansicht-Hintergrund | noch keiner freigegeben | 1 | Zu produzieren | Reduzierte, kontrastarme Variante |
