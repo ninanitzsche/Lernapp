@@ -1,6 +1,6 @@
 # Phase 2 – Asset-Katalog und Produktionsstatus
 
-> **Branch:** `design/luminous-fantasy-adventure`
+> **Branch:** `design/phase2-visual-foundation`
 > **Status:** Arbeitskatalog; keine Konzeptgrafik gilt automatisch als Produktionsasset.
 > **Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) · [PHASE2_NICO_EMOTIONSMATRIX.md](./PHASE2_NICO_EMOTIONSMATRIX.md)
 
