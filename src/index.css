@@ -1130,3 +1130,79 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
   overflow:hidden;
 }
 .home-snake .terra-hintergrund { display:block; opacity:.2; }
+
+
+/* Home – Bildwelt-Integration: die Spielwelt bleibt Hintergrund, alle Texte und
+   Aktionen bleiben echte, dynamische App-Elemente. */
+.home-screen {
+  background-image:
+    linear-gradient(180deg,rgba(5,28,22,.12) 0%,rgba(5,30,24,.2) 38%,rgba(5,27,22,.76) 100%),
+    url('/images/home/home-world.svg');
+  background-size:cover;
+  background-position:center 38%;
+}
+.home-hero {
+  min-height:0;
+  background:linear-gradient(180deg,rgba(8,38,28,.08),rgba(7,31,25,.22));
+  border-color:rgba(255,230,174,.3);
+}
+.home-snake .terrarium {
+  width:min(72vw,340px);
+  height:clamp(190px,27dvh,250px);
+  background:radial-gradient(ellipse at 50% 70%,rgba(15,70,44,.34),rgba(5,34,27,.12) 72%);
+}
+.home-snake .schlange-bild { height:clamp(112px,19dvh,168px); }
+.home-snake .schlange-bild.imterra { height:68%; }
+.home-start-platform {
+  position:relative;
+  margin-top:2px;
+  border-radius:20px 20px 26px 26px;
+  background:linear-gradient(180deg,#bd8950 0%,#8d5b35 55%,#684329 100%);
+  border:2px solid #e3bd7a;
+  box-shadow:inset 0 2px rgba(255,244,208,.3),0 7px 0 #4d321d,0 11px 18px rgba(0,0,0,.32);
+}
+.home-start-button {
+  border-radius:15px;
+  background:linear-gradient(180deg,#ffe28a,#ffad24 72%,#e58b12);
+  color:#382817;
+  box-shadow:inset 0 2px rgba(255,255,255,.55),0 4px 0 #9c5b0d,0 6px 12px rgba(0,0,0,.22);
+  text-shadow:0 1px rgba(255,255,255,.35);
+}
+.home-learning {
+  background:linear-gradient(180deg,rgba(12,48,36,.72),rgba(5,31,25,.88));
+  border-color:rgba(255,224,166,.38);
+  box-shadow:0 10px 24px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.12);
+}
+.home-sign-face {
+  position:relative;
+  border:2px solid #e8c17d;
+  border-radius:12px 12px 9px 9px;
+  background:linear-gradient(180deg,#d2a064 0%,#a66d3d 46%,#75482d 100%);
+  box-shadow:inset 0 2px rgba(255,245,210,.35),0 4px 0 #4d321d,0 8px 14px rgba(0,0,0,.32);
+}
+.home-sign-face::before,.home-sign-face::after {
+  content:"";
+  position:absolute;
+  top:5px;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:#f6d994;
+  box-shadow:0 0 7px rgba(255,225,139,.75);
+}
+.home-sign-face::before {left:6px}
+.home-sign-face::after {right:6px}
+.home-sign-name {font-family:var(--font-display);font-size:.9rem}
+.home-world-nav {
+  background:linear-gradient(180deg,rgba(18,65,48,.9),rgba(5,34,27,.96));
+  border-color:rgba(255,224,166,.42);
+  box-shadow:0 10px 26px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.12);
+}
+.home-world-object {
+  background:linear-gradient(180deg,rgba(255,239,202,.17),rgba(255,239,202,.055));
+  border-color:rgba(255,226,174,.34);
+  box-shadow:inset 0 1px rgba(255,255,255,.12),0 4px 9px rgba(0,0,0,.18);
+}
+@media (max-height:740px) and (max-width:599px) {
+  .home-snake .terrarium {height:clamp(155px,22dvh,190px)}
+  .home-snake .schlange-bild {height:clamp(94px,15dvh,122px)}
+}
