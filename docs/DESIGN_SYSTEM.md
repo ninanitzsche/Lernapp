@@ -92,6 +92,7 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 - Räumlicher Aufbau: **Übergang zwischen Zuhause und Welt** (Auswahl 3, 26.11.2026): Im Vordergrund liegt Nicos geschützter, gemütlicher Platz; dahinter öffnet sich die größere Abenteuerlandschaft. Der Übergang soll visuell klar und einladend sein, nicht wie zwei getrennte Screens wirken.
 - Nicos Position: **als kleiner Entdecker auf einer Wurzel oder einem Ast**, mit Blick in die sich öffnende Welt (Auswahl C, 26.11.2026). Seine Haltung soll Neugier und Aufbruch vermitteln; er bleibt dabei erkennbar im vertrauten Zuhause verankert.
 - Präsenz der Abenteuerwelt: **ausgewogen** (Auswahl B, 26.11.2026). Die Landschaft ist deutlich erkennbar und macht Lust aufs Entdecken, bleibt aber visuell hinter Nico und der zentralen Lernaktion.
+- Darstellung der Hauptaktion „Runde starten“: **deutlich erkennbarer Button auf einer natürlichen Plattform vor Nico** (Auswahl C, 26.11.2026). Die Aktion verbindet die Spielwelt mit einer jederzeit verständlichen, gut bedienbaren Oberfläche.
 - Die konkrete Komposition, Navigation und Asset-Liste werden im schrittweisen Home-Interview festgelegt.
 
 ### Lernen
