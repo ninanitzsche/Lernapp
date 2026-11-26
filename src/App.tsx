@@ -147,7 +147,7 @@ function AppInhalt() {
         <div className="home-world-glow" aria-hidden="true" />
         <div className="home-hero-copy">
           <span className="home-eyebrow">Willkommen zurück</span>
-          <h1>Schön, dass du da bist!</h1>
+          <h1>Bei {state.name}</h1>
         </div>
         <div className="home-snake">
           <Snake state={state} now={now} onChange={setState} />
