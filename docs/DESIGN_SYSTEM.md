@@ -96,6 +96,7 @@ Texte, Zahlen, Buttons und interaktive Elemente bleiben echte responsive React-/
 - Weitere Bereiche (Themen, Album, Shop und Relikte): **Kombination aus wenigen Elementen in der Spielwelt und einer schmalen, klaren Navigation** (Auswahl C, 26.11.2026). Welt-Elemente dürfen Atmosphäre und Entdeckung unterstützen; die Navigation stellt sicher, dass alle Bereiche direkt auffindbar und bedienbar bleiben.
 - Navigationsform: **schmale Leiste am unteren Bildschirmrand mit Icons und kurzen Beschriftungen** (Auswahl A, 26.11.2026). Die Beschriftungen unterstützen die Verständlichkeit für Kinder; die Leiste bleibt gegenüber der Hauptaktion visuell zurückhaltend.
 - Nicos Verhalten auf Home: **ruhige Grundpose mit kleinen gelegentlichen Bewegungen und passenden Reaktionen auf Aktionen des Kindes** (Auswahl C, 26.11.2026). Nico wirkt lebendig und ansprechbar, ohne durch dauernde Animation vom Lernen abzulenken.
+- Direkte Ansprache durch Nico: **gelegentlich und situationsbezogen** (Auswahl C, 26.11.2026), z. B. bei der Rückkehr, beim Beginn eines neuen Lernabschnitts oder nach einem besonderen Erfolg. Keine dauerhaften Begrüßungs- oder Motivationsmeldungen auf Home.
 - Die konkrete Komposition, Navigation und Asset-Liste werden im schrittweisen Home-Interview festgelegt.
 
 ### Lernen
