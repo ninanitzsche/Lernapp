@@ -1,6 +1,6 @@
 # Home-Screen-Konzept – Smartphone-first
 
-> **Status:** Hintergrundmotiv abgenommen; Home-Komposition und responsive Verfeinerung implementiert; abschließende Browser-/Viewport-QA offen  
+> **Status:** Hintergrundmotiv abgenommen; Home-Komposition und Material-Finish für Smartphone/Desktop implementiert; abschließende Browser-/Viewport-QA offen  
 > **Gültig für:** Phase 2 · Mathematik / Nico / Schlangenwelt  
 > **Arbeitsbranch:** `design/phase2-visual-foundation`  
 > **Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [REWARD_SYSTEM.md](./REWARD_SYSTEM.md)
