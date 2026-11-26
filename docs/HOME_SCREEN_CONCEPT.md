@@ -1,6 +1,6 @@
 # Home-Screen-Konzept – Smartphone-first
 
-> **Status:** UX-Spezifikation freigegeben; erster React/CSS-Prototyp implementiert, visuelle Abnahme und Produktionsassets weiterhin offen  
+> **Status:** erster gestalteter Home-Screen implementiert; visuelle Abnahme, finale Nico-Integration und Viewport-QA offen  
 > **Gültig für:** Phase 2 · Mathematik / Nico / Schlangenwelt  
 > **Arbeitsbranch:** `design/phase2-visual-foundation`  
 > **Leitdokumente:** [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) · [PHASE2_NICO_REFERENZ.md](./PHASE2_NICO_REFERENZ.md) · [PHASE2_ASSETPLAN.md](./PHASE2_ASSETPLAN.md) · [REWARD_SYSTEM.md](./REWARD_SYSTEM.md)
@@ -111,13 +111,15 @@ Bestehende Charakterdateien und das Logo bleiben unangetastet. Die kanonische Id
 
 ## 7. Umsetzungsstand und offene Punkte vor Produktionsfreigabe
 
-Der erste Smartphone-first-Prototyp ist in `src/App.tsx` und `src/index.css` umgesetzt. Er bildet die Inhaltsreihenfolge, echten Navigationsaktionen und die getrennten Kompetenzsterne ab. Die Gestaltung verwendet vorerst vorhandene Nico-/Terrarium-Assets und CSS-Flächen; sie ist ausdrücklich noch keine finale Luminous-Fantasy-Art-Direction. Die Weltobjekte sind aktuell typografisch/emoji-basierte Platzhalter und müssen durch freigegebene Einzelgrafiken ersetzt werden. Die Lernfeldreihenfolge folgt vorerst der zentralen Liste in `src/logic/tasks.ts`, weil es noch keine eigene individuelle Home-Priorisierung gibt.
+Der gestaltete Smartphone-first-Home-Screen ist in `src/App.tsx` und `src/index.css` umgesetzt. `public/images/home/home-world.svg` liefert eine eigens erstellte, schlangenspezifische Wald-/Höhlenkulisse mit Wasserfall, Wurzeln, Kristallen und natürlicher Plattform. Nico bleibt ein separates dynamisches Charakterasset im vorhandenen Terrarium. Lernschilder und fünf Kompetenzsterne sind echte React-Elemente; die Kompetenzfelder werden nach dem jeweils niedrigsten erreichten Stern sortiert, damit Bereiche mit weiterem Lernbedarf zuerst erscheinen. Sekundäre Navigation nutzt eigene inline-SVG-Illustrationen statt Emoji-Platzhaltern. Die vollständige Themenübersicht, Album, Shop und freigeschaltete Relikte behalten ihre vorhandenen Aktionen.
 
-- [ ] Die konkrete Hintergrundkomposition visuell freigeben.
+Die Priorisierung nutzt den vorhandenen Kompetenzstand; eine eigene Freischalt-/Verfügbarkeitsinformation pro Lernfeld existiert im aktuellen Datenmodell nicht. Deshalb werden derzeit alle vier im Code definierten Lernfelder angezeigt, nicht fälschlich als gesperrt markiert. Der Hintergrund ist eine leichte Vektorillustration als erste umgesetzte Art-Direction, noch kein finales 3D-Produktionsasset. Nicos Charakterdateien wurden nicht verändert.
+
+- [ ] Die konkrete Hintergrundkomposition visuell abnehmen und bei Bedarf feinjustieren.
 - [ ] Nico-Platzierung mit den freigegebenen fünf Entwicklungsstufen prüfen; die endgültigen Einzelbilder sind noch nicht alle freigegeben.
-- [ ] Lernschilder, Sternanzeige und sekundäre Weltobjekte als Stilpaket abstimmen.
+- [x] Lernschilder, Sternanzeige und sekundäre Weltobjekte als erste Stilrichtung implementieren; finale Detailabnahme bleibt offen.
 - [ ] Kontrast und Lesbarkeit der echten UI auf dem Hintergrund im Smartphone-Viewport prüfen.
-- [ ] Einzelne Produktionsassets exportieren und im Asset-Katalog mit Maßen, Format, Transparenz, Dateigröße und Status erfassen.
+- [ ] Die Vektor-Hintergrundgrafik und Navigationsillustrationen im Asset-Katalog mit Format, Abmessungen und Status erfassen; anschließend ggf. finale Produktionsassets exportieren.
 - [ ] Den Prototyp nach Asset-Freigabe visuell überarbeiten und in Smartphone-, Tablet- und Desktop-Viewports prüfen; bestehende Navigation und Spiellogik unverändert erhalten.
 
 ## 8. Abnahmekriterien
