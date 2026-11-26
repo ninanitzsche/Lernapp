@@ -1118,3 +1118,15 @@ button,input,textarea,select,summary,[role="button"] { touch-action: manipulatio
  .home-world-nav { max-width:620px; }
 }
 @media (prefers-reduced-motion:reduce) { .home-world-object:hover,.home-world-object:active,.home-sign:active { transform:none; } }
+
+/* Das vorhandene Terrarium bleibt als Nicos geschützter Lebensraum sichtbar. */
+.home-snake .terrarium {
+  width:min(66vw,310px);
+  height:clamp(160px,23dvh,218px);
+  border:3px solid rgba(255,229,174,.66);
+  border-radius:44% 44% 26px 26px;
+  background:rgba(9,43,33,.34);
+  box-shadow:inset 0 0 24px rgba(185,255,226,.13),0 0 0 5px rgba(7,37,29,.28),0 12px 28px rgba(0,0,0,.34),0 0 34px rgba(111,255,194,.16);
+  overflow:hidden;
+}
+.home-snake .terra-hintergrund { display:block; opacity:.2; }
