@@ -11,6 +11,7 @@ Diese Seite ist der Einstieg in alle Projektdokumente. Sie sagt, **wo eine Infor
 | Screen- und Interaktionsverhalten | [design.md](./specs/2026-11-22-feedback-runde-1/design.md) | UX, Ansichten und Zustände; keine zweite Quelle für Belohnungslogik |
 | Feedback-Runde 1 | [requirements.md](./specs/2026-11-22-feedback-runde-1/requirements.md), [design.md](./specs/2026-11-22-feedback-runde-1/design.md), [tasks.md](./specs/2026-11-22-feedback-runde-1/tasks.md) | Anforderungen, UX-Vorgaben und historischer Aufgabenplan mit aktuellem Statusüberblick |
 | Visuelles Grundsystem | [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) | Farben, Typografie, Formen, Komponenten und allgemeine Art Direction |
+| Home-Screen-Konzept | [HOME_SCREEN_CONCEPT.md](./HOME_SCREEN_CONCEPT.md) | Smartphone-first-Komposition, visuelle Hierarchie, Lernpfad, Weltobjekt-Navigation und Asset-Aufteilung für Home |
 | Langfristige Fachwelten | [VISUELLES_WELTENKONZEPT.md](./VISUELLES_WELTENKONZEPT.md) | Leitidee für eigenständige Tier- und Themenwelten je Schulfach |
 | Produktvision | [product-vision.md](./product-vision.md) | Langfristige Produktidee und fachübergreifende Architekturleitplanken |
 | Mathe Klasse 2 und Lernfeld Raum und Form (Entwurf) | [MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md](./MATHE_KLASSE2_THEMEN_UND_GEOMETRIE_IDEEN.md) | Lehrplan-Themenliste Stufe B (und C in Teilen), gemeinsames Architektur- und Umsetzungskonzept für das Lernfeld D und Zuordnung der Aufgabentypen zu Raum und Form (Abschnitt 9); Entwurf, noch nicht freigegeben |
